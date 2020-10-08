@@ -4,7 +4,7 @@
 
     <div class="container text-center">
 
-        <br><a href="/images">Browse and Upload images</a>
+        <br><a href="/register">Register</a>
 
     </div>
 
