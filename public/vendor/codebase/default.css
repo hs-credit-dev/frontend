@@ -1,0 +1,72 @@
+.sumo-page p { font-size:20px; padding:10px; max-width:800px; margin:auto }
+.logo-small { font-size:30px; }
+.logo-medium { font-size:50px; }
+.f200 { font-weight:200; line-height: 1.4; }
+.font-w200 { font-weight: 200!important; }
+.f300 { font-weight:300; }
+.f400 { font-weight:400; }
+.max-600 { max-width:600px; }
+.shad { text-shadow: 1px 1px rgba(0,0,0,0.8); }
+.text-sumo { color:#26c6da!important; }
+.text-paint { color:#2daace!important; }
+.text-photo { color:#30baaa!important; }
+.text-tunes { color:#e5ab42!important; }
+.text-video { color:#c82f2e!important; }
+.text-code { color:#20cc71!important; }
+.text-3d { color:#3389c9!important; }
+.invert { filter: invert(100%); }
+.mt-40 { margin-top: 40px; } .mb-40 { margin-bottom: 40px; } .my-40 { margin-top:40px; margin-bottom:40px; }
+.mt-60 { margin-top: 60px; } .mb-60 { margin-bottom: 60px; } .my-60 { margin-top:60px; margin-bottom:60px; }
+.mt-70 { margin-top: 70px; } .mb-70 { margin-bottom: 70px; } .my-70 { margin-top:70px; margin-bottom:70px; }
+.mt-80 { margin-top: 80px; } .mb-80 { margin-bottom: 80px; } .my-80 { margin-top:80px; margin-bottom:80px; }
+.pt-40 { padding-top: 40px; } .pb-40 { padding-bottom: 40px; } .py-40 { padding-top:40px; padding-bottom:40px; }
+.pt-60 { padding-top: 60px; } .pb-60 { padding-bottom: 60px; } .py-60 { padding-top:60px; padding-bottom:60px; }
+.pt-70 { padding-top: 70px; } .pb-70 { padding-bottom: 70px; } .py-70 { padding-top:70px; padding-bottom:70px; }
+.pt-80 { padding-top: 80px; } .pb-80 { padding-bottom: 80px; } .py-80 { padding-top:80px; padding-bottom:80px; }
+
+.bg-dark { background:linear-gradient(0deg, rgba(0,20,40,1) 0%, rgba(0,20,40,0.8) 100%)!important; }
+.bg-dark h2 { color:rgba(255,255,255,0.8); text-shadow: 1px 1px rgba(0,0,0,0.8); } .bg-dark p { color:rgba(255,255,255,0.8); text-shadow: 1px 1px rgba(0,0,0,0.8); }
+.bg-sumo { background:linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(0,0,0,0.2) 100%)!important; }
+.bg-sumo h2 { color:rgba(0,0,0,0.8); } .bg-sumo p { color:rgba(0,0,0,0.8); }
+
+.footer-group { display:inline-block; width:200px; height:200px; vertical-align:top; padding-top:20px; padding-bottom:20px; }
+.footer-group a { color:#333333 } .footer-group a:hover { color:#000000 }
+
+.sumo-app { position:absolute; left:0px; top:50px; right:0px; bottom:0px; height:auto!important; }
+.sumo-icon { filter: opacity(90%) invert(100%); margin-top:-3px; margin-right:4px; width:16px; height:16px; }
+
+.btn-sumo { color: #fff; background-color: #26c6da; border-color: #16b6ca; }
+.btn-sumo:hover { color: #fff; background-color: #16b6ca; border-color: #06a6ba; }
+.out-sumo { color: #26c6da; background-color: transparent; border-color: #26c6da; }
+.out-sumo:hover { color: white; background-color: #06a6ba; }
+
+.btn-paint { color: #fff; background-color: #2daace; border-color: #1d9abe; }
+.btn-paint:hover { color: #fff; background-color: #1d9abe; border-color: #0d8aae; }
+.out-paint { color: #2daace; background-color: transparent; border-color: #2daace; }
+.out-paint:hover { color: white; background-color: #0d8aae; }
+
+.btn-photo { color: #fff; background-color: #30baaa; border-color: #20aa9a; }
+.btn-photo:hover { color: #fff; background-color: #20aa9a; border-color: #109a8a; }
+.out-photo { color: #30baaa; background-color: transparent; border-color: #30baaa; }
+.out-photo:hover { color: white; background-color: #109a8a; }
+
+.btn-tunes { color: #fff; background-color: #e5ab42; border-color: #d59b32; }
+.btn-tunes:hover { color: #fff; background-color: #d59b32; border-color: #c58b22; }
+.out-tunes { color: #e5ab42; background-color: transparent; border-color: #e5ab42; }
+.out-tunes:hover { color: white; background-color: #c58b22; }
+
+.btn-video { color: #fff; background-color: #c82f2e; border-color: #b81f1e; }
+.btn-video:hover { color: #fff; background-color: #b81f1e; border-color: #a80f0e; }
+.out-video { color: #c82f2e; background-color: transparent; border-color: #c82f2e; }
+.out-video:hover { color: white; background-color: #a80f0e; }
+
+.btn-code { color: #fff; background-color: #20cc71; border-color: #10bc61; }
+.btn-code:hover { color: #fff; background-color: #10bc61; border-color: #00ac51; }
+.out-code { color: #20cc71; background-color: transparent; border-color: #20cc71; }
+.out-code:hover { color: white; background-color: #00ac51; }
+
+.btn-3d { color: #fff; background-color: #3389c9; border-color: #2379b9; }
+.btn-3d:hover { color: #fff; background-color: #2379b9; border-color: #1369a9; }
+.out-3d { color: #3389c9; background-color: transparent; border-color: #3389c9; }
+.out-3d:hover { color: white; background-color: #1369a9; }
+
