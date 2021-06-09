@@ -15,6 +15,9 @@ import {
   Quicksand_700Bold,
 } from '@expo-google-fonts/quicksand';
 
+// this is a fireblade generated file only to use for reference
+
+
 export default class SignIn extends Component {
 
   constructor(props) {

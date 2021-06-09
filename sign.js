@@ -16,11 +16,6 @@ import {
   Quicksand_700Bold,
 } from '@expo-google-fonts/quicksand';
 
-// import Start from './start'
-
-
-
-
 export default function Sign() {
   let [fontsLoaded] = useFonts({
     Quicksand_300Light,
@@ -42,8 +37,6 @@ export default function Sign() {
       />
       <Image style={styles.menu} source={require('./assets/iconfindermenu2309052.png')}/>
       <Image style={styles.menu2} source={require('./assets/iconfindermenu2309052.png')}/>
-      <View style={{borderTopWidth: 1, marginTop: 100, borderTopColor: '#27464F', height: 150}}>
-    </View>
     </View>
     );
 }}
