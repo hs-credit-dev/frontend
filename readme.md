@@ -1,11 +1,13 @@
-# HS Credit - App Development
+# HS Credit - App Development 
+![hs.credit logo](assets/hscLogo21.png)
 ## Big Questions
 
-* What to use? [React](https://github.com/facebook/react) / [Flutter](https://github.com/flutter/flutter) / [React Native](https://github.com/facebook/react-native)
+* What to use? [React](https://github.com/facebook/react) / [Flutter](https://github.com/flutter/flutter) / [React Native](https://github.com/facebook/react-native) & [Expo](https://docs.expo.io/)
     - We have some experience in React and React Native, but if we look at the [link](https://hackr.io/blog/react-native-vs-flutter) Nadav sent, it looks like flutter is the development platform of the future, even though it isn't yet the easiest to work with.
     - There were also points that React could be convertable to flutter in the future.
     - Starting fresh with a new language like Dart is a huge task.
     - Do we need the extra performance from Flutter in this project? What if we use React and try to minimize asset sizes and use light components?
+    - A thing to remember with React PWA is that it's not applicable to Apple App Store. If that's a mandatory requirement, it will be hard to use base React.
 
 * In terms of backend, we will use [Django](https://www.djangoproject.com/).
 With experience from Mocha, Sophia and Leo, this is propably the best choice.
