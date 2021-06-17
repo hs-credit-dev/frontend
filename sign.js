@@ -31,17 +31,36 @@ export default function Sign() {
   return (
     <View style={styles.container}>
       <Image
+      style={styles.arrow}
+      source={require('./assets/arrow-left.png')}
+      />
+      <Image
       style={styles.logo}
       source={
         require('./assets/hscLogo21.png')}
       />
       <Image style={styles.menu} source={require('./assets/iconfindermenu2309052.png')}/>
       <Image style={styles.menu2} source={require('./assets/iconfindermenu2309052.png')}/>
-    </View>
+          <Text style={styles.textBold}>
+      Login as
+    </Text>
+    <Text style={[styles.textBold, styles.hat, {left: -110, top: 100}]}>Student</Text>
+    <Text style={[styles.textBold, {right: -110, top: 70}]}>Catalyst</Text>
+    <Image style={[styles.halfSize, styles.hat]} source={require('./assets/hat.png')} />
+    <Image style={[styles.halfSize, styles.apple]} source={require('./assets/apple.png')} />
+
+      </View>
     );
 }}
 
 const styles = StyleSheet.create({
+  arrow: {
+    "transform": [{scale: 1}],
+    "position": "absolute",
+    "left": 20,
+    "top": 20,
+    
+  },
   layer2: {
     "opacity": 1,
     "bottom": 0,
@@ -62,8 +81,18 @@ const styles = StyleSheet.create({
     "top": -20,
     "right": 15,
     "margin": 0,
-    
-
+  },
+  halfSize: {
+    "transform": [{scale: .5}],
+    "position": "absolute",
+  },
+  hat: {
+    "left": 10,
+    "top": 120,
+  },
+  apple: {
+    "right": 10,
+    "top": 120,
   },
   menu2: {
     "transform": [{scale: .3}, {rotate: '90deg'}],
@@ -98,7 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#091E24',
     alignItems: 'center',
-    justifyContent: 'center',
+//    justifyContent: 'center',
   },
   backgroundContainer: {
     position: 'absolute',
@@ -142,6 +171,7 @@ const styles = StyleSheet.create({
   logo: {
     "opacity": 1,
     "position": "absolute",
+    "transform": [{scale: .8}],
     "marginTop": 0,
     "marginRight": 0,
     // "marginBottom": 100,
@@ -152,8 +182,7 @@ const styles = StyleSheet.create({
     "borderBottomRightRadius": 0,
     "width": 100,
     "height": 100,
-    "left": 10,
-    "top": 0,
+    "top": 5,
 
   },
   circle: {
@@ -169,7 +198,9 @@ const styles = StyleSheet.create({
   textBold: {
     color: 'white',
     fontSize: 25,
-    fontWeight: 'bold',
-    fontFamily: 'Quicksand_700Bold'
+    fontWeight: "bold",
+    fontFamily: 'Quicksand_700Bold',
+    top: 100,
+
   },
 });

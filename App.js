@@ -17,7 +17,7 @@ import {
 } from '@expo-google-fonts/quicksand';
 
 // import Start from './start'
-function DetailsScreen() {
+function LoginScreen() {
   return (
 <Sign></Sign>
   );
@@ -27,7 +27,7 @@ function DetailsScreen() {
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableHighlight style={styles.logo} onPress={() => navigation.navigate('Details')}>
+      <TouchableHighlight style={styles.logo} onPress={() => navigation.navigate('Login')}>
       <Image
       style={styles.logo}
       source={
@@ -45,13 +45,11 @@ function HomeScreen({ navigation }) {
         </ScrollView>
 
         </View>
-        <ImageBackground style={styles.backdrop} source={require('./assets/circle.png')}>
 <Image
       style={styles.book}
       source={require('./assets/book.png')}
       />
 
-</ImageBackground>
 <Text style={styles.textBold}>
   How it works?
 </Text>
@@ -86,7 +84,7 @@ export default function App() {
     <NavigationContainer>{
       <Stack.Navigator initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
 
 
