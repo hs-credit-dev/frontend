@@ -4,7 +4,7 @@ const { Strategy, ExtractJwt } = require('passport-jwt');
 const mongoose = require('mongoose');
 // we will need to bring in another orm for whichever db we choose
 
-const { User } = require('../database/models/user');
+const { User } = require('../models/user');
 
 const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
