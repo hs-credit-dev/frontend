@@ -1,5 +1,5 @@
 # HS Credit - App Development 
-![hs.credit logo](assets/hscLogo21.png)
+
 ## Big Questions
 
 * What to use? [React](https://github.com/facebook/react) / [Flutter](https://github.com/flutter/flutter) / [React Native](https://github.com/facebook/react-native) & [Expo](https://docs.expo.io/)
