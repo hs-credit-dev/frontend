@@ -5,11 +5,16 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
 
+
+
+
 //styling
 
 import './App.css';
 
 //components
+
+import Home from './components/Home'
 
 // import Navbar from './components/Navbar';
 
@@ -62,9 +67,10 @@ function App() {
 
     return (
         <div className="App">
-            <div className="appNameHeader">
-                hs.Credit
-            </div>
+            
+           <Home />
+                
+            
             {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
 
