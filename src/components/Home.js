@@ -1,6 +1,7 @@
 import HomeHeader from './Headers/HomeHeader'
 import Book from '../assets/book.png'
-
+import BottomLeft from '../assets/svg/home-left-bottom.svg'
+import BottomRight from '../assets/svg/home-bottom-right.svg'
 const Home = () => {
     return (
         <div>
@@ -8,6 +9,8 @@ const Home = () => {
             <img src={Book} alt='book'/>
             <h2>How it Works</h2>
             <p>Opt out of standardized testing while showing off to colleges and universities</p>
+            <img src={BottomLeft} alt='Bottom Left Image'/>
+            <img src={BottomRight} alt='Bottom Right Image'/>
         </div>
     )
 }
