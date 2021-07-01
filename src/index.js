@@ -7,6 +7,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <Router>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+    </style>
     <App />
   </Router>,
   document.getElementById('root')
