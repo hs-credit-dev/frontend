@@ -9,8 +9,8 @@ const Home = () => {
             <img src={Book} alt='book'/>
             <h2>How it Works</h2>
             <p>Opt out of standardized testing while showing off to colleges and universities</p>
-            <img src={BottomLeft} alt='Bottom Left Image'/>
-            <img src={BottomRight} alt='Bottom Right Image'/>
+            <img src={BottomLeft} alt='Bottom Left'/>
+            <img src={BottomRight} alt='Bottom Right'/>
         </div>
     )
 }
