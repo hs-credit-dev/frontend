@@ -1,6 +1,7 @@
 import React from 'react'
 
-const LoginMenu = () => {
+ const LoginButton = () => {
+     
     return (
         <div>
             
@@ -8,4 +9,4 @@ const LoginMenu = () => {
     )
 }
 
-export default LoginMenu
+export default LoginButton
