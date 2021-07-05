@@ -18,9 +18,9 @@ app.use(cors()); //allowing CORS requests to bypass browser firewall
 app.use(passport.initialize()); //passport init for auth
 
 //API routes
-app.get(('/api/', (req, res) => {
+app.get('/api/', (req, res) => {
     res.json({ name: 'hs.credit server' });
-}));
+});
 
 app.use('/api/users', routes.user);
 
