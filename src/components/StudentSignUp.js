@@ -60,9 +60,9 @@ const StudentSignUp = () => {
         // make sure password and confirm password are equal
         // password length >= 8 characters
         if (password === confirmPassword && password.length >= 8) {
-            const newUser = { firstName,lastName,location,school,userTyper,grade,userName, email, password,  };
+            const newStudentUser = { firstName,lastName,location,school,userType,grade,userName, email, password,  };
             // need proper API for line 65
-            axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
+            axios.post(`${REACT_APP_SERVER_URL}/users/register`, newStudentUser)
             .then(response => {
                 console.log('===> Yay, new user');
                 console.log(response);
