@@ -1,14 +1,14 @@
 import React from 'react'
 import {React,useState} from 'react'
 
-const StudentSignUp = () => {
+const EducatorSignUp = () => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [grade, setGrade] = useState('');
+  
     const [location, setLocation] = useState('');
     const [school, setSchool] = useState('');
     const [userType, setUserType] = useState('');
@@ -23,9 +23,7 @@ const StudentSignUp = () => {
         setLastName(e.target.value);
     }
 
-    const handleGrade = (e) => {
-        setGrade(e.target.value);
-    }
+   
 
     const handleLocation = (e) => {
         setLocation(e.target.value);
@@ -98,8 +96,6 @@ const StudentSignUp = () => {
                     <label>School</label>
                     <input type="text" value={school} onChange={handleSchool}></input>
                 
-                    <label>Grade</label>
-                    <input type="text" value={grade} onChange={handleGrade}></input>
                
                     <label>User Type</label>
                     <input type="select" value={userType} onChange={handleUserType}></input>
@@ -120,4 +116,4 @@ const StudentSignUp = () => {
     )
 }
 
-export default StudentSignUp
+export default EducatorSignUp

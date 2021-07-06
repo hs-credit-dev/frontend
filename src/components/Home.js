@@ -1,6 +1,6 @@
 import HomeHeader from './Headers/HomeHeader'
 
-import LandNavBar from './NavBars/LandNavBar'
+
 
 import Book from '../assets/book.png'
 import BottomLeft from '../assets/svg/home-left-bottom.svg'
@@ -9,7 +9,7 @@ import BottomRight from '../assets/svg/home-bottom-right.svg'
 const Home = () => {
     return (
         <div className='home-container'>
-            <LandNavBar />
+           
             <HomeHeader />
 
             
