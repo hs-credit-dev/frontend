@@ -2,6 +2,8 @@
   background:  rgba(0, 0, 0, 1);
   ;
 }
+
+/* HOME HEADER STYLING */
 .hsc-logo-landing{
   justify-content: center;
   align-items: center;
@@ -9,7 +11,40 @@
 .tagline{
   color: white;
   font-family: Quicksand;
-font-size: 35px;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: 44px;
+letter-spacing: 0px;
+text-align: center;
+margin-top: -10px;
+}
+
+/* HOME STYLING */
+.home-container{
+ display: flex;
+ flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-div{
+  margin-top:20px;
+}
+
+.book{
+  height: 150px;
+width: 170px;
+left: 2px;
+top: 2px;
+border-radius: 0px;
+
+}
+
+.how-works{
+  color:white;
+  font-family: Quicksand;
+font-size: 20px;
 font-style: normal;
 font-weight: 700;
 line-height: 44px;
@@ -17,9 +52,24 @@ letter-spacing: 0px;
 text-align: left;
 
 }
-p{
-  color: white;
+.how-desc{
+  font-family: Quicksand;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+/* line-height: 44px; */
+letter-spacing: 0px;
+text-align: left;
+color:white;
+text-align: center;
 }
+
+
+.navbar-brand {
+     padding: 18px 20px;
+   display: inline-block;
+   }
+
 h2{
   color: white;
 }
@@ -88,3 +138,4 @@ h2{
        url('./assets/fonts/quicksand-v22-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
        url('./assets/fonts/quicksand-v22-latin-700.svg#Quicksand') format('svg'); /* Legacy iOS */
 }
+
