@@ -3,6 +3,8 @@
 
 > What data can they access 
 
+> [Link to user stories google drive document](https://docs.google.com/document/d/1K00HI5-9RjNemvqmniIb_npKcXgLhid0HePO29bkZ-o/edit)
+
 ## Student (Henri)
 
 * I want to open the app and see the landing page
@@ -15,13 +17,7 @@
 
 This is like a main view from which more accurate user stories in this fashion could be created for each of the views and the views that can be opened from them. From this base story you can add even ten more points to get to a place in the app where the only way you can go is backwards
 
-
-
-
-
-
-
-## Catalyst/Credit Expert ( leo ): 
+## Catalyst/Credit Expert (Leo)
 * Open application to landing page
 * See onboarding video/multimedia with overview
 *  Click link to login/signup
@@ -35,12 +31,7 @@ This is like a main view from which more accurate user stories in this fashion c
 * Maybe a button that links to current Catalyst/Educator leaderboards to see current rankings of all Catalyst/Educators on the platform. 
 * Maybe a button that linked to current Credit Experts leaderboard rankings as well
 
-
-
-
-
-
-## Credit Studio(Mocha):
+## Credit Studio(Mocha)
 * I will be able to create an account as a studio with:
     * Name of institution
     * Password
@@ -64,7 +55,7 @@ This is like a main view from which more accurate user stories in this fashion c
 
 (Non-user)
 
-## Admin (Sophia):
+## Admin (Sophia)
 * Once the admin has landed in the app, they will choose to register.
 * They will register their affiliated school
 * When their account has been created, they will be redirected to their dashboard where they can view a list of their students and credits they still need to review
