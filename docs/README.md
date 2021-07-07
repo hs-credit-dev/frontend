@@ -1,5 +1,8 @@
 # HS Credit - App Development 
 
+https://3d-group.github.io/hscredit/
+
+
 ## Big Questions
 
 * What to use? [React](https://github.com/facebook/react) / [Flutter](https://github.com/flutter/flutter) / [React Native](https://github.com/facebook/react-native) & [Expo](https://docs.expo.io/)
