@@ -1,10 +1,10 @@
-import  React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 const { DATABASE_URL } = process.env;
 
 
-const CredtStudioSignUp = () => {
+const CreditStudioSignUp = () => {
     const [institution, setInstitution] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -12,25 +12,31 @@ const CredtStudioSignUp = () => {
     const [redirect, setRedirect] = useState("")
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
 
-        if (password === confirmPassword && password.length >= 8) {
+        if (password === confirmPassword && password.length > 7 && password.length < 31) {
+
             const newCreditStudio = { institution, email, password, confirmPassword };
             // need proper API for line 65
             axios.post(`${DATABASE_URL}/users/register`, newCreditStudio)
-            .then(response => {
-                console.log(`===> 'Sucessfully created new Credit Studio', ${new newCreditStudio}`);
-                console.log(response);
-                setRedirect(true);
-            })
-            .catch(error => console.log(`===> Error in Signup’, ${error}`));
+                .then(response => {
+                    console.log(`===> 'Sucessfully created new Credit Studio', ${new newCreditStudio}`);
+                    console.log(response);
+                    setRedirect(true);
+                })
+                .catch(error => console.log(`===> Error in Signup’, ${error}`));
+        } else if (password.length < 8 || password.length > 30 ){
+            alert(`Password must be between 8 and 30 characters long. Please try again.`);
+
+        } else if (password !== confirmPassword){
+             return alert(`Passwords don\‘t match. Please try again.`);
+
         } else {
-            if (password !== confirmPassword) return alert(`Passwords don\‘t match`);
-            alert(`Password needs to be at least 8 characters. Please try again.`);
+            alert(`Internal server error`)
         }
     }
-    
-    if (redirect) return <Redirect to='/login' /> 
+
+    if (redirect) return <Redirect to='/login' />
 
 
     const handleInstitution = (e) => {
@@ -47,7 +53,7 @@ const CredtStudioSignUp = () => {
         setPassword(e.target.value)
         console.log(`Password: ******`)
     }
-    
+
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value)
         console.log(`Password: ******`)
