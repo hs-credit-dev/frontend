@@ -38,7 +38,7 @@ function App() {
         let token;
         //initializing token
 
-        if(!localStorage.getItem('jwtToken')) {
+        if (!localStorage.getItem('jwtToken')) {
             setIsAuthenticated(false);
             console.log('>>> unauthorized user, no token');
         } else {
@@ -57,7 +57,7 @@ function App() {
 
     const handleLogout = () => {
         console.log('>>> handleLogout');
-        if(localStorage.getItem('jwtToken')) {
+        if (localStorage.getItem('jwtToken')) {
             localStorage.removeItem('jwtToken');
             setCurrentUser(null);
             setIsAuthenticated(false);
