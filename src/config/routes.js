@@ -1,12 +1,13 @@
 import { Switch, Route} from 'react-router-dom'
-import Login from './components/Login'
-import CreditStudioSignUp from './components/CreditStudioSignUp'
-import Home from './components/Home'
-import StudentSignUp from './components/StudentSignUp'
-import EducatorSignUp from './components/EducatorSignUp'
-import About from './compoments/About'
-import Contact from './compoments/Contact'
-import HowItWorks from './compoments/HowItWorks'
+import Home from '../components/Home'
+import Login from '../components/Login'
+import SignUp from '../components/RegisterAs'
+import CreditStudioSignUp from '../components/CreditStudioSignUp'
+import StudentSignUp from '../components/StudentSignUp'
+import EducatorSignUp from '../components/EducatorSignUp'
+import About from '../compoments/About'
+import Contact from '../compoments/Contact'
+import HowItWorks from '../compoments/HowItWorks'
 
 export default(
     <Switch>
