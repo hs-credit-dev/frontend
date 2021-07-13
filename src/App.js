@@ -16,7 +16,7 @@ import './App.css';
 
 import Home from './components/Home'
 import MainNavBar from './components/NavBars/MainNavBar'
-
+import About from './components/About'
 
 //private routes for authorized users
 
@@ -69,7 +69,7 @@ function App() {
         <div className="App">
             <MainNavBar />
            <Home />
-                
+           <Route exact path="/about" component={About}/>
             
             {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />

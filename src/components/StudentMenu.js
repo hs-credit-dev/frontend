@@ -1,7 +1,6 @@
 import React from 'react'
 
- const LoginButton = () => {
-     
+const StudentMenu = () => {
     return (
         <div>
             
@@ -9,4 +8,4 @@ import React from 'react'
     )
 }
 
-export default LoginButton
+export default StudentMenu

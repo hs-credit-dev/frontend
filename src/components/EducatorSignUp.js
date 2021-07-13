@@ -1,5 +1,8 @@
 import React from 'react'
-import {React,useState} from 'react'
+import {useState} from 'react'
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+const { DATABASE_URL } = process.env;
 
 const EducatorSignUp = () => {
 
@@ -8,7 +11,7 @@ const EducatorSignUp = () => {
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-  
+    
     const [location, setLocation] = useState('');
     const [school, setSchool] = useState('');
     const [userType, setUserType] = useState('');
@@ -45,6 +48,7 @@ const EducatorSignUp = () => {
         setEmail(e.target.value);
     }
     
+   
 
     const handlePassword = (e) => {
         setPassword(e.target.value);
@@ -59,9 +63,9 @@ const EducatorSignUp = () => {
         // make sure password and confirm password are equal
         // password length >= 8 characters
         if (password === confirmPassword && password.length >= 8) {
-            const newUser = { firstName,lastName,location,school,userType,grade,userName, email, password };
-            // need proper API for line 65
-            axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
+            const newUser = { firstName,lastName,location,school,userType,userName, email, password };
+            
+            axios.post(`${DATABASE_URL}/api/users/register`, newUser)
             .then(response => {
                 console.log('===> Yay, new user');
                 console.log(response);
@@ -95,6 +99,7 @@ const EducatorSignUp = () => {
                 
                     <label>School</label>
                     <input type="text" value={school} onChange={handleSchool}></input>
+                
                 
                
                     <label>User Type</label>
