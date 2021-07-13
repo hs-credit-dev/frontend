@@ -1,5 +1,5 @@
 import React from 'react'
-import {React,useState} from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 const { DATABASE_URL } = process.env;

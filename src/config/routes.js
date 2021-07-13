@@ -16,7 +16,6 @@ export default(
     <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/login" component={Login}/>
-        <Route exact path="/signup" component={SignUp}/>
         <Route exact path="/credit" component={CreditStudioSignUp}/>
         <Route exact path="/studentsignup" component={StudentSignUp}/>
         <Route exact path="/educatorsignup" component={EducatorSignUp}/>
