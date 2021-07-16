@@ -4,8 +4,8 @@ import personIcon from '../assets/person.png'
 function CreditStudioMenu() {
     return (
         <div>
-            <personIcon />
-        </div>
+<img src={personIcon}/>
+</div>
     )
 }
 
