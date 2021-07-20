@@ -77,4 +77,4 @@ const CreditStudioSignUp = () => {
     )
 }
 
-export default CredtStudioSignUp
+export default CreditStudioSignUp

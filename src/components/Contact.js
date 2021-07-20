@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Contact = () => {
     return (
         <div>
@@ -9,6 +10,14 @@ const Contact = () => {
                 New York, NY 10001
                 info@hs.credit   (212) 518-1586</h3>
         
+=======
+import React from 'react'
+
+function Contact() {
+    return (
+        <div>
+            <h1>Contact info goes here!</h1>
+>>>>>>> b5dad18c6bb3c20f015b90de092d2702e9b7e6a9
         </div>
     )
 }
