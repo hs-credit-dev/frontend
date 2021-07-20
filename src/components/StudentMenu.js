@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CatalystLogin = () => {
+const StudentMenu = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const CatalystLogin = () => {
     )
 }
 
-export default CatalystLogin
+export default StudentMenu

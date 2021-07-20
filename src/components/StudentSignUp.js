@@ -1,5 +1,8 @@
 import React from 'react'
-import {React,useState} from 'react'
+import { useState } from 'react'
+import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+const { DATABASE_URL } = process.env;
 
 const StudentSignUp = () => {
 
@@ -62,8 +65,8 @@ const StudentSignUp = () => {
         // password length >= 8 characters
         if (password === confirmPassword && password.length >= 8) {
             const newUser = { firstName,lastName,location,school,userType,grade,userName, email, password };
-            // need proper API for line 65
-            axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
+           
+            axios.post(`${DATABASE_URL}/api/users/register`, newUser)
             .then(response => {
                 console.log('===> Yay, new user');
                 console.log(response);
