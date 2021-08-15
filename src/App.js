@@ -17,7 +17,7 @@ import './App.css';
 import Home from './components/Home'
 import MainNavBar from './components/NavBars/MainNavBar'
 import About from './components/About'
-
+import BasicUserSignUp from './components/BasicUserSignUp'
 //private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -34,19 +34,19 @@ function App() {
     const [currentUser, setCurrentUser] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-    useEffect(() => {
-        let token;
-        //initializing token
+    // useEffect(() => {
+    //     let token;
+    //     //initializing token
 
-        if (!localStorage.getItem('jwtToken')) {
-            setIsAuthenticated(false);
-            console.log('>>> unauthorized user, no token');
-        } else {
-            token = jwt_decode(localStorage.getItem('jwtToken'));
-            setAuthToken(localStorage.getItem('jwtToken'));
-            setCurrentUser(token);
-        }
-    }, []);
+    //     if (!localStorage.getItem('jwtToken')) {
+    //         setIsAuthenticated(false);
+    //         console.log('>>> unauthorized user, no token');
+    //     } else {
+    //         token = jwt_decode(localStorage.getItem('jwtToken'));
+    //         setAuthToken(localStorage.getItem('jwtToken'));
+    //         setCurrentUser(token);
+    //     }
+    // }, []);
 
     const nowCurrentUser = (userData) => {
         console.log('>>> nowCurrentUser');
@@ -70,6 +70,7 @@ function App() {
             <MainNavBar />
            <Home />
            <Route exact path="/about" component={About}/>
+           <Route exact path="/signup" component={BasicUserSignUp}/>
             
             {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />

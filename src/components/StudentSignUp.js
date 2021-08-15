@@ -6,25 +6,15 @@ const { DATABASE_URL } = process.env;
 
 const StudentSignUp = () => {
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [grade, setGrade] = useState('');
-    const [location, setLocation] = useState('');
-    const [school, setSchool] = useState('');
-    const [userType, setUserType] = useState('');
+    const [schoolId, setSchoolId] = useState('');
+    const [image, setImage] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
 
-    const handleFirstName = (e) => {
-        setFirstName(e.target.value);
-    }
-
-    const handleLastName = (e) => {
-        setLastName(e.target.value);
-    }
 
     const handleGrade = (e) => {
         setGrade(e.target.value);
@@ -38,8 +28,8 @@ const StudentSignUp = () => {
         setSchool(e.target.value);
     }
 
-    const handleUserType = (e) => {
-        setUserType(e.target.value);
+    const handleImage = (e) => {
+        setImage(e.target.value);
     }
 
     const handleUserName = (e) => {
@@ -58,20 +48,23 @@ const StudentSignUp = () => {
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value);
     }
+    const handleSchoolId = (e) => {
+        setSchoolId(e.target.value);
+    }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault(); // at the beginning of a submit function
         // make sure password and confirm password are equal
         // password length >= 8 characters
         if (password === confirmPassword && password.length >= 8) {
-            const newUser = { firstName,lastName,location,school,userType,grade,userName, email, password };
+            const userForm = { userName, email, password };
+           const studentForm = {schoolId, image, about, street1, street2, city, state, zip}
            
-            axios.post(`${DATABASE_URL}/api/users/register`, newUser)
-            .then(response => {
-                console.log('===> Yay, new user');
-                console.log(response);
-                setRedirect(true);
-            })
+
+           const newUser = await axios.post(`${DATABASE_URL}/users/create`, userForm)
+           const newstudent = await axios.post(`${DATABASE_URL}/students/create`, studentForm)
+
+           
             .catch(error => console.log('===> Error in Signup', error));
         } else {
             if (password !== confirmPassword) return alert('Passwords don\'t match');
@@ -85,36 +78,40 @@ const StudentSignUp = () => {
         <div>
             <h1 className="student-signup">Student Sign up</h1>
             <form className="student-signup-form" onSubmit={handleSubmit}>
-                
-                    <label htmlFor="firstName">First Name</label>
-                    <input type="text" value={firstName} onChange={handleFirstName}></input>
-                
-                    <label htmlFor="lastName">Last Name</label>
-                    <input type="text" value={lastName} onChange={handleLastName}></input>
                
                     <label>Username</label>
                     <input type="text" value={userName} onChange={handleUserName}></input>
-                
-                    <label>Location</label>
-                    <input type="text" value={location} onChange={handleLocation}></input>
-                
-                    <label>School</label>
-                    <input type="text" value={school} onChange={handleSchool}></input>
-                
-                    <label>Grade</label>
-                    <input type="text" value={grade} onChange={handleGrade}></input>
-               
-                    <label>User Type</label>
-                    <input type="select" value={userType} onChange={handleUserType}></input>
-                
+
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" value={email} onChange={handleEmail}></input>
-                
+
                     <label htmlFor="password">Password</label>
                     <input type="password" value={password} onChange={handlePassword}></input>
               
                     <label htmlFor="confirmPassword" >Confirm password</label>
                     <input type="password" value={confirmPassword} onChange={handleConfirmPassword}></input>
+
+                    <label>Street 1</label>
+                    <input type="text" value={street1} onChange={handleLocation}></input>
+                
+                    <label>Street 2</label>
+                    <input type="text" value={street2} onChange={handleLocation}></input>
+                    
+                    <label>Street 2</label>
+                    <input type="text" value={street2} onChange={handleLocation}></input>
+
+                    <label>School</label>
+                    <input type="text" value={schoolId} onChange={handleSchoolId}></input>
+                
+                    <label>Grade</label>
+                    <input type="text" value={grade} onChange={handleGrade}></input>
+               
+                    <label>Profile Picture</label>
+                    <input type="select" value={image} onChange={handleImage}></input>
+                
+                    
+                
+                    
                 
                 <button value="submit">Sign Up!</button>
 
