@@ -1,7 +1,9 @@
 //imports 
 
-import React, {  useEffect, useState } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import routes from './config/routes';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
 
@@ -13,9 +15,8 @@ import setAuthToken from './utilities/setAuthToken';
 import './App.css';
 
 //components
-
-import Home from './components/Home'
 import MainNavBar from './components/NavBars/MainNavBar'
+import Home from './components/Home'
 import About from './components/About'
 import BasicUserSignUp from './components/BasicUserSignUp'
 //private routes for authorized users
@@ -66,12 +67,14 @@ function App() {
     }
 
     return (
+        <Router>
         <div className="App">
             <MainNavBar />
-           <Home />
-           <Route exact path="/about" component={About}/>
-           <Route exact path="/signup" component={BasicUserSignUp}/>
-            
+            { routes }
+            <Home />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/signup" component={BasicUserSignUp} />
+
             {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
 
@@ -87,6 +90,7 @@ function App() {
             <Footer /> 
             */}
         </div>
+        </Router>
     );
 }
 
