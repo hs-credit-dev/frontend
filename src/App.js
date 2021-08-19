@@ -17,8 +17,7 @@ import './App.css';
 //components
 import MainNavBar from './components/NavBars/MainNavBar'
 import Home from './components/Home'
-import About from './components/About'
-import BasicUserSignUp from './components/BasicUserSignUp'
+
 //private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -31,7 +30,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 //main parent component to render application
 
-function App() {
+const App = () => {
     const [currentUser, setCurrentUser] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(true);
 
@@ -67,15 +66,15 @@ function App() {
     }
 
     return (
-        <Router>
         <div className="App">
-            <MainNavBar />
-            { routes }
-            <Home />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/signup" component={BasicUserSignUp} />
+            {/* <Router> */}
+                <MainNavBar />
+                { routes }
+                <Home />
+                {/* <Route exact path="/about" component={About} /> */}
+                {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
 
-            {/* 
+                {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
 
             <div className="mainAppContainer">
@@ -89,8 +88,8 @@ function App() {
             </div>
             <Footer /> 
             */}
+            {/* </Router> */}
         </div>
-        </Router>
     );
 }
 

@@ -1,12 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
-const { DATABASE_URL } = process.env;
+const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
 const BasicUserSignUp = () => {
-
-
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -33,21 +31,22 @@ const BasicUserSignUp = () => {
 
 
     const handleSubmit = async (e) => {
+        //needs to check for valid email
+        //needs to check for no existing users
         e.preventDefault(); 
         if (password === confirmPassword && password.length >= 8) {
             console.log('=====> passwords match')
-            const userForm = { userName, email, password };
+            const newUser = { userName, email, password };
 
-            console.log(userForm)
+            console.log(REACT_APP_DATABASE_URL)
 
-            console.log(DATABASE_URL)
-            const newUser = await axios.post(`${DATABASE_URL}/users/create`, userForm)
-
-
-
-                // .catch(error => console.log('===> Error in Signup', error));
+            await axios.post(`${REACT_APP_DATABASE_URL}/api/users/create`, newUser)
+            // await axios.post(`http://localhost:8000/api/users/create`, newUser)
+            
+            // .catch(error => console.log('===> Error in Signup', error));
         } else {
             if (password !== confirmPassword) return alert('Passwords don\'t match');
+            // console.log(DATABASE_URL)
             alert('Password needs to be at least 8 characters. Please try again.');
         }
     }
@@ -56,8 +55,8 @@ const BasicUserSignUp = () => {
 
     return (
         <div>
-            <h1 className="student-signup">Sign up</h1>
-            <form className="student-signup-form" onSubmit={handleSubmit}>
+            <h1 className="basic-signup">Sign up</h1>
+            <form className="basic-signup-form" onSubmit={handleSubmit}>
 
                 <label>Username</label>
                 <input type="text" value={userName} onChange={handleUserName}></input>
@@ -78,5 +77,5 @@ const BasicUserSignUp = () => {
     )
 }
 
-export default BasicUserSignUp
+export default BasicUserSignUp;
 

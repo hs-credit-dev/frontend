@@ -3,11 +3,8 @@ import { BrowserRouter as Router, NavLink } from 'react-router-dom';
 
 export const MainNavBar = () => {
     return (
-        <Router>
             <nav>
-
                 <ul >
-
                     <li >
                         <NavLink to="/home">Home</NavLink>
                     </li>
@@ -29,7 +26,6 @@ export const MainNavBar = () => {
 
                 </ul>
             </nav>
-        </Router>
 
     );
 }
