@@ -1,7 +1,9 @@
 //imports 
 
-import React, {  useEffect, useState } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+import routes from './config/routes';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
 
@@ -13,10 +15,8 @@ import setAuthToken from './utilities/setAuthToken';
 import './App.css';
 
 //components
-
-import Home from './components/Home'
 import MainNavBar from './components/NavBars/MainNavBar'
-import About from './components/About'
+import Home from './components/Home'
 
 //private routes for authorized users
 
@@ -30,23 +30,23 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 //main parent component to render application
 
-function App() {
+const App = () => {
     const [currentUser, setCurrentUser] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-    useEffect(() => {
-        let token;
-        //initializing token
+    // useEffect(() => {
+    //     let token;
+    //     //initializing token
 
-        if (!localStorage.getItem('jwtToken')) {
-            setIsAuthenticated(false);
-            console.log('>>> unauthorized user, no token');
-        } else {
-            token = jwt_decode(localStorage.getItem('jwtToken'));
-            setAuthToken(localStorage.getItem('jwtToken'));
-            setCurrentUser(token);
-        }
-    }, []);
+    //     if (!localStorage.getItem('jwtToken')) {
+    //         setIsAuthenticated(false);
+    //         console.log('>>> unauthorized user, no token');
+    //     } else {
+    //         token = jwt_decode(localStorage.getItem('jwtToken'));
+    //         setAuthToken(localStorage.getItem('jwtToken'));
+    //         setCurrentUser(token);
+    //     }
+    // }, []);
 
     const nowCurrentUser = (userData) => {
         console.log('>>> nowCurrentUser');
@@ -67,11 +67,14 @@ function App() {
 
     return (
         <div className="App">
-            <MainNavBar />
-           <Home />
-           <Route exact path="/about" component={About}/>
-            
-            {/* 
+            {/* <Router> */}
+                <MainNavBar />
+                { routes }
+                <Home />
+                {/* <Route exact path="/about" component={About} /> */}
+                {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
+
+                {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
 
             <div className="mainAppContainer">
@@ -85,6 +88,7 @@ function App() {
             </div>
             <Footer /> 
             */}
+            {/* </Router> */}
         </div>
     );
 }
