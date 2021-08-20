@@ -1,6 +1,6 @@
 //imports 
 
-import React, {  useEffect, useState } from 'react';
+import React, {   useState } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
@@ -67,10 +67,9 @@ function App() {
 
     return (
         <div className="App">
-            <MainNavBar />
+            
            <Home />
-           <Route exact path="/about" component={About}/>
-           <Route exact path="/signup" component={BasicUserSignUp}/>
+           
             
             {/* 
             <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />

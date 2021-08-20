@@ -32,26 +32,44 @@ const BasicUserSignUp = () => {
     }
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault(); 
-        if (password === confirmPassword && password.length >= 8) {
-            console.log('=====> passwords match')
-            const userForm = { userName, email, password };
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault(); 
+    //     if (password === confirmPassword && password.length >= 8) {
+    //         console.log('=====> passwords match')
+    //         const userForm = { userName, email, password };
 
-            console.log(userForm)
+    //         console.log(userForm)
 
-            console.log(DATABASE_URL)
-            const newUser = await axios.post(`${DATABASE_URL}/users/create`, userForm)
+    //         console.log(DATABASE_URL)
+    //         const newUser = await axios.post(`${DATABASE_URL}/users/create`, userForm)
 
 
 
-                // .catch(error => console.log('===> Error in Signup', error));
+    //             // .catch(error => console.log('===> Error in Signup', error));
+    //     } else {
+    //         if (password !== confirmPassword) return alert('Passwords don\'t match');
+    //         alert('Password needs to be at least 8 characters. Please try again.');
+    //     }
+    // }
+    const handleSubmit = (e) => {
+        console.log(`>>>> inside handleSubmit func`)
+        if(password === confirmPassword && password.length >= 8){
+            const newUser = { userName, email, password }
+            axios.post(`${DATABASE_URL}/users/create`, newUser)
+            .then(response => {
+                console.log(`>>>> new user created`)
+                console.log(response)
+                
+            })
+            .catch(error => console.log(`>>>> signup error: ${error}`))
         } else {
-            if (password !== confirmPassword) return alert('Passwords don\'t match');
-            alert('Password needs to be at least 8 characters. Please try again.');
+            if(password !== confirmPassword) {
+                alert('passwords dont\'t match')
+            } else if (password.length <= 7){
+                alert('password must be at least 8 characters long')
+            }
         }
     }
-
 
 
     return (
