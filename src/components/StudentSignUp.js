@@ -121,3 +121,83 @@
 // }
 
 // export default StudentSignUp
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+
+const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
+
+const StudentSignUp = () => {
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+
+
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value);
+    }
+
+
+    const handleSubmit = async (e) => {
+        //needs to check for valid email
+        //needs to check for no existing users
+        e.preventDefault(); 
+        if (password === confirmPassword && password.length >= 8) {
+            console.log('=====> passwords match')
+            const newUser = { username, email, password };
+
+            console.log(REACT_APP_DATABASE_URL)
+
+            await axios.post(`${REACT_APP_DATABASE_URL}/users/create`, newUser)
+            // await axios.post(`http://localhost:8000/api/users/create`, newUser)
+            
+            // .catch(error => console.log('===> Error in Signup', error));
+        } else {
+            if (password !== confirmPassword) return alert('Passwords don\'t match');
+            // console.log(DATABASE_URL)
+            alert('Password needs to be at least 8 characters. Please try again.');
+        }
+    }
+
+
+    return (
+        <div>
+            <h1 className="basic-signup">Student Sign up</h1>
+            <form className="basic-signup-form" onSubmit={handleSubmit}>
+
+                <label></label>
+                <input type="text" value={username} onChange={handleUsername}></input>
+
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" value={email} onChange={handleEmail}></input>
+
+                <label htmlFor="password">Password</label>
+                <input type="password" value={password} onChange={handlePassword}></input>
+
+                <label htmlFor="confirmPassword" >Confirm password</label>
+                <input type="password" value={confirmPassword} onChange={handleConfirmPassword}></input>
+
+                <button value="submit">Sign Up!</button>
+
+            </form>
+        </div>
+    )
+}
+
+export default StudentSignUp;
+

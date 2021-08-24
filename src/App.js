@@ -20,19 +20,19 @@ import Home from './components/Home'
 
 //private routes for authorized users
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-    let token = localStorage.getItem('jwtToken');
-    console.log('>>>>inside private route');
-    return <Route {...rest} render={(props) => {
-        return token ? <Component {...rest} /> : <Redirect to="/login" />
-    }} />
-}
+// const PrivateRoute = ({ component: Component, ...rest }) => {
+//     let token = localStorage.getItem('jwtToken');
+//     console.log('>>>>inside private route');
+//     return <Route {...rest} render={(props) => {
+//         return token ? <Component {...rest} /> : <Redirect to="/login" />
+//     }} />
+// }
 
 //main parent component to render application
 
 const App = () => {
-    const [currentUser, setCurrentUser] = useState('');
-    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    // const [currentUser, setCurrentUser] = useState('');
+    // const [isAuthenticated, setIsAuthenticated] = useState(true);
 
     // useEffect(() => {
     //     let token;
@@ -48,29 +48,29 @@ const App = () => {
     //     }
     // }, []);
 
-    const nowCurrentUser = (userData) => {
-        console.log('>>> nowCurrentUser');
-        setCurrentUser(userData);
-        setIsAuthenticated(true);
-        console.log('>>> user: userData, auth: true')
-    }
+    // const nowCurrentUser = (userData) => {
+    //     console.log('>>> nowCurrentUser');
+    //     setCurrentUser(userData);
+    //     setIsAuthenticated(true);
+    //     console.log('>>> user: userData, auth: true')
+    // }
 
-    const handleLogout = () => {
-        console.log('>>> handleLogout');
-        if (localStorage.getItem('jwtToken')) {
-            localStorage.removeItem('jwtToken');
-            setCurrentUser(null);
-            setIsAuthenticated(false);
-            console.log('>>> user: null, auth: false');
-        }
-    }
+    // const handleLogout = () => {
+    //     console.log('>>> handleLogout');
+    //     if (localStorage.getItem('jwtToken')) {
+    //         localStorage.removeItem('jwtToken');
+    //         setCurrentUser(null);
+    //         setIsAuthenticated(false);
+    //         console.log('>>> user: null, auth: false');
+    //     }
+    // }
 
     return (
         <div className="App">
             {/* <Router> */}
                 <MainNavBar />
-                { routes }
-                <Home />
+                
+                {/* <Home /> */}
                 {/* <Route exact path="/about" component={About} /> */}
                 {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
 
@@ -89,6 +89,7 @@ const App = () => {
             <Footer /> 
             */}
             {/* </Router> */}
+            {routes}
         </div>
     );
 }
