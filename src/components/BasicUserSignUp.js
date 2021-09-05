@@ -1,15 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
-const BasicUserSignUp = () => {
+const BasicUserSignUp = (props) => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const [redirect, setRedirect] = useState(false)
 
 
     const handleUsername = (e) => {
@@ -44,13 +45,15 @@ const BasicUserSignUp = () => {
             // await axios.post(`http://localhost:8000/api/users/create`, newUser)
             
             // .catch(error => console.log('===> Error in Signup', error));
+             setRedirect(true)
         } else {
             if (password !== confirmPassword) return alert('Passwords don\'t match');
             // console.log(DATABASE_URL)
             alert('Password needs to be at least 8 characters. Please try again.');
         }
-    }
 
+    }
+    if(redirect) return <Redirect to='/registeras'/>
 
     return (
         <div>

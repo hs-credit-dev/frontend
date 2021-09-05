@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
@@ -11,8 +12,9 @@ const StudentSignUp = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
-
-
+    const [formData, setFormData] = useState({})
+    const [redirect, setRedirect] = useState(false)
+    
 
     const handleSchoolId = (e) => {
         setSchoolId(e.target.value);
@@ -39,27 +41,34 @@ const StudentSignUp = () => {
         setZip(e.target.value);
     }
 
-    const handleSubmit = async (e) => {
-        //needs to check for valid email
-        //needs to check for no existing users
-        e.preventDefault(); 
-        if (password === confirmPassword && password.length >= 8) {
-            console.log('=====> passwords match')
-            const newUser = { username, email, password };
-
-            console.log(REACT_APP_DATABASE_URL)
-
-            await axios.post(`${REACT_APP_DATABASE_URL}/student/create`, newUser)
-            // await axios.post(`http://localhost:8000/api/users/create`, newUser)
-            
-            // .catch(error => console.log('===> Error in Signup', error));
-        } else {
-            if (password !== confirmPassword) return alert('Passwords don\'t match');
-            // console.log(DATABASE_URL)
-            alert('Password needs to be at least 8 characters. Please try again.');
+    const setForm = () =>{
+        let formData = {
+            schoolId:schoolId,
+            street1:street1,
+            street2:street2,
+            city:city,
+            state:state,
+            zip:zip,
         }
     }
 
+    const handleSubmit = async (e) => {
+        //needs to check for valid email
+        //needs to check for no existing users
+    
+        e.preventDefault();
+        setForm() 
+        
+
+            console.log(REACT_APP_DATABASE_URL)
+
+            await axios.post(`${REACT_APP_DATABASE_URL}/students/create`, formData)
+            
+            setRedirect(true)
+       
+    }
+
+    if(redirect) return <Redirect to='/studentprofile'/>
 
     return (
         <div>
@@ -67,7 +76,7 @@ const StudentSignUp = () => {
             <form className="basic-signup-form" onSubmit={handleSubmit}>
 
                 <label>School ID</label>
-                <input type="text" value={schoolId} onChange={handleSchoolId}></input>
+                <input type="number" value={schoolId} onChange={handleSchoolId}></input>
 
                 <label htmlFor="street 1">Street 1</label>
                 <input type="text" name="street 1" value={street1} onChange={handleStreet1}></input>
@@ -82,7 +91,7 @@ const StudentSignUp = () => {
                 <input type="text" value={state} onChange={handleState}></input>
 
                 <label htmlFor="zipcode">Zipcode</label>
-                <input type="text" value={zip} onChange={handleZip}></input>
+                <input type="number" value={zip} onChange={handleZip}></input>
 
                 <button value="submit">Sign Up!</button>
 
