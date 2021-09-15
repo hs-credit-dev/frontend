@@ -5,12 +5,12 @@ import { Redirect } from 'react-router-dom';
 import setAuthToken from '../utilities/setAuthToken'
 
 
-const { REACT_APP_SERVER_URL } = process.env;
+const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [redirect, setRedirect] = useState(false)
  
 
     const handleEmail = (e) => {
@@ -26,7 +26,7 @@ const Login = (props) => {
         e.preventDefault()
         const userData = {email,password}
 
-        axios.post(`${REACT_APP_SERVER_URL}/users/login`, userData)
+        axios.post(`${REACT_APP_DATABASE_URL}/users/login`, userData)
         .then(response => {
             console.log(`>>>>inside handleSubmit reponse block`)
 
@@ -39,14 +39,16 @@ const Login = (props) => {
             //decode token to get user data
             const decoded = jwt_decode(token)
             props.nowCurrentUser(decoded)
+            setRedirect(true)
         })
         .catch(error => {
             console.log(`>>>> error logging in ${error}`)
             alert('incorrect email or password! please try again')
         })
+
     }
 
-    if (props.user) return <Redirect to="/profile" /> // double check
+    if (props.user) return <Redirect to="/home" /> // double check
 
     return (
        

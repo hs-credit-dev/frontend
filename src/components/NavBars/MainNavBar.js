@@ -23,7 +23,9 @@ export const MainNavBar = () => {
                     <li >
                         <NavLink to="/contact">Contact</NavLink>
                     </li>
-
+                    <li >
+                        <NavLink to="/registeras">Register as</NavLink>
+                    </li>
                 </ul>
             </nav>
 

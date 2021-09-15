@@ -11,7 +11,7 @@ const BasicUserSignUp = (props) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [redirect, setRedirect] = useState(false)
-
+    
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -36,6 +36,7 @@ const BasicUserSignUp = (props) => {
         //needs to check for no existing users
         e.preventDefault(); 
         if (password === confirmPassword && password.length >= 8) {
+            
             console.log('=====> passwords match')
             const newUser = { username, email, password };
 
@@ -43,6 +44,7 @@ const BasicUserSignUp = (props) => {
 
             await axios.post(`${REACT_APP_DATABASE_URL}/users/create`, newUser)
             // await axios.post(`http://localhost:8000/api/users/create`, newUser)
+            
             
             // .catch(error => console.log('===> Error in Signup', error));
              setRedirect(true)
@@ -53,7 +55,7 @@ const BasicUserSignUp = (props) => {
         }
 
     }
-    if(redirect) return <Redirect to='/registeras'/>
+    if(redirect) return <Redirect to='/login'/>
 
     return (
         <div>

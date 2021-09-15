@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
-const StudentSignUp = () => {
+const StudentSignUp = (props) => {
     const [schoolId, setSchoolId] = useState('');
     const [street1, setStreet1] = useState('');
     const [street2, setStreet2] = useState('');
@@ -41,23 +41,24 @@ const StudentSignUp = () => {
         setZip(e.target.value);
     }
 
-    const setForm = () =>{
-        let formData = {
-            schoolId:schoolId,
-            street1:street1,
-            street2:street2,
-            city:city,
-            state:state,
-            zip:zip,
-        }
-    }
+    
+        
+    
 
     const handleSubmit = async (e) => {
         //needs to check for valid email
         //needs to check for no existing users
     
         e.preventDefault();
-        setForm() 
+        setFormData ( {
+            id:userData.id,
+            schoolId:schoolId,
+            street1:street1,
+            street2:street2,
+            city:city,
+            state:state,
+            zip:zip,
+        })
         
 
             console.log(REACT_APP_DATABASE_URL)
