@@ -1,123 +1,104 @@
-// import React from 'react'
-// import { useState } from 'react'
-// import axios from 'axios';
-// import { Redirect } from 'react-router-dom';
-// const { DATABASE_URL } = process.env;
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom'
 
-// const StudentSignUp = () => {
+const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
-    
-//     const [email, setEmail] = useState('');
-//     const [userName, setUserName] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [schoolId, setSchoolId] = useState('');
-//     const [image, setImage] = useState('');
-//     const [confirmPassword, setConfirmPassword] = useState('');
-//     const [redirect, setRedirect] = useState(false);
-
-
-//     const handleGrade = (e) => {
-//         setGrade(e.target.value);
-//     }
-
-//     const handleLocation = (e) => {
-//         setLocation(e.target.value);
-//     }
-
-//     const handleSchool = (e) => {
-//         setSchool(e.target.value);
-//     }
-
-//     const handleImage = (e) => {
-//         setImage(e.target.value);
-//     }
-
-//     const handleUserName = (e) => {
-//         setUserName(e.target.value);
-//     }
-
-//     const handleEmail = (e) => {
-//         setEmail(e.target.value);
-//     }
+const StudentSignUp = () => {
+    const [schoolId, setSchoolId] = useState('');
+    const [street1, setStreet1] = useState('');
+    const [street2, setStreet2] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
+    const [formData, setFormData] = useState({})
+    const [redirect, setRedirect] = useState(false)
     
 
-//     const handlePassword = (e) => {
-//         setPassword(e.target.value);
-//     }
+    const handleSchoolId = (e) => {
+        setSchoolId(e.target.value);
+    }
 
-//     const handleConfirmPassword = (e) => {
-//         setConfirmPassword(e.target.value);
-//     }
-//     const handleSchoolId = (e) => {
-//         setSchoolId(e.target.value);
-//     }
+    const handleStreet1 = (e) => {
+        setStreet1(e.target.value);
+    }
 
-//     const handleSubmit = async (e) => {
-//         e.preventDefault(); // at the beginning of a submit function
-//         // make sure password and confirm password are equal
-//         // password length >= 8 characters
-//         if (password === confirmPassword && password.length >= 8) {
-//             const userForm = { userName, email, password };
-//            const studentForm = {schoolId, image, about, street1, street2, city, state, zip}
-           
 
-//            const newUser = await axios.post(`${DATABASE_URL}/users/create`, userForm)
-//            const newstudent = await axios.post(`${DATABASE_URL}/students/create`, studentForm)
+    const handleStreet2 = (e) => {
+        setStreet2(e.target.value);
+    }
 
-           
-//             .catch(error => console.log('===> Error in Signup', error));
-//         } else {
-//             if (password !== confirmPassword) return alert('Passwords don\'t match');
-//             alert('Password needs to be at least 8 characters. Please try again.');
-//         }
-//     }
+    const handleCity = (e) => {
+        setCity(e.target.value);
+    }
+    
+    const handleState = (e) => {
+        setState(e.target.value);
+    }
 
-//     if (redirect) return <Redirect to="/login" /> // You can have them redirected to profile (your choice)
+    const handleZip = (e) => {
+        setZip(e.target.value);
+    }
 
-//     return (
-//         <div>
-//             <h1 className="student-signup">Student Sign up</h1>
-//             <form className="student-signup-form" onSubmit={handleSubmit}>
-               
-//                     <label>Username</label>
-//                     <input type="text" value={userName} onChange={handleUserName}></input>
+    const setForm = () =>{
+        let formData = {
+            schoolId:schoolId,
+            street1:street1,
+            street2:street2,
+            city:city,
+            state:state,
+            zip:zip,
+        }
+    }
 
-//                     <label htmlFor="email">Email</label>
-//                     <input type="email" name="email" value={email} onChange={handleEmail}></input>
+    const handleSubmit = async (e) => {
+        //needs to check for valid email
+        //needs to check for no existing users
+    
+        e.preventDefault();
+        setForm() 
+        
 
-//                     <label htmlFor="password">Password</label>
-//                     <input type="password" value={password} onChange={handlePassword}></input>
-              
-//                     <label htmlFor="confirmPassword" >Confirm password</label>
-//                     <input type="password" value={confirmPassword} onChange={handleConfirmPassword}></input>
+            console.log(REACT_APP_DATABASE_URL)
 
-//                     <label>Street 1</label>
-//                     <input type="text" value={street1} onChange={handleLocation}></input>
-                
-//                     <label>Street 2</label>
-//                     <input type="text" value={street2} onChange={handleLocation}></input>
-                    
-//                     <label>Street 2</label>
-//                     <input type="text" value={street2} onChange={handleLocation}></input>
+            await axios.post(`${REACT_APP_DATABASE_URL}/students/create`, formData)
+            
+            setRedirect(true)
+       
+    }
 
-//                     <label>School</label>
-//                     <input type="text" value={schoolId} onChange={handleSchoolId}></input>
-                
-//                     <label>Grade</label>
-//                     <input type="text" value={grade} onChange={handleGrade}></input>
-               
-//                     <label>Profile Picture</label>
-//                     <input type="select" value={image} onChange={handleImage}></input>
-                
-                    
-                
-                    
-                
-//                 <button value="submit">Sign Up!</button>
+    if(redirect) return <Redirect to='/studentprofile'/>
 
-//             </form>
-//         </div>
-//     )
-// }
+    return (
+        <div>
+            <h1 className="basic-signup">Student Sign up</h1>
+            <form className="basic-signup-form" onSubmit={handleSubmit}>
 
-// export default StudentSignUp
+                <label>School ID</label>
+                <input type="number" value={schoolId} onChange={handleSchoolId}></input>
+
+                <label htmlFor="street 1">Street 1</label>
+                <input type="text" name="street 1" value={street1} onChange={handleStreet1}></input>
+
+                <label htmlFor="street 2">Street 2</label>
+                <input type="text" value={street2} onChange={handleStreet2}></input>
+
+                <label htmlFor="city" >City</label>
+                <input type="text" value={city} onChange={handleCity}></input>
+
+                <label htmlFor="state">State</label>
+                <input type="text" value={state} onChange={handleState}></input>
+
+                <label htmlFor="zipcode">Zipcode</label>
+                <input type="number" value={zip} onChange={handleZip}></input>
+
+                <button value="submit">Sign Up!</button>
+
+            </form>
+        </div>
+    )
+}
+
+export default StudentSignUp;
+

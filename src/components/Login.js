@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
-import setAuthToken from '../utils/setAuthToken';
+import setAuthToken from '../utilities/setAuthToken'
+
 
 const { REACT_APP_SERVER_URL } = process.env;
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+ 
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -19,25 +22,28 @@ const Login = (props) => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const userData = { email, password };
+        console.log(`>>>> inside handleSubmit func`)
+        e.preventDefault()
+        const userData = {email,password}
 
         axios.post(`${REACT_APP_SERVER_URL}/users/login`, userData)
         .then(response => {
-            const { token } = response.data;
-            // save token to localStorage
-            localStorage.setItem('jwtToken', token);
-            // set token to headers
-            setAuthToken(token);
-            // decode token to get the user data
-            const decoded = jwt_decode(token);
-            // set the current user
-            props.nowCurrentUser(decoded); // funnction passed down as props.
+            console.log(`>>>>inside handleSubmit reponse block`)
+
+            console.log(response)
+            const { token } = response.data
+            //save token to localStorage
+            localStorage.setItem('jwtToken', token)
+            //set token to header
+            setAuthToken(token)
+            //decode token to get user data
+            const decoded = jwt_decode(token)
+            props.nowCurrentUser(decoded)
         })
         .catch(error => {
-            console.log('===> Error on login', error);
-            alert('Either email or password is incorrect. Please try again');
-        });
+            console.log(`>>>> error logging in ${error}`)
+            alert('incorrect email or password! please try again')
+        })
     }
 
     if (props.user) return <Redirect to="/profile" /> // double check
