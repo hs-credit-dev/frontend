@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import setAuthToken from '../utilities/setAuthToken'
 
 
-const { REACT_APP_SERVER_URL } = process.env;
+const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -26,7 +26,7 @@ const Login = (props) => {
         e.preventDefault()
         const userData = {email,password}
 
-        axios.post(`${REACT_APP_SERVER_URL}/users/login`, userData)
+        axios.post(`${REACT_APP_DATABASE_URL}/users/login`, userData)
         .then(response => {
             console.log(`>>>>inside handleSubmit reponse block`)
 
@@ -46,7 +46,7 @@ const Login = (props) => {
         })
     }
 
-    if (props.user) return <Redirect to="/profile" /> // double check
+    if (props.user) return <Redirect to="/profile" user={props.user}/> // double check
 
     return (
        
