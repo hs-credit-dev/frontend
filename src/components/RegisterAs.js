@@ -5,7 +5,8 @@ const RegisterAs = () => {
         <div>
             <h1>Register As...</h1>
             <Link to="/studentsignup">Student</Link>
-            <Route path="/educatorsignup">Educator</Route>
+            <br/>
+            <Link path="/educatorsignup">Educator</Link>
             {/* no thanks im a basic user */}
         </div>
     )
