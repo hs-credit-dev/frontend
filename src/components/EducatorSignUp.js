@@ -67,7 +67,7 @@ const EducatorSignUp = (props) => {
         axios.post(`${REACT_APP_DATABASE_URL}/educators/create`, userData)
         .then(response => {
             console.log('===> educator created');
-            console.log(response);
+            console.log(response.data);
             setRedirect(true);
         })
         .catch(error => console.log('===> Error in Signup', error));
