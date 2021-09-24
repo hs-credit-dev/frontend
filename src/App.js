@@ -69,10 +69,18 @@ const App = () => {
         }
     }
 
+    const currentTime = new Date().getTime()/1000
+
+    if (currentTime > currentUser.exp){
+        console.log(`auth token expired, logging user out. \ncurrent time: ${currentTime}\ntoken expiration: ${currentUser.exp}`);
+        handleLogout();
+    }
+
     return (
         <div className="App">
             {/* <Router> */}
             <MainNavBar />
+            {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>}
                 
                 {/* <Home /> */}
                 {/* <Route exact path="/about" component={About} /> */}
