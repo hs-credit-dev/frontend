@@ -5,7 +5,7 @@ import HomeHeader from './Headers/HomeHeader'
 import Book from '../assets/book.png'
 import BottomLeft from '../assets/svg/home-left-bottom.svg'
 import BottomRight from '../assets/svg/home-bottom-right.svg'
-import MainNavBar from './NavBars/MainNavBar'
+import MainNavBar from './NavBars/NavBar'
 
 const Home = () => {
     return (

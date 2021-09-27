@@ -12,7 +12,7 @@ import HowItWorks from '../components/HowItWorks';
 import RegisterAs from '../components/RegisterAs';
 // import StudentProfile from '../components/StudentProfile';
 import StudentPlaylist from '../components/StudentPlaylist';
-
+import Browse from '../components/Browse'
 
 
 export default(
@@ -27,6 +27,7 @@ export default(
             <Route exact path='/contact' component={Contact} />
             <Route exact path='/howitworks' component={HowItWorks} />
             <Route exact path='/registeras' component={RegisterAs} />
+            <Route exact path='/browse' component={Browse}/>
             {/* <Route exact path='/studentprofile' component={StudentProfile} /> */}
             <Route exact path='/studentplaylist' component={StudentPlaylist} />
         </Switch>

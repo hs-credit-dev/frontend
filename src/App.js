@@ -15,7 +15,7 @@ import setAuthToken from './utilities/setAuthToken';
 import './App.css';
 
 //components
-import MainNavBar from './components/NavBars/MainNavBar'
+import NavBar from './components/NavBars/NavBar'
 import Home from './components/Home'
 // import Profile from './components/Profile'
 import Login from './components/Login'
@@ -73,7 +73,7 @@ const App = () => {
     return (
         <div className="App">
             {/* <Router> */}
-            <MainNavBar />
+            <NavBar />
                 
                 {/* <Home /> */}
                 {/* <Route exact path="/about" component={About} /> */}
