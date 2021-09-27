@@ -21,6 +21,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import StudentSignUp from './components/StudentSignUp';
 import EducatorSignUp from './components/EducatorSignUp';
+import StudentProfile from './components/Profiles/StudentProfile'
 
 //private routes for authorized users
 
@@ -90,7 +91,7 @@ const App = () => {
                      exact path='/login' 
                      render={(props) => 
                         <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
-                    {/* <PrivateRoute exact path='/profile' component={Profile} user={currentUser} handleLogout={handleLogout} /> */}
+                    <PrivateRoute exact path='/studentprofile' component={StudentProfile} user={currentUser} handleLogout={handleLogout} /> 
                     </Switch>
             </div>
             {/* <Footer />  */}
