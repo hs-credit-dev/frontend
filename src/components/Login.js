@@ -10,7 +10,7 @@ const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [redirect, setRedirect] = useState(false)
  
 
     const handleEmail = (e) => {
@@ -39,14 +39,16 @@ const Login = (props) => {
             //decode token to get user data
             const decoded = jwt_decode(token)
             props.nowCurrentUser(decoded)
+            setRedirect(true)
         })
         .catch(error => {
             console.log(`>>>> error logging in ${error}`)
             alert('incorrect email or password! please try again')
         })
+
     }
 
-    if (props.user) return <Redirect to="/profile" user={props.user}/> // double check
+    if (props.user) return <Redirect to="/home" /> // double check
 
     return (
        

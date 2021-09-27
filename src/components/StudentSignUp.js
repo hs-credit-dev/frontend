@@ -5,11 +5,7 @@ import {Redirect} from 'react-router-dom'
 const { REACT_APP_DATABASE_URL } = process.env;
 
 const StudentSignUp = (props) => {
-
-    //required formData state variables
-    const [schoolId, setSchoolId] = useState(0);
-    const [image, setImage] = useState('');
-    const [about, setAbout] = useState('');
+    const [schoolId, setSchoolId] = useState('');
     const [street1, setStreet1] = useState('');
     const [street2, setStreet2] = useState('');
     const [city, setCity] = useState('');
@@ -56,15 +52,13 @@ const StudentSignUp = (props) => {
     const handleZip = (e) => {
         setZip(e.target.value);
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         //props not being passed, userId set manually here. 
         // userId 8 won't work again on my local db or yours unless you've made at least 8 test users.
 
         const userId = 8
-        const userData = { userId, schoolId, image, about, street1, street2, city, state, zip }
+        const userData = { userId, schoolId, street1, street2, city, state, zip }
         axios.post(`${REACT_APP_DATABASE_URL}/students/create`, userData)
         .then(response => {
             console.log('===> student created');
