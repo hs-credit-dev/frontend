@@ -15,7 +15,7 @@ import './App.css';
 //components
 
 import Home from './components/Home'
-import MainNavBar from './components/NavBars/MainNavBar'
+import NavBar from './components/NavBars/NavBar'
 
 
 //private routes for authorized users
@@ -67,7 +67,7 @@ function App() {
 
     return (
         <div className="App">
-            <MainNavBar handleLogout={handleLogout} isAuth={isAuthenticated}/>
+            <NavBar handleLogout={handleLogout} isAuth={isAuthenticated}/>
            <Home />
                 
             

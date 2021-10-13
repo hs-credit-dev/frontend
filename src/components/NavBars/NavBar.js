@@ -1,38 +1,64 @@
-import React from 'react'
-
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export const MainNavBar = () => {
+export const NavBar = (props) => {
     return (
-        
-        <nav>
-           
+        <nav className="non-authenticated-nav">
+            
+
+            {props.isAuth ?
+                <nav>
                    
                     <ul >
+                        <li >
+                        <NavLink  to="/">Home</NavLink>
+                        </li>
 
+                        <li >
+                        <NavLink  to="/browse">Browse</NavLink>
+                        </li>
 
                         <li >
-                            <NavLink  to="/home">Home</NavLink>
+                        <NavLink  to="/registeras">Register as</NavLink>
                         </li>
+
                         <li>
-                            <NavLink  to="/about">About</NavLink> 
+                            <NavLink to="/profile">Profile</NavLink>
                         </li>
+                      
                         <li>
-                            <NavLink  to="/howitworks">How It Works</NavLink>
+                            <span onClick={props.handleLogout}>Logout</span>
                         </li>
-                        <li>
-                            <NavLink to="/login">Login</NavLink>
-                        </li>
-                        <li >
-                            <NavLink  to="/signup">Sign Up</NavLink>
-                        </li>
-                        <li >
-                            <NavLink  to="/contact">Contact</NavLink>
-                        </li>
-                       
                     </ul>
-                </nav> 
+                </nav> :
+                <ul>
+                    <li>
+                        <NavLink exact to="/">Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/login'>Login</NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/signup">Sign up</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about">About</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contact">Contact</NavLink>
+                    </li>
+                </ul>}
+
+          
+        </nav>
     );
 }
 
-export default MainNavBar
+
+
+export default NavBar
+
+
+
+
