@@ -25,13 +25,6 @@ const StudentSignUp = (props) => {
         setSchoolId(e.target.value);
     }
 
-    const handleImage = (e) => {
-        setImage(e.target.value);
-    }
-
-    const handleAbout = (e) => {
-        setAbout(e.target.value);
-    }
 
     const handleStreet1 = (e) => {
         setStreet1(e.target.value);
@@ -76,12 +69,6 @@ const StudentSignUp = (props) => {
 
                 <label>School ID</label>
                 <input type="number" value={schoolId} onChange={handleSchoolId}></input>
-
-                <label>Image Link</label>
-                <input type="text" value={image} onChange={handleImage}></input>
-
-                <label>About</label>
-                <input type="text" value={about} onChange={handleAbout}></input>
 
 
                 <label htmlFor="street 1">Street 1</label>

@@ -15,14 +15,14 @@ import setAuthToken from './utilities/setAuthToken';
 import './App.css';
 
 //components
-import MainNavBar from './components/NavBars/MainNavBar'
+import MainNavBar from './components/NavBars/NavBar'
 import Home from './components/Home'
 // import Profile from './components/Profile'
 import Login from './components/Login'
 import StudentSignUp from './components/StudentSignUp';
 import EducatorSignUp from './components/EducatorSignUp';
 import StudentProfile from './components/Profiles/StudentProfile'
-
+import NavBar from './components/NavBars/NavBar'
 //private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -72,16 +72,16 @@ const App = () => {
 
     const currentTime = new Date().getTime()/1000
 
-    if (currentTime > currentUser.exp){
-        console.log(`auth token expired, logging user out. \ncurrent time: ${currentTime}\ntoken expiration: ${currentUser.exp}`);
-        handleLogout();
-    }
+    // if (currentTime > currentUser.exp){
+    //     console.log(`auth token expired, logging user out. \ncurrent time: ${currentTime}\ntoken expiration: ${currentUser.exp}`);
+    //     handleLogout();
+    // }
 
     return (
         <div className="App">
             {/* <Router> */}
-            <MainNavBar />
-            {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>}
+            <NavBar handleLogout={handleLogout} isAuth={isAuthenticated}/>
+            {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
                 
                 {/* <Home /> */}
                 {/* <Route exact path="/about" component={About} /> */}
