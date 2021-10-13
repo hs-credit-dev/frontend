@@ -67,7 +67,7 @@ function App() {
 
     return (
         <div className="App">
-            <MainNavBar />
+            <MainNavBar handleLogout={handleLogout} isAuth={isAuthenticated}/>
            <Home />
                 
             
