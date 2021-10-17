@@ -1,118 +1,91 @@
-import React from 'react'
-import {React,useState} from 'react'
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import {Redirect} from 'react-router-dom'
+const { REACT_APP_DATABASE_URL } = process.env;
 
-const StudentSignUp = () => {
+const StudentSignUp = (props) => {
+    const [schoolId, setSchoolId] = useState('');
+    const [street1, setStreet1] = useState('');
+    const [street2, setStreet2] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
-    const [grade, setGrade] = useState('');
-    const [location, setLocation] = useState('');
-    const [school, setSchool] = useState('');
-    const [userType, setUserType] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    //redirect state variable
     const [redirect, setRedirect] = useState(false);
 
-    const handleFirstName = (e) => {
-        setFirstName(e.target.value);
-    }
-
-    const handleLastName = (e) => {
-        setLastName(e.target.value);
-    }
-
-    const handleGrade = (e) => {
-        setGrade(e.target.value);
-    }
-
-    const handleLocation = (e) => {
-        setLocation(e.target.value);
-    }
-
-    const handleSchool = (e) => {
-        setSchool(e.target.value);
-    }
-
-    const handleUserType = (e) => {
-        setUserType(e.target.value);
-    }
-
-    const handleUserName = (e) => {
-        setUserName(e.target.value);
-    }
-
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
+    //set userId on first render
+    const { user } = props;
+    console.log(user)
+    // const userId = user.id
     
 
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
+    const handleSchoolId = (e) => {
+        setSchoolId(e.target.value);
     }
 
-    const handleConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value);
+
+    const handleStreet1 = (e) => {
+        setStreet1(e.target.value);
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); // at the beginning of a submit function
-        // make sure password and confirm password are equal
-        // password length >= 8 characters
-        if (password === confirmPassword && password.length >= 8) {
-            const newUser = { firstName,lastName,location,school,userType,grade,userName, email, password };
-            // need proper API for line 65
-            axios.post(`${REACT_APP_SERVER_URL}/users/register`, newUser)
-            .then(response => {
-                console.log('===> Yay, new user');
-                console.log(response);
-                setRedirect(true);
-            })
-            .catch(error => console.log('===> Error in Signup', error));
-        } else {
-            if (password !== confirmPassword) return alert('Passwords don\'t match');
-            alert('Password needs to be at least 8 characters. Please try again.');
-        }
+    const handleStreet2 = (e) => {
+        setStreet2(e.target.value);
     }
 
-    if (redirect) return <Redirect to="/login" /> // You can have them redirected to profile (your choice)
+    const handleCity = (e) => {
+        setCity(e.target.value);
+    }
+    
+    const handleState = (e) => {
+        setState(e.target.value);
+    }
+
+    const handleZip = (e) => {
+        setZip(e.target.value);
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        //props not being passed, userId set manually here. 
+        // userId 8 won't work again on my local db or yours unless you've made at least 8 test users.
+
+        const userId = 8
+        const userData = { userId, schoolId, street1, street2, city, state, zip }
+        axios.post(`${REACT_APP_DATABASE_URL}/students/create`, userData)
+        .then(response => {
+            console.log('===> student created');
+            console.log(response.data);
+            setRedirect(true);
+        })
+    }
+
+    if(redirect) return <Redirect to='/studentprofile'/>
 
     return (
         <div>
-            <h1 className="student-signup">Student Sign up</h1>
-            <form className="student-signup-form" onSubmit={handleSubmit}>
-                
-                    <label htmlFor="firstName">First Name</label>
-                    <input type="text" value={firstName} onChange={handleFirstName}></input>
-                
-                    <label htmlFor="lastName">Last Name</label>
-                    <input type="text" value={lastName} onChange={handleLastName}></input>
-               
-                    <label>Username</label>
-                    <input type="text" value={userName} onChange={handleUserName}></input>
-                
-                    <label>Location</label>
-                    <input type="text" value={location} onChange={handleLocation}></input>
-                
-                    <label>School</label>
-                    <input type="text" value={school} onChange={handleSchool}></input>
-                
-                    <label>Grade</label>
-                    <input type="text" value={grade} onChange={handleGrade}></input>
-               
-                    <label>User Type</label>
-                    <input type="select" value={userType} onChange={handleUserType}></input>
-                
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" value={email} onChange={handleEmail}></input>
-                
-                    <label htmlFor="password">Password</label>
-                    <input type="password" value={password} onChange={handlePassword}></input>
-              
-                    <label htmlFor="confirmPassword" >Confirm password</label>
-                    <input type="password" value={confirmPassword} onChange={handleConfirmPassword}></input>
-                
+            <h1 className="basic-signup">Student Sign up</h1>
+            <form className="basic-signup-form" onSubmit={handleSubmit}>
+
+                <label>School ID</label>
+                <input type="number" value={schoolId} onChange={handleSchoolId}></input>
+
+
+                <label htmlFor="street 1">Street 1</label>
+                <input type="text" name="street 1" value={street1} onChange={handleStreet1}></input>
+
+                <label htmlFor="street 2">Street 2</label>
+                <input type="text" value={street2} onChange={handleStreet2}></input>
+
+                <label htmlFor="city" >City</label>
+                <input type="text" value={city} onChange={handleCity}></input>
+
+                <label htmlFor="state">State</label>
+                <input type="text" value={state} onChange={handleState}></input>
+
+                <label htmlFor="zipcode">Zipcode</label>
+                <input type="number" value={zip} onChange={handleZip}></input>
+
                 <button value="submit">Sign Up!</button>
 
             </form>
@@ -120,4 +93,5 @@ const StudentSignUp = () => {
     )
 }
 
-export default StudentSignUp
+export default StudentSignUp;
+

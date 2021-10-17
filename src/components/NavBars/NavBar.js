@@ -58,7 +58,3 @@ export const NavBar = (props) => {
 
 
 export default NavBar
-
-
-
-
