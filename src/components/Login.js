@@ -48,7 +48,7 @@ const Login = (props) => {
 
     }
 
-    if (props.user) return <Redirect to="/home" /> // double check
+    if (props.user) return <Redirect to="/" /> // double check
 
     return (
        
