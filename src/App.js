@@ -23,6 +23,7 @@ import StudentSignUp from './components/StudentSignUp';
 import EducatorSignUp from './components/EducatorSignUp';
 import StudentProfile from './components/Profiles/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
+import BasicProfile from './components/Profiles/BasicProfile';
 //private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -81,6 +82,7 @@ const App = () => {
         <div className="App">
             {/* <Router> */}
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated}/>
+            <BasicProfile />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
                 
                 {/* <Home /> */}
