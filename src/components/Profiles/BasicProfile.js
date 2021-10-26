@@ -1,35 +1,24 @@
 import { React, useState } from 'react'
+import Form from '../../Form'
 
 
 const BasicProfile = () => {
-
-    const [about, setAbout] = useState('You have nothing in your about section.')
     const [clicked, setClicked] = useState(false)
 
     const handleClick= () => {
-       
+
         setClicked(!clicked)
     }
 
-    const renderForm = () => {
-        // <form>
-
-        // </form>
-        return (
-            <div>
-                <p>test test test</p>
-                <button>Update</button>
-            </div>
-        )
-    }
-
     return (
-        <div>
+        <div className="profile-container">
             <img href="./assets/profiledefault" alt="default profile avatar" />
-            <div>
-                {about}
+            {/* <h5>About { isAuthenticated ? user.name : 'User'}</h5> */}
+            {/* <p>{ user.about ? user.about : `${user.name} doesn't have an about section yet.` }</p> */}
+            <div className="profile-bio-section">
+                {user.about}
                 <button onClick={handleClick}>edit bio</button>
-                {clicked ? 'i hate this :(' : ''}
+                {clicked ? <Form about={about}/> : ''}
             </div>
 
         </div>
