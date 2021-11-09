@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import Form from '../../Form'
 import jwt_decode from 'jwt-decode';
-import setAuthToken from '../../utilities/setAuthToken';
+import setAuthToken from '../utilities/setAuthToken';
 
 const BasicProfile = () => {
     const [currentUser, setCurrentUser] = useState('');
@@ -28,8 +28,8 @@ const BasicProfile = () => {
         setIsAuthenticated(true);
         console.log('>>> user: userData, auth: true')
     }
-    
-    const handleClick= () => {
+
+    const handleClick = () => {
 
         setClicked(!clicked)
     }
@@ -37,10 +37,10 @@ const BasicProfile = () => {
     return (
         <div className="profile-container">
             <img href="./assets/profiledefault" alt="default profile avatar" />
-            <h5>About { currentUser.name }</h5>
-            <p>{ currentUser.about ? currentUser.about : `${currentUser.name} doesn't have an about section yet.` }</p>
+            <h5>About {currentUser.name}</h5>
+            <p>{currentUser.about ? currentUser.about : `${currentUser.name} doesn't have an about section yet.`}</p>
             <div className="profile-bio-section">
-                { currentUser.about }
+                {currentUser.about}
                 <button onClick={handleClick}>edit bio</button>
                 {clicked ? <Form /> : ''}
             </div>

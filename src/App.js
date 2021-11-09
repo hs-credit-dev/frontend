@@ -3,10 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import routes from './config/routes';
-import { BrowserRouter as Router, Route, Redirect,Switch,Navbar } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch, Navbar } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
-
+import axios from 'axios'
 
 
 
@@ -39,6 +39,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 const App = () => {
     const [currentUser, setCurrentUser] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [allData, setAllData] = useState('')
+
+    const getData = async () => {
+        const res = await axios.get('/api')
+        setAllData(res.data)
+    }
+    useEffect(() => {
+        getData()
+    }, [])
+
 
     useEffect(() => {
         let token;
@@ -71,7 +81,7 @@ const App = () => {
         }
     }
 
-    const currentTime = new Date().getTime()/1000
+    // const currentTime = new Date().getTime() / 1000
 
     // if (currentTime > currentUser.exp){
     //     console.log(`auth token expired, logging user out. \ncurrent time: ${currentTime}\ntoken expiration: ${currentUser.exp}`);
@@ -81,31 +91,31 @@ const App = () => {
     return (
         <div className="App">
             {/* <Router> */}
-            <NavBar handleLogout={handleLogout} isAuth={isAuthenticated}/>
+            <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
             <BasicProfile />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
-                
-                {/* <Home /> */}
-                {/* <Route exact path="/about" component={About} /> */}
-                {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
 
-                
+            {/* <Home /> */}
+            {/* <Route exact path="/about" component={About} /> */}
+            {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
+
+
             {/* <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} /> */}
 
             <div className="mainAppContainer">
                 <Switch>
-                
-                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} /> 
-                    <Route exact path='/educatorsignup' component={EducatorSignUp} user={currentUser}/>
+
+                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />
+                    <Route exact path='/educatorsignup' component={EducatorSignUp} user={currentUser} />
                     <Route
-                     exact path='/login' 
-                     render={(props) => 
-                        <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
-                    <PrivateRoute exact path='/studentprofile' component={StudentProfile} user={currentUser} handleLogout={handleLogout} /> 
-                    </Switch>
+                        exact path='/login'
+                        render={(props) =>
+                            <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
+                    <PrivateRoute exact path='/studentprofile' component={StudentProfile} user={currentUser} handleLogout={handleLogout} />
+                </Switch>
             </div>
             {/* <Footer />  */}
-            
+
             {/* </Router> */}
             {routes}
         </div>
