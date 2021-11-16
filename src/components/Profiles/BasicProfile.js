@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import Form from '../../Form'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../../utilities/setAuthToken';
+import UserDashboard from '../UserDashboard';
 
 const BasicProfile = () => {
     const [currentUser, setCurrentUser] = useState('');
@@ -21,7 +22,6 @@ const BasicProfile = () => {
             setAuthToken(localStorage.getItem('jwtToken'));
             setCurrentUser(token);
         }
-        console.log(currentUser)
     }, []);
 
     const nowCurrentUser = (userData) => {
@@ -40,6 +40,7 @@ const BasicProfile = () => {
                 { currentUser.about }
                 <button onClick={() => { setIsEditMode(!isEditMode)}}>edit bio</button>
                 {isEditMode ? <Form /> : ''}
+                <UserDashboard />
             </div>
 
         </div>
