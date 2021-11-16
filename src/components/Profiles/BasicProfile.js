@@ -7,6 +7,7 @@ const BasicProfile = () => {
     const [currentUser, setCurrentUser] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [clicked, setClicked] = useState(false)
+    const [isEditMode, setIsEditMode] = useState(false)
 
     useEffect(() => {
         let token;
@@ -20,6 +21,7 @@ const BasicProfile = () => {
             setAuthToken(localStorage.getItem('jwtToken'));
             setCurrentUser(token);
         }
+        console.log(currentUser)
     }, []);
 
     const nowCurrentUser = (userData) => {
@@ -28,21 +30,16 @@ const BasicProfile = () => {
         setIsAuthenticated(true);
         console.log('>>> user: userData, auth: true')
     }
-    
-    const handleClick= () => {
-
-        setClicked(!clicked)
-    }
 
     return (
         <div className="profile-container">
             <img href="./assets/profiledefault" alt="default profile avatar" />
-            <h5>About { currentUser.name }</h5>
-            <p>{ currentUser.about ? currentUser.about : `${currentUser.name} doesn't have an about section yet.` }</p>
+            <h5>About { currentUser.username }</h5>
+            <p>{ currentUser.about ? currentUser.about : `${currentUser.username} doesn't have an about section yet.` }</p>
             <div className="profile-bio-section">
                 { currentUser.about }
-                <button onClick={handleClick}>edit bio</button>
-                {clicked ? <Form /> : ''}
+                <button onClick={() => { setIsEditMode(!isEditMode)}}>edit bio</button>
+                {isEditMode ? <Form /> : ''}
             </div>
 
         </div>
