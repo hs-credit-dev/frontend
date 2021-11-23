@@ -4,28 +4,28 @@ import { NavLink } from 'react-router-dom';
 export const NavBar = (props) => {
     return (
         <nav className="non-authenticated-nav">
-            
+
 
             {props.isAuth ?
                 <nav>
-                   
+
                     <ul >
                         <li >
-                        <NavLink  to="/">Home</NavLink>
+                            <NavLink to="/">Home</NavLink>
                         </li>
 
                         <li >
-                        <NavLink  to="/browse">Browse</NavLink>
+                            <NavLink to="/browse">Browse</NavLink>
                         </li>
 
                         <li >
-                        <NavLink  to="/registeras">Register as</NavLink>
+                            <NavLink to="/registeras">Register as</NavLink>
                         </li>
 
                         <li>
                             <NavLink to="/profile">Profile</NavLink>
                         </li>
-                      
+
                         <li>
                             <span onClick={props.handleLogout}>Logout</span>
                         </li>
@@ -50,9 +50,12 @@ export const NavBar = (props) => {
                     </li>
                 </ul>}
 
-          
+
         </nav>
     );
 }
 
+
+
 export default NavBar
+

@@ -2,8 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router-dom'
-
-const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
+const { REACT_APP_DATABASE_URL } = process.env;
 
 const StudentSignUp = (props) => {
     const [schoolId, setSchoolId] = useState('');
@@ -12,18 +11,24 @@ const StudentSignUp = (props) => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
-    const [formData, setFormData] = useState({})
-    const [redirect, setRedirect] = useState(false)
+
+    //redirect state variable
+    const [redirect, setRedirect] = useState(false);
+
+    //set userId on first render
+    const { user } = props;
+    console.log(user)
+    // const userId = user.id
     
 
     const handleSchoolId = (e) => {
         setSchoolId(e.target.value);
     }
 
+
     const handleStreet1 = (e) => {
         setStreet1(e.target.value);
     }
-
 
     const handleStreet2 = (e) => {
         setStreet2(e.target.value);
@@ -40,33 +45,19 @@ const StudentSignUp = (props) => {
     const handleZip = (e) => {
         setZip(e.target.value);
     }
-
-    
-        
-    
-
     const handleSubmit = async (e) => {
-        //needs to check for valid email
-        //needs to check for no existing users
-    
         e.preventDefault();
-        setFormData ( {
-            id:userData.id,
-            schoolId:schoolId,
-            street1:street1,
-            street2:street2,
-            city:city,
-            state:state,
-            zip:zip,
+        //props not being passed, userId set manually here. 
+        // userId 8 won't work again on my local db or yours unless you've made at least 8 test users.
+
+        const userId = 8
+        const userData = { userId, schoolId, street1, street2, city, state, zip }
+        axios.post(`${REACT_APP_DATABASE_URL}/students/create`, userData)
+        .then(response => {
+            console.log('===> student created');
+            console.log(response.data);
+            setRedirect(true);
         })
-        
-
-            console.log(REACT_APP_DATABASE_URL)
-
-            await axios.post(`${REACT_APP_DATABASE_URL}/students/create`, formData)
-            
-            setRedirect(true)
-       
     }
 
     if(redirect) return <Redirect to='/studentprofile'/>
@@ -78,6 +69,7 @@ const StudentSignUp = (props) => {
 
                 <label>School ID</label>
                 <input type="number" value={schoolId} onChange={handleSchoolId}></input>
+
 
                 <label htmlFor="street 1">Street 1</label>
                 <input type="text" name="street 1" value={street1} onChange={handleStreet1}></input>
