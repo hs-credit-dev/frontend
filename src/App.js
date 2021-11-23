@@ -92,7 +92,6 @@ const App = () => {
         <div className="App">
             {/* <Router> */}
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
-            <BasicProfile />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
 
             {/* <Home /> */}
@@ -104,9 +103,10 @@ const App = () => {
 
             <div className="mainAppContainer">
                 <Switch>
-
-                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />
-                    <Route exact path='/educatorsignup' component={EducatorSignUp} user={currentUser} />
+                
+                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} /> 
+                    <Route exact path='/educatorsignup' component={EducatorSignUp} user={currentUser}/>
+                    <Route exact path='/profile' component={BasicProfile} user={currentUser}/>
                     <Route
                         exact path='/login'
                         render={(props) =>
