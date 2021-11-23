@@ -15,15 +15,15 @@ import axios from 'axios'
 import './App.css';
 
 //components
-import MainNavBar from './components/NavBars/NavBar'
-import Home from './components/Home'
+// import MainNavBar from './components/NavBars/NavBar'
+
 // import Profile from './components/Profile'
-import Login from './components/Login'
-import StudentSignUp from './components/StudentSignUp';
-import EducatorSignUp from './components/EducatorSignUp';
-import StudentProfile from './components/Profiles/StudentProfile'
+import Login from './pages/Login'
+import StudentSignUp from './pages/StudentSignUp';
+import EducatorSignUp from './pages/EducatorSignUp';
+import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
-import BasicProfile from './components/Profiles/BasicProfile';
+import BasicProfile from './pages/BasicProfile';
 //private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -118,7 +118,7 @@ const App = () => {
 
             {/* </Router> */}
             {routes}
-        </div>
+        </div >
     );
 }
 
