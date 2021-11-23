@@ -31,6 +31,11 @@ const BasicProfile = () => {
         console.log('>>> user: userData, auth: true')
     }
 
+    const handleClick = () => {
+
+        setClicked(!clicked)
+    }
+
     return (
         <div className="profile-container">
             <img href="./assets/profiledefault" alt="default profile avatar" />
@@ -39,7 +44,7 @@ const BasicProfile = () => {
             <div className="profile-bio-section">
                 { currentUser.about }
                 <button onClick={() => { setIsEditMode(!isEditMode)}}>edit bio</button>
-                {isEditMode ? <Form /> : ''}
+                {isEditMode ? <Form name={'Edit About'}/> : ''}
                 <UserDashboard />
             </div>
 

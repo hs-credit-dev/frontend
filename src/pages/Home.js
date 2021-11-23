@@ -1,4 +1,4 @@
-import HomeHeader from './Headers/HomeHeader'
+import HomeHeader from '../components/Headers/HomeHeader'
 
 
 
