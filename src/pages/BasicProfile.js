@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react'
-import EditBioForm from '../components/EditBioForm'
+import Form from '../components/Form'
 import jwt_decode from 'jwt-decode';
-import setAuthToken from '../../utilities/setAuthToken';
-import UserDashboard from '../UserDashboard';
+import setAuthToken from '../utilities/setAuthToken';
+import UserDashboard from '../components/UserDashboard';
 
 const BasicProfile = () => {
     const [currentUser, setCurrentUser] = useState('');
@@ -39,13 +39,13 @@ const BasicProfile = () => {
     return (
         <div className="profile-container">
             <img href="./assets/profiledefault" alt="default profile avatar" />
-            <h5>About { currentUser.username }</h5>
-            <p>{ currentUser.about ? currentUser.about : `${currentUser.username} doesn't have an about section yet.` }</p>
+            <h5>About {currentUser.username}</h5>
+            <p>{currentUser.about ? currentUser.about : `${currentUser.username} doesn't have an about section yet.`}</p>
             <div className="profile-bio-section">
 
-                { currentUser.about }
-                <button onClick={() => { setIsEditMode(!isEditMode)}}>edit bio</button>
-                {isEditMode ? <Form name={'Edit About'}/> : ''}
+                {currentUser.about}
+                <button onClick={() => { setIsEditMode(!isEditMode) }}>edit bio</button>
+                {isEditMode ? <Form name={'Edit About'} /> : ''}
                 <UserDashboard />
 
             </div>

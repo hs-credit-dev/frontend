@@ -18,9 +18,9 @@ export const NavBar = (props) => {
                             <NavLink to="/browse">Browse</NavLink>
                         </li>
 
-                        <li >
+                        {/* <li >
                             <NavLink to="/registeras">Register as</NavLink>
-                        </li>
+                        </li> */}
 
                         <li>
                             <NavLink to="/profile">Profile</NavLink>
