@@ -13,6 +13,7 @@ import HowItWorks from '../components/HowItWorks';
 // import StudentProfile from '../components/StudentProfile';
 import StudentPlaylist from '../components/StudentPlaylist';
 import Browse from '../pages/Browse'
+import BasicProfile from '../pages/BasicProfile'
 
 
 export default (
@@ -20,7 +21,7 @@ export default (
         <Route exact path='/' component={Home} />
         {/* <Route exact path='/login' component={Login} />  */}
         <Route exact path='/signup' component={BasicUserSignUp} />
-
+        <Route exact path='/profile' component={BasicProfile} />
         {/* <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />  */}
 
         <Route exact path='/about' component={About} />
