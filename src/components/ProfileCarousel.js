@@ -17,22 +17,22 @@
 
 // const items = [
 //     {
-//         src: require('./newyork.jpg').default,
+//         src: require('./hanna-postova.jpg').default,
 //         altText: "Selene",
 //         caption: "Selene",
 //     },
 //     {
-//         src: require('./newyork.jpg').default,
+//         src: require('./hanna-postova.jpg').default,
 //         altText: "Farmony",
 //         caption: "Farmony",
 //     },
 //     {
-//         src: require('./newyork.jpg').default,
+//         src: require('./hanna-postova.jpg').default,
 //         altText: "mindwholeness",
 //         caption: "The MindWholeness Podcast",
 //     },
 //     {
-//         src: require('./newyork.jpg').default,
+//         src: require('./hanna-postova.jpg').default,
 //         altText: "Lavender",
 //         caption: "Lavender Recovery",
 //     },
