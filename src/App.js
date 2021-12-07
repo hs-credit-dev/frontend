@@ -20,7 +20,7 @@ import './App.css';
 // import Profile from './components/Profile'
 import Login from './pages/Login'
 import StudentSignUp from './pages/StudentSignUp';
-import EducatorSignUp from './pages/EducatorSignUp';
+
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
 import BasicProfile from './pages/BasicProfile';
@@ -103,10 +103,10 @@ const App = () => {
 
             <div className="mainAppContainer">
                 <Switch>
-                
-                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} /> 
-                    <Route exact path='/educatorsignup' component={EducatorSignUp} user={currentUser}/>
-                    <Route exact path='/profile' component={BasicProfile} user={currentUser}/>
+
+                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />
+
+                    <Route exact path='/profile' component={BasicProfile} user={currentUser} />
                     <Route
                         exact path='/login'
                         render={(props) =>
