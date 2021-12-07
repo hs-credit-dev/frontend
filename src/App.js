@@ -10,6 +10,7 @@ import axios from 'axios'
 
 
 
+
 //styling
 
 import './App.css';
@@ -20,7 +21,7 @@ import './App.css';
 // import Profile from './components/Profile'
 import Login from './pages/Login'
 import StudentSignUp from './pages/StudentSignUp';
-
+// import ProfileCarousel from './components/ProfileCarousel';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
 import BasicProfile from './pages/BasicProfile';
@@ -93,7 +94,7 @@ const App = () => {
             {/* <Router> */}
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
-
+            {/* <ProfileCarousel /> */}
             {/* <Home /> */}
             {/* <Route exact path="/about" component={About} /> */}
             {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
