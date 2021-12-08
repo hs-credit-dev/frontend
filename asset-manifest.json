@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/frontend/static/css/main.b4f65ece.chunk.css",
+    "main.js": "/frontend/static/js/main.9211d704.chunk.js",
+    "main.js.map": "/frontend/static/js/main.9211d704.chunk.js.map",
+    "runtime-main.js": "/frontend/static/js/runtime-main.485cd12d.js",
+    "runtime-main.js.map": "/frontend/static/js/runtime-main.485cd12d.js.map",
+    "static/js/2.d59ed35a.chunk.js": "/frontend/static/js/2.d59ed35a.chunk.js",
+    "static/js/2.d59ed35a.chunk.js.map": "/frontend/static/js/2.d59ed35a.chunk.js.map",
+    "static/js/3.33e32fcb.chunk.js": "/frontend/static/js/3.33e32fcb.chunk.js",
+    "static/js/3.33e32fcb.chunk.js.map": "/frontend/static/js/3.33e32fcb.chunk.js.map",
+    "index.html": "/frontend/index.html",
+    "static/css/main.b4f65ece.chunk.css.map": "/frontend/static/css/main.b4f65ece.chunk.css.map",
+    "static/js/2.d59ed35a.chunk.js.LICENSE.txt": "/frontend/static/js/2.d59ed35a.chunk.js.LICENSE.txt",
+    "static/media/home-bottom-right.0f43ed18.svg": "/frontend/static/media/home-bottom-right.0f43ed18.svg",
+    "static/media/home-left-bottom.ced75867.svg": "/frontend/static/media/home-left-bottom.ced75867.svg",
+    "static/media/App.css": "/frontend/static/media/quicksand-v22-latin-regular.b8e52086.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.485cd12d.js",
+    "static/js/2.d59ed35a.chunk.js",
+    "static/css/main.b4f65ece.chunk.css",
+    "static/js/main.9211d704.chunk.js"
+  ]
+}
