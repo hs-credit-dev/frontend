@@ -1,136 +1,102 @@
-// import React from "react";
+
+import Carousel from 'react-bootstrap/Carousel'
+import { Link } from 'react-router-dom'
+
+function ProfileCarousel() {
+  return (
+<Carousel>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="holder.js/800x400?text=First slide&bg=373940"
+      alt="First slide"
+    />
+    <Carousel.Caption>
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="holder.js/800x400?text=Second slide&bg=282c34"
+      alt="Second slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Second slide label</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+    <img
+      className="d-block w-100"
+      src="holder.js/800x400?text=Third slide&bg=20232a"
+      alt="Third slide"
+    />
+
+    <Carousel.Caption>
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+</Carousel>
 
 
-// // reactstrap components
-// import {
-//     Card,
-//     Container,
-//     Row,
-//     Col,
-//     Carousel,
-//     CarouselItem,
-//     CarouselIndicators,
-//     CarouselCaption,
-// } from "reactstrap";
 
-// // core components
+    ////////////////////////
+    // <Carousel variant="dark">
+    //   <Carousel.Item>
+    //     <div className='item'>
+    //       <Link to='/'>
+    //             <a href="https://www.youtube.com/watch?v=r3qNES6HLu0" target='_blank'> 
+    //                 <img className='carousel'src={`${process.env.PUBLIC_URL}/images/hscreditlogo.png`} alt="hs.credit logo"/>
+    //             </a>
+    //       </Link>
+    //     </div>
+    //     <Carousel.Caption className='caption'>
+    //       <div className='caption'>
+    //         <Link to='/'>
+    //         </Link>
+    //       </div>
+    //     </Carousel.Caption>
+    //   </Carousel.Item>
 
-// const items = [
-//     {
-//         src: require('./hanna-postova.jpg').default,
-//         altText: "Selene",
-//         caption: "Selene",
-//     },
-//     {
-//         src: require('./hanna-postova.jpg').default,
-//         altText: "Farmony",
-//         caption: "Farmony",
-//     },
-//     {
-//         src: require('./hanna-postova.jpg').default,
-//         altText: "mindwholeness",
-//         caption: "The MindWholeness Podcast",
-//     },
-//     {
-//         src: require('./hanna-postova.jpg').default,
-//         altText: "Lavender",
-//         caption: "Lavender Recovery",
-//     },
-// ];
+    //   <Carousel.Item>
+    //     <div className='item'>
+    //       <Link to='/'>
+    //             <a href="https://www.youtube.com/watch?v=r3qNES6HLu0" target='_blank'> 
+    //                 <img className='carousel'src={`${process.env.PUBLIC_URL}/images/hscreditlogo.png`} alt="hs.credit logo"/>
+    //             </a>
+    //       </Link>
+    //     </div>
+    //     <Carousel.Caption>
+    //       <div className='caption'>
+    //         <Link to='/'>
 
-// function ProfileCarousel() {
-//     const [activeIndex, setActiveIndex] = React.useState(0);
-//     const [animating, setAnimating] = React.useState(false);
+    //         </Link>
+    //       </div>
+    //     </Carousel.Caption>
+    //   </Carousel.Item>
 
-//     const onExiting = () => {
-//         setAnimating(true);
-//     };
-//     const onExited = () => {
-//         setAnimating(false);
-//     };
-//     const next = () => {
-//         if (animating) return;
-//         const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-//         setActiveIndex(nextIndex);
-//     };
-//     const previous = () => {
-//         if (animating) return;
-//         const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-//         setActiveIndex(nextIndex);
-//     };
-//     const goToIndex = (newIndex) => {
-//         if (animating) return;
-//         setActiveIndex(newIndex);
-//     };
-//     return (
-//         <>
-//             <div className="section pt-o" id="carousel">
-//                 <Container>
-//                     <Row>
-//                         <Col className="ml-auto mr-auto" md="8">
-//                             <Card className="page-carousel">
-//                                 <Carousel
-//                                     activeIndex={activeIndex}
-//                                     next={next}
-//                                     previous={previous}
-//                                 >
-//                                     <CarouselIndicators
-//                                         items={items}
-//                                         activeIndex={activeIndex}
-//                                         onClickHandler={goToIndex}
-//                                     />
-//                                     {items.map((item) => {
-//                                         return (
-//                                             <CarouselItem
-//                                                 onExiting={onExiting}
-//                                                 onExited={onExited}
-//                                                 key={item.src}
+    //   <Carousel.Item >
+    //     <div className='item'>
+    //       <Link to='/'>
+    //             <a href="https://www.youtube.com/watch?v=r3qNES6HLu0" target='_blank'> 
+    //                 <img className='carousel'src={`${process.env.PUBLIC_URL}/images/hscreditlogo.png`} alt="hs.credit logo"/>
+    //             </a>
+    //       </Link>
+    //     </div>
+    //     <Carousel.Caption>
+    //       <div className='caption3'>
+    //         <Link to='/'>
+    //         </Link>
+    //       </div>
+    //     </Carousel.Caption>
+    //   </Carousel.Item>
+    // </Carousel>
+  )
+}
 
-//                                             >
-//                                                 <img src={item.src} alt={item.altText} />
+export default ProfileCarousel
 
-//                                                 <CarouselCaption
-//                                                     captionText={item.caption}
-//                                                     captionHeader=""
-//                                                 />
-
-//                                             </CarouselItem>
-//                                         );
-//                                     })}
-//                                     <a
-//                                         className="left carousel-control carousel-control-prev"
-//                                         data-slide="prev"
-//                                         href="#pablo"
-//                                         onClick={(e) => {
-//                                             e.preventDefault();
-//                                             previous();
-//                                         }}
-//                                         role="button"
-//                                     >
-//                                         <span className="fa fa-angle-left" />
-//                                         <span className="sr-only">Previous</span>
-//                                     </a>
-//                                     <a
-//                                         className="right carousel-control carousel-control-next"
-//                                         data-slide="next"
-//                                         href="#pablo"
-//                                         onClick={(e) => {
-//                                             e.preventDefault();
-//                                             next();
-//                                         }}
-//                                         role="button"
-//                                     >
-//                                         <span className="fa fa-angle-right" />
-//                                         <span className="sr-only">Next</span>
-//                                     </a>
-//                                 </Carousel>
-//                             </Card>
-//                         </Col>
-//                     </Row>
-//                 </Container>
-//             </div>{" "}
-//         </>
-//     );
-// }
-
-// export default ProfileCarousel;
