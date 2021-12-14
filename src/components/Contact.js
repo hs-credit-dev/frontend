@@ -6,7 +6,7 @@ const Contact = () => {
 
             <h1>Contact Us</h1>
             <h2>Got a question? We'll give you straight answers</h2>
-            <img src="/assets/newyork.jpg" alt="new york" />
+            <img src="/newyork.jpg" alt="new york" />
             <h3>244 5th Avenue
                 Suite N269
                 New York, NY 10001

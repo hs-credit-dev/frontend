@@ -4,6 +4,15 @@
   ;
 }
 
+/* Carousel */
+.carousel{
+  display: flex;
+  margin: 0 auto;
+  height: 55vh;
+  min-height: 30vh;
+  min-width: 45vh;
+}
+
 /* HOME HEADER STYLING */
 .hsc-logo-landing{
   justify-content: center;
