@@ -1,5 +1,5 @@
 
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from 'react-bootstrap/carousel'
 import { Link } from 'react-router-dom'
 
 function ProfileCarousel() {
