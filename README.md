@@ -10,5 +10,4 @@ To start, run:
 ```npm start```
 
 Ensure your backend is also running.
-
 :)
