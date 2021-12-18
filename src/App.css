@@ -3,14 +3,20 @@
   color: white;
   ;
 }
+<<<<<<< HEAD
 /* CAROUSEL STYLING */
 .carousel{
+=======
+
+/* Carousel */
+/* .carousel{
+>>>>>>> 1da22e9955d83fd8bc8af0e1bc72ddf1f19dd8d9
   display: flex;
   margin: 0 auto;
   height: 55vh;
   min-height: 30vh;
   min-width: 45vh;
-}
+} */
 
 
 /* HOME HEADER STYLING */
@@ -150,7 +156,7 @@ h2{
 }
 
 
-.navbar {
+/* .navbar {
   &__bar {
     border-bottom: 2px solid var(--color-grayblue);
   }
@@ -175,4 +181,5 @@ h2{
       background-color: var(--color-grayfog);
     }
   }
-}
+} */
+
