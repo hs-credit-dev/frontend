@@ -3,8 +3,7 @@
   color: white;
   ;
 }
-
-/* Carousel */
+/* CAROUSEL STYLING */
 .carousel{
   display: flex;
   margin: 0 auto;
@@ -12,6 +11,7 @@
   min-height: 30vh;
   min-width: 45vh;
 }
+
 
 /* HOME HEADER STYLING */
 .hsc-logo-landing{
