@@ -141,7 +141,7 @@ h2{
 }
 
 
-.navbar {
+/* .navbar {
   &__bar {
     border-bottom: 2px solid var(--color-grayblue);
   }
@@ -166,4 +166,4 @@ h2{
       background-color: var(--color-grayfog);
     }
   }
-}
+} */

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../pages/Home';
 // import Login from '../components/Login';
 import BasicUserSignUp from '../pages/BasicUserSignUp';
-
+// import CreditDetails from '../pages/CreditDetails';
 // import StudentSignUp from '../components/StudentSignUp';
 
 import About from '../pages/About';
@@ -22,7 +22,7 @@ export default (
         <Route exact path='/signup' component={BasicUserSignUp} />
 
         {/* <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />  */}
-
+        {/* <Route exact path='/credit-details' component={CreditDetails} /> */}
         <Route exact path='/about' component={About} />
         <Route exact path='/contact' component={Contact} />
         <Route exact path='/howitworks' component={HowItWorks} />
