@@ -14,24 +14,25 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
+    label: 'The Dark Ages',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://i.imgur.com/aGdTmUo.png',
   },
   {
-    label: 'Bird',
+    label: 'World War II',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://i.imgur.com/aGdTmUo.png',
   },
   {
-    label: 'Bali, Indonesia',
+    label: 'Ancient Greece',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+      'https://i.imgur.com/aGdTmUo.png',
   },
   {
-    label: 'Goč, Serbia',
+    label: 'The American Revolution',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      'https://i.imgur.com/aGdTmUo.png',
+    path: ""
   },
 ];
 
@@ -87,6 +88,7 @@ function MaterialUI() {
                 }}
                 src={step.imgPath}
                 alt={step.label}
+                link={step.path}
               />
             ) : null}
           </div>
