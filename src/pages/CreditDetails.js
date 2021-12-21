@@ -1,8 +1,8 @@
-import React from 'react'
-import ReactPlayer from "react-player"
+import React from 'react';
+import ReactPlayer from "react-player";
 // import Grid from '@mui/material/Grid'
 
-const CeditDetails = () => {
+const CreditDetails = () => {
     return (
         <div>
             <h1>Espionage in The American Revolution</h1>
@@ -19,4 +19,4 @@ const CeditDetails = () => {
     )
 }
 
-export default CeditDetails
+export default CreditDetails;

@@ -48,6 +48,9 @@ export const NavBar = (props) => {
                     <li>
                         <NavLink to="/contact">Contact</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/profile">Profile</NavLink>
+                    </li>
                 </ul>}
 
 
