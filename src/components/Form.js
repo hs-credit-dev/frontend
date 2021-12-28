@@ -15,7 +15,7 @@ const Form = (props) => {
 
         const updatedAbout = about
 
-        await axios.put(`${REACT_APP_DATABASE_URL}/users/update/:id`, updatedAbout)
+        // await axios.put(`${REACT_APP_DATABASE_URL}/users/update/:id`, updatedAbout)
     }
 
     return (
