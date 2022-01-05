@@ -1,5 +1,7 @@
 import React from 'react'
-// import Carousel from 'react-bootstrap/Carousel'
+
+import Carousel from 'react-bootstrap/carousel'
+
 import ProfileCarousel from '../components/ProfileCarousel'
 import MaterialUI from '../components/MaterialUI'
 const About = () => {
