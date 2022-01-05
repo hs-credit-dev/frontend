@@ -7,23 +7,18 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
 import axios from 'axios'
 
-
-
-
 //styling
 
 import './App.css';
 
 //components
-// import MainNavBar from './components/NavBars/NavBar'
 
-// import Profile from './components/Profile'
 import Login from './pages/Login'
 import StudentSignUp from './pages/StudentSignUp';
-// import ProfileCarousel from './components/ProfileCarousel';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
-import BasicProfile from './pages/BasicProfile';
+// import MainNavBar from './components/NavBars/NavBar'
+// import ProfileCarousel from './components/ProfileCarousel';
 //private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -90,8 +85,9 @@ const App = () => {
 
     return (
         <div className="App">
-            {/* <Router> */}
+
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            {/* <Router> */}
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
             {/* <ProfileCarousel /> */}
             {/* <Home /> */}
@@ -105,9 +101,7 @@ const App = () => {
                 <Switch>
 
                     <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />
-
-                    <Route exact path='/profile' component={BasicProfile} user={currentUser} />
-                    <Route
+                    \                    <Route
                         exact path='/login'
                         render={(props) =>
                             <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />

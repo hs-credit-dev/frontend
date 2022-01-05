@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import {Redirect} from 'react-router-dom'
+import React, { useState }  from 'react';
+import axios                from 'axios';
+import {Redirect}           from 'react-router-dom'
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 

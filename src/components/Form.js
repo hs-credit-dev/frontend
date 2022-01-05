@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+
 import UserModel from '../models/user';
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
