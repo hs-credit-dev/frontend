@@ -5,13 +5,14 @@
 }
 
 /* Carousel */
-.carousel{
+/* .carousel{
   display: flex;
   margin: 0 auto;
   height: 55vh;
   min-height: 30vh;
   min-width: 45vh;
-}
+} */
+
 
 /* HOME HEADER STYLING */
 .hsc-logo-landing{
@@ -150,7 +151,7 @@ h2{
 }
 
 
-.navbar {
+/* .navbar {
   &__bar {
     border-bottom: 2px solid var(--color-grayblue);
   }
@@ -175,4 +176,5 @@ h2{
       background-color: var(--color-grayfog);
     }
   }
-}
+} */
+
