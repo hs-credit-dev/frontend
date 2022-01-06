@@ -1,20 +1,22 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import '../../styles/nav.styles.css'
+
 export const NavBar = (props) => {
     return (
-        <nav className="non-authenticated-nav">
+        <nav className="nav">
 
 
             {props.isAuth ?
                 <nav>
 
                     <ul >
-                        <li >
+                        <li className="nav-li">
                             <NavLink to="/">Home</NavLink>
                         </li>
 
-                        <li >
+                        <li className="nav-li" >
                             <NavLink to="/browse">Browse</NavLink>
                         </li>
 
@@ -22,30 +24,30 @@ export const NavBar = (props) => {
                             <NavLink to="/registeras">Register as</NavLink>
                         </li> */}
 
-                        <li>
+                        <li className="nav-li">
                             <NavLink to="/profile">Profile</NavLink>
                         </li>
 
-                        <li>
+                        <li className="nav-li">
                             <span onClick={props.handleLogout}>Logout</span>
                         </li>
                     </ul>
                 </nav> :
                 <ul>
-                    <li>
+                    <li className="nav-li">
                         <NavLink exact to="/">Home</NavLink>
                     </li>
-                    <li>
+                    <li className="nav-li">
                         <NavLink to='/login'>Login</NavLink>
                     </li>
 
-                    <li>
+                    <li className="nav-li">
                         <NavLink to="/signup">Sign up</NavLink>
                     </li>
-                    <li>
+                    <li className="nav-li">
                         <NavLink to="/about">About</NavLink>
                     </li>
-                    <li>
+                    <li className="nav-li">
                         <NavLink to="/contact">Contact</NavLink>
                     </li>
                 </ul>}
