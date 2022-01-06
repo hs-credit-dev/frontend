@@ -13,14 +13,15 @@ import axios from 'axios'
 
 //styling
 
-import './App.css';
+import './styles/App.css';
 
 //components
 // import MainNavBar from './components/NavBars/NavBar'
 
 // import Profile from './components/Profile'
 import Login from './pages/Login'
-import StudentSignUp from './pages/StudentSignUp';
+// import StudentSignUp from './pages/StudentSignUp';
+import BasicUserSignUp from './pages/BasicUserSignUp';
 // import ProfileCarousel from './components/ProfileCarousel';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
@@ -31,7 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     let token = localStorage.getItem('jwtToken');
     console.log('>>>>inside private route');
     return <Route {...rest} render={(props) => {
-        return token ? <Component {...rest} /> : <Redirect to="/login" />
+        return token ? <Component {...rest} /> : <Redirect to='/login' />
     }} />
 }
 
@@ -90,22 +91,21 @@ const App = () => {
     // }
 
     return (
-        <div className="App">
+        <div className='app'>
             {/* <Router> */}
-            <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
-            {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type="hidden"/>} */}
+                <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type='hidden'/>} */}
             {/* <ProfileCarousel /> */}
             {/* <Home /> */}
-            {/* <Route exact path="/about" component={About} /> */}
-            {/* <Route exact path="/signup" component={BasicUserSignUp} /> */}
+            {/* <Route exact path='/about' component={About} /> */}
 
 
             {/* <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} /> */}
 
-            <div className="mainAppContainer">
+            <div className='mainAppContainer'>
                 <Switch>
-
-                    <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} />
+                    {/* <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} /> */}
+                    <Route exact path='/signup' component={BasicUserSignUp} />
 
                     <Route exact path='/profile' component={BasicProfile} user={currentUser} />
                     <Route
