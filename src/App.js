@@ -1,32 +1,28 @@
 //imports 
 
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import routes from './config/routes';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utilities/setAuthToken';
 import axios from 'axios'
 
-
-
-
 //styling
 
 import './styles/App.css';
 
 //components
-// import MainNavBar from './components/NavBars/NavBar'
 
-// import Profile from './components/Profile'
 import Login from './pages/Login'
-// import StudentSignUp from './pages/StudentSignUp';
 import BasicUserSignUp from './pages/BasicUserSignUp';
-// import ProfileCarousel from './components/ProfileCarousel';
+import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
-import BasicProfile from './pages/BasicProfile';
-//private routes for authorized users
+// import ProfileCarousel from './components/ProfileCarousel';
+// import MainNavBar from './components/NavBars/NavBar'
+
+
+// private routes for authorized users
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     let token = localStorage.getItem('jwtToken');
@@ -98,16 +94,12 @@ const App = () => {
             {/* <ProfileCarousel /> */}
             {/* <Home /> */}
             {/* <Route exact path='/about' component={About} /> */}
-
-
             {/* <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} /> */}
 
             <div className='mainAppContainer'>
                 <Switch>
-                    {/* <Route exact path='/studentsignup' component={StudentSignUp} user={currentUser} /> */}
                     <Route exact path='/signup' component={BasicUserSignUp} />
-
-                    <Route exact path='/profile' component={BasicProfile} user={currentUser} />
+                    <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route
                         exact path='/login'
                         render={(props) =>
@@ -118,7 +110,7 @@ const App = () => {
             {/* <Footer />  */}
 
             {/* </Router> */}
-            {routes}
+            { routes }
         </div >
     );
 }

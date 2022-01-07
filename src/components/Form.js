@@ -1,5 +1,9 @@
 import { React, useState } from 'react'
 
+import UserModel from '../models/user';
+
+const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
+
 const Form = (props) => {
     const [about, setAbout] = useState('')
 
@@ -9,7 +13,10 @@ const Form = (props) => {
     }
 
     const handleSubmit = () => {
-        //post data to backend
+
+        const updatedAbout = about
+
+        // await axios.put(`${REACT_APP_DATABASE_URL}/users/update/:id`, updatedAbout)
     }
 
     return (

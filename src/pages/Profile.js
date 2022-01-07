@@ -1,11 +1,11 @@
-import { React, useState, useEffect } from 'react'
-import Form from '../components/Form'
+import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utilities/setAuthToken';
-import UserDashboard from '../components/UserDashboard';
-import ProfileCarousel from '../components/ProfileCarousel'
 
-const BasicProfile = () => {
+// import UserDashboard from '../components/UserDashboard';
+import Form from '../components/Form';
+
+const Profile = () => {
     const [currentUser, setCurrentUser] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [clicked, setClicked] = useState(false)
@@ -47,12 +47,11 @@ const BasicProfile = () => {
                 {currentUser.about}
                 <button onClick={() => { setIsEditMode(!isEditMode) }}>edit bio</button>
                 {isEditMode ? <Form name={'Edit About'} /> : ''}
-                <UserDashboard />
-                <ProfileCarousel />
+                {/* <UserDashboard /> */}
             </div>
 
         </div>
     )
 }
 
-export default BasicProfile
+export default Profile;
