@@ -1,0 +1,53 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.profile-bio-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-carousel {
+    display: flex;
+    justify-self: flex-end;
+    border: 1px grey solid;
+    border-radius: 5px;
+    margin: 20px;
+    width: 85vw;
+    height: 55vh;
+}
+
+.profile-photo {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+p {
+    margin: 15px;
+    text-align: center;
+}
+
+
+
+
+button {
+    background-color: var(--primary-nav-color);
+    border: 0px grey solid;
+    border-radius: 5px;
+    padding: 5px 50px;
+    align-self: center;
+}

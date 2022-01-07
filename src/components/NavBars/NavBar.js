@@ -10,7 +10,9 @@ export const NavBar = (props) => {
 
             {props.isAuth ?
                 <nav>
-
+                    <a href='/'>
+                        <img className="hsc-logo-landing" src='https://i.imgur.com/t5GkphG.png' alt='hsc logo' />
+                    </a>
                     <ul >
                         <li className="nav-li">
                             <NavLink to="/">Home</NavLink>
@@ -28,7 +30,7 @@ export const NavBar = (props) => {
                             <NavLink to="/profile">Profile</NavLink>
                         </li>
 
-                        <li className="nav-li">
+                        <li className="nav-li" id='logout'>
                             <span onClick={props.handleLogout}>Logout</span>
                         </li>
                     </ul>

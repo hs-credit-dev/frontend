@@ -1,12 +1,12 @@
 *{
   box-sizing: border-box;
-  background: #85C4E9;
-  color: white;
 }
 
 .app {
   display: flex;
   flex-direction: row;
+  color: white;
+  background: #85C4E9;
 }
 
 .mainAppContainer {
@@ -159,6 +159,9 @@ h2{
        url('../assets/fonts/quicksand-v22-latin-700.svg#Quicksand') format('svg'); /* Legacy iOS */
 }
 
+input {
+  color: black;
+}
 
 /* .navbar {
   &__bar {

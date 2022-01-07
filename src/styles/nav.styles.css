@@ -4,10 +4,13 @@
   }
   
 
-.nav {
-    /* position:absolute; */
-    padding: 0;
-    background-color: var(--primary-bg-color);
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--primary-nav-color);
     color: white;
     
 }
@@ -21,10 +24,9 @@ ul {
     height: 100vh;
     width: 200px;
     padding: 0;
-    background-color: var(--primary-nav-color);
 }
 
-li {
+.nav-li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,13 +36,25 @@ li {
     width: 100%;
 }
 
+.nav-li:hover {
+    background: var(--secondary-nav-color);
+}
+
+#logout:hover {
+    background: var(--secondary-nav-color);
+    color: red;
+}
+
 a {
     text-decoration: none;
+    color: white;
     background-color: rgba(0, 0, 0, 0);
 
 }
 
-li:hover {
-    background: var(--secondary-nav-color);
-    color: red;
+
+.hsc-logo-landing {
+    margin-top: 20px;
+    height: 170px;
+    width: 200px;
 }

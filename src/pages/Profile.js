@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utilities/setAuthToken';
 
+import '../styles/profile.styles.css';
+
 // import UserDashboard from '../components/UserDashboard';
 import Form from '../components/Form';
 
@@ -39,15 +41,21 @@ const Profile = () => {
 
     return (
         <div className="profile-container">
-            <img href="./assets/profiledefault" alt="default profile avatar" />
-            <h5>About {currentUser.username}</h5>
-            <p>{currentUser.about ? currentUser.about : `${currentUser.username} doesn't have an about section yet.`}</p>
+            <div className='profile-header'>
+                <img src="https://raw.githubusercontent.com/mozilla/fxa/9ca5c4057cde5da1e2866cb9515e88bb18e5fb2b/packages/fxa-profile-server/lib/assets/default-profile.png" className='profile-photo' alt="default profile avatar" />
+                <h5 className='profile-username-title'>About {currentUser.username}</h5>
+            </div>
             <div className="profile-bio-section">
 
-                {currentUser.about}
+                <p>{currentUser.about ? currentUser.about : `${currentUser.username} doesn't have an about section yet.`}</p>
+                {/* {currentUser.about} */}
                 <button onClick={() => { setIsEditMode(!isEditMode) }}>edit bio</button>
                 {isEditMode ? <Form name={'Edit About'} /> : ''}
                 {/* <UserDashboard /> */}
+            </div>
+
+            <div className='profile-carousel'>
+                carousel
             </div>
 
         </div>
