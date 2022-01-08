@@ -18,6 +18,8 @@ import BasicUserSignUp from './pages/BasicUserSignUp';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
+import Home from './pages/Home';
+
 // import ProfileCarousel from './components/ProfileCarousel';
 // import MainNavBar from './components/NavBars/NavBar'
 
@@ -98,6 +100,8 @@ const App = () => {
 
             <div className='mainAppContainer'>
                 <Switch>
+
+                    <Route exact path='/' component={Home} />
                     <Route exact path='/signup' component={BasicUserSignUp} />
                     <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route

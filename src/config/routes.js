@@ -2,22 +2,17 @@ import { Route, Switch } from 'react-router-dom';
 
 //components
 
-import Home from '../pages/Home';
-import BasicUserSignUp from '../pages/BasicUserSignUp';
 import About from '../pages/About';
 import Contact from '../components/Contact';
 import HowItWorks from '../components/HowItWorks';
 import StudentPlaylist from '../components/StudentPlaylist';
 import Browse from '../pages/Browse'
-import Profile from '../pages/Profile'
 // import Login from '../components/Login';
 
 
 
 export default (
     <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/profile' component={Profile} />
         <Route exact path='/about' component={About} />
         <Route exact path='/contact' component={Contact} />
         <Route exact path='/howitworks' component={HowItWorks} />
