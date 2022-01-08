@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactPlayer from 'react-player/youtube';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utilities/setAuthToken';
 
@@ -55,7 +56,43 @@ const Profile = () => {
             </div>
 
             <div className='profile-carousel'>
-                carousel
+                <div className='ind-credit-container'>
+                    <div className='media-container'>
+                        <ReactPlayer className='media' width='450px' height='300px' url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <p>descrip</p>
+                </div>
+                <div className='ind-credit-container'>
+                    <div className='media-container'>
+                        <ReactPlayer className='media' width='450px' height='300px' url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <p>descrip</p>
+                </div>
+                <div className='ind-credit-container'>
+                    <div className='media-container'>
+                        <ReactPlayer className='media' width='450px' height='300px' url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <p>descrip</p>
+                </div>
+                <div className='ind-credit-container'>
+                    <div className='media-container'>
+                        <ReactPlayer className='media' width='450px' height='300px' url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <p>descrip</p>
+                </div>
+                <div className='ind-credit-container'>
+                    <div className='media-container'>
+                        <ReactPlayer className='media' width='450px' height='300px' url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <p>descrip</p>
+                </div>
+                <div className='ind-credit-container'>
+
+                    <div className='media-container'>
+                        <ReactPlayer className='media' width='450px' height='300px' url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+                    </div>
+                    <p>descrip</p>
+                </div>
             </div>
 
         </div>
