@@ -13,8 +13,6 @@ import { autoPlay } from 'react-swipeable-views-utils';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-import Carousel from 'react-bootstrap/carousel'
-import { Link } from 'react-router-dom'
 
 
 const images = [
