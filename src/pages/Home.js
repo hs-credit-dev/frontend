@@ -1,7 +1,4 @@
 import HomeHeader from '../components/Headers/HomeHeader'
-
-
-
 import Book from '../assets/images/book.png'
 import BottomLeft from '../assets/svg/home-left-bottom.svg'
 import BottomRight from '../assets/svg/home-bottom-right.svg'
