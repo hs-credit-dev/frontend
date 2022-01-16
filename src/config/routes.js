@@ -7,6 +7,8 @@ import Contact from '../components/Contact';
 import HowItWorks from '../components/HowItWorks';
 import StudentPlaylist from '../components/StudentPlaylist';
 import Browse from '../pages/Browse'
+import Profile from '../pages/Profile'
+import CreditDetails from '../pages/CreditDetails'
 // import Login from '../components/Login';
 
 
