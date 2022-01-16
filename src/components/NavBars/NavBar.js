@@ -19,7 +19,7 @@ export const NavBar = (props) => {
                         </li>
 
                         <li className="nav-li" >
-                            <NavLink to="/browse">Browse</NavLink>
+                            <NavLink to="/explore">Explore</NavLink>
                         </li>
 
                         {/* <li >
