@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #73AACA;
+  --secondary-color: #85C4E9;
+}
+
 *{
   box-sizing: border-box;
 }
@@ -5,7 +10,7 @@
 .app {
   display: flex;
   flex-direction: row;
-  color: white;
+  color: var(--primary-color);
   /* background: #85C4E9; */
 }
 
@@ -30,6 +35,14 @@
   justify-content: center;
   align-items: center;
 }
+
+input {
+  background-color: white;
+  border: 1px grey solid;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
 .tagline{
   color: white;
   font-family: Quicksand;

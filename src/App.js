@@ -18,6 +18,7 @@ import BasicUserSignUp from './pages/BasicUserSignUp';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
+import TopNavBar from './components/NavBars/TopNavBar';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 
@@ -92,7 +93,8 @@ const App = () => {
     return (
         <div className='app'>
             {/* <Router> */}
-                <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type='hidden'/>} */}
             {/* <ProfileCarousel /> */}
             {/* <Home /> */}

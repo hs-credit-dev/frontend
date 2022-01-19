@@ -6,56 +6,23 @@ import '../../styles/nav.styles.css'
 export const NavBar = (props) => {
     return (
         <nav className="nav">
-
-
             {props.isAuth ?
                 <nav>
-                    <a href='/'>
-                        <img className="hsc-logo-landing" src='https://i.imgur.com/t5GkphG.png' alt='hsc logo' />
-                    </a>
-                    <ul >
-                        <li className="nav-li">
-                            <NavLink to="/">Home</NavLink>
-                        </li>
-
+                    <ul className='nav-ul' >
                         <li className="nav-li" >
                             <NavLink to="/explore">Explore</NavLink>
                         </li>
 
-                        {/* <li >
-                            <NavLink to="/registeras">Register as</NavLink>
-                        </li> */}
+                        <li className="nav-li">
+                            <NavLink to="/about">About</NavLink>
+                        </li>
 
                         <li className="nav-li">
-                            <NavLink to="/profile">Profile</NavLink>
-                        </li>
-
-                        <li className="nav-li" id='logout'>
-                            <span onClick={props.handleLogout}>Logout</span>
+                            <NavLink to="/contact">Contact</NavLink>
                         </li>
                     </ul>
-                </nav> :
-                <ul>
-                    <li className="nav-li">
-                        <NavLink exact to="/">Home</NavLink>
-                    </li>
-                    <li className="nav-li">
-                        <NavLink to='/login'>Login</NavLink>
-                    </li>
-
-                    <li className="nav-li">
-                        <NavLink to="/signup">Sign up</NavLink>
-                    </li>
-                    <li className="nav-li">
-                        <NavLink to="/about">About</NavLink>
-                    </li>
-                    <li className="nav-li">
-                        <NavLink to="/contact">Contact</NavLink>
-                    </li>
-                    
-                </ul>}
-
-
+                </nav> : null
+            };
         </nav>
     );
 }
