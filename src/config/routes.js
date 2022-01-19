@@ -18,7 +18,6 @@ export default (
         <Route exact path='/about' component={ About} />
         <Route exact path='/contact' component={ Contact } />
         <Route exact path='/howitworks' component={ HowItWorks } />
-        <Route exact path='/explore' component={ Explore } />
         <Route exact path='/studentplaylist' component={ StudentPlaylist } />
         {/* <Route exact path='/login' component={Login} />  */}
     </Switch>
