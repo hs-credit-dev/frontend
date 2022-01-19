@@ -6,22 +6,24 @@
   display: flex;
   flex-direction: row;
   color: white;
-  background: #85C4E9;
+  /* background: #85C4E9; */
 }
 
 .mainAppContainer {
   box-sizing: border-box;
   width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Carousel */
-.carousel{
+/* .carousel{
   display: flex;
   margin: 0 auto;
   height: 55vh;
   min-height: 30vh;
   min-width: 45vh;
-}
+} */
 
 /* HOME HEADER STYLING */
 .hsc-logo-landing{
