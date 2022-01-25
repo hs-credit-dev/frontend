@@ -15,10 +15,12 @@ import CreditDetails from '../pages/CreditDetails';
 
 export default (
     <Switch>
-        <Route exact path='/about' component={ About} />
+        <Route exact path='/about' component={ About } />
         <Route exact path='/contact' component={ Contact } />
         <Route exact path='/howitworks' component={ HowItWorks } />
         <Route exact path='/studentplaylist' component={ StudentPlaylist } />
+        {/* <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } /> */}
+        {/* <Route exact path='/educators/franklin-johnson' component={ EducatorProfile } /> */}
         {/* <Route exact path='/login' component={Login} />  */}
     </Switch>
 )
