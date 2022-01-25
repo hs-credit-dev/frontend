@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.96e6f5ef.chunk.css",
-    "main.js": "/frontend/static/js/main.0cabd73a.chunk.js",
-    "main.js.map": "/frontend/static/js/main.0cabd73a.chunk.js.map",
-    "runtime-main.js": "/frontend/static/js/runtime-main.a7d4a0c7.js",
-    "runtime-main.js.map": "/frontend/static/js/runtime-main.a7d4a0c7.js.map",
-    "static/js/2.d43ba2d4.chunk.js": "/frontend/static/js/2.d43ba2d4.chunk.js",
-    "static/js/2.d43ba2d4.chunk.js.map": "/frontend/static/js/2.d43ba2d4.chunk.js.map",
-    "static/js/3.de4a7ab9.chunk.js": "/frontend/static/js/3.de4a7ab9.chunk.js",
-    "static/js/3.de4a7ab9.chunk.js.map": "/frontend/static/js/3.de4a7ab9.chunk.js.map",
+    "main.css": "/frontend/static/css/main.d3039f0b.chunk.css",
+    "main.js": "/frontend/static/js/main.dcaba3f0.chunk.js",
+    "main.js.map": "/frontend/static/js/main.dcaba3f0.chunk.js.map",
+    "runtime-main.js": "/frontend/static/js/runtime-main.27b4e62f.js",
+    "runtime-main.js.map": "/frontend/static/js/runtime-main.27b4e62f.js.map",
+    "static/js/2.16545ded.chunk.js": "/frontend/static/js/2.16545ded.chunk.js",
+    "static/js/2.16545ded.chunk.js.map": "/frontend/static/js/2.16545ded.chunk.js.map",
+    "static/js/3.f8b81800.chunk.js": "/frontend/static/js/3.f8b81800.chunk.js",
+    "static/js/3.f8b81800.chunk.js.map": "/frontend/static/js/3.f8b81800.chunk.js.map",
     "index.html": "/frontend/index.html",
-    "static/css/main.96e6f5ef.chunk.css.map": "/frontend/static/css/main.96e6f5ef.chunk.css.map",
-    "static/js/2.d43ba2d4.chunk.js.LICENSE.txt": "/frontend/static/js/2.d43ba2d4.chunk.js.LICENSE.txt",
+    "static/css/main.d3039f0b.chunk.css.map": "/frontend/static/css/main.d3039f0b.chunk.css.map",
+    "static/js/2.16545ded.chunk.js.LICENSE.txt": "/frontend/static/js/2.16545ded.chunk.js.LICENSE.txt",
     "static/media/home-bottom-right.0f43ed18.svg": "/frontend/static/media/home-bottom-right.0f43ed18.svg",
     "static/media/home-left-bottom.ced75867.svg": "/frontend/static/media/home-left-bottom.ced75867.svg",
     "static/media/App.css": "/frontend/static/media/quicksand-v22-latin-regular.b8e52086.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a7d4a0c7.js",
-    "static/js/2.d43ba2d4.chunk.js",
-    "static/css/main.96e6f5ef.chunk.css",
-    "static/js/main.0cabd73a.chunk.js"
+    "static/js/runtime-main.27b4e62f.js",
+    "static/js/2.16545ded.chunk.js",
+    "static/css/main.d3039f0b.chunk.css",
+    "static/js/main.dcaba3f0.chunk.js"
   ]
 }
