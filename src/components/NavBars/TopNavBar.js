@@ -21,7 +21,7 @@ function TopNavBar(props) {
             {props.isAuth ?
                     <ul className='top-nav-ul'>
                         <li className="top-nav-li">
-                            <NavLink to="/">Profile</NavLink>
+                            <NavLink to="/profile">Profile</NavLink>
                         </li>
                         <li className="top-nav-li" id='logout'>
                             <span onClick={props.handleLogout}>Logout</span>
