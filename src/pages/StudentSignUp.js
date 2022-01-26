@@ -60,7 +60,7 @@ const StudentSignUp = (props) => {
         })
     }
 
-    if(redirect) return <Redirect to='/studentprofile'/>
+    if(redirect) return <Redirect to='/explore'/>
 
     return (
         <div>

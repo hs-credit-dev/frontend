@@ -4,6 +4,8 @@ import jwt_decode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
 import setAuthToken from '../utilities/setAuthToken'
 
+import '../styles/login.styles.css'
+
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
@@ -54,16 +56,18 @@ const Login = (props) => {
        
         <div className="login-container">
             <div>
-                <div>
+                <div className='login-div'>
                 <h1 className="login">Login</h1>
                     <form className="login-form"onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="email">Email  </label>
+                            {/* <label htmlFor="email">Email</label> */}
                             <input type="text" name="email" value={email} onChange={handleEmail} className="form-control"/>
+                            <p  className='input-text'>(email)</p>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Password  </label>
+                            {/* <label htmlFor="password">Password</label> */}
                             <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
+                            <p className='input-text'>(password)</p>
                         </div>
                         <button type="submit" className="form-group">Submit</button>
                     </form>

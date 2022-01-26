@@ -1,59 +1,41 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import '../../styles/nav.styles.css'
+
 export const NavBar = (props) => {
     return (
-        <nav className="non-authenticated-nav">
-
-
+        <nav className="nav">
             {props.isAuth ?
                 <nav>
-
-                    <ul >
-                        <li >
-                            <NavLink to="/">Home</NavLink>
+                    <ul className='nav-ul' >
+                        <li className='nav-credit-info'>
+                            <div className='nav-credit-info-container'>
+                                <h6 className='nav-credit-info-title'>Credit in Progress</h6>
+                                <a href='/username/credits/the-revolutionary-war' className='nav-credit-info-body'>The Revolutionary War</a>
+                                <h6 className='nav-credit-info-title'>My Educator</h6>
+                                <a href='/educators/franklin-johnson' className='nav-credit-info-body'>Franklin Johnson</a>
+                                <h6 className='nav-credit-info-title'>Credit Count</h6>
+                                <p className='nav-credit-info-body'>8</p>
+                            </div>
+                        </li>
+                        <div className='divider'></div>
+                        <li className="nav-li" >
+                            <NavLink to="/explore">Explore</NavLink>
+                        </li>
+                        <li className="nav-li" >
+                            <NavLink to="/credit">Credits</NavLink>
+                        </li>
+                        <li className="nav-li">
+                            <NavLink to="/about">About</NavLink>
                         </li>
 
-                        <li >
-                            <NavLink to="/browse">Browse</NavLink>
-                        </li>
-
-                        {/* <li >
-                            <NavLink to="/registeras">Register as</NavLink>
-                        </li> */}
-
-                        <li>
-                            <NavLink to="/profile">Profile</NavLink>
-                        </li>
-
-                        <li>
-                            <span onClick={props.handleLogout}>Logout</span>
+                        <li className="nav-li">
+                            <NavLink to="/contact">Contact</NavLink>
                         </li>
                     </ul>
-                </nav> :
-                <ul>
-                    <li>
-                        <NavLink exact to="/">Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/login'>Login</NavLink>
-                    </li>
-
-                    <li>
-                        <NavLink to="/signup">Sign up</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/about">About</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contact">Contact</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/profile">Profile</NavLink>
-                    </li>
-                </ul>}
-
-
+                </nav> : null
+            };
         </nav>
     );
 }
