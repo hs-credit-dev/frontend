@@ -1,0 +1,99 @@
+:root {
+    --primary-nav-color: #73AACA;
+    --secondary-nav-color: #85C4E9;
+  }
+  
+
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--primary-nav-color);
+    color: white;
+    
+}
+
+.nav-credit-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 40vh;
+    padding: 10px;
+}
+
+.nav-credit-info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-credit-info-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #518eb1;
+    padding: 2px;
+    width: 11vw;
+}
+
+.nav-credit-info-body {
+    padding: 10px 0;
+}
+
+.divider {
+    background-color: #518eb1;
+    width: 11vw;
+    height: 2px;
+    margin-bottom: 5px 0;
+}
+
+.nav-ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    height: 100vh;
+    width: 15vw;
+    padding: 0;
+}
+
+.nav-li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.nav-li:hover {
+    background: white;
+    color: --primary-nav-color;
+}
+
+#logout:hover {
+    background: var(--secondary-nav-color);
+    color: red;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+
+}
+
+
+.hsc-logo-landing {
+    margin-top: 20px;
+    height: 170px;
+    width: 200px;
+}

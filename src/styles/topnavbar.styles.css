@@ -1,0 +1,59 @@
+:root {
+    --primary-color: #73AACA;
+    --secondary-color: #85C4E9;
+}
+
+.top-nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    align-self: flex-start;
+    height: 60px;
+    width: 100vw;
+    padding: 0 20px;
+    background-color: #518eb1;
+}
+
+.top-nav-ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+}
+
+.top-nav-li {
+    margin-right: 10px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: white;
+}
+
+.top-nav-li:hover {
+    color: orange;
+}
+
+#logout:hover {
+    color: red;
+    background-color: rgba(0,0,0,0);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.hsc-logo-landing-nav {
+    display: flex;
+    position: absolute;
+    height: 130%;
+    margin-bottom: 100px;
+}
+
+.top-nav-user-icon {
+    border: 2px solid #518eb1;
+    height: 85%;
+    margin-bottom: 5px;
+}

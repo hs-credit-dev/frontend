@@ -1,0 +1,90 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.profile-bio-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-carousel {
+    /* position: relative;
+    left: -750px; */
+    margin-top: 10px;
+    width: 60vh;
+    height: 90vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: rotate(-90deg) translateY(-156%);
+    transform-origin: right top;
+}
+
+.ind-credit-container {
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(90deg); 
+    width: 750px;
+    height: 350px;
+    margin: 200px 0;
+    object-fit: cover;
+    border: 1px black solid;
+}
+
+.media-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0;
+    /* width: 550px; */
+    /* height: 420px; */
+    float: left;
+    overflow: hidden;
+
+}
+
+.media {
+    object-fit: cover;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-photo {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+p {
+    /* margin: 15px; */
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+button {
+    background-color: var(--primary-nav-color);
+    border: 0px grey solid;
+    border-radius: 5px;
+    padding: 5px 50px;
+    align-self: center;
+}
