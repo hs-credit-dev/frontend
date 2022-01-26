@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.8737bcd4.chunk.css",
-    "main.js": "/frontend/static/js/main.6d11d2c9.chunk.js",
-    "main.js.map": "/frontend/static/js/main.6d11d2c9.chunk.js.map",
-    "runtime-main.js": "/frontend/static/js/runtime-main.158a3cc6.js",
-    "runtime-main.js.map": "/frontend/static/js/runtime-main.158a3cc6.js.map",
-    "static/js/2.0b8320b0.chunk.js": "/frontend/static/js/2.0b8320b0.chunk.js",
-    "static/js/2.0b8320b0.chunk.js.map": "/frontend/static/js/2.0b8320b0.chunk.js.map",
-    "static/js/3.5c0e81f8.chunk.js": "/frontend/static/js/3.5c0e81f8.chunk.js",
-    "static/js/3.5c0e81f8.chunk.js.map": "/frontend/static/js/3.5c0e81f8.chunk.js.map",
-    "index.html": "/frontend/index.html",
-    "static/css/main.8737bcd4.chunk.css.map": "/frontend/static/css/main.8737bcd4.chunk.css.map",
-    "static/js/2.0b8320b0.chunk.js.LICENSE.txt": "/frontend/static/js/2.0b8320b0.chunk.js.LICENSE.txt",
-    "static/media/home-bottom-right.0f43ed18.svg": "/frontend/static/media/home-bottom-right.0f43ed18.svg",
-    "static/media/home-left-bottom.ced75867.svg": "/frontend/static/media/home-left-bottom.ced75867.svg",
-    "static/media/App.css": "/frontend/static/media/quicksand-v22-latin-regular.b8e52086.svg"
+    "main.css": "/static/css/main.57a85e02.chunk.css",
+    "main.js": "/static/js/main.8146e47c.chunk.js",
+    "main.js.map": "/static/js/main.8146e47c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.91b2496b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.91b2496b.js.map",
+    "static/js/2.0b8320b0.chunk.js": "/static/js/2.0b8320b0.chunk.js",
+    "static/js/2.0b8320b0.chunk.js.map": "/static/js/2.0b8320b0.chunk.js.map",
+    "static/js/3.5c0e81f8.chunk.js": "/static/js/3.5c0e81f8.chunk.js",
+    "static/js/3.5c0e81f8.chunk.js.map": "/static/js/3.5c0e81f8.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.57a85e02.chunk.css.map": "/static/css/main.57a85e02.chunk.css.map",
+    "static/js/2.0b8320b0.chunk.js.LICENSE.txt": "/static/js/2.0b8320b0.chunk.js.LICENSE.txt",
+    "static/media/home-bottom-right.0f43ed18.svg": "/static/media/home-bottom-right.0f43ed18.svg",
+    "static/media/home-left-bottom.ced75867.svg": "/static/media/home-left-bottom.ced75867.svg",
+    "static/media/App.css": "/static/media/quicksand-v22-latin-regular.b8e52086.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.158a3cc6.js",
+    "static/js/runtime-main.91b2496b.js",
     "static/js/2.0b8320b0.chunk.js",
-    "static/css/main.8737bcd4.chunk.css",
-    "static/js/main.6d11d2c9.chunk.js"
+    "static/css/main.57a85e02.chunk.css",
+    "static/js/main.8146e47c.chunk.js"
   ]
 }
