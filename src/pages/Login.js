@@ -7,7 +7,7 @@ import setAuthToken from '../utilities/setAuthToken'
 import '../styles/login.styles.css'
 
 
-const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
+const REACT_APP_DATABASE_URL = "https://hs-credit-backend-test.herokuapp.com/api" //will need to be fixed later lol
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
@@ -50,7 +50,7 @@ const Login = (props) => {
 
     }
 
-    if (props.user) return <Redirect to="/frontend" /> // double check
+    if (props.user) return <Redirect to="/" /> // double check
 
     return (
        
