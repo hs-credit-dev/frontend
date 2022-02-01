@@ -104,7 +104,7 @@ const App = () => {
             <div className='mainAppContainer'>
                 <Switch>
 
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/frontend' component={Home} />
                     <Route exact path='/signup' component={BasicUserSignUp} />
                     <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
