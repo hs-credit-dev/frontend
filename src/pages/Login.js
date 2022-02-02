@@ -50,7 +50,7 @@ const Login = (props) => {
 
     }
 
-    if (props.user) return <Redirect to="/" /> // double check
+    if (props.user) return <Redirect to="/frontend" /> // double check
 
     return (
        
