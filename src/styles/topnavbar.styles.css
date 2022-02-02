@@ -12,7 +12,8 @@
     height: 60px;
     width: 100vw;
     padding: 0 20px;
-    background-color: #518eb1;
+    background-color: var(--secondary-color);
+    color: white;
 }
 
 .top-nav-ul {
@@ -28,7 +29,6 @@
     margin-right: 10px;
     box-sizing: border-box;
     text-decoration: none;
-    color: white;
 }
 
 .top-nav-li:hover {
@@ -42,18 +42,16 @@
 
 a {
     text-decoration: none;
-    color: white;
 }
 
 .hsc-logo-landing-nav {
     display: flex;
     position: absolute;
-    height: 130%;
-    margin-bottom: 100px;
+    height: 120%;
+    margin-top: -7px;
 }
 
 .top-nav-user-icon {
-    border: 2px solid #518eb1;
     height: 85%;
     margin-bottom: 5px;
 }
