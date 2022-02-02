@@ -43,7 +43,7 @@ const Explore = () => {
                     <div className='credit-info-block'>
                         <div className='explore-user-header'>
                             <img className='nav-user-icon' src="https://raw.githubusercontent.com/mozilla/fxa/9ca5c4057cde5da1e2866cb9515e88bb18e5fb2b/packages/fxa-profile-server/lib/assets/default-profile.png" alt="default profile avatar" />
-                            <p className='credit-author'><a href='#'>ajr2378</a></p>
+                            <p className='credit-author'><a href='#'>beyblade1</a></p>
                         </div>
                         <h4 className='credit-title'>The Evolution of Beauty in Art</h4>
                         <p className='credit-studio'>Studio: Detroit Institute of Art </p>
@@ -58,7 +58,7 @@ const Explore = () => {
                     <div className='credit-info-block'>
                         <div className='explore-user-header'>
                             <img className='nav-user-icon' src="https://raw.githubusercontent.com/mozilla/fxa/9ca5c4057cde5da1e2866cb9515e88bb18e5fb2b/packages/fxa-profile-server/lib/assets/default-profile.png" alt="default profile avatar" />
-                            <p className='credit-author'><a href='#'>ajr2378</a></p>
+                            <p className='credit-author'><a href='#'>orodrigo7</a></p>
                         </div>
                         <h4 className='credit-title'>A musical ode to Breonna </h4>
                         <p className='credit-studio'>Studio: Black Lives Matter </p>
@@ -73,7 +73,7 @@ const Explore = () => {
                     <div className='credit-info-block'>
                         <div className='explore-user-header'>
                             <img className='nav-user-icon' src="https://raw.githubusercontent.com/mozilla/fxa/9ca5c4057cde5da1e2866cb9515e88bb18e5fb2b/packages/fxa-profile-server/lib/assets/default-profile.png" alt="default profile avatar" />
-                            <p className='credit-author'><a href='#'>ajr2378</a></p>
+                            <p className='credit-author'><a href='#'>bingbong15</a></p>
                         </div>
                         <h4 className='credit-title'>Chilled Serenity</h4>
                         <p className='credit-studio'>Studio: Sample Studio </p>
