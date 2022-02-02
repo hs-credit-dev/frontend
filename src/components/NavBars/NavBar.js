@@ -11,11 +11,11 @@ export const NavBar = (props) => {
                     <ul className='nav-ul' >
                         <li className='nav-credit-info'>
                             <div className='nav-credit-info-container'>
-                                <h6 className='nav-credit-info-title'>Credit in Progress</h6>
-                                <a href='/username/credits/the-revolutionary-war' className='nav-credit-info-body'>The Revolutionary War</a>
-                                <h6 className='nav-credit-info-title'>My Educator</h6>
+                                <p className='nav-credit-info-title'>Credit in Progress</p>
+                                <a href='/username/credits/the-revolutionary-war' className='nav-credit-info-body'>Espionage in The American Revolution</a>
+                                <p className='nav-credit-info-title'>My Educator</p>
                                 <a href='/educators/franklin-johnson' className='nav-credit-info-body'>Franklin Johnson</a>
-                                <h6 className='nav-credit-info-title'>Credit Count</h6>
+                                <p className='nav-credit-info-title'>Earned Credits</p>
                                 <p className='nav-credit-info-body'>8</p>
                             </div>
                         </li>
@@ -24,7 +24,7 @@ export const NavBar = (props) => {
                             <NavLink to="/explore">Explore</NavLink>
                         </li>
                         <li className="nav-li" >
-                            <NavLink to="/credit">Credits</NavLink>
+                            <NavLink to="/credit">Search</NavLink>
                         </li>
                         <li className="nav-li">
                             <NavLink to="/about">About</NavLink>

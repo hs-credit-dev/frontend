@@ -1,0 +1,33 @@
+.credit-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    margin-top: 5vw;
+    padding: 0 50px;
+}
+
+.credit-details-credit-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.credit-details-header {
+    display: flex;
+    flex-direction: row;
+    width: 60vw;
+}
+.credit-details-title {
+    padding: 10px;
+}
+.credit-details-title-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.credit-details-description {
+    width: 60vw;
+}

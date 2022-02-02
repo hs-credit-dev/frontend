@@ -1,6 +1,7 @@
 :root {
     --primary-nav-color: #73AACA;
-    --secondary-nav-color: #85C4E9;
+    --second-nav-color: #85C4E9;
+    --third-nav-color: #f2faff;
   }
   
 
@@ -10,8 +11,8 @@ nav {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: var(--primary-nav-color);
-    color: white;
+    background-color: var(--third-nav-color);
+    color: black;
     
 }
 
@@ -29,6 +30,7 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-size: 15px;
 }
 
 .nav-credit-info-title {
@@ -36,9 +38,10 @@ nav {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #518eb1;
+    border: 1px solid #518eb1;
+    border-radius: 10px;
     padding: 2px;
-    width: 11vw;
+    width: 200px;
 }
 
 .nav-credit-info-body {
@@ -48,19 +51,21 @@ nav {
 .divider {
     background-color: #518eb1;
     width: 11vw;
-    height: 2px;
+    height: 1px;
     margin-bottom: 5px 0;
 }
 
 .nav-ul {
     display: flex;
+    color: black;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     list-style: none;
     height: 100vh;
-    width: 15vw;
+    width: 250px;
     padding: 0;
+    padding-top: 60px;
 }
 
 .nav-li {
@@ -85,7 +90,6 @@ nav {
 
 a {
     text-decoration: none;
-    color: white;
     background-color: rgba(0, 0, 0, 0);
     text-align: center;
 
