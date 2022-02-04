@@ -1,9 +1,11 @@
 :root {
   --primary-color: #73AACA;
-  --secondary-color: #85C4E9;
+  --second-color: #85C4E9;
+  --third-color: #235c7e;
 }
 
 *{
+  color: var(--third-color);
   box-sizing: border-box;
 }
 
@@ -105,8 +107,8 @@ text-align: center;
    display: inline-block;
    }
 
-h2{
-  color: white;
+a {
+  color: var(--third-color);
 }
 /* quicksand-300 - latin */
 @font-face {

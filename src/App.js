@@ -21,6 +21,8 @@ import NavBar from './components/NavBars/NavBar'
 import TopNavBar from './components/NavBars/TopNavBar';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
+import CreditDetails from './pages/CreditDetails';
+
 
 // import ProfileCarousel from './components/ProfileCarousel';
 // import MainNavBar from './components/NavBars/NavBar'
@@ -108,6 +110,7 @@ const App = () => {
                     <Route exact path='/signup' component={BasicUserSignUp} />
                     <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
+                    <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route
                         exact path='/login'
                         render={(props) =>

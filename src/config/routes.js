@@ -8,7 +8,6 @@ import HowItWorks from '../components/HowItWorks';
 import StudentPlaylist from '../components/StudentPlaylist';
 import Explore from '../pages/Explore';
 import Profile from '../pages/Profile';
-import CreditDetails from '../pages/CreditDetails';
 // import Login from '../components/Login';
 
 
@@ -19,7 +18,6 @@ export default (
         <Route exact path='/contact' component={ Contact } />
         <Route exact path='/howitworks' component={ HowItWorks } />
         <Route exact path='/studentplaylist' component={ StudentPlaylist } />
-        {/* <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } /> */}
         {/* <Route exact path='/educators/franklin-johnson' component={ EducatorProfile } /> */}
         {/* <Route exact path='/login' component={Login} />  */}
     </Switch>
