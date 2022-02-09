@@ -10,7 +10,7 @@ const Home = () => {
 
             <HomeHeader />
 
-            <img className='book' src={Book} alt='book' />
+            {/* <img className='book' src={Book} alt='book' />
             <h2 className='how-works'>How it Works</h2>
             <p className='how-desc'>Opt out of standardized testing while showing off to colleges and universities</p>
                 <Link to="/credit-details" className=''>
@@ -25,7 +25,7 @@ const Home = () => {
                     <img className='credit-thumbnail'src={`${process.env.PUBLIC_URL}/images/credit3.gif`} alt="credit3"/>
                 </Link>
             <img src={BottomLeft} alt='Bottom Left' />
-            <img src={BottomRight} alt='Bottom Right' />
+            <img src={BottomRight} alt='Bottom Right' /> */}
 
         </div>
     )

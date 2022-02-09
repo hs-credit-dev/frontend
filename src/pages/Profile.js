@@ -51,14 +51,14 @@ const Profile = () => {
 
                 <p>{currentUser.about ? currentUser.about : `${currentUser.username} doesn't have an about section yet.`}</p>
                 {/* {currentUser.about} */}
-                <button onClick={() => { setIsEditMode(!isEditMode) }}>edit bio</button>
-                {isEditMode ? <Form name={'Edit About'} /> : ''}
+                <button className='profile-edit-button' onClick={() => { setIsEditMode(!isEditMode) }}>edit bio</button>
+                {/* {isEditMode ? <Form name={'edit about'} /> : ''} */}
                 {/* <UserDashboard /> */}
             </div>
 
             {/* Carousel */}
 
-            <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+            <div id="carouselExampleIndicators" className="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -66,13 +66,13 @@ const Profile = () => {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="https://unsplash.com/photos/z3htkdHUh5w" className="d-block w-100" alt="..."/>
+                    <ReactPlayer className='profile-media' width='35vw' height='55vh' url='https://youtu.be/0EgKJPrdaVI' className="d-block w-100" alt="..."/>
+                    </div>
+                    <div className="carousel-item active">
+                        <img src="" className="d-block w-100" alt="" />
                     </div>
                     <div className="carousel-item">
-                        <img src="https://unsplash.com/photos/z3htkdHUh5w" className="d-block w-100" alt="..."/>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="https://unsplash.com/photos/z3htkdHUh5w" className="d-block w-100" alt="..."/>
+                        <img src="" className="d-block w-100" alt="" />
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

@@ -33,10 +33,11 @@ input {
     margin-left: 10px;
 }
 
-button {
-    background-color: var(--primary-nav-color);
-    border: 0px grey solid;
+.form-group-button {
+    background-color: #f2faff;
+    border: 1px #85C4E9 solid;
+    margin-top: 20px;
     border-radius: 5px;
-    padding: 5px 50px;
+    padding: 5px 60px;
     align-self: center;
 }

@@ -1,6 +1,15 @@
 :root {
     --primary-color: #73AACA;
-    --secondary-color: #85C4E9;
+    --secondary-color: #86b1ca;
+}
+
+.nav-hs-credit-title {
+    position: absolute;
+    right: 50vw;
+    left: 50vw;
+    color: #235c7e;
+    font-size: 35px;
+
 }
 
 .top-nav-container {
@@ -25,10 +34,11 @@
     margin: 0;
 }
 
-.top-nav-li {
+#top-nav-li {
     margin-right: 10px;
     box-sizing: border-box;
     text-decoration: none;
+    color: white;
 }
 
 .top-nav-li:hover {
@@ -52,6 +62,6 @@ a {
 }
 
 .top-nav-user-icon {
-    height: 85%;
-    margin-bottom: 5px;
+    height: 80%;
+    margin-left: 10px;
 }

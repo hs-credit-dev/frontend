@@ -69,7 +69,7 @@ const Login = (props) => {
                             <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
                             <p className='input-text'>(password)</p>
                         </div>
-                        <button type="submit" className="form-group">Submit</button>
+                        <button type="submit" className="form-group-button">Submit</button>
                     </form>
                 </div>
             </div>

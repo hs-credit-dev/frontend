@@ -2,6 +2,8 @@ import { React, useState } from 'react'
 
 import UserModel from '../models/user';
 
+import '../styles/form.styles.css'
+
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
 const Form = (props) => {
@@ -20,13 +22,16 @@ const Form = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                { props.name }
-                <input type="text" name="about" onChange={handleAboutChange} />
-            </label>
-            <input type="submit" name="submit" />
-        </form>
+        <div className='form-container'>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    <input type="text" name="about" onChange={handleAboutChange} />
+                    <p>({props.name})</p>
+                </label>
+                <input className='form-submit-button' type="submit" name="submit" />
+            </form>
+        </div>
+
     )
 }
 

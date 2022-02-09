@@ -17,6 +17,7 @@ const CreditDetails = () => {
                     <div className='credit-details-title-block'>
                         <h4 className='credit-details-title'>Espionage in The American Revolution</h4>
                         <h5 className='credit-details-student'>jmeyer23</h5>
+                        <h5 className='credit-details-studio'>Studio: American Museum of Natural History</h5>
                         <h5 className='credit-details-prompt'>Prompt: How did George Washington's espionage make a difference in the American Revolutionary War?</h5>
                     </div>
                 </div>

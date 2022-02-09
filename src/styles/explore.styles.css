@@ -9,6 +9,7 @@
     margin: 10px;
     width: 60vw;
     border-radius: 15px;
+    border: 1px grey solid;
 }
 
 .explore-credits-container {
