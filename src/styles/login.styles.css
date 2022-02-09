@@ -14,6 +14,10 @@
 }
 
 .form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 10px;
 }
 
@@ -36,8 +40,8 @@ input {
     margin-left: 10px;
 }
 
-button {
-    background-color: var(--primary-nav-color);
+.form-group-button {
+    background-color: #85C4E9;
     border: 0px grey solid;
     border-radius: 5px;
     padding: 5px 50px;

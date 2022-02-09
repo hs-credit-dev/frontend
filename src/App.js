@@ -10,6 +10,8 @@ import axios from 'axios'
 //styling
 
 import './styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 //components
 
@@ -22,7 +24,9 @@ import TopNavBar from './components/NavBars/TopNavBar';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import CreditDetails from './pages/CreditDetails';
-
+import CreditSearch from './pages/CreditSearch';
+import About from './pages/About';
+import Contact from './components/Contact';
 
 // import ProfileCarousel from './components/ProfileCarousel';
 // import MainNavBar from './components/NavBars/NavBar'
@@ -110,6 +114,10 @@ const App = () => {
                     <Route exact path='/signup' component={BasicUserSignUp} />
                     <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
+                    <Route exact path='/credit-search' component={ CreditSearch } />
+                    <Route exact path='/about' component={ About } />
+                    <Route exact path='/contact' component={ Contact } />
+
                     <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route
                         exact path='/login'
@@ -123,7 +131,7 @@ const App = () => {
             {/* </Router> */}
             { routes }
         </div >
-    );
+    )
 }
 
 export default App;

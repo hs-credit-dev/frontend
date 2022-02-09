@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 
-import '../styles/signup.style.css'
+import '../styles/signup.styles.css'
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 
@@ -73,36 +73,36 @@ const BasicUserSignUp = (props) => {
             <form className="basic-signup-form" onSubmit={handleSubmit}>
 
                 <div className='form-group'>
-                    <label htmlFor="first-name">First Name</label>
-                    <input type="firstName" name="firstname" value={firstName} onChange={handleFirstName}></input>
+                    <input type="firstName" name="firstname" value={firstName} onChange={handleFirstName} className="form-control"></input>
+                    <label htmlFor="first-name">(first name)</label>
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="last-name">Last Name</label>
-                    <input type="lastName" name="lastname" value={lastName} onChange={handleLastName}></input>
+                    <input type="lastName" name="lastname" value={lastName} onChange={handleLastName} className="form-control"></input>
+                    <label htmlFor="last-name">(last name)</label>
                 </div>
 
                 <div className='form-group'>
-                    <label>Username</label>
-                    <input type="text" value={username} onChange={handleUsername}></input>
+                    <input type="text" value={username} onChange={handleUsername} className="form-control"></input>
+                    <label>(username)</label>
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" value={email} onChange={handleEmail}></input>
+                    <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"></input>
+                    <label htmlFor="email">(email)</label>
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" value={password} onChange={handlePassword}></input>
+                    <input type="password" value={password} onChange={handlePassword} className="form-control"></input>
+                    <label htmlFor="password">(password)</label>
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="confirmPassword" >Confirm password</label>
-                    <input type="password" value={confirmPassword} onChange={handleConfirmPassword}></input>
+                    <input type="password" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"></input>
+                    <label htmlFor="confirmPassword">(confirm password)</label>
                 </div>
 
-                <button value="submit" className="form-group">Sign Up!</button>
+                <button value="submit" className="form-group-button">Sign Up!</button>
 
             </form>
         </div>

@@ -14,8 +14,6 @@ import Profile from '../pages/Profile';
 
 export default (
     <Switch>
-        <Route exact path='/about' component={ About } />
-        <Route exact path='/contact' component={ Contact } />
         <Route exact path='/howitworks' component={ HowItWorks } />
         <Route exact path='/studentplaylist' component={ StudentPlaylist } />
         {/* <Route exact path='/educators/franklin-johnson' component={ EducatorProfile } /> */}
