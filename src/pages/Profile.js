@@ -66,7 +66,7 @@ const Profile = () => {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                    <ReactPlayer className='profile-media' width='35vw' height='55vh' url='https://youtu.be/0EgKJPrdaVI'  alt="..."/>
+                    <ReactPlayer className='profile-media' width='35vw' height='55vh' url='https://youtu.be/0EgKJPrdaVI' className="d-block w-100" alt="..."/>
                     </div>
                     <div className="carousel-item active">
                         <img src="" className="d-block w-100" alt="" />

@@ -89,9 +89,13 @@ p {
 
 .profile-media {
     border-radius: 20px;
+    justify-self: center;
 }
 
 .carousel {
+    display: flex;
+    justify-items: center;
+    align-items: center;
     height: 60vh;
     width: 60vw;
     background-color: #aac6d8;
