@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import '../styles/signup.styles.css'
 
-const REACT_APP_DATABASE_URL = "https://hs-credit-backend-test.herokuapp.com/api" //will need to be fixed later lol
+const { REACT_APP_DATABASE_URL } = process.env
 
 const BasicUserSignUp = (props) => {
     const [email, setEmail] = useState('');
