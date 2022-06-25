@@ -110,4 +110,3 @@ const BasicUserSignUp = (props) => {
 }
 
 export default BasicUserSignUp;
-
