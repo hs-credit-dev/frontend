@@ -1,6 +1,11 @@
+* 
+{
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F6F4FA;
+}
+
 body {
   margin: 0;
-  font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
