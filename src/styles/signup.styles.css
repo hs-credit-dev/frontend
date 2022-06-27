@@ -28,9 +28,7 @@ form {
 
 input {
     background-color: white;
-    border: 1px grey solid;
     border-radius: 5px;
-    margin-left: 10px;
 }
 
 .form-group-button {
