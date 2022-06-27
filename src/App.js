@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 //components
 
 import Login from './pages/Login'
+import Logout from './pages/Logout'
 import BasicUserSignUp from './pages/BasicUserSignUp';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
@@ -110,20 +111,21 @@ const App = () => {
             <div className='mainAppContainer'>
                 <Switch>
 
-                    <Route exact path='/frontend' component={Home} />
-                    <Route exact path='/signup' component={BasicUserSignUp} />
-                    <Route exact path='/profile' component={Profile} user={currentUser} />
+                    <Route exact path='/frontend' component={ Home } />
+                    <Route exact path='/signup' component={ BasicUserSignUp } />
+                    <Route exact path='/profile' component={ Profile } user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
                     <Route exact path='/credit-search' component={ CreditSearch } />
                     <Route exact path='/about' component={ About } />
                     <Route exact path='/contact' component={ Contact } />
+                    <Route exact path='/logout' component={ Logout } />
 
                     <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route
                         exact path='/login'
                         render={(props) =>
                             <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
-                    <PrivateRoute exact path='/studentprofile' component={StudentProfile} user={currentUser} handleLogout={handleLogout} />
+                    <PrivateRoute exact path='/studentprofile' component={ StudentProfile } user={currentUser} handleLogout={handleLogout} />
                 </Switch>
             </div>
             {/* <Footer />  */}
