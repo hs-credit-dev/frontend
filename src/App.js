@@ -10,7 +10,6 @@ import axios from 'axios'
 //styling
 
 import './styles/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 //components
