@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <Router>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
     </style>
     <App />
   </Router>,
