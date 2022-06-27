@@ -10,7 +10,6 @@ import axios from 'axios'
 //styling
 
 import './styles/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 //components
@@ -110,7 +109,6 @@ const App = () => {
 
             <div className='mainAppContainer'>
                 <Switch>
-
                     <Route exact path='/frontend' component={ Home } />
                     <Route exact path='/signup' component={ BasicUserSignUp } />
                     <Route exact path='/profile' component={ Profile } user={currentUser} />

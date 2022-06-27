@@ -101,10 +101,3 @@ nav {
     background: var(--secondary-nav-color);
     color: red;
 }
-
-a {
-    text-decoration: none;
-    background-color: rgba(0, 0, 0, 0);
-    text-align: center;
-    color: #235c7e;
-}

@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../components/Button';
+import ButtonLink from '../components/ButtonLink';
 
 import '../styles/logout.styles.css'
 
@@ -9,7 +9,7 @@ const Logout = () => {
         <div className='log-out-container'>
 
             <p className='log-out-text'>You have successfully logged out!</p>
-            <Button text={"Log In"} />
+            <ButtonLink text={"Log In"} />
 
         </div>
     )
