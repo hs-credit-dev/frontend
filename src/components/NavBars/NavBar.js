@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
-import '../../styles/nav.styles.css'
+import '../../styles/components/navbars/nav.styles.css'
 
 export const NavBar = (props) => {
 

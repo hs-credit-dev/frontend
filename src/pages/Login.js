@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
 import setAuthToken from '../utilities/setAuthToken'
 
-import '../styles/login.styles.css'
+import '../styles/pages/login.styles.css'
 
 
 const REACT_APP_DATABASE_URL = "https://hs-credit-backend-test.herokuapp.com/api" //will need to be fixed later lol

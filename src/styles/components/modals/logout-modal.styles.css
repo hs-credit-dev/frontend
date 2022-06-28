@@ -1,0 +1,14 @@
+.modal-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    width: 40vw;;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: row;
+}

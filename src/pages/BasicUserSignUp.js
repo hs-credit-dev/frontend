@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 
-import '../styles/signup.styles.css'
+import '../styles/pages/signup.styles.css'
 
 const REACT_APP_DATABASE_URL = "https://hs-credit-backend-test.herokuapp.com/api" //will need to be fixed later lol
 
