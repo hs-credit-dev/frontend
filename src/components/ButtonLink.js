@@ -1,10 +1,10 @@
 import React from 'react'
 
-import "../styles/button.styles.css"
+import "../styles/components/button.styles.css"
 function ButtonLink(props) {
 
   return (
-    <button className='btn-class'><a href="/login">{props.text}</a></button>
+    <a href={props.link}><button className='btn-class'>{props.text}</button></a>
   )
 }
 

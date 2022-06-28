@@ -1,7 +1,8 @@
 import React from 'react'
 import ButtonLink from '../components/ButtonLink';
+import LogoutModal from '../components/modals/LogoutModal';
 
-import '../styles/logout.styles.css'
+import '../styles/pages/logout.styles.css'
 
  
 const Logout = () => {
@@ -9,8 +10,7 @@ const Logout = () => {
         <div className='log-out-container'>
 
             <p className='log-out-text'>You have successfully logged out!</p>
-            <ButtonLink text={"Log In"} />
-
+            <ButtonLink text="Log In" link="/login"/>
         </div>
     )
 }
