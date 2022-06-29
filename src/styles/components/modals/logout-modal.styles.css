@@ -8,6 +8,11 @@
     width: 40vw;;
 }
 
+.modal-body {
+    font-size: 25px;
+    font-weight: 600;
+}
+
 .modal-buttons {
     display: flex;
     flex-direction: row;
