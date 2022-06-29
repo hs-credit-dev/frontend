@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import '../styles/signup.styles.css'
 
@@ -69,6 +70,7 @@ const BasicUserSignUp = (props) => {
 
     return (
         <div className="signup-container">
+            <Link to="/teachersignup">TeacherSignUp</Link>
             <h1 className="basic-signup">Sign up</h1>
             <form className="basic-signup-form" onSubmit={handleSubmit}>
 
