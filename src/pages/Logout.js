@@ -1,6 +1,5 @@
 import React from 'react'
 import ButtonLink from '../components/ButtonLink';
-import LogoutModal from '../components/modals/LogoutModal';
 
 import '../styles/pages/logout.styles.css'
 
