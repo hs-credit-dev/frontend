@@ -1,10 +1,10 @@
 import React from 'react'
 import ButtonLink from '../components/ButtonLink';
 
-import '../styles/pages/logout.styles.css'
+import '../styles/pages/loggedout.styles.css'
 
  
-const Logout = () => {
+const Loggedout = () => {
     return (
         <div className='log-out-container'>
 
@@ -14,4 +14,4 @@ const Logout = () => {
     )
 }
 
-export default Logout;
+export default Loggedout;

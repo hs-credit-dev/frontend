@@ -15,7 +15,7 @@ import './styles/App.css';
 //components
 
 import Login from './pages/Login'
-import Logout from './pages/Logout'
+import Loggedout from './pages/Loggedout'
 import BasicUserSignUp from './pages/BasicUserSignUp';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
@@ -116,7 +116,7 @@ const App = () => {
                     <Route exact path='/credit-search' component={ CreditSearch } />
                     <Route exact path='/about' component={ About } />
                     <Route exact path='/contact' component={ Contact } />
-                    <Route exact path='/logout' component={ Logout } />
+                    <Route exact path='/logout' component={ Loggedout } />
 
                     <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route

@@ -1,9 +1,9 @@
 import React from 'react'
 import Button from '../Button'
 
-import '../../styles/components/modals/logout-modal.styles.css'
+import '../../styles/components/modals/logout-confirmation-modal.styles.css'
 
-function LogoutModal(props) {
+function LogoutConfirmationModal(props) {
   return (
     <div className='modal-container'>
         <div className='modal-body'>{props.body}</div>
@@ -15,4 +15,4 @@ function LogoutModal(props) {
   )
 }
 
-export default LogoutModal;
+export default LogoutConfirmationModal;
