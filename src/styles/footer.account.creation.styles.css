@@ -1,24 +1,24 @@
 .footer-container {
     align-items: center;
-    bottom: 30px;
+    bottom: 3em;
     display: flex;
     font-family: "Montserrat";
-    font-size: 8px;
+    font-size: 0.5em;
     font-style: SemiBold;
     font-weight: 600;
-    height: 20px;
+    height: 3em;
     position: absolute;
     width: 100%;
 }
 
 .footer-divider {
-    padding: 0 10px;
+    padding: 0 1.2em;
 }
 
 .footer-hscredit-logo {
-    height: 22px;
-    margin: 0 5px 0 20px;
-    width: 22px;
+    height: 3em;
+    margin: 0 0.2em 0 2em;
+    width: 3em;
 }
 
 .footer-text {
@@ -30,16 +30,16 @@
     color:rgba(128, 93, 190);
 }
 
-/* For screens larger than 767px */
+/* For Tablets and small screens */
 @media (min-width: 767px) {
     .footer-hscredit-logo {
-        margin: 0 5px 0 35px;
+        margin: 0 0.2em 0 5em;
     }
 }
 
-/* For screens larger than 1023px */
+/* For Desktops and Large Screens */
 @media (min-width: 1023px) {
     .footer-hscredit-logo {
-        margin: 0 5px 0 55px;
+        margin: 0 0.2em 0 8em;
     }
 }
