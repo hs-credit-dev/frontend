@@ -121,7 +121,7 @@ const App = () => {
                     <Route exact path='/about' component={ About } />
                     <Route exact path='/contact' component={ Contact } />
 
-                    <Route exact path='/teachersignup' component={ TeacherSignUp } />
+                    <Route exact path='/teacher-signup' component={ TeacherSignUp } />
 
                     <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route

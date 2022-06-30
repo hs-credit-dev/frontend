@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import AccountCreationFooter from '../components/Footers/AccountCreationFooter';
+// import AccountCreationFooter from '../components/Footers/AccountCreationFooter';
 import '../styles/teacher.signup.styles.css';
 
 // database url
@@ -144,7 +144,7 @@ const TeacherSignUp = (props) => {
 
             </form>
 
-            <AccountCreationFooter />
+            {/* <AccountCreationFooter /> */}
 
         </div>
     )
