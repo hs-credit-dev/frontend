@@ -49,12 +49,18 @@ const TeacherSignUp = (props) => {
         if(schoolId && schoolName && schoolWebsite && checked){
             // pass data to backend
             const teacherData = { schoolId, schoolName, schoolWebsite, bio };
-            axios.post(`${REACT_APP_DATABASE_URL}/teachers/create`, teacherData)
-            .then(response => {
+            
+            try
+            {
+                const response = await axios.post(`${REACT_APP_DATABASE_URL}/teachers/create`, teacherData);
                 console.log(">>>>> teacher created")
                 console.log(teacherData);
                 setRedirect(true);
-            })
+            }
+            catch(error)
+            {
+                console.log(`>>>>> error creating teacher${error}  `);
+            }
         } else {
             alert("Please fill in all required items!");
         }
