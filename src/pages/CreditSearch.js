@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/credit-search.styles.css'
+import '../styles/pages/credit-search.styles.css'
 
 function CreditSearch() {
     return (

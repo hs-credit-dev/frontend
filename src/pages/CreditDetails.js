@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPlayer from "react-player";
 // import Grid from '@mui/material/Grid'
-import '../styles/credit-details.styles.css'
+import '../styles/pages/credit-details.styles.css'
 
 const CreditDetails = () => {
     return (

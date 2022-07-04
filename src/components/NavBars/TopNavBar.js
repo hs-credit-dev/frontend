@@ -10,7 +10,7 @@ import Login from '../../pages/Login'
 import BasicUserSignUp from '../../pages/BasicUserSignUp';
 
 //styles
-import '../../styles/topnavbar.styles.css'
+import '../../styles/components/navbars/topnavbar.styles.css'
 
 function TopNavBar(props) {
     return (

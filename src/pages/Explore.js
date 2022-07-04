@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPlayer from 'react-player';
 
-import '../styles/explore.styles.css'
+import '../styles/pages/explore.styles.css'
 
 const Explore = () => {
     return (

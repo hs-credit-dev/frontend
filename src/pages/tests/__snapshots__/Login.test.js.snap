@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login matches snapshot 1`] = `
+<div
+  className="login-container"
+>
+  <div>
+    <div
+      className="login-div"
+    >
+      <h1
+        className="login"
+      >
+        Login
+      </h1>
+      <form
+        className="login-form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control"
+            name="email"
+            onChange={[Function]}
+            type="text"
+            value=""
+          />
+          <p
+            className="input-text"
+          >
+            (email)
+          </p>
+        </div>
+        <div
+          className="form-group"
+        >
+          <input
+            className="form-control"
+            name="password"
+            onChange={[Function]}
+            type="password"
+            value=""
+          />
+          <p
+            className="input-text"
+          >
+            (password)
+          </p>
+        </div>
+        <button
+          className="form-group-button"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;

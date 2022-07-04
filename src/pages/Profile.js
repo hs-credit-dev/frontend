@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player/youtube';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../utilities/setAuthToken';
 
-import '../styles/profile.styles.css';
+import '../styles/pages/profile.styles.css';
 
 // import UserDashboard from '../components/UserDashboard';
 import Form from '../components/Form';

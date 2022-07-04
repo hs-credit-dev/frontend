@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import '../styles/signup.styles.css'
+import '../styles/pages/signup.styles.css'
 
 const { REACT_APP_DATABASE_URL } = process.env
 

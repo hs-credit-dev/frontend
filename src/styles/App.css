@@ -6,7 +6,6 @@
 
 *{
   box-sizing: border-box;
-  color: var(--third-color);
 }
 
 .app {
@@ -22,9 +21,6 @@
   overflow-y: auto;
 }
 
-a {
-  color: var(--third-color);
-}
 /* Carousel */
 /* .carousel{
   display: flex;

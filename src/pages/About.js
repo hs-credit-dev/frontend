@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../styles/about.styles.css'
+import '../styles/pages/about.styles.css'
 
 import MaterialUI from '../components/MaterialUI'
 

@@ -1,0 +1,13 @@
+.log-out-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F6F4FA;
+}
+
+.log-out-text {
+    font-size: xx-large;
+}
