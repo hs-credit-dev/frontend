@@ -9,8 +9,8 @@ export const SignUpHeader = () => {
             <p className="left">
                 <a href='/frontend'>
                     <img className="hsc-logo-landing-nav" src={logo} alt='hsc logo' />
-                </a>
-                <h4 className="comp-name">hs.credit</h4>
+                    <h4 className="comp-name">hs.credit</h4>
+                </a> 
             </p>
             <h3 className="page-title">Account Creation</h3>
         </div>

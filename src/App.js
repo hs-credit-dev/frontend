@@ -100,7 +100,7 @@ const App = () => {
     return (
         <div className='app'>
             {/* <Router> */}
-            <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            {/* <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} /> */}
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type='hidden'/>} */}
             {/* <ProfileCarousel /> */}

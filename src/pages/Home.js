@@ -3,11 +3,12 @@ import Book from '../assets/images/book.png'
 import BottomLeft from '../assets/svg/home-left-bottom.svg'
 import BottomRight from '../assets/svg/home-bottom-right.svg'
 import { Link } from 'react-router-dom'
+import TopNavBar from '../components/NavBars/TopNavBar'
 
 const Home = () => {
     return (
         <div className='home-container'>
-
+            <TopNavBar />
             <HomeHeader />
 
             {/* <img className='book' src={Book} alt='book' />

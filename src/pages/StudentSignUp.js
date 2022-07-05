@@ -4,6 +4,8 @@ import axios from 'axios';
 import {Redirect} from 'react-router-dom'
 
 import "../styles/student-signup.styles.css"
+import '../components/Headers/SignUpHeader'
+import SignUpHeader from '../components/Headers/SignUpHeader';
 
 const { REACT_APP_DATABASE_URL } = process.env;
 
@@ -70,6 +72,7 @@ const StudentSignUp = (props) => {
 
     return (
         <div className="student-signup-container">
+            <SignUpHeader/>
             <form className="basic-signup-form" onSubmit={handleSubmit}>
 
                 <div className='row-group'>
