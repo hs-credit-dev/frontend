@@ -9,6 +9,7 @@ ReactDOM.render(
   <Router>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
     </style>
     <App />
   </Router>,
