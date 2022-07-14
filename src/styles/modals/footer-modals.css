@@ -13,13 +13,18 @@
 }
 
 /* modal */
+.ReactModal__Content--after-open {
+    height: 100vh;
+    overflow-y: scroll !important;
+}
+
 .detailModal {
-    background-color: #7f5bbe11;
-    padding: 0 3em;
+    background-color: #F5F4FB;
+    padding: 1em 3em 3em;
     margin-left: auto;
     margin-right: auto;
     outline: none;
-    width: 80vw;
+    width: 85vw;
 }
 
 .modal-container {
@@ -37,7 +42,9 @@
 }
 
 .header-logo {
+    display: inline-block;
     height: 10vh;
+    line-height: 0;
 }
 
 .header-text {
@@ -46,6 +53,7 @@
 }
 
 .main-title {
+    border: none;
     font-weight: 600;
     text-align: center;
 }

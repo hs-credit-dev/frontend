@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 
 import '../../styles/modals/footer-modals.css';
-import logo from '../../assets/svg/hsc-logo-1.svg';
+import AccountCreationFooter from '../Footers/AccountCreationFooter';
+import logo from '../../assets/svg/hsc-logo-with-text.svg';
 
 export default function PrivacyPolicyModal() {
 
