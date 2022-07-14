@@ -1,0 +1,42 @@
+.success-container {
+    background-color: #805DBE12;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    font-family: Montserrat;
+    font-weight: 600;
+    padding: 0;
+}
+
+.success-page-content {
+
+}
+
+.success-message {
+    width: 100vw;
+    height: 12.8vh;
+    margin-top: 33vh;
+    font-size: 2em;
+}
+
+.verify {
+    background-color: #805DBE;
+    height: 6.7vh;
+    width: 12.9vw;
+    color: white;
+    border-radius: 20px;
+    border-width: 0ch;
+    font-size: 0.9em;
+    font-weight: 700;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10vh;
+}
+
+.verification-missing {
+    font-weight: 500;
+    font-style: italic;
+    font-size: 0.6em;
+    cursor: pointer;
+}

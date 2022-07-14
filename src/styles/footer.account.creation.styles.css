@@ -1,0 +1,45 @@
+.footer-container {
+    align-items: center;
+    bottom: 3em;
+    display: flex;
+    font-family: "Montserrat";
+    font-size: 0.5em;
+    font-style: SemiBold;
+    font-weight: 600;
+    height: 3em;
+    position: absolute;
+    width: 100vw;
+}
+
+.footer-divider {
+    padding: 0 1.2em;
+}
+
+.footer-hscredit-logo {
+    height: 3em;
+    margin: 0 0.2em 0 2em;
+    width: 3em;
+}
+
+.footer-text {
+    color: black;
+    text-decoration: none;
+}
+
+.footer-text:hover {
+    color:rgba(128, 93, 190);
+}
+
+/* For Tablets and small screens */
+@media (min-width: 767px) {
+    .footer-hscredit-logo {
+        margin: 0 0.2em 0 5em;
+    }
+}
+
+/* For Desktops and Large Screens */
+@media (min-width: 1023px) {
+    .footer-hscredit-logo {
+        margin: 0 0.2em 0 8em;
+    }
+}

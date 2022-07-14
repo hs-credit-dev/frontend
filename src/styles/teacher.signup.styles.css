@@ -1,0 +1,218 @@
+/* Teacher sign up page container */
+.signup-container {
+    align-items: flex-start;
+    background-color: rgba(128, 93, 190, 0.07);
+    font-family: "Montserrat";
+    margin: 0;
+    padding: 0;
+}
+
+/* Sign up info form container */
+.info-form {
+    align-items: flex-start;
+    display: flex;
+    font-weight: 600;
+    flex-direction: column;
+    margin: 0 5em;
+}
+
+/* Row and Divs */
+.row .inline-div .label {
+    margin: 0 0 0.3em 1em;
+}
+
+.row .inline-div {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.row {
+    align-items: flex-start;
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+.label {
+    color: black;
+    font-family: "Montserrat";
+    font-size: 0.9em;
+    font-style: normal;
+    font-weight: 600;
+    margin: 0 0 0.3em;
+}
+
+.ceeb-code-link {
+    color: rgba(133, 196, 233, 1);
+    display: block;
+}
+
+.ceeb-input {
+    width: 40vw;
+}
+
+.ceeb-label a {
+    position: relative;
+    right: 0;
+    text-align: left;
+    top: 0;
+}
+
+label.ceeb-label.label {
+    display: block;
+    position: relative;
+    width: 40vw;
+}
+
+.school-name-input {
+    width: 40vw;
+}
+
+.school-website-input {
+    width: 60vw;
+}
+
+textarea.bio-input {
+    font-size: 14px;
+    height: 10vh;
+    justify-content: flex-start;
+    margin-left: 0.8em;
+    width: 60vw;
+}
+
+.input-field {
+    background-color: #FFF;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+    height: 2.3em;
+}
+
+input.terms-check {
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    height: 0.8em;
+    margin: 0 0.4em 0 0;
+    width: 0.8em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+}
+ 
+.terms-check-true {
+    background-color: #805DBE;
+}
+
+.terms-label span {
+    color: black;
+    font-family: "Montserrat";
+    font-size: 0.6em;
+    font-style: italic;
+    font-weight: 500;
+}
+
+label.terms-label {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button.create-btn {
+    background-color: #805DBE;
+    border: none;
+    border-radius: 20px;
+    color: #FFF;
+    font-size: 0.9em;
+    font-weight: 700;
+    height: 7vh;
+    margin: 0.8em 0 0 1em;
+    width: 30vw;
+}
+
+
+/* For screens with width larger than 767px */
+@media (min-width: 767px) {
+    
+    .info-form {
+        margin: 0 7em;
+    }
+
+    .signup-container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .row .inline-div {
+        align-items: flex-start;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        margin: 0 3em 0 0;
+    }
+
+    .row {
+        margin: 1em 0 0 0;
+    }
+
+    .ceeb-code-link {
+        display: inline-flex;
+    }
+
+    .ceeb-input {
+        width: 25vw;
+    }
+
+    label.ceeb-label.label {
+        width: 25vw;
+    }
+    
+    .ceeb-label a {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .school-name-input {
+        width: 25vw;
+    }
+
+    textarea.bio-input {
+        width: 60vw;
+    }
+
+    button.create-btn {
+        width: 25vw;
+    }
+
+}
+
+/* For screens with width larger than 1023px */
+@media (min-width: 1023px) {
+    .info-form {
+        margin: 0 10em;
+    }
+
+    .ceeb-label {
+        width: 25vw;
+    }
+    
+    .school-name-input {
+        width: 25vw;
+    }
+    
+    .school-website-input {
+        width: 40vw;
+    }
+    
+    textarea.bio-input {
+        height: 15vh;
+        width: 60vw;
+    }
+
+    button.create-btn {
+        width: 15vw;
+    }
+}

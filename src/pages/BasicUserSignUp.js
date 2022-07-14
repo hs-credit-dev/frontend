@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter, Route, withRouter, Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons"
@@ -11,7 +12,7 @@ import '../styles/basic-user-signup.styles.css'
 import '../components/Headers/SignUpHeader'
 import SignUpHeader from '../components/Headers/SignUpHeader';
 
-const REACT_APP_DATABASE_URL = "https://hs-credit-backend-test.herokuapp.com/api" //will need to be fixed later lol
+const { REACT_APP_DATABASE_URL } = process.env
 
 const BasicUserSignUp = (props) => {
     const [type, setType] = useState('');
@@ -86,8 +87,14 @@ const BasicUserSignUp = (props) => {
     if (redirect) return <Redirect to={'/' + type} />
 
     return (
+<<<<<<< HEAD
         <div className="basic-signup-container">
             <SignUpHeader/>
+=======
+        <div className="signup-container">
+            <Link to="/teachersignup">TeacherSignUp</Link>
+            <h1 className="basic-signup">Sign up</h1>
+>>>>>>> beta
             <form className="basic-signup-form" onSubmit={handleSubmit}>
                 <div className='basic-form-group'>
                     <label>Account Type</label>
@@ -100,7 +107,7 @@ const BasicUserSignUp = (props) => {
 
                 <div className='basic-form-group'>
                     <div className='title-group'>
-                        <label>username</label>
+                        <label>Username</label>
                         <FontAwesomeIcon icon={faQuestionCircle} className='help-icon'/>
                     </div>
                     <input type="text" value={username} onChange={handleUsername} className="basic-form-control"></input>
