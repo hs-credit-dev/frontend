@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter, Route, withRouter, Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons"
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-import StudentSignUp from './StudentSignUp';
 import '../styles/basic-user-signup.styles.css'
 import '../components/Headers/SignUpHeader'
 import SignUpHeader from '../components/Headers/SignUpHeader';
 
-const REACT_APP_DATABASE_URL = "https://hs-credit-backend-test.herokuapp.com/api" //will need to be fixed later lol
+const { REACT_APP_DATABASE_URL } = process.env
 
 const BasicUserSignUp = (props) => {
     const [type, setType] = useState('');

@@ -29,6 +29,9 @@ import CreditSearch from './pages/CreditSearch';
 import About from './pages/About';
 import Contact from './components/Contact';
 
+
+import TeacherSignUp from './pages/TeacherSignUp';
+
 // import ProfileCarousel from './components/ProfileCarousel';
 // import MainNavBar from './components/NavBars/NavBar'
 
@@ -119,6 +122,8 @@ const App = () => {
                     <Route exact path='/credit-search' component={ CreditSearch } />
                     <Route exact path='/about' component={ About } />
                     <Route exact path='/contact' component={ Contact } />
+
+                    <Route exact path='/teacher-signup' component={ TeacherSignUp } />
 
                     <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route
