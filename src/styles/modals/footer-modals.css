@@ -1,0 +1,64 @@
+* {
+    color: black;
+    font-family: "Montserrat";
+}
+/* footer */
+.footer-text-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer-text-link:hover {
+    color: #805DBE;
+}
+
+/* modal */
+.detailModal {
+    background-color: #7f5bbe11;
+    padding: 0 3em;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+    width: 80vw;
+}
+
+.modal-container {
+    font-size: 0.8em;
+    position: relative;
+}
+
+.modal-header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.header-logo {
+    height: 10vh;
+}
+
+.header-text {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.main-title {
+    font-weight: 600;
+    text-align: center;
+}
+
+.main-paragraph {
+    text-align: justify;
+    margin: 1em 0;
+}
+
+.main-subtitle {
+    font-weight: 600;
+}
+
+.main-ordered-list {
+    padding: 0 0 0 1em;
+}
