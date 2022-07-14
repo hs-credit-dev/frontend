@@ -100,7 +100,7 @@ const BasicUserSignUp = (props) => {
 
                 <div className='basic-form-group'>
                     <div className='title-group'>
-                        <label>username</label>
+                        <label>Username</label>
                         <FontAwesomeIcon icon={faQuestionCircle} className='help-icon'/>
                     </div>
                     <input type="text" value={username} onChange={handleUsername} className="basic-form-control"></input>
