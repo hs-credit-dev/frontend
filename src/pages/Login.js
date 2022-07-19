@@ -55,7 +55,7 @@ const Login = (props) => {
     }
 
     // if there is user logged in, redirect them home
-    if (props.user) return <Redirect to="/Home" />
+    if (props.user) return <Redirect to="/home" />
 
     return (
 
@@ -69,7 +69,7 @@ const Login = (props) => {
                 <input type="text" name="email" value={email} onChange={handleEmail} placeholder="Username" className="form-input" />
                 <input type="password" name="password" value={password} onChange={handlePassword} placeholder="Password" className="form-input"/>
                 <button type="submit" className="login-button">Log In</button>
-                <a className='forgot-password-link' href="https://www.google.com">Forgot password?</a>
+                <a className='forgot-password-link' href="">Forgot password?</a>
             </form>
 
             <button href="www.google.com" className="create-account-button">Create account</button>
