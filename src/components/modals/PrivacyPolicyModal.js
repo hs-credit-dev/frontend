@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 
 import '../../styles/modals/footer-modals.css';
-// import AccountCreationFooter from '../Footers/AccountCreationFooter';
 import logo from '../../assets/svg/hsc-logo-with-text.svg';
 
 export default function PrivacyPolicyModal() {
@@ -20,7 +19,7 @@ export default function PrivacyPolicyModal() {
 
   return (
     <div className='text-container'>
-        <p className="footer-text-link" onClick={()=>seeDetail()}>Terms & Services</p>
+        <p className="footer-text-link" onClick={()=>seeDetail()}>Privacy Policy</p>
         
         <ReactModal
                 ariaHideApp={false}
@@ -28,7 +27,7 @@ export default function PrivacyPolicyModal() {
                 contentLabel="details tab"
                 isOpen={modal.showModal}
                 onRequestClose={hideDetail}
-                shouldCloseOnOverlayClick={true}
+                shouldCloseOnOverlayClick={false}
         >
             <div className='modal-container'>
                 <div className='modal-header'>
@@ -155,6 +154,9 @@ export default function PrivacyPolicyModal() {
                     <div className='main-paragraph'>
                         June 7, 2022
                     </div>
+                </div>
+                <div className='close-btn'>
+                    <button onClick={()=>hideDetail()}>I've read and agree to the terms</button>
                 </div>
             </div>
         </ReactModal>
