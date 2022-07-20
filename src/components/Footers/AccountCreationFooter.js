@@ -13,7 +13,7 @@ const AccountCreationFooter = () => {
             <img className="footer-hscredit-logo" src={logo} alt="HSC.Logo" />
             <p className="footer-text">Powered by hs.credit</p>
             <span className="footer-divider">|</span>
-            <PrivacyPolicyModal />
+            <TermsOfServiceModal />
             <span className="footer-divider">|</span>
             <PrivacyPolicyModal />
             <span className="footer-divider">|</span>
