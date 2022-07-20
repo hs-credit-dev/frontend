@@ -8,7 +8,7 @@ const SignupSuccess = (props) => {
     const handleResend = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
+        emailjs.sendForm('service_tvq7tyj', 'template_xa670ar', e.target, 'mDzCQQXqWcC3Y5-lU')
         .then((result) => {
             window.location.reload()
         }, (error) => {

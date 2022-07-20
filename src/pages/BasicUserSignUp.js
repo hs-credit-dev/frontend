@@ -87,14 +87,8 @@ const BasicUserSignUp = (props) => {
     if (redirect) return <Redirect to={'/' + type} />
 
     return (
-<<<<<<< HEAD
         <div className="basic-signup-container">
             <SignUpHeader/>
-=======
-        <div className="signup-container">
-            <Link to="/teachersignup">TeacherSignUp</Link>
-            <h1 className="basic-signup">Sign up</h1>
->>>>>>> beta
             <form className="basic-signup-form" onSubmit={handleSubmit}>
                 <div className='basic-form-group'>
                     <label>Account Type</label>
