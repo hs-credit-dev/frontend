@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons"
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-import StudentSignUp from './StudentSignUp';
 import '../styles/basic-user-signup.styles.css'
 import '../components/Headers/SignUpHeader'
 import SignUpHeader from '../components/Headers/SignUpHeader';
