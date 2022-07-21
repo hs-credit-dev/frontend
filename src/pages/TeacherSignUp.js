@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import AccountCreationFooter from '../components/Footers/AccountCreationFooter';
-import '../styles/teacher.signup.styles.css';
+import '../styles/teacher-signup.styles.css';
 
 // database url
 const { REACT_APP_DATABASE_URL } = process.env;
