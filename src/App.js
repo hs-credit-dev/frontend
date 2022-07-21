@@ -16,6 +16,7 @@ import './styles/App.css';
 
 import Login from './pages/Login'
 import BasicUserSignUp from './pages/BasicUserSignUp';
+import StudentSignUp from './pages/StudentSignUp';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
@@ -101,7 +102,7 @@ const App = () => {
     return (
         <div className='app'>
             {/* <Router> */}
-            <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            {/* <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} /> */}
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type='hidden'/>} */}
             {/* <ProfileCarousel /> */}
@@ -113,7 +114,8 @@ const App = () => {
                 <Switch>
 
                     <Route exact path='/frontend' component={Home} />
-                    <Route exact path='/signup' component={BasicUserSignUp} />
+                    <Route exact path='/basic-signup' component={BasicUserSignUp} />
+                    <Route exact path='/student-signup' component={StudentSignUp} />
                     <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
                     <Route exact path='/credit-search' component={ CreditSearch } />
