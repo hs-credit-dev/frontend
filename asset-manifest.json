@@ -1,27 +1,25 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.627bc6f2.chunk.css",
-    "main.js": "/frontend/static/js/main.70660f79.chunk.js",
-    "main.js.map": "/frontend/static/js/main.70660f79.chunk.js.map",
-    "runtime-main.js": "/frontend/static/js/runtime-main.a4838350.js",
-    "runtime-main.js.map": "/frontend/static/js/runtime-main.a4838350.js.map",
-    "static/css/2.0a9ec390.chunk.css": "/frontend/static/css/2.0a9ec390.chunk.css",
-    "static/js/2.9fad37da.chunk.js": "/frontend/static/js/2.9fad37da.chunk.js",
-    "static/js/2.9fad37da.chunk.js.map": "/frontend/static/js/2.9fad37da.chunk.js.map",
-    "static/js/3.096ecfc5.chunk.js": "/frontend/static/js/3.096ecfc5.chunk.js",
-    "static/js/3.096ecfc5.chunk.js.map": "/frontend/static/js/3.096ecfc5.chunk.js.map",
+    "main.css": "/frontend/static/css/main.7eed5f7b.chunk.css",
+    "main.js": "/frontend/static/js/main.d871dc39.chunk.js",
+    "main.js.map": "/frontend/static/js/main.d871dc39.chunk.js.map",
+    "runtime-main.js": "/frontend/static/js/runtime-main.3dd0d688.js",
+    "runtime-main.js.map": "/frontend/static/js/runtime-main.3dd0d688.js.map",
+    "static/js/2.8d10957f.chunk.js": "/frontend/static/js/2.8d10957f.chunk.js",
+    "static/js/2.8d10957f.chunk.js.map": "/frontend/static/js/2.8d10957f.chunk.js.map",
+    "static/js/3.e98cc227.chunk.js": "/frontend/static/js/3.e98cc227.chunk.js",
+    "static/js/3.e98cc227.chunk.js.map": "/frontend/static/js/3.e98cc227.chunk.js.map",
     "index.html": "/frontend/index.html",
-    "static/css/2.0a9ec390.chunk.css.map": "/frontend/static/css/2.0a9ec390.chunk.css.map",
-    "static/css/main.627bc6f2.chunk.css.map": "/frontend/static/css/main.627bc6f2.chunk.css.map",
-    "static/js/2.9fad37da.chunk.js.LICENSE.txt": "/frontend/static/js/2.9fad37da.chunk.js.LICENSE.txt",
+    "static/css/main.7eed5f7b.chunk.css.map": "/frontend/static/css/main.7eed5f7b.chunk.css.map",
+    "static/js/2.8d10957f.chunk.js.LICENSE.txt": "/frontend/static/js/2.8d10957f.chunk.js.LICENSE.txt",
     "static/media/home-bottom-right.0f43ed18.svg": "/frontend/static/media/home-bottom-right.0f43ed18.svg",
-    "static/media/home-left-bottom.ced75867.svg": "/frontend/static/media/home-left-bottom.ced75867.svg"
+    "static/media/home-left-bottom.ced75867.svg": "/frontend/static/media/home-left-bottom.ced75867.svg",
+    "static/media/hscLogo21.b90b1f60.png": "/frontend/static/media/hscLogo21.b90b1f60.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.a4838350.js",
-    "static/css/2.0a9ec390.chunk.css",
-    "static/js/2.9fad37da.chunk.js",
-    "static/css/main.627bc6f2.chunk.css",
-    "static/js/main.70660f79.chunk.js"
+    "static/js/runtime-main.3dd0d688.js",
+    "static/js/2.8d10957f.chunk.js",
+    "static/css/main.7eed5f7b.chunk.css",
+    "static/js/main.d871dc39.chunk.js"
   ]
 }
