@@ -1,7 +1,7 @@
 import React from 'react';
 // Style Sheet
 import '../../styles/footer.account.creation.styles.css';
-import logo from '../../assets/images/hscLogo21.png';
+import logo from '../../assets/svg/hsc-logo-no-text.svg';
 
 // Top Navbar for Account Creation Pages
 const AccountCreationFooter = () => {
