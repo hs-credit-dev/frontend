@@ -37,6 +37,7 @@
 
 .modal-header {
     align-items: center;
+    border: none;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
