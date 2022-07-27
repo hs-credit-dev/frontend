@@ -4,7 +4,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
 import setAuthToken from '../utilities/setAuthToken';
-import logo from '../assets/images/hscLogo21.png';
+import logo from '../assets/images/hsc-logo-no-text.png';
 //import Footer from '../components/Footers/Footer.js';
 
 import '../styles/login.styles.css'
