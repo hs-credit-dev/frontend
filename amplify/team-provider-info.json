@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-hscreditapp-dev-211658-authRole",
+      "UnauthRoleArn": "arn:aws:iam::211412710932:role/amplify-hscreditapp-dev-211658-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::211412710932:role/amplify-hscreditapp-dev-211658-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-hscreditapp-dev-211658-deployment",
+      "UnauthRoleName": "amplify-hscreditapp-dev-211658-unauthRole",
+      "StackName": "amplify-hscreditapp-dev-211658",
+      "StackId": "arn:aws:cloudformation:us-east-1:211412710932:stack/amplify-hscreditapp-dev-211658/fb50cc50-0e12-11ed-8887-0afc15d87db7",
+      "AmplifyAppId": "dkjynw2e2tspv"
+    }
+  }
+}
