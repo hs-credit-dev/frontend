@@ -1,0 +1,109 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 4em;
+}
+
+.logo-image {
+    max-height: 150px;
+}
+
+.logo-title-banner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 3rem;
+    font-stretch: wider;
+    color: black;
+}
+
+.login-form {
+    display: flex;
+    border: 100vh hidden;
+    padding: 2rem;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem;
+    width: 40vw;
+    height: 6vh;
+    box-shadow: 0.1rem 0.25rem 1.25rem 0.25rem rgba(232, 230, 235, 0.85);
+    border: hidden;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-clip: padding-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.forgot-password-link {
+    color: #0077FF;
+    font-weight: bolder;
+}
+
+.create-account-button {
+    margin-top: 6em;
+}
+
+p {
+    margin: 5px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #D1D1D1;
+    font-weight: bold;
+    opacity: 1; /* Firefox */
+}
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #D1D1D1;
+    font-weight: bold;
+}
+  
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #D1D1D1;
+    font-weight: bold;
+}
+
+button {
+    background-color: #805DBE;
+    color: white;
+    border: 0px grey solid;
+    border-radius: 12px;
+    margin: 1rem;
+    padding: 0.5em 0.5em;
+    align-self: center;
+    min-width: fit-content;
+    width: 9vw;
+    max-width: 10vw;
+    height: 5vh;
+    font-weight: bold;
+}
