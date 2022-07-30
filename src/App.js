@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './styles/App.css';
 
+import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';

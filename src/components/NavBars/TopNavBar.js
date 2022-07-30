@@ -7,7 +7,7 @@ import '../../styles/topnavbar.styles.css'
 function TopNavBar(props) {
     return (
         <div className='top-nav-container'>
-            <a href='/frontend'>
+            <a href='/'>
                 <img className="hsc-logo-landing-nav" src='https://i.imgur.com/t5GkphG.png' alt='hsc logo' />
             </a>
             <p className='nav-hs-credit-title'>hs.credit</p>
