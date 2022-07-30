@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons"
@@ -83,7 +83,7 @@ const BasicUserSignUp = (props) => {
             return alert('Email don\'t match');
         }
     }
-    if (redirect) return <Redirect to={'/' + type} />
+    if (redirect) return <Navigate to={'/' + type} />
 
     return (
         <div className="basic-signup-container">
