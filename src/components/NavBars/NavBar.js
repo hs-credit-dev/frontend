@@ -4,7 +4,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import '../../styles/nav.styles.css'
 
 export const NavBar = (props) => {
-
     const location = useLocation()
 
     return (
