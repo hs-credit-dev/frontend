@@ -5,6 +5,7 @@ import './styles/App.css';
 
 import Home from './pages/Home';
 import About from './pages/About';
+import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 
 const App = () => {
@@ -15,8 +16,8 @@ const App = () => {
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/about' element={<About />} />
-            {/* <Route exact path='/basic-signup' element={<BasicUserSignUp />} />
-          <Route exact path='/student-signup' element={<StudentSignUp />} />
+            <Route exact path='/login' element={<Login />} />
+          {/*<Route exact path='/student-signup' element={<StudentSignUp />} />
           <Route exact path='/profile' element={<Profile />} user={currentUser} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
