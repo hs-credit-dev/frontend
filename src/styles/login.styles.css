@@ -107,3 +107,7 @@ button {
     height: 5vh;
     font-weight: bold;
 }
+
+.login-button {
+    background-color: #805DBE;
+}
