@@ -1,10 +1,10 @@
 /* Teacher sign up page container */
 .signup-container {
     align-items: flex-start;
-    background-color: rgba(128, 93, 190, 0.07);
     font-family: "Montserrat";
     margin: 0;
     padding: 0;
+    width: 100vh;
 }
 
 /* Sign up info form container */
@@ -13,7 +13,7 @@
     display: flex;
     font-weight: 600;
     flex-direction: column;
-    margin: 0 5em;
+    margin: 10em 5em 0em;
 }
 
 /* Row and Divs */
