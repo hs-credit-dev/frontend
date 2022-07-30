@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './styles/App.css';
 
-import NotFound from './pages/NotFound';
 import Home from './pages/Home';
+import About from './pages/About';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
@@ -13,12 +14,12 @@ const App = () => {
         <div className='mainAppContainer'>
           <Routes>
             <Route exact path='/' element={<Home />} />
+            <Route exact path='/about' element={<About />} />
             {/* <Route exact path='/basic-signup' element={<BasicUserSignUp />} />
           <Route exact path='/student-signup' element={<StudentSignUp />} />
           <Route exact path='/profile' element={<Profile />} user={currentUser} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
-          <Route exact path='/about' element={<About />} />
           <Route exact path='/contact' element={<Contact />} />
 
           <Route exact path='/teacher-signup' element={<TeacherSignUp />} />
