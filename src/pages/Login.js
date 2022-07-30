@@ -1,9 +1,9 @@
 // imports
 import React, { useState } from 'react';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+// import jwt_decode from 'jwt-decode';
 import { Redirect } from 'react-router-dom';
-import setAuthToken from '../utilities/setAuthToken';
+// import setAuthToken from '../utilities/setAuthToken';
 import logo from '../assets/images/hscLogo21.png';
 import Footer from '../components/Footers/AccountCreationFooter';
 
@@ -41,9 +41,9 @@ const Login = (props) => {
             console.log(`>>>>inside handleSubmit reponse block`)
             const token = await response.data
             await localStorage.setItem('jwtToken', token)
-            setAuthToken(token)
-            const decoded = jwt_decode(token)
-            props.nowCurrentUser(decoded)
+            // setAuthToken(token)
+            // const decoded = jwt_decode(token)
+            // props.nowCurrentUser(decoded)
             setRedirect(true) 
         }
         catch(error)
@@ -55,7 +55,7 @@ const Login = (props) => {
     }
 
     // if there is user logged in, redirect them home
-    if (props.user) return <Redirect to="/home" />
+    // if (props.user) return <Redirect to="/home" />
 
     return (
         <div>
