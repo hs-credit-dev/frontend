@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './styles/App.css';
 
+import NotFound from './pages/NotFound';
 import Home from './pages/Home';
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
             render={(props) =>
               <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
           <Route exact path='/studentprofile' element={<StudentProfile />} user={currentUser} handleLogout={handleLogout} /> */}
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       </Router>
