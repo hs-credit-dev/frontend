@@ -17,11 +17,11 @@
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
+    top: 0;
     align-self: flex-start;
     height: 60px;
     width: 100vw;
     padding: 0 20px;
-    background-color: var(--secondary-color);
     color: white;
 }
 
