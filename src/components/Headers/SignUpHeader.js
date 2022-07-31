@@ -7,7 +7,7 @@ export const SignUpHeader = () => {
     return (
         <div className='signup-header'>
             <p className="left">
-                <a href='/frontend'>
+                <a href='/'>
                     <img className="hsc-logo-landing-nav" src={logo} alt='hsc logo' />
                     <h4 className="comp-name">hs.credit</h4>
                 </a> 

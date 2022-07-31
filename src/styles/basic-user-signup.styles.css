@@ -79,13 +79,14 @@
 }
 
 .next-button {
+    align-self: flex-start;
     background-color: #805DBE;
-    height: 4.2vh;
-    width: 16.4vw;
-    color: white;
+    border: none;
     border-radius: 20px;
-    border-width: 0ch;
+    color: #FFF;
     font-size: 0.9em;
     font-weight: 700;
-    vertical-align: middle;
+    height: 7vh;
+    margin: 0.8em 0 0 1em;
+    width: 30vw;
 }
