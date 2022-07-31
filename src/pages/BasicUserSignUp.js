@@ -94,7 +94,7 @@ const BasicUserSignUp = (props) => {
                     <select className='type-dropdown' value={type} onChange={handleType}>
                         <option value="basic-signup">Select</option>
                         <option value="student-signup">Students</option>
-                        <option value="educator-signUp">Teacher</option>
+                        <option value="teacher-signUp">Teacher</option>
                     </select>
                 </div>
 

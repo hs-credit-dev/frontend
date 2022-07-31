@@ -1,7 +1,7 @@
 // imports
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import '../styles/teacher.signup.styles.css';
 
@@ -72,7 +72,7 @@ const TeacherSignUp = (props) => {
 
     if(redirect) {
         // redirect user to Log In page when created successfully
-        return <Redirect to='/login' />
+        return <Navigate to='/login' />
     }
 
 
@@ -83,7 +83,7 @@ const TeacherSignUp = (props) => {
             
             <form className="info-form" onSubmit={handleSubmit}>
 
-                <div className="row">
+                <div className="inline-row">
                     <div className="inline-div">
                         <label className="ceeb-label label" htmlFor="ceeb-code">
                             CEEB

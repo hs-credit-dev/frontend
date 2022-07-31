@@ -12,6 +12,7 @@
     border-radius: .3em;
     border-width: 0ch;
     box-shadow: 0em 0.1em 0.3em rgb(0 0 0 / 0.2);
+    margin: 0;
 }
 
 .row-group{
@@ -47,10 +48,11 @@ input {
     width: 31.5vw;
 }
 
-.bio-input {
+textarea.bio-input {
     background-color: #fff;
     width: 66vw;
     height: 15vh;
+    margin: 0;
 }
 
 .check-icon {
@@ -69,14 +71,14 @@ input {
 }
 
 .submit {
+    align-self: flex-start;
     background-color: #805DBE;
-    height: 4.2vh;
-    width: 16.4vw;
-    color: white;
+    border: none;
     border-radius: 20px;
-    border-width: 0ch;
+    color: #FFF;
     font-size: 0.9em;
     font-weight: 700;
-    line-height: 1em;
-    vertical-align: middle;
+    height: 7vh;
+    margin: 0.8em 0 0 1em;
+    width: 30vw;
 }

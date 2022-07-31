@@ -8,6 +8,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import BasicUserSignUp from './pages/BasicUserSignUp';
 import StudentSignUp from './pages/StudentSignUp';
+import TeacherSignUp from './pages/TeacherSignUp';
 import NotFound from './pages/NotFound';
 
 import { Button } from '@material-tailwind/react';
@@ -22,7 +23,8 @@ const App = () => {
             <Route exact path='/about' element={<About />} />
             <Route exact path='/login' element={<Login />} />
             <Route exact path='/basic-signup' element={<BasicUserSignUp />} />
-          <Route exact path='/student-signup' element={<StudentSignUp />} />
+            <Route exact path='/student-signup' element={<StudentSignUp />} />
+            <Route exact path='/teacher-signup' element={<TeacherSignUp />} />
           {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />

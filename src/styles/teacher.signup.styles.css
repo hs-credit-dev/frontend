@@ -2,9 +2,10 @@
 .signup-container {
     align-items: flex-start;
     font-family: "Montserrat";
+    height: 100vh;
     margin: 0;
     padding: 0;
-    width: 100vh;
+    width: 100vw;
 }
 
 /* Sign up info form container */
@@ -13,7 +14,8 @@
     display: flex;
     font-weight: 600;
     flex-direction: column;
-    margin: 10em 5em 0em;
+    margin-top: 10vh 9.5vw 0vh;
+    width: 100vw;
 }
 
 /* Row and Divs */
@@ -32,6 +34,7 @@
 .row {
     align-items: flex-start;
     display: flex;
+    flex-direction: column;
     margin-bottom: 0.5em;
 }
 
@@ -78,7 +81,7 @@ textarea.bio-input {
     font-size: 14px;
     height: 10vh;
     justify-content: flex-start;
-    margin-left: 0.8em;
+    margin: 0;
     width: 60vw;
 }
 
@@ -90,7 +93,7 @@ textarea.bio-input {
     height: 2.3em;
 }
 
-input.terms-check {
+/* input.terms-check {
     appearance: none;
     border: none;
     border-radius: 0;
@@ -105,7 +108,7 @@ input.terms-check {
  
 .terms-check-true {
     background-color: #805DBE;
-}
+} */
 
 .terms-label span {
     color: black;
@@ -121,6 +124,7 @@ label.terms-label {
 }
 
 button.create-btn {
+    align-self: flex-start;
     background-color: #805DBE;
     border: none;
     border-radius: 20px;
@@ -137,7 +141,7 @@ button.create-btn {
 @media (min-width: 767px) {
     
     .info-form {
-        margin: 0 7em;
+        margin: 10vh 5vw 0vh;
     }
 
     .signup-container {
@@ -145,7 +149,7 @@ button.create-btn {
         margin: 0;
     }
 
-    .row .inline-div {
+    .inline-row .inline-div {
         align-items: flex-start;
         display: flex;
         flex: 1;
@@ -153,7 +157,14 @@ button.create-btn {
         margin: 0 3em 0 0;
     }
 
+    .inline-row {
+        display: flex;
+        flex-direction: row;
+        margin: 1em 0 0 0;
+    }
+
     .row {
+        align-items: l;
         margin: 1em 0 0 0;
     }
 
@@ -192,7 +203,7 @@ button.create-btn {
 /* For screens with width larger than 1023px */
 @media (min-width: 1023px) {
     .info-form {
-        margin: 0 10em;
+        margin: 20vh 9.5vw 0;
     }
 
     .ceeb-label {
