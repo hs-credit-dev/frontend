@@ -54,7 +54,7 @@ const BasicUserSignUp = (props) => {
         //needs to check for no existing users
         e.preventDefault();
 
-        if (email === confirmedEmail) {
+        if (email === confirmedEmail && email !== "") {
             setEmailCheckShow(true);
 
             if (password === confirmPassword && password.length >= 8) {
@@ -63,7 +63,7 @@ const BasicUserSignUp = (props) => {
                 if (confirmAge) {
                     const newUser = { type, username, email, password };
                 
-                    await axios.post(`${REACT_APP_DATABASE_URL}/users/create`, newUser);
+                    // await axios.post(`${REACT_APP_DATABASE_URL}/users/create`, newUser);
                     // await axios.post(`http://localhost:8000/api/users/create`, newUser)
         
                     // .catch(error => console.log('===> Error in Signup', error));

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import {Redirect} from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import "../styles/student-signup.styles.css"
 import '../components/Headers/SignUpHeader'
@@ -69,7 +69,7 @@ const StudentSignUp = (props) => {
         }
     }
 
-    if(redirect) return <Redirect to='/explore'/>
+    if(redirect) return <Navigate to='/explore'/>
 
     return (
         <div className="student-signup-container">
@@ -91,7 +91,7 @@ const StudentSignUp = (props) => {
                     </div>
                 </div>
                 
-                <div className='row-group'>
+                <div className='row-group my-4'>
                     <div className='inline-student'>
                         <label className="ceeb" htmlFor="ceeb-code">
                             CEEB
@@ -109,7 +109,7 @@ const StudentSignUp = (props) => {
                 </div>
 
                 <label>Bio</label>
-                <input type="text" value={bio} onChange={handleBio} className='bio-input student-form-control'></input>
+                <textarea type="text" value={bio} onChange={handleBio} className='bio-input student-form-control'></textarea>
 
                 <label className='confirmation'>
                         <input type="checkbox" onClick={() => setConfirmed(!confirmed)} className='checkbox'/>
