@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 // import jwt_decode from 'jwt-decode';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import setAuthToken from '../utilities/setAuthToken';
 import logo from '../assets/images/hscLogo21.png';
 import Footer from '../components/Footers/AccountCreationFooter';
@@ -17,7 +17,8 @@ const Login = (props) => {
     // state variables
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [redirect, setRedirect] = useState(false)
+    const [redirect, setRedirect] = useState(false);
+    const navigate = useNavigate();
 
     // set email based on event
     const handleEmail = (e) => {
@@ -27,6 +28,10 @@ const Login = (props) => {
     // set password based on event
     const handlePassword = (e) => {
         setPassword(e.target.value);
+    }
+
+    const handleSignup = () => {
+        navigate("/basic-signup");
     }
 
     // handle submit function
@@ -72,7 +77,7 @@ const Login = (props) => {
                     <a className='forgot-password-link' href="">Forgot password?</a>
                 </form>
 
-                <button href="www.google.com" className="create-account-button">Create account</button>
+                <button onClick={handleSignup} className="create-account-button">Create account</button>
             </div>
             <Footer />
         </div>
