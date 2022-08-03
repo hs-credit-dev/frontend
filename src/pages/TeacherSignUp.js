@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
-import '../styles/teacher.signup.styles.css';
+import '../styles/teacher-signup.styles.css';
 
 import AccountCreationFooter from '../components/Footers/AccountCreationFooter.js';
 import SignUpHeader from '../components/Headers/SignUpHeader.js';
