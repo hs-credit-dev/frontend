@@ -4,7 +4,7 @@ import axios from 'axios';
 // import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 // import setAuthToken from '../utilities/setAuthToken';
-import logo from '../assets/images/hscLogo21.png';
+import logo from '../assets/svg/hsc-logo-no-text.svg';
 import Footer from '../components/Footers/AccountCreationFooter';
 
 import '../styles/login.styles.css'
