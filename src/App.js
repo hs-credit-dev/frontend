@@ -17,6 +17,7 @@ import './styles/App.css';
 import Login from './pages/Login'
 import Loggedout from './pages/Loggedout'
 import BasicUserSignUp from './pages/BasicUserSignUp';
+import StudentSignUp from './pages/StudentSignUp';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
@@ -27,6 +28,9 @@ import CreditDetails from './pages/CreditDetails';
 import CreditSearch from './pages/CreditSearch';
 import About from './pages/About';
 import Contact from './components/Contact';
+
+
+import TeacherSignUp from './pages/TeacherSignUp';
 
 // import ProfileCarousel from './components/ProfileCarousel';
 // import MainNavBar from './components/NavBars/NavBar'
@@ -99,7 +103,7 @@ const App = () => {
     return (
         <div className='app'>
             {/* <Router> */}
-            <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
+            {/* <TopNavBar handleLogout={handleLogout} isAuth={isAuthenticated} /> */}
             <NavBar handleLogout={handleLogout} isAuth={isAuthenticated} />
             {/* {isAuthenticated ? <button onClick={handleLogout}> click here to logout </button> : <input type='hidden'/>} */}
             {/* <ProfileCarousel /> */}
@@ -109,14 +113,18 @@ const App = () => {
 
             <div className='mainAppContainer'>
                 <Switch>
-                    <Route exact path='/frontend' component={ Home } />
-                    <Route exact path='/signup' component={ BasicUserSignUp } />
-                    <Route exact path='/profile' component={ Profile } user={currentUser} />
+
+                    <Route exact path='/frontend' component={Home} />
+                    <Route exact path='/basic-signup' component={BasicUserSignUp} />
+                    <Route exact path='/student-signup' component={StudentSignUp} />
+                    <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
                     <Route exact path='/credit-search' component={ CreditSearch } />
                     <Route exact path='/about' component={ About } />
                     <Route exact path='/contact' component={ Contact } />
                     <Route exact path='/logout' component={ Loggedout } />
+
+                    <Route exact path='/teacher-signup' component={ TeacherSignUp } />
 
                     <Route exact path='/username/credits/the-revolutionary-war' component={ CreditDetails } />
                     <Route
