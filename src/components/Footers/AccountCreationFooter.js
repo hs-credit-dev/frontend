@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PrivacyPolicyModal from '../modals/PrivacyPolicyModal';
+import TermsOfServiceModal from '../modals/TermsOfServiceModal';
 import '../../styles/footer.account.creation.styles.css';
 import logo from '../../assets/svg/hsc-logo-no-text.svg';
 
