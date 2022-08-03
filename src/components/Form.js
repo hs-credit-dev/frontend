@@ -2,7 +2,7 @@ import { React, useState } from 'react'
 
 import UserModel from '../models/user';
 
-import '../styles/form.styles.css'
+import '../styles/components/form.styles.css'
 
 const REACT_APP_DATABASE_URL = process.env.REACT_APP_DATABASE_URL;
 

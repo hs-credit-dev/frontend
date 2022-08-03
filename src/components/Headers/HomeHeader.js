@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../../styles/home-header.styles.css'
+import '../../styles/components/home-header.styles.css'
 
 export const IndexHeader = () => {
     return (

@@ -15,6 +15,7 @@ import './styles/App.css';
 //components
 
 import Login from './pages/Login'
+import Loggedout from './pages/Loggedout'
 import BasicUserSignUp from './pages/BasicUserSignUp';
 import StudentSignUp from './pages/StudentSignUp';
 import Profile from './pages/Profile';
@@ -121,6 +122,7 @@ const App = () => {
                     <Route exact path='/credit-search' component={ CreditSearch } />
                     <Route exact path='/about' component={ About } />
                     <Route exact path='/contact' component={ Contact } />
+                    <Route exact path='/logout' component={ Loggedout } />
 
                     <Route exact path='/teacher-signup' component={ TeacherSignUp } />
 
@@ -129,7 +131,7 @@ const App = () => {
                         exact path='/login'
                         render={(props) =>
                             <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
-                    <PrivateRoute exact path='/studentprofile' component={StudentProfile} user={currentUser} handleLogout={handleLogout} />
+                    <PrivateRoute exact path='/studentprofile' component={ StudentProfile } user={currentUser} handleLogout={handleLogout} />
                 </Switch>
             </div>
             {/* <Footer />  */}

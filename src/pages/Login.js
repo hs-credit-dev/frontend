@@ -7,7 +7,7 @@ import setAuthToken from '../utilities/setAuthToken';
 import logo from '../assets/images/hscLogo21.png';
 //import Footer from '../components/Footers/Footer.js';
 
-import '../styles/login.styles.css'
+import '../styles/pages/login.styles.css'
 
 // storing database url in environment
 const { REACT_APP_DATABASE_URL } = process.env
