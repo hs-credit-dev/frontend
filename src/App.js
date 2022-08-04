@@ -31,6 +31,7 @@ import Contact from './components/Contact';
 
 
 import TeacherSignUp from './pages/TeacherSignUp';
+import AccountCreationFooter from './components/Footers/AccountCreationFooter';
 
 // import ProfileCarousel from './components/ProfileCarousel';
 // import MainNavBar from './components/NavBars/NavBar'
@@ -134,7 +135,7 @@ const App = () => {
                     <PrivateRoute exact path='/studentprofile' component={ StudentProfile } user={currentUser} handleLogout={handleLogout} />
                 </Switch>
             </div>
-            {/* <Footer />  */}
+            <AccountCreationFooter /> 
 
             {/* </Router> */}
             { routes }
