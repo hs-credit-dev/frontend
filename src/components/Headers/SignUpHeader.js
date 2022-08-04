@@ -1,7 +1,7 @@
 import React  from "react";
 
 import "../../styles/signup-header.styles.css";
-import logo from '../../assets/images/hscLogo21.png';
+import logo from '../../assets/svg/hsc-logo-no-text.svg';
 
 export const SignUpHeader = () => {
     return (
