@@ -1,4 +1,5 @@
 import React from 'react'
+import emailjs from 'emailjs-com';
 
 import CommonHeader from '../components/Headers/CommonHeader'
 import AccountCreationFooter from '../components/Footers/AccountCreationFooter'
@@ -8,12 +9,13 @@ const SignupSuccess = (props) => {
     const handleResend = (e) => {
         e.preventDefault();
 
-        emailjs.sendForm('service_tvq7tyj', 'template_xa670ar', e.target, 'mDzCQQXqWcC3Y5-lU')
-        .then((result) => {
-            window.location.reload()
-        }, (error) => {
-            console.log(error.text);
-        });
+        // emailjs.sendForm('service_tvq7tyj', 'template_xa670ar', e.target, 'mDzCQQXqWcC3Y5-lU')
+        // .then((result) => {
+        //     window.location.reload();
+        //     alert("Sent!");
+        // }, (error) => {
+        //     console.log(error.text);
+        // });
     }
 
     const handleSubmit = async (e) => {

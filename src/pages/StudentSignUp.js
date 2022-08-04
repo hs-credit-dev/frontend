@@ -118,6 +118,7 @@ const StudentSignUp = (props) => {
                 <button value="submit" className='submit'>Create Account</button>
 
             </form>
+            <SignupSuccess firstName={firstName} setFirstName={setFirstName}/>
         </div>
     )
 }

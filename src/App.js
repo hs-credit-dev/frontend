@@ -18,6 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login'
 import BasicUserSignUp from './pages/BasicUserSignUp';
 import StudentSignUp from './pages/StudentSignUp';
+import SignupSuccess from './pages/SignupSuccess';
 import Profile from './pages/Profile';
 import StudentProfile from './pages/StudentProfile'
 import NavBar from './components/NavBars/NavBar'
@@ -117,6 +118,7 @@ const App = () => {
                     <Route exact path='/frontend' component={Home} />
                     <Route exact path='/basic-signup' component={BasicUserSignUp} />
                     <Route exact path='/student-signup' component={StudentSignUp} />
+                    <Route exact path='/signup-success' component={SignupSuccess} />
                     <Route exact path='/profile' component={Profile} user={currentUser} />
                     <Route exact path='/explore' component={ Explore } />
                     <Route exact path='/credit-search' component={ CreditSearch } />

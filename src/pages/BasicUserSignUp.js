@@ -151,6 +151,7 @@ const BasicUserSignUp = (props) => {
                 <button value="submit" className="next-button">Next</button>
 
             </form>
+            <SignupSuccess email={email} setEmail={setEmail}/>
         </div>
     )
 }
