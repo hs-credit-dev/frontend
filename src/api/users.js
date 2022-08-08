@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const { API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 
 /**
  * 
@@ -8,15 +8,15 @@ const { API_URL } = process.env;
  * @param {*} password account password
  */
 export const login = async (username, password) => {
-    return await axios.post(`${API_URL}/users/login`, { username, password });
+    return await axios.post(`${REACT_APP_API_URL}/users/login`, { username, password });
 };
 
 export const logout = async () => {
-    return await axios.post(`${API_URL}/users/logout`);
+    return await axios.post(`${REACT_APP_API_URL}/users/logout`);
 };
 
 export const getUserInSession = async () => {
-    return await axios.get(`${API_URL}/users/me`);
+    return await axios.get(`${REACT_APP_API_URL}/users/me`);
 };
 
 /**
@@ -26,9 +26,9 @@ export const getUserInSession = async () => {
  * @returns 
  */
 export const updateUserInSession = async (data) => {
-    return await axios.put(`${API_URL}/users/me`);
+    return await axios.put(`${REACT_APP_API_URL}/users/me`);
 };
 
 export const deleteUserInSession = async () => {
-    return await axios.delete(`${API_URL}/users/me`);
+    return await axios.delete(`${REACT_APP_API_URL}/users/me`);
 };

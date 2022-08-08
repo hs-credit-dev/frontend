@@ -1,17 +1,14 @@
 import React, { } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
 
 import './styles/App.css';
 
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
-import BasicUserSignUp from './pages/BasicUserSignUp';
-import StudentSignUp from './pages/StudentSignUp';
-import TeacherSignUp from './pages/TeacherSignUp';
+import SignUpPage from './pages/SignUp/SignUpPage';
 import NotFound from './pages/NotFound';
-
-import { Button } from '@material-tailwind/react';
 
 const App = () => {
   return (
@@ -22,10 +19,8 @@ const App = () => {
             <Route exact path='/' element={<Home />} />
             <Route exact path='/about' element={<About />} />
             <Route exact path='/login' element={<Login />} />
-            <Route exact path='/basic-signup' element={<BasicUserSignUp />} />
-            <Route exact path='/student-signup' element={<StudentSignUp />} />
-            <Route exact path='/teacher-signup' element={<TeacherSignUp />} />
-          {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
+            <Route exact path='/signup' element={<SignUpPage />} />
+            {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
           <Route exact path='/contact' element={<Contact />} />
@@ -38,7 +33,7 @@ const App = () => {
             render={(props) =>
               <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
           <Route exact path='/studentprofile' element={<StudentProfile />} user={currentUser} handleLogout={handleLogout} /> */}
-            {/* <Route path='*' element={<NotFound />} /> */}
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       </Router>

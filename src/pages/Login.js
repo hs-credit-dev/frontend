@@ -1,28 +1,26 @@
 // imports
 import React, { useState } from 'react';
-import axios from 'axios';
 // import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 // import setAuthToken from '../utilities/setAuthToken';
 import logo from '../assets/svg/hsc-logo-no-text.svg';
 import Footer from '../components/Footers/AccountCreationFooter';
 
-import '../styles/login.styles.css'
+import { users } from '../api';
 
-// storing database url in environment
-const { REACT_APP_DATABASE_URL } = process.env
+import '../styles/login.styles.css'
 
 const Login = (props) => {
 
     // state variables
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
     const navigate = useNavigate();
 
     // set email based on event
     const handleEmail = (e) => {
-        setEmail(e.target.value);
+        setUsername(e.target.value);
     }
 
     // set password based on event
@@ -36,27 +34,9 @@ const Login = (props) => {
 
     // handle submit function
     const handleSubmit = async (e) => {
-        console.log(`>>>> inside handleSubmit func`)
-        e.preventDefault()
-        const userData = { email, password }
+        e.preventDefault();
 
-        try 
-        {
-            const response = await axios.post(`${REACT_APP_DATABASE_URL}/users/login`, userData)
-            console.log(`>>>>inside handleSubmit reponse block`)
-            const token = await response.data
-            await localStorage.setItem('jwtToken', token)
-            // setAuthToken(token)
-            // const decoded = jwt_decode(token)
-            // props.nowCurrentUser(decoded)
-            setRedirect(true) 
-        }
-        catch(error)
-        {
-            console.log(`>>>> error in handleSubmit func: ${error}`)
-            alert('incorrect email or password! please try again')
-        }
-
+        users.login(username, password);
     }
 
     // if there is user logged in, redirect them home
@@ -66,13 +46,13 @@ const Login = (props) => {
         <div>
             <div className="login-container">
                 <div className="logo-title-banner">
-                    <img src={logo} className="logo-image"/>
+                    <img src={logo} className="logo-image" />
                     <a className="title">hs.credit</a>
                 </div>
 
                 <form className="login-form" onSubmit={handleSubmit}>
-                    <input type="text" name="email" value={email} onChange={handleEmail} placeholder="Username" className="form-input" />
-                    <input type="password" name="password" value={password} onChange={handlePassword} placeholder="Password" className="form-input"/>
+                    <input type="text" name="email" value={username} onChange={handleEmail} placeholder="Username" className="form-input" />
+                    <input type="password" name="password" value={password} onChange={handlePassword} placeholder="Password" className="form-input" />
                     <button type="submit" className="login-button">Log In</button>
                     <a className='forgot-password-link' href="">Forgot password?</a>
                 </form>

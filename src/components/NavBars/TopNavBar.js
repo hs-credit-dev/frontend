@@ -29,7 +29,7 @@ function TopNavBar(props) {
                     </li>
 
                     <li id="top-nav-li">
-                        <NavLink to="/basic-signup">Sign up</NavLink>
+                        <NavLink to="/signup">Sign up</NavLink>
 
                     </li>
                     <li id="top-nav-li">

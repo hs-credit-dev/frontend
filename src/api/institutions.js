@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const { API_URL } = process.env;
+const { REACT_APP_API_URL } = process.env;
 
 export const create = async (username, email, password, firstName, lastName, name, title, logo, phone) => {
-    return await axios.post(`${API_URL}/institutions/create`, { username, email, password, firstName, lastName, name, title, logo, phone });
+    return await axios.post(`${REACT_APP_API_URL}/institutions/create`, { username, email, password, firstName, lastName, name, title, logo, phone });
 };
 
 /**
@@ -12,9 +12,9 @@ export const create = async (username, email, password, firstName, lastName, nam
  * @returns 
  */
 export const get = async (id) => {
-    return await axios.get(`${API_URL}/institutions/${id}`);
+    return await axios.get(`${REACT_APP_API_URL}/institutions/${id}`);
 };
 
 export const getAll = async () => {
-    return await axios.get(`${API_URL}/institutions/all`);
+    return await axios.get(`${REACT_APP_API_URL}/institutions/all`);
 };

@@ -9,8 +9,6 @@
 
 .basic-signup-form {
     font-size: 0.9em;
-    margin-left: 9.5vw;
-    margin-top: 20vh;
     display: flex;
     align-items: flex-start;
 }

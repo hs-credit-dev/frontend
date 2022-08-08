@@ -1,8 +1,11 @@
+import { Typography } from '@material-tailwind/react'
+import { NavLink } from 'react-router-dom';
+
 const NotFound = () => {
     return (
         <>
-            <h1>404 Not Found</h1>
-            <p>Return <a href='/'>home</a></p>
+            <Typography variant="h1">404 | Page Not Found</Typography>
+            <Typography variant="paragraph">Return <NavLink to="/">home</NavLink></Typography>
         </>
     )
 }
