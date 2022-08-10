@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { useAtom } from 'jotai';
 
 import { users } from '../api';
@@ -8,7 +8,7 @@ import { userInSession } from '../App';
 import Logo from './../components/Logo';
 import Input from './../components/Input';
 import Button from './../components/Button';
-import SubmitButton from '../components/SubmitButton';
+import SubmitButton from './../components/SubmitButton';
 import Footer from '../components/Footers/AccountCreationFooter';
 
 
@@ -20,9 +20,6 @@ const Login = (props) => {
 
     const [_userInSession, setUserInSession] = useAtom(userInSession);
 
-    const form = useRef(null);
-
-    // handle submit function
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -38,13 +35,16 @@ const Login = (props) => {
         }
     }
 
+    useEffect(() => {
+        if (_userInSession) navigate('/', { replace: true });
+    });
+
     return (
         <>
-            {_userInSession && <Navigate replace to='/' />}
             <div className='flex flex-col align-middle content-center h-full py-32'>
                 <div className='flex flex-col space-y-6 w-full'>
                     <Logo className='mx-auto mb-4' size='xl' />
-                    <form ref={form} className='flex flex-col space-y-6' onSubmit={handleSubmit}>
+                    <form className='flex flex-col space-y-6' onSubmit={handleSubmit}>
                         <Input name='username' autoComplete='username' placeholder='Username' className='mx-auto text-center w-4/5 sm:w-full max-w-lg' onChange={(e) => { setUsername(e.target.value); }} />
                         <Input type='password' autoComplete='current-password' name='password' placeholder='Password' className='mx-auto text-center w-4/5 sm:w-full max-w-lg' onChange={(e) => { setPassword(e.target.value); }} />
                         <SubmitButton name="Log In" className='mx-auto' />
