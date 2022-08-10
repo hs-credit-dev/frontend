@@ -2,13 +2,13 @@
 import React, { useState } from 'react';
 // import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-// import setAuthToken from '../utilities/setAuthToken';
-import logo from '../assets/svg/hsc-logo-no-text.svg';
 import Footer from '../components/Footers/AccountCreationFooter';
 
 import { users } from '../api';
 
-import '../styles/login.styles.css'
+import Logo from './../components/Logo';
+import Input from './../components/Input';
+import Button from './../components/Button';
 
 const Login = (props) => {
 
@@ -43,27 +43,23 @@ const Login = (props) => {
     // if (props.user) return <Redirect to="/home" />
 
     return (
-        <div>
-            <div className="login-container">
-                <div className="logo-title-banner">
-                    <img src={logo} className="logo-image" />
-                    <a className="title">hs.credit</a>
+        <>
+            <div className='flex flex-col align-middle content-center h-full py-32'>
+                <div className='flex flex-col space-y-6 w-full'>
+                    <Logo className='mx-auto mb-4' size='xl' />
+                    <form className='flex flex-col space-y-6'>
+                        <Input name='username' placeholder='Username' className='mx-auto text-center w-4/5 sm:w-full max-w-lg' />
+                        <Input name='password' placeholder='Password' className='mx-auto text-center w-4/5 sm:w-full max-w-lg' />
+                    </form>
+                    <Button className='mx-auto'>Log In</Button>
+                    <a className='mx-auto font-bold text-blue-700' href="">Forgot password?</a>
                 </div>
-
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <input type="text" name="email" value={username} onChange={handleEmail} placeholder="Username" className="form-input" />
-                    <input type="password" name="password" value={password} onChange={handlePassword} placeholder="Password" className="form-input" />
-                    <button type="submit" className="login-button">Log In</button>
-                    <a className='forgot-password-link' href="">Forgot password?</a>
-                </form>
-
-                <button onClick={handleSignup} className="create-account-button">Create account</button>
+                <Button className='mx-auto mt-auto block'>Create account</Button>
             </div>
             <Footer />
-        </div>
-
-    )
-}
+        </>
+    );
+};
 
 
 export default Login;

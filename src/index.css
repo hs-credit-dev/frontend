@@ -1,21 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-* 
-{
-  font-family: 'Montserrat', sans-serif;
-  background-color: #F6F4FA;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+html {
+  background-color: #f6f4fa;
 }
 
 body {
   margin: 0;
+  height: 100vh;
   -webkit-font-smoothing: Montserrat;
   -moz-osx-font-smoothing: Montserrat;
 }
 
+#root {
+  height: 100%;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

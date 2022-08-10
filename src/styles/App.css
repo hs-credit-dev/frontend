@@ -1,17 +1,12 @@
 :root {
-  --primary-color: #73AACA;
-  --second-color: #85C4E9;
+  --primary-color: #73aaca;
+  --second-color: #85c4e9;
   --third-color: #235c7e;
 }
 
-*{
+* {
   box-sizing: border-box;
   color: #000;
-}
-
-.app {
-  display: flex;
-  flex-direction: row;
 }
 
 .mainAppContainer {
@@ -40,7 +35,7 @@ a {
   margin-left: 10px;
 } */
 
-.tagline{
+.tagline {
   color: white;
   font-size: 20px;
   font-style: normal;
@@ -52,18 +47,18 @@ a {
 }
 
 /* HOME STYLING */
-.home-container{
- display: flex;
- flex-direction: column;
+.home-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.book-div{
-  margin-top:20px;
+.book-div {
+  margin-top: 20px;
 }
 
-.book{
+.book {
   height: 150px;
   width: 170px;
   left: 2px;
@@ -71,8 +66,8 @@ a {
   border-radius: 0px;
 }
 
-.how-works{
-  color:white;
+.how-works {
+  color: white;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -81,20 +76,18 @@ a {
   text-align: left;
 }
 
-.how-desc{
+.how-desc {
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   /* line-height: 44px; */
   letter-spacing: 0px;
   text-align: left;
-  color:white;
+  color: white;
   text-align: center;
 }
-
 
 .navbar-brand {
   padding: 18px 20px;
   display: inline-block;
 }
-

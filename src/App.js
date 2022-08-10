@@ -11,15 +11,14 @@ import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
-    <div className="app">
+    <div className="app h-full">
       <Router>
-        <div className='mainAppContainer'>
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route exact path='/about' element={<About />} />
-            <Route exact path='/login' element={<Login />} />
-            <Route exact path='/signup' element={<SignUpPage />} />
-            {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/about' element={<About />} />
+          <Route exact path='/login' element={<Login />} />
+          <Route exact path='/signup' element={<SignUpPage />} />
+          {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
           <Route exact path='/contact' element={<Contact />} />
@@ -32,9 +31,8 @@ const App = () => {
             render={(props) =>
               <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
           <Route exact path='/studentprofile' element={<StudentProfile />} user={currentUser} handleLogout={handleLogout} /> */}
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </div>
+          <Route path='*' element={<NotFound />} />
+        </Routes>
       </Router>
     </div>
   );
