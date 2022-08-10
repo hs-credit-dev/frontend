@@ -5,6 +5,8 @@ const Input = ({
   placeholder,
   className,
   labelClassName,
+  onChange,
+  autoComplete,
 }) => {
   return (
     <>
@@ -18,6 +20,8 @@ const Input = ({
         name={name}
         placeholder={placeholder}
         className={`h-8  drop-shadow-lg ${className}`}
+        onChange={onChange}
+        autoComplete={autoComplete}
       />
     </>
   );

@@ -1,5 +1,6 @@
 import React, { } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { atom } from 'jotai';
 
 import './styles/App.css';
 
@@ -8,6 +9,8 @@ import About from './pages/About';
 import Login from './pages/Login';
 import SignUpPage from './pages/SignUp/SignUpPage';
 import NotFound from './pages/NotFound';
+
+export const userInSession = atom(null);
 
 const App = () => {
   return (
