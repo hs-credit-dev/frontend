@@ -7,6 +7,17 @@ module.exports = withMT({
   ],
   theme: {
     extend: {},
+    colors: {
+      'hswhite': '#FFFFFF',
+      'hsblack': '#000000',
+      'hsgrey': '#333333',
+      'hspurple': '#805DBE',  // primary color
+      'hsbg': '#F6F4FA',      // background color
+    }
+  },
+  fontFamily: {
+    'hsfont': ['Montserrat', 'sans-serif'],
+    'hscodefont': ['source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
   },
   plugins: [],
 });
