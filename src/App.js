@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import SignUpPage from './pages/SignUp/SignUpPage';
+import Dashboard from './pages/Dashboard/Dashboard.jsx';
 import NotFound from './pages/NotFound';
 
 export const userInSession = atom(null);
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path='/about' element={<About />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<SignUpPage />} />
+          <Route exact path='/dashboard' element={<Dashboard />} />
           {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
           <Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
