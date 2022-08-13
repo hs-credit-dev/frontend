@@ -8,6 +8,7 @@ import './index.css';
 
 axios.defaults.withCredentials = true; // send cookies
 axios.defaults.validateStatus = () => true; // don't throw errors on non-200 response
+delete axios.defaults.headers.common['Access-Control-Allow-Origin']; // don't validate yourself (server will do that)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
