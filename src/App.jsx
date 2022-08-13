@@ -31,11 +31,11 @@ const App = () => {
   // Get user in session on init once
   useEffect(() => {
     (async () => {
-      // try {
-      if (user) return;
-      const res = await users.getUserInSession();
-      setUser(res.data.data);
-      // } catch (err) { }
+      try {
+        if (user) return;
+        const res = await users.getUserInSession();
+        setUser(res.data.data);
+      } catch (err) {}
       setIsLoaded(true);
     })();
   }, []);
