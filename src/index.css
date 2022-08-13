@@ -8,6 +8,10 @@
   font-family: "Montserrat", sans-serif;
 }
 
+a {
+  color: black;
+}
+
 html {
   background-color: #f6f4fa;
 }
@@ -29,5 +33,5 @@ code {
 }
 
 .font-sans {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }

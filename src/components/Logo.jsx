@@ -2,14 +2,16 @@ import { Avatar, Typography } from "@material-tailwind/react";
 
 import img from "../assets/svg/hsc-logo-no-text.svg";
 
-const Logo = ({ className, size }) => {
+const Logo = ({ className }) => {
   return (
-    <span className={`logo flex w-fit ${className}`}>
-      <Avatar src={img} alt="logo" className="mr-4" size={size} />
-      <Typography variant="h1" className="text-3xl my-auto">
-        hs.credit
-      </Typography>
-    </span>
+    <>
+      <span className={`flex items-center w-fit ${className}`}>
+        <Avatar src={img} alt="logo" className="block w-24 h-24 mr-4" />
+        <Typography variant="h1" className="block text-3xl">
+          hs.credit
+        </Typography>
+      </span>
+    </>
   );
 };
 

@@ -1,13 +1,4 @@
-const Input = ({
-  name,
-  type,
-  label,
-  placeholder,
-  className,
-  labelClassName,
-  onChange,
-  autoComplete,
-}) => {
+const Input = ({ name, label, labelClassName, className, ...props }) => {
   return (
     <>
       {label && (
@@ -16,12 +7,10 @@ const Input = ({
         </label>
       )}
       <input
-        type={type || "text"}
+        type={props.type || "text"}
         name={name}
-        placeholder={placeholder}
         className={`h-8  drop-shadow-lg ${className}`}
-        onChange={onChange}
-        autoComplete={autoComplete}
+        {...props}
       />
     </>
   );

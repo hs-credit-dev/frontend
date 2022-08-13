@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import axios from 'axios'
 import { ThemeProvider } from '@material-tailwind/react';
+import App from './App';
+import './index.css';
+
+axios.defaults.withCredentials = true; // send cookies
+axios.defaults.validateStatus = () => true; // don't throw errors on non-200 response
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

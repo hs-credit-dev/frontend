@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 
 import "../../styles/basic-user-signup.styles.css";
-import AccountCreationFooter from "../../components/Footers/AccountCreationFooter";
-import StudentSignUp from "./components/StudentSignUp";
-import TeacherSignUp from "./components/TeacherSignUp";
+import AccountCreationFooter from "../../components/Footer";
+import SignUpStudent from "./components/SignUpStudent";
+import SignUpTeacher from "./components/SignUpTeacher";
 import NotFound from "../NotFound";
 import SignUpHeader from "./components/SignUpHeader";
-import UserSignUp from "./components/UserSignUp";
+import SignUpUser from "./components/SignUpUser";
 
-const SignUpPage = () => {
+const SignUp = () => {
   const [page, setPage] = useState(0);
   const [type, setType] = useState("");
 
   const renderSignUp = (page) => {
     switch (page) {
       case 0:
-        return <UserSignUp setPage={setPage} type={type} setType={setType} />;
+        return <SignUpUser setPage={setPage} type={type} setType={setType} />;
       case 1:
         switch (type) {
           case "student-signup":
-            return <StudentSignUp />;
+            return <SignUpStudent />;
           case "teacher-signUp":
-            return <TeacherSignUp />;
+            return <SignUpTeacher />;
           default:
             return <NotFound />;
         }
@@ -39,4 +39,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignUp;

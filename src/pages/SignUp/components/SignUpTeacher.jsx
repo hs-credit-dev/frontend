@@ -5,12 +5,12 @@ import { Navigate } from "react-router-dom";
 
 import "../../../styles/teacher-signup.styles.css";
 
-import AccountCreationFooter from "../../../components/Footers/AccountCreationFooter.jsx";
+import AccountCreationFooter from "../../../components/Footer.jsx";
 
 // database url
 const { REACT_APP_DATABASE_URL } = process.env;
 
-const TeacherSignUp = (props) => {
+const SignUpTeacher = (props) => {
   const [schoolId, setSchoolId] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [schoolWebsite, setSchoolWebsite] = useState("");
@@ -159,4 +159,4 @@ const TeacherSignUp = (props) => {
   );
 };
 
-export default TeacherSignUp;
+export default SignUpTeacher;

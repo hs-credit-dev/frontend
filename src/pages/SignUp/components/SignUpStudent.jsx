@@ -1,15 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import "../../../styles/student-signup.styles.css";
-import AccountCreationFooter from "../../../components/Footers/AccountCreationFooter";
+import AccountCreationFooter from "../../../components/Footer";
 import { students } from "../../../api";
 
-import { username, email, password } from "./UserSignUp";
+import { username, email, password } from "./SignUpUser";
 import { useAtom } from "jotai";
 
-const StudentSignUp = () => {
+const SignUpStudent = () => {
+  const navigate = useNavigate();
+
   const [_username] = useAtom(username);
   const [_email] = useAtom(email);
   const [_password] = useAtom(password);
@@ -65,13 +67,15 @@ const StudentSignUp = () => {
       123456,
       bio
     );
+
+    navigate("/");
   };
 
   if (redirect) return <Navigate to="/explore" />;
 
   return (
     <div className="student-signup-container">
-      <form className="basic-signup-form mt-4 mx-14" onSubmit={handleSubmit}>
+      <form className="flex flex-col mt-24 mx-14" onSubmit={handleSubmit}>
         <div className="row-group">
           <div className="inline-student">
             <label>First Name</label>
@@ -156,4 +160,4 @@ const StudentSignUp = () => {
   );
 };
 
-export default StudentSignUp;
+export default SignUpStudent;
