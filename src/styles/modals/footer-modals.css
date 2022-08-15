@@ -15,6 +15,16 @@
 }
 
 /* modal */
+ol li {
+    display: list-item;
+    list-style-type: decimal;
+}
+
+ul li {
+    display: list-item;
+    list-style-type: disc;
+}
+
 .ReactModal__Content--after-open {
     height: 60vh;
     overflow-y: scroll !important;

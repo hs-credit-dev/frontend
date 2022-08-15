@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 
 import '../../styles/modals/footer-modals.css';
 import logo from '../../assets/svg/hsc-logo-with-text.svg';
+import SubmitButton from '../SubmitButton.jsx';
 
 export default function PrivacyPolicyModal() {
 
@@ -156,7 +157,7 @@ export default function PrivacyPolicyModal() {
                     </div>
                 </div>
                 <div className='close-btn'>
-                    <button onClick={()=>hideDetail()}>I've read and agree to the terms</button>
+                    <button className='bg-hspurple shadow-none hover:shadow-hspurple rounded-2xl max-w-none min-w-fit w-64 h-12 text-white font-bold' onClick={()=>hideDetail()}>I've read and agree to the terms</button>
                 </div>
             </div>
         </ReactModal>
