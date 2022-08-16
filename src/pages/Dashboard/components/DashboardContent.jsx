@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import StudentNarrative from "./StudentNarrative.jsx";
+import DashboardTable from "./DashboardTable.jsx";
 import NotFound from "../../NotFound";
 
 const DashboardContent = () => {
@@ -16,12 +17,41 @@ const DashboardContent = () => {
 
         switch (type) {
             case "narrative":
-                console.log("here");
                 return <StudentNarrative />;
-            // case "minted-credits":
-            //     return <CreditChart />;
-                default:
-                    return <StudentNarrative />;
+            case "minted-credits":
+                return <DashboardTable 
+                        header1={"Date"}
+                        header2={"Title"}
+                        header3={"Discipline"}
+                        header4={"Rubric"}
+                        header5={"Status"}
+                    />;
+            case "staked-credits":
+                return <DashboardTable 
+                        header1={"Date"}
+                        header2={"Title"}
+                        header3={"Discipline"}
+                        header4={"Rubric"}
+                        header5={"Status"}
+                    />;
+            case "your-credits":
+                return <DashboardTable 
+                        header1={"Date"}
+                        header2={"Title"}
+                        header3={"Discipline"}
+                        header4={"Rubric"}
+                        header5={"Status"}
+                    />;
+            case "unaccepted-credits":
+                return <DashboardTable 
+                        header1={"Date"}
+                        header2={"Title"}
+                        header3={"Discipline"}
+                        header4={"Rubric"}
+                        header5={"Status"}
+                    />;
+            default:
+                return <StudentNarrative />;
             }
     };
 

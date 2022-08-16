@@ -36,8 +36,9 @@ const TopNavBar = () => {
       {
         <>
           <div className="mx-auto flex flex-col lg:flex-row items-center gap-4">
-            {user && <NavLink to="/dashboard">Dashboard</NavLink>}
+            {/* {user && <NavLink to="/dashboard">Dashboard</NavLink>} */}
             <NavLink to="/about">How do I use Hs.Credit?</NavLink>
+            <NavLink to="/dashboard">dashboard</NavLink>
           </div>
           {location.pathname !== "/login" && (
             <AuthButton className="lg:ml-auto" />

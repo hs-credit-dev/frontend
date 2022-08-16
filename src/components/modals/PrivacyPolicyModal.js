@@ -20,7 +20,7 @@ export default function PrivacyPolicyModal() {
 
   return (
     <div className='text-container'>
-        <p className="footer-text-link" onClick={()=>seeDetail()}>Privacy Policy</p>
+        <p className="footer-text-link text-sm" onClick={()=>seeDetail()}>Privacy Policy</p>
         
         <ReactModal
                 ariaHideApp={false}

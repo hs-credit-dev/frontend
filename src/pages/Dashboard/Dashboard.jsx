@@ -38,16 +38,16 @@ const Dashboard = () => {
 
   return (
     <>
-      {!user ? (
+      {/* {!user ? (
         <Navigate to={"/"} />
-      ) : (
+      ) : ( */}
         <>
           <DashboardHeader />
           {/* {renderDashboard(page)} */}
           <StudentDashboard />
           <DashboardFooter />
         </>
-      )}
+      {/* )} */}
     </>
   );
 };

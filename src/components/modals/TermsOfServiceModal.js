@@ -19,7 +19,7 @@ export default function TermsOfServiceModal() {
 
   return (
     <div className='text-container'>
-        <p className="footer-text-link" onClick={()=>seeDetail()}>Terms & Services</p>
+        <p className="footer-text-link text-sm" onClick={()=>seeDetail()}>Terms & Services</p>
         
         <ReactModal
                 ariaHideApp={false}
