@@ -1,22 +1,26 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios'
 import { ThemeProvider } from '@material-tailwind/react';
+import JotaiNexus from 'jotai-nexus';
+
 import App from './App';
+
 import './index.css';
 
+// Init axios
 axios.defaults.withCredentials = true; // send cookies
 axios.defaults.validateStatus = () => true; // don't throw errors on non-200 response
-delete axios.defaults.headers.common['Access-Control-Allow-Origin']; // don't validate yourself (server will do that)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <ThemeProvider>
+      <JotaiNexus />
       <App />
     </ThemeProvider>
-  </React.StrictMode>
+  </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

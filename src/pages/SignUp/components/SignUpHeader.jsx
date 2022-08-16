@@ -1,19 +1,24 @@
 import { NavLink } from "react-router-dom";
-import { Avatar, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 
-import logo from "../../../assets/svg/hsc-logo-no-text.svg";
+import Logo from "./../../../components/Logo";
+
+import { resetState } from "../utils";
 
 const SignUpHeader = () => {
   return (
     <>
-      <div className="flex mt-8 mx-8">
-        <NavLink to="/" className="flex">
-          <Avatar src={logo} alt="logo" className="mr-4" />
-          <Typography className="text-black" variant="h3">
-            hs.credit
-          </Typography>
+      <div className="flex flex-wrap gap-6 items-center py-4 px-8">
+        <NavLink
+          to="/"
+          className="flex"
+          onClick={() => {
+            resetState();
+          }}
+        >
+          <Logo />
         </NavLink>
-        <Typography variant="h3" className="ml-auto">
+        <Typography className="text-3xl font-bold ml-auto">
           Account Creation
         </Typography>
       </div>

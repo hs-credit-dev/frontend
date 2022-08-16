@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { atom, useAtom } from "jotai";
 
-import "../../styles/basic-user-signup.styles.css";
-import AccountCreationFooter from "../../components/Footer";
 import SignUpStudent from "./components/SignUpStudent";
 import SignUpTeacher from "./components/SignUpTeacher";
 import NotFound from "../NotFound";
 import SignUpHeader from "./components/SignUpHeader";
 import SignUpUser from "./components/SignUpUser";
 
+import { userInSession } from "../../App";
+
+export const page = atom(0);
+export const userType = atom("");
+
 const SignUp = () => {
-  const [page, setPage] = useState(0);
-  const [type, setType] = useState("");
+  const [_page, setPage] = useAtom(page);
+  const [type] = useAtom(userType);
+
+  const [user] = useAtom(userInSession);
+
+  useEffect(() => {
+    setPage(0);
+  }, []);
 
   const renderSignUp = (page) => {
     switch (page) {
       case 0:
-        return <SignUpUser setPage={setPage} type={type} setType={setType} />;
+        return <SignUpUser />;
       case 1:
         switch (type) {
-          case "student-signup":
+          case "student":
             return <SignUpStudent />;
-          case "teacher-signUp":
+          case "teacher":
             return <SignUpTeacher />;
           default:
             return <NotFound />;
@@ -32,9 +43,14 @@ const SignUp = () => {
 
   return (
     <>
-      <SignUpHeader />
-      {renderSignUp(page)}
-      <AccountCreationFooter />
+      {user ? (
+        <Navigate to="/" />
+      ) : (
+        <>
+          <SignUpHeader />
+          {renderSignUp(_page)}
+        </>
+      )}
     </>
   );
 };

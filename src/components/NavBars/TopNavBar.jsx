@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 import { Navbar, MobileNav, IconButton } from "@material-tailwind/react";
@@ -33,11 +33,17 @@ const TopNavBar = () => {
   // Elements in navbar
   const navList = (
     <>
-      <div className="mx-auto flex flex-col lg:flex-row items-center gap-4">
-        {user && <NavLink to="/dashboard">Dashboard</NavLink>}
-        <NavLink to="/about">How do I use Hs.Credit?</NavLink>
-      </div>
-      {location.pathname !== "/login" && <AuthButton className="lg:ml-auto" />}
+      {
+        <>
+          <div className="mx-auto flex flex-col lg:flex-row items-center gap-4">
+            {user && <NavLink to="/dashboard">Dashboard</NavLink>}
+            <NavLink to="/about">How do I use Hs.Credit?</NavLink>
+          </div>
+          {location.pathname !== "/login" && (
+            <AuthButton className="lg:ml-auto" />
+          )}
+        </>
+      }
     </>
   );
 
@@ -48,7 +54,7 @@ const TopNavBar = () => {
           <Logo />
         </NavLink>
         <div className="hidden lg:flex lg:flex-grow lg:items-center">
-          {navList}
+          {!openNav && navList}
         </div>
         <IconButton
           variant="text"
@@ -62,7 +68,7 @@ const TopNavBar = () => {
           open={openNav}
           className="flex flex-col items-center gap-8 h-fit overflow-visible"
         >
-          {navList}
+          {openNav && navList}
         </MobileNav>
       </Navbar>
     </>

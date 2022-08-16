@@ -34,7 +34,6 @@ const AuthButton = ({ className, ...props }) => {
             setUser(null);
             navigate("/");
           }}
-          ripple={false}
           className={`hover:bg-transparent focus:bg-transparent active:bg-transparent ${className}`}
           {...props}
         >

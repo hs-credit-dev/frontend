@@ -5,6 +5,7 @@ module.exports = withMT({
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
     colors: {
@@ -16,8 +17,8 @@ module.exports = withMT({
     }
   },
   fontFamily: {
-    'hsfont': ['Montserrat', 'sans-serif'],
-    'hscodefont': ['source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
+    'sans': ['Montserrat', 'sans-serif'],
+    'code': ['source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'],
   },
   plugins: [],
 });

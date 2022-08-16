@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, Navigate, NavLink } from "react-router-dom";
 import { useAtom } from "jotai";
 
@@ -10,7 +10,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import SubmitButton from "../components/SubmitButton";
 
-const Login = (props) => {
+const Login = () => {
   const [user, setUser] = useAtom(userInSession);
 
   const [username, setUsername] = useState("");
@@ -37,10 +37,10 @@ const Login = (props) => {
         <Navigate to="/" />
       ) : (
         <>
-          <div className="flex flex-col align-middle content-center h-4/5">
-            <div className="flex flex-col gap-6 w-full mt-32">
+          <div className="flex flex-col align-middle my-auto h-4/5">
+            <div className="flex flex-col gap-6 mt-auto">
               <NavLink to="/">
-                <Logo className="mx-auto mb-4" size="xl" />
+                <Logo className="mx-auto mb-4" />
               </NavLink>
               <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
                 <Input
@@ -68,14 +68,9 @@ const Login = (props) => {
                 Forgot password?
               </a>
             </div>
-            <Button
-              className="mx-auto mb-12 mt-auto"
-              onClick={() => {
-                navigate("/signup");
-              }}
-            >
-              Create account
-            </Button>
+            <NavLink to="/signup" className="mx-auto mb-12 mt-auto">
+              <Button>Create account</Button>
+            </NavLink>
           </div>
         </>
       )}

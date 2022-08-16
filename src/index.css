@@ -4,23 +4,16 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
 
-* {
-  font-family: "Montserrat", sans-serif;
-}
-
-a {
-  color: black;
-}
-
-html {
-  background-color: #f6f4fa;
-}
-
 body {
+  background-color: #f6f4fa;
+
   margin: 0;
   height: 100vh;
+
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: Montserrat;
   -moz-osx-font-smoothing: Montserrat;
+  color: black;
 }
 
 #root {
@@ -30,8 +23,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.font-sans {
-  font-family: "Montserrat", sans-serif;
 }

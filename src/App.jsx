@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { atom, useAtom } from "jotai";
-
-import "./styles/App.css";
 
 import { users } from "./api";
 
@@ -19,7 +12,6 @@ import SignUp from "./pages/SignUp/SignUp";
 import Dashboard from "./pages/Dashboard/Dashboard.jsx";
 import NotFound from "./pages/NotFound";
 import Spinner from "./components/Spinner";
-import TopNavBar from "./components/NavBars/TopNavBar";
 import Footer from "./components/Footer";
 
 // State
@@ -49,7 +41,7 @@ const App = () => {
     );
 
   return (
-    <div className="app h-full">
+    <div className="app h-full flex flex-col">
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -72,7 +64,7 @@ const App = () => {
           <Route exact path='/studentprofile' element={<StudentProfile />} user={currentUser} handleLogout={handleLogout} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <Footer />
+        <Footer className="mt-auto" />
       </Router>
     </div>
   );
