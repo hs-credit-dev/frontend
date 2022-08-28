@@ -8,6 +8,7 @@ import { userInSession } from "../../App";
 import DashboardHeader from "./components/DashboardHeader.jsx";
 import StudentDashboard from "./components/StudentDashboard.jsx";
 import DashboardFooter from "./components/DashboardFooter.jsx";
+import TopNavBar from "../../components/NavBars/TopNavBar";
 // import NotFound from '../NotFound';
 
 const Dashboard = () => {
@@ -38,16 +39,17 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* {!user ? (
+      {!user ? (
         <Navigate to={"/"} />
-      ) : ( */}
+      ) : (
         <>
-          <DashboardHeader />
+          <TopNavBar />
+          {/* <DashboardHeader /> */}
           {/* {renderDashboard(page)} */}
           <StudentDashboard />
           <DashboardFooter />
         </>
-      {/* )} */}
+      )}
     </>
   );
 };

@@ -34,18 +34,16 @@ const FooterElement = ({ children, className, ...props }) => {
 const Transcript = forwardRef(({ user, student, className }, ref) => {
   const [qrCode, setQrCode] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      setQrCode(
-        await qr.toDataURL(`https://www.youtube.com/watch?v=QH2-TGUlwu4`)
-      );
-    })();
-  }, []);
-
   if (!user || !student) return <></>;
 
   const { firstName, lastName } = user;
   const { schoolName, dob, ceebCode, id } = student;
+
+  (async () => {
+    setQrCode(
+      await qr.toDataURL(`${process.env.PUBLIC_URL}/profile/student/${id}`)
+    );
+  })();
 
   return (
     <div

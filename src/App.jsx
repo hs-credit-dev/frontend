@@ -9,7 +9,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp/SignUp";
-import Dashboard from "./pages/Dashboard/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Profile from "./pages/Profile/Profile";
 import NotFound from "./pages/NotFound";
 import Spinner from "./components/Spinner";
 import Footer from "./components/Footer";
@@ -48,9 +49,9 @@ const App = () => {
           <Route exact path="/about" element={<About />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          {/*<Route exact path='/profile' element={<Profile />} user={currentUser} />
-          <Route exact path='/explore' element={<Explore />} />
+          {/*<Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
           <Route exact path='/contact' element={<Contact />} />
           <Route exact path='/teacher-signup' element={<TeacherSignUp />} />

@@ -36,12 +36,26 @@ const TopNavBar = () => {
       {
         <>
           <div className="mx-auto flex flex-col lg:flex-row items-center gap-4">
-            {/* {user && <NavLink to="/dashboard">Dashboard</NavLink>} */}
+            {user && <NavLink to="/profile">Profile</NavLink>}
+            {user && <NavLink to="/dashboard">Dashboard</NavLink>}
             <NavLink to="/about">How do I use Hs.Credit?</NavLink>
-            <NavLink to="/dashboard">dashboard</NavLink>
           </div>
           {location.pathname !== "/login" && (
-            <AuthButton className="lg:ml-auto" />
+            <>
+              <div className="flex items-center gap-2">
+                {user && (
+                  <>
+                    <NavLink to="/profile">
+                      <p className=" text-white font-bold text-4xl p-2 bg-hsblue rounded-xl">
+                        {user.firstName[0]}
+                        {user.lastName[0]}
+                      </p>
+                    </NavLink>
+                  </>
+                )}
+                <AuthButton className="lg:ml-auto" />
+              </div>
+            </>
           )}
         </>
       }
