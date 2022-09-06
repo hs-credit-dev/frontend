@@ -32,3 +32,7 @@ export const updateUserInSession = async (data) => {
 export const deleteUserInSession = async () => {
     return await axios.delete(`${REACT_APP_API_URL}/api/users/me`);
 };
+
+export const verify = async (id, password) => {
+    return await axios.put(`${REACT_APP_API_URL}/api/users/verify/${id}?password=${password}`);
+};

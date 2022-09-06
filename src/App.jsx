@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Profile from "./pages/Profile/Profile";
+import Verification from './pages/Verification';
 import NotFound from "./pages/NotFound";
 import Spinner from "./components/Spinner";
 import Footer from "./components/Footer";
@@ -28,7 +29,7 @@ const App = () => {
         if (user) return;
         const res = await users.getUserInSession();
         setUser(res.data.data);
-      } catch (err) {}
+      } catch (err) { }
       setIsLoaded(true);
     })();
   }, []);
@@ -51,6 +52,7 @@ const App = () => {
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="verify" element={<Verification />} />
           {/*<Route exact path='/explore' element={<Explore />} />
           <Route exact path='/credit-search' element={<CreditSearch />} />
           <Route exact path='/contact' element={<Contact />} />

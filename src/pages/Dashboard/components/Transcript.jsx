@@ -41,7 +41,7 @@ const Transcript = forwardRef(({ user, student, className }, ref) => {
 
   (async () => {
     setQrCode(
-      await qr.toDataURL(`${process.env.PUBLIC_URL}/profile/student/${id}`)
+      await qr.toDataURL(`${window.location.origin}/profile?id=${id}`)
     );
   })();
 
