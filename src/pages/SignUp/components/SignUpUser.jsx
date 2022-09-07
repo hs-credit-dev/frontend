@@ -32,7 +32,6 @@ const SignUpUser = () => {
   const [confirmEmail, setConfirmEmail] = useState("");
   const [_password, setPassword] = useAtom(password);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmAge, setConfirmAge] = useState(false);
 
   const [warning, setWarning] = useState("");
 
@@ -64,8 +63,6 @@ const SignUpUser = () => {
       );
     else if (_password !== confirmPassword)
       return setWarning("Passwords do not match.");
-    else if (!confirmAge)
-      return setWarning("Please confirm your age before continuing.");
 
     setPage(1);
   };
@@ -73,7 +70,7 @@ const SignUpUser = () => {
   return (
     <>
       <form
-        className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-5 md:auto-cols-fr gap-12 py-16 px-4 md:px-16"
+        className="flex flex-col md:grid md:grid-cols-2 md:grid-rows-5 md:auto-cols-fr gap-16 py-16 px-4 md:px-16"
         onSubmit={handleSubmit}
       >
         <Input
@@ -190,19 +187,6 @@ const SignUpUser = () => {
           }}
         />
         <span className="col-span-2 flex flex-col gap-2">
-          <span className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              name="age-check"
-              onClick={() => setConfirmAge(!confirmAge)}
-              className="border-none h-10 drop-shadow-lg"
-              value={confirmAge}
-            />
-            <p className="italic text-sm font-semibold">
-              By checking this box, you are confirming that you are at least 13
-              years of age or older.
-            </p>
-          </span>
           <SubmitButton name="Next" />
           {warning && <p className="text-red-600 font-bold">{warning}</p>}
         </span>

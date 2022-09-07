@@ -58,7 +58,7 @@ const SignUpTeacher = () => {
       } else {
         setWarning(res.data.message);
       }
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
@@ -75,6 +75,8 @@ const SignUpTeacher = () => {
                 <p>CEEB</p>
                 <a
                   href="https://satsuite.collegeboard.org/k12-educators/tools-resources/k12-school-code-search"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="ml-auto"
                 >
                   <p className="text-blue-700">Find code here</p>
