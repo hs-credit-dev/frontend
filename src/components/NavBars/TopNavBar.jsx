@@ -37,7 +37,8 @@ const TopNavBar = () => {
         <>
           <div className="mx-auto flex flex-col lg:flex-row items-center gap-4">
             {user && <NavLink to="/profile">Profile</NavLink>}
-            {user && <NavLink to="/dashboard">Dashboard</NavLink>}
+            {/* {user && <NavLink to="/dashboard">Dashboard</NavLink>} */}
+            <NavLink to="/dashboard">Dashboard</NavLink>
             <NavLink to="/about">How do I use Hs.Credit?</NavLink>
           </div>
           {location.pathname !== "/login" && (
