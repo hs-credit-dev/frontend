@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios'
 import { ThemeProvider } from '@material-tailwind/react';
@@ -19,7 +20,9 @@ root.render(
   <StrictMode>
     <ThemeProvider>
       <JotaiNexus />
-      <App />
+      <Router>
+        <App />
+      </Router>
     </ThemeProvider>
   </StrictMode>
 );

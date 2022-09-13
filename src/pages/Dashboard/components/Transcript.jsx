@@ -1,6 +1,8 @@
-import { useEffect, useState, forwardRef } from "react";
+import { useState, forwardRef } from "react";
 import qr from "qrcode";
 import { Typography } from "@material-tailwind/react";
+
+import { credits } from "../../../api_fake";
 
 import StripedTable from "./../../../components/StripedTable";
 
@@ -39,6 +41,12 @@ const Transcript = forwardRef(({ user, student, className }, ref) => {
   const { firstName, lastName } = user;
   const { schoolName, dob, ceebCode, id } = student;
 
+  const data = credits.getAll(user.studentId)
+    .filter(c => {
+      return c.status.toLowerCase() === "minted";
+    })
+    .map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, c.discipline, '']);
+
   (async () => {
     setQrCode(
       await qr.toDataURL(`${window.location.origin}/profile?id=${id}`)
@@ -59,7 +67,7 @@ const Transcript = forwardRef(({ user, student, className }, ref) => {
         Permanent Transcript
       </h1>
       <div className="flex mb-16">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 gap-x-8">
           <HeaderField label="Name" value={`${firstName} ${lastName}`} />
           <HeaderField label="School Name" value={schoolName} />
           <HeaderField label="DOB" value={new Date(dob).toLocaleDateString()} />
@@ -73,49 +81,14 @@ const Transcript = forwardRef(({ user, student, className }, ref) => {
       <h2 className="font-bold text-lg">Summary</h2>
       <div className="bg-white rounded-lg m-8 p-4 flex flex-col gap-2 text-xs">
         <p>
-          HS.CREDIT uses an inverted credit and assessment model to incentivize
-          critical thinking in our high schools as well as to prepare students
-          for a digital society. The word “inverted” here is used in the same
-          sense that the internet inverted publishing, allowing any user to
-          distribute content globally without first being approved by a major
-          publisher. Or the way bitcoin has inverted banking, allowing users to
-          become their own banks.
-        </p>
-        <p>
-          Inversion turns the top-down, corporate chain of command on its head,
-          putting a “crowd” of end-users in charge. Instead of trusting a
-          central authority to design and produce products, inverted platforms
-          allow anyone to contribute. Using search and sort algorithms, the
-          platform is able to match these user-generated assets with interested
-          consumers.
-        </p>
-        <p>
-          HS.CREDIT uses an inverted credit and assessment model to incentivize
-          critical thinking in our high schools as well as to prepare students
-          for a digital society. The word “inverted” here is used in the same
-          sense that the internet inverted publishing, allowing any user to
-          distribute content globally without first being approved by a major
-          publisher. Or the way bitcoin has inverted banking, allowing users to
-          become their own banks.
-        </p>
-        <p>
-          Inversion turns the top-down, corporate chain of command on its head,
-          putting a “crowd” of end-users in charge. Instead of trusting a
-          central authority to design and produce products, inverted platforms
-          allow anyone to contribute. Using search and sort algorithms, the
-          platform is able to match these user-generated assets with interested
-          consumers.
+          {student.narrative}
         </p>
       </div>
       <h2 className="font-bold text-lg mb-4">Minted Credits</h2>
       <div>
         <StripedTable
           headers={["Date", "Title", "Field", "Skill set"]}
-          data={[
-            ["12/20/22", "Intro to Biology", "Science", "AP"],
-            ["12/20/22", "Chemistry", "Science", "AP"],
-            ["5/7/23", "Civil Engineering", "Engineering", ""],
-          ]}
+          data={data}
           className="w-full"
         />
       </div>

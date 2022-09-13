@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 
-import { students, is2XXResponse } from "../../../api";
+import { students, is2XXResponse } from "../../../api_fake";
 import { username, email, password } from "./SignUpUser";
 import { resetState } from "./../utils";
 

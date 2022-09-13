@@ -11,7 +11,7 @@ import Input from "../../../components/Input";
 import SubmitButton from "./../../../components/SubmitButton";
 
 // SignUp State
-import { page, userType } from "../SignUp";
+import { page, userType } from "..";
 
 // User State
 export const username = atom("");

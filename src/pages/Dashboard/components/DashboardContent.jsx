@@ -1,70 +1,59 @@
 import { useState } from "react";
+import { NavLink } from 'react-router-dom';
 
-import StudentNarrative from "./StudentNarrative.jsx";
-import DashboardTable from "./DashboardTable.jsx";
-import NotFound from "../../NotFound";
+import { credits } from "../../../api_fake";
+
+import Narrative from "./Narrative.jsx";
+import Table from "../../../components/StripedTable";
+import { useAtom } from 'jotai';
+import { userInSession } from './../../../App';
+
+const types = {
+    "narrative": { value: "narrative", html: <>Narrative</> },
+    "minted": { value: "minted", html: <>Minted Credits</>, to: "/mint" },
+    "staked": { value: "staked", html: <>Staked Credits</>, to: "/stake" },
+    "all": { value: "all", html: <>Your Credits</>, to: "/stake" },
+    "unaccepted": { value: "unaccepted", html: <>Unaccepted Credits</>, to: "/stake" },
+};
 
 const DashboardContent = () => {
-    const [type, setType] = useState("");
+    const [user] = useAtom(userInSession);
+    const [type, setType] = useState("narrative");
 
     const handleType = (e) => {
         setType(e.target.value);
-        // console.log(type);
     };
 
     const renderDashboard = () => {
-        console.log(type);
-
         switch (type) {
             case "narrative":
-                return <StudentNarrative />;
-            case "minted-credits":
-                return <DashboardTable 
-                        header1={"Date"}
-                        header2={"Title"}
-                        header3={"Discipline"}
-                        header4={"Rubric"}
-                        header5={"Status"}
-                    />;
-            case "staked-credits":
-                return <DashboardTable 
-                        header1={"Date"}
-                        header2={"Title"}
-                        header3={"Discipline"}
-                        header4={"Rubric"}
-                        header5={"Status"}
-                    />;
-            case "your-credits":
-                return <DashboardTable 
-                        header1={"Date"}
-                        header2={"Title"}
-                        header3={"Discipline"}
-                        header4={"Rubric"}
-                        header5={"Status"}
-                    />;
-            case "unaccepted-credits":
-                return <DashboardTable 
-                        header1={"Date"}
-                        header2={"Title"}
-                        header3={"Discipline"}
-                        header4={"Rubric"}
-                        header5={"Status"}
-                    />;
+                return <Narrative />;
             default:
-                return <StudentNarrative />;
-            }
+                const data = credits.getAll(user.studentId)
+                    .filter(c => {
+                        if (type.toLocaleLowerCase() === "all") return true;
+                        return c.status.toLowerCase() === type.toLocaleLowerCase();
+                    })
+                    .map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, c.discipline, c.rubric, c.status]);
+
+                return <Table
+                    headers={["Date", "Title", "Discipline", "Rubric", "Status"]}
+                    data={[
+                        ...data,
+                        [<></>, <></>, <NavLink to={types[type].to ? types[type].to : "/stake"} className="text-hsblue">Click to Initiate Credit</NavLink>, <></>, <></>],
+                    ]}
+                    className="w-full "
+                />;
+        }
     };
 
     return (
-        <div className="bg-white mx-auto mt-4 w-11/12 h-96 rounded-3xl pt-6 px-12 font-semibold">
-            <select className="bg-white text-2xl focus:outline-none" onChange={handleType}>
-                <option value="narrative">Narrative</option>
-                <option value="minted-credits">Minted Credits</option>
-                <option value="staked-credits">Staked Credits</option>
-                <option value="your-credits">Your Credits</option>
-                <option value="unaccepted-credits">Unaccepted Credits</option>
+        <div className="w-full bg-white rounded-3xl font-semibold flex flex-col gap-4 pb-5 items-start">
+            <select className="bg-transparent text-2xl focus:outline-none m-8 mb-4" onChange={handleType}>
+                {
+                    Object.values(types).map((t, i) => <option value={t.value} key={i}>{t.html}</option>)
+                }
             </select>
-
             {renderDashboard(type)}
 
         </div>

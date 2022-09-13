@@ -6,7 +6,7 @@
 const StripedTable = ({ headers, data, className }) => {
   return (
     <>
-      <div className="flex">
+      <div className={`flex ${className}`}>
         <table>
           <thead>
             <tr>
@@ -21,7 +21,7 @@ const StripedTable = ({ headers, data, className }) => {
             ))}
           </tbody>
         </table>
-        <table className={`text-center ${className}`}>
+        <table className={`text-center w-full`}>
           <thead className="bg-hsbeige">
             <tr>
               {headers.map((header, i) => (
@@ -35,9 +35,8 @@ const StripedTable = ({ headers, data, className }) => {
             {data.map((row, i) => (
               <tr
                 key={i}
-                className={`font-normal ${
-                  i % 2 == 0 ? "bg-white" : "bg-hsbeige"
-                }`}
+                className={`font-normal ${i % 2 === 0 ? "bg-white" : "bg-hsbeige"
+                  }`}
               >
                 {row.map((d, j) => (
                   <td key={j} className="p-2">

@@ -1,4 +1,4 @@
-import TopNavBar from "./../components/NavBars/TopNavBar";
+import TopNavBar from "../../components/NavBars/TopNavBar";
 
 const About = () => {
   return (

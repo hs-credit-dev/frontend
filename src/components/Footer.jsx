@@ -24,7 +24,7 @@ const Footer = ({ className, ...props }) => {
         {...props}
       >
         <Avatar src={logo} alt="logo" className="hidden lg:block" />
-        <FooterElement className="lg:ml-8">Powered by hs.credit</FooterElement>
+        <FooterElement className="lg:ml-8">Powered by <a href="https://hs.credit/" className="hover:text-hspurple">hs.credit</a></FooterElement>
         <FooterElement>|</FooterElement>
         {/* <FooterElement> */}
         <TermsOfServiceModal />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 
-import { teachers, is2XXResponse } from "../../../api";
+import { teachers, is2XXResponse } from "../../../api_fake";
 import { username, email, password } from "./SignUpUser";
 import { resetState } from "./../utils";
 
@@ -46,10 +46,10 @@ const SignUpTeacher = () => {
         _password,
         "",
         "",
-        new Date(),
-        _schoolName,
         _schoolId,
-        _bio
+        _schoolName,
+        _schoolWebsite,
+        _bio,
       );
 
       if (is2XXResponse(res.status)) {

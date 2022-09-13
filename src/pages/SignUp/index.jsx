@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 
 import SignUpStudent from "./components/SignUpStudent";
@@ -16,12 +16,19 @@ export const userType = atom("");
 const SignUp = () => {
   const [_page, setPage] = useAtom(page);
   const [type] = useAtom(userType);
-
   const [user] = useAtom(userInSession);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      return navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     setPage(0);
-  }, []);
+  }, [setPage]);
 
   const renderSignUp = (page) => {
     switch (page) {

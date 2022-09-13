@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { IconButton } from "@material-tailwind/react";
 
 import { userInSession } from "../App";
-import { users } from "../api";
+import { users } from "../api_fake";
 import Button from "./Button";
 
 import { ReactComponent as LogoutIcon } from "../assets/svg/log-out-icon.svg";

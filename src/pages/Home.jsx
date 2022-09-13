@@ -1,15 +1,30 @@
-import TopNavBar from "../components/NavBars/TopNavBar";
-import { Typography } from "@material-tailwind/react";
+import { useEffect } from "react";
+import { useNavigate, } from "react-router-dom";
+
+import { userInSession } from "../App";
+import { useAtom } from 'jotai';
+
+import Header from "../components/Header";
 
 const Home = () => {
+  const [user] = useAtom(userInSession);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      return navigate('/dashboard');
+    }
+  }, [user, navigate]);
+
   return (
     <>
-      <TopNavBar />
-      <div className="flex flex-col place-content-center items-center my-auto">
+      <Header className="mb-auto" />
+      <div className="flex flex-col content-center items-center my-auto">
         <img src="https://i.imgur.com/t5GkphG.png" alt="hsc logo" />
-        <Typography className="text-xl font-extrabold text-black">
+        <p className="text-xl font-extrabold text-black">
           researched, revised, relevant
-        </Typography>
+        </p>
       </div>
     </>
   );

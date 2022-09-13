@@ -1,6 +1,6 @@
 import { writeAtom } from 'jotai-nexus';
 
-import { page, userType } from './SignUp';
+import { page, userType } from '.';
 import { username, email, password } from './components/SignUpUser';
 import { firstName, middleName, lastName, schoolId, schoolName, bio } from './components/SignUpStudent';
 

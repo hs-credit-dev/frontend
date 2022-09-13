@@ -1,40 +1,34 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { atom, useAtom } from "jotai";
 
-import { users } from "./api";
+import { users } from "./api_fake";
 
-// Pages
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp/SignUp";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Profile from "./pages/Profile/Profile";
-import Verification from './pages/Verification';
-import NotFound from "./pages/NotFound";
 import Spinner from "./components/Spinner";
 import Footer from "./components/Footer";
+import Routes from './Routes';
 
 // State
 export const userInSession = atom(null);
 
 const App = () => {
   const [user, setUser] = useAtom(userInSession);
+
   const [isLoaded, setIsLoaded] = useState(false);
-  // Get user in session on init once
+
+  // Get user in session on init
   useEffect(() => {
     (async () => {
       try {
         if (user) return;
         const res = await users.getUserInSession();
         setUser(res.data.data);
-      } catch (err) { }
+      }
+      catch (err) { }
+
       setIsLoaded(true);
     })();
-  }, []);
+  }, [user, setUser]);
 
-  // Render Spinner if not yet loaded
   if (!isLoaded)
     return (
       <div className="flex h-full justify-center items-center">
@@ -44,31 +38,8 @@ const App = () => {
 
   return (
     <div className="app h-full flex flex-col">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<SignUp />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="verify" element={<Verification />} />
-          {/*<Route exact path='/explore' element={<Explore />} />
-          <Route exact path='/credit-search' element={<CreditSearch />} />
-          <Route exact path='/contact' element={<Contact />} />
-          <Route exact path='/teacher-signup' element={<TeacherSignUp />} />
-          <Route exact path='/username/credits/the-revolutionary-war' element={<CreditDetails />} />
-          <Route exact path='/howitworks' element={<HowItWorks />} />
-          <Route exact path='/studentplaylist' element={<StudentPlaylist />} />
-          <Route
-            exact path='/login'
-            render={(props) =>
-              <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser} />} />
-          <Route exact path='/studentprofile' element={<StudentProfile />} user={currentUser} handleLogout={handleLogout} /> */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer className="mt-auto" />
-      </Router>
+      <Routes />
+      <Footer className="mt-auto" />
     </div>
   );
 };

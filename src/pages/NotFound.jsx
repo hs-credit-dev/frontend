@@ -8,12 +8,12 @@ const NotFound = () => {
         <Typography variant="h1" className="pb-4">
           Page Not Found
         </Typography>
-        <Typography>
+        <p>
           Return{" "}
           <NavLink to="/" className="text-light-blue-700">
             home
           </NavLink>
-        </Typography>
+        </p>
       </div>
     </>
   );

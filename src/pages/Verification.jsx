@@ -2,7 +2,7 @@ import { Navigate, useSearchParams } from "react-router-dom";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Spinner from "../components/Spinner";
-import { verify } from "../api/users";
+import { verify } from "../api_fake/users";
 
 const NotFound = () => {
     const [searchParams] = useSearchParams();
