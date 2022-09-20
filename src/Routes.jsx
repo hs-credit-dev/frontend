@@ -9,6 +9,7 @@ import Verification from './pages/Verification';
 import Stake from './pages/Stake';
 import Mint from './pages/Mint';
 import CreditPage from './pages/Credit';
+import Pitch from './pages/Pitch';
 import NotFound from './pages/NotFound';
 
 const Routes = () => {
@@ -22,6 +23,7 @@ const Routes = () => {
         <Route exact path="/stake" element={<Stake />} />
         <Route exact path="/mint" element={<Mint />} />
         <Route exact path="/credit" element={<CreditPage />} />
+        <Route exact path="/pitch" element={<Pitch />} />
         <Route path="*" element={<NotFound />} />
     </ReactRoutes>;
 };

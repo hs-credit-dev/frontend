@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Typography } from '@material-tailwind/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,20 +7,23 @@ import {
     // faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai";
-import { IconButton } from '@material-tailwind/react';
 
 import { userInSession } from "../../App";
 import { credits } from "../../api_fake";
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
+import CloseButton from './../../components/CloseButton';
 
-import { ReactComponent as BackArrow } from "./back_arrow.svg";
+import disciplines from '../../data/disciplines';
+import { isStudent } from './../../api_fake/students';
 
 const Stake = () => {
     const [user] = useAtom(userInSession);
 
-    const [discipline, setDiscipline] = useState("");
+    const [searchParams] = useSearchParams();
+
+    const [discipline, setDiscipline] = useState(Object.keys(disciplines)[0]);
     const [contentStaked, setContentStaked] = useState("");
     const [teacherEmail, setTeacherEmail] = useState("");
     const [warning,] = useState("");
@@ -33,9 +36,35 @@ const Stake = () => {
         }
     }, [user, navigate]);
 
+    useEffect(() => {
+        (async () => {
+            const id = searchParams.get('id');
+            if (!id) return;
+
+            if (!isStudent(user)) return;
+
+            const credit = await credits.get(user.studentId, id);
+            setDiscipline(credit.discipline);
+            setContentStaked(credit.contentStaked);
+            setTeacherEmail(credit.teacherEmail);
+        })();
+    }, [searchParams, user]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        credits.stake(user.studentId, '', discipline, 'hs.credit', teacherEmail)
+
+        if (!isStudent(user)) return;
+
+        const id = searchParams.get('id');
+
+        console.log(id);
+
+        if (!id) {
+            await credits.stake(user.studentId, discipline, contentStaked, teacherEmail);
+        } else {
+            await credits.update(user.studentId, id, { discipline, contentStaked, teacherEmail, });
+        }
+
 
         navigate('/dashboard');
     }
@@ -48,11 +77,7 @@ const Stake = () => {
                     variant="h3">
                     Stake
                 </Typography>
-                <IconButton
-                    className='ml-auto bg-transparent shadow-none hover:shadow-none'
-                    onClick={() => {
-                        navigate('/dashboard');
-                    }}><BackArrow /></IconButton>
+                <CloseButton to='/dashboard' className='ml-auto' />
             </div>
             <p>
                 Here you show evidence that you invested your attention to “geek out” on a topic. List the discipline from the available options and then share a list of sources from which you have notes that will inform your podcast or video project.
@@ -60,6 +85,7 @@ const Stake = () => {
             <form className="grid grid-cols-2 gap-16" onSubmit={handleSubmit}>
                 <Input
                     name="discipline"
+                    type="select"
                     label={
                         <>
                             <p>Discipline</p>
@@ -73,7 +99,9 @@ const Stake = () => {
                         setDiscipline(e.target.value);
                     }}
                     className="col-span-2 md:col-span-1"
-                />
+                >
+                    {Object.entries(disciplines).map(([dKey, dValue], i) => <option value={dKey} key={i}>{dValue.name}</option>)}
+                </Input>
                 <Input
                     name="content-staked"
                     type="textarea"

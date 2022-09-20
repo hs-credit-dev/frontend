@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 
 import { students, is2XXResponse } from "../../../api_fake";
 import { username, email, password } from "./SignUpUser";
@@ -8,14 +8,6 @@ import { resetState } from "./../utils";
 
 import Input from "../../../components/Input";
 import SubmitButton from "../../../components/SubmitButton";
-
-export const firstName = atom("");
-export const middleName = atom("");
-export const lastName = atom("");
-export const dob = atom("");
-export const schoolId = atom("");
-export const schoolName = atom("");
-export const bio = atom("");
 
 const SignUpStudent = () => {
   const navigate = useNavigate();
@@ -26,13 +18,13 @@ const SignUpStudent = () => {
   const [_password] = useAtom(password);
 
   // Student State
-  const [_firstName, setFirstName] = useAtom(firstName);
-  const [_middleName, setMiddleName] = useAtom(middleName);
-  const [_lastName, setLastName] = useAtom(lastName);
-  const [_dob, setDob] = useAtom(dob);
-  const [_schoolId, setSchoolId] = useAtom(schoolId);
-  const [_schoolName, setSchoolName] = useAtom(schoolName);
-  const [_bio, setBio] = useAtom(bio);
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dob, setDob] = useState("");
+  const [schoolId, setSchoolId] = useState("");
+  const [schoolName, setSchoolName] = useState("");
+  const [bio, setBio] = useState("");
 
   const [confirmed, setConfirmed] = useState(false);
   const [warning, setWarning] = useState("");
@@ -48,12 +40,12 @@ const SignUpStudent = () => {
         _username,
         _email,
         _password,
-        _firstName,
-        _lastName,
-        _dob,
-        _schoolName,
-        _schoolId,
-        _bio
+        firstName,
+        lastName,
+        dob,
+        schoolName,
+        schoolId,
+        bio
       );
 
       if (is2XXResponse(res.status)) {
@@ -68,7 +60,7 @@ const SignUpStudent = () => {
   return (
     <>
       <form
-        className="flex flex-col md:grid md:grid-cols-3 gap-12 py-16 px-4 md:px-16 max-w-7xl"
+        className="flex flex-col md:grid md:grid-cols-3 gap-16 py-16 px-4 md:px-16 max-w-7xl"
         onSubmit={handleSubmit}
       >
         <span className="col-span-3 flex flex-col md:flex-row gap-12">
@@ -77,7 +69,7 @@ const SignUpStudent = () => {
               name="first-name"
               label={"First Name"}
               autoComplete="given-name"
-              value={_firstName}
+              value={firstName}
               onChange={(e) => {
                 setFirstName(e.target.value);
               }}
@@ -87,7 +79,7 @@ const SignUpStudent = () => {
             name="middle-name"
             label={"M.I."}
             autoComplete="additional-name"
-            value={_middleName}
+            value={middleName}
             className="w-12"
             onChange={(e) => {
               setMiddleName(e.target.value);
@@ -98,7 +90,7 @@ const SignUpStudent = () => {
               name="last-name"
               label={"Last Name"}
               autoComplete="family-name"
-              value={_lastName}
+              value={lastName}
               onChange={(e) => {
                 setLastName(e.target.value);
               }}
@@ -112,7 +104,7 @@ const SignUpStudent = () => {
             name="dob"
             label={"Date of Birth"}
             autoComplete="bday"
-            value={_dob}
+            value={dob}
             className="h-20"
             onChange={(e) => {
               setDob(e.target.value);
@@ -136,7 +128,7 @@ const SignUpStudent = () => {
                   </a>
                 </>
               }
-              value={_schoolId}
+              value={schoolId}
               onChange={(e) => {
                 setSchoolId(e.target.value);
               }}
@@ -146,7 +138,7 @@ const SignUpStudent = () => {
             <Input
               name="school-name"
               label="School Name"
-              value={_schoolName}
+              value={schoolName}
               onChange={(e) => {
                 setSchoolName(e.target.value);
               }}
@@ -158,7 +150,7 @@ const SignUpStudent = () => {
             type="textarea"
             name="bio"
             label="Bio"
-            value={_bio}
+            value={bio}
             className="h-64"
             onChange={(e) => {
               setBio(e.target.value);

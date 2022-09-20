@@ -9,11 +9,6 @@ import { resetState } from "./../utils";
 import Input from "../../../components/Input";
 import SubmitButton from "../../../components/SubmitButton";
 
-export const schoolId = atom("");
-export const schoolName = atom("");
-export const schoolWebsite = atom("");
-export const bio = atom("");
-
 const SignUpTeacher = () => {
   const navigate = useNavigate();
 
@@ -23,10 +18,13 @@ const SignUpTeacher = () => {
   const [_password] = useAtom(password);
 
   // Teacher State
-  const [_schoolId, setSchoolId] = useAtom(schoolId);
-  const [_schoolName, setSchoolName] = useAtom(schoolName);
-  const [_schoolWebsite, setSchoolWebsite] = useAtom(schoolWebsite);
-  const [_bio, setBio] = useAtom(bio);
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [schoolId, setSchoolId] = useState("");
+  const [schoolName, setSchoolName] = useState("");
+  const [schoolWebsite, setSchoolWebsite] = useState("");
+  const [bio, setBio] = useState("");
 
   const [confirmed, setConfirmed] = useState(false);
   const [warning, setWarning] = useState("");
@@ -44,12 +42,12 @@ const SignUpTeacher = () => {
         _username,
         _email,
         _password,
-        "",
-        "",
-        _schoolId,
-        _schoolName,
-        _schoolWebsite,
-        _bio,
+        firstName,
+        lastName,
+        schoolId,
+        schoolName,
+        schoolWebsite,
+        bio,
       );
 
       if (is2XXResponse(res.status)) {
@@ -64,9 +62,44 @@ const SignUpTeacher = () => {
   return (
     <>
       <form
-        className="flex flex-col md:grid md:grid-cols-6 gap-12 py-16 px-4 md:px-16 max-w-7xl"
+        className="flex flex-col md:grid md:grid-cols-6 gap-16 py-16 px-4 md:px-16 max-w-7xl"
         onSubmit={handleSubmit}
       >
+        <span className="col-span-6 flex flex-col md:flex-row gap-12">
+          <span className="grow">
+            <Input
+              name="first-name"
+              label={"First Name"}
+              autoComplete="given-name"
+              value={firstName}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
+            />
+          </span>
+          <Input
+            name="middle-name"
+            label={"M.I."}
+            autoComplete="additional-name"
+            value={middleName}
+            className="w-12"
+            onChange={(e) => {
+              setMiddleName(e.target.value);
+            }}
+          />
+          <span className="grow">
+            <Input
+              name="last-name"
+              label={"Last Name"}
+              autoComplete="family-name"
+              value={lastName}
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
+            />
+          </span>
+        </span>
+
         <span className="col-span-2">
           <Input
             name="school-id"
@@ -83,7 +116,7 @@ const SignUpTeacher = () => {
                 </a>
               </>
             }
-            value={_schoolId}
+            value={schoolId}
             onChange={(e) => {
               setSchoolId(e.target.value);
             }}
@@ -93,7 +126,7 @@ const SignUpTeacher = () => {
           <Input
             name="school-name"
             label="School Name"
-            value={_schoolName}
+            value={schoolName}
             onChange={(e) => {
               setSchoolName(e.target.value);
             }}
@@ -104,7 +137,7 @@ const SignUpTeacher = () => {
             name="school-website"
             label={"School Website"}
             autoComplete={"url"}
-            value={_schoolWebsite}
+            value={schoolWebsite}
             onChange={(e) => {
               setSchoolWebsite(e.target.value);
             }}
@@ -115,7 +148,7 @@ const SignUpTeacher = () => {
             type="textarea"
             name="bio"
             label="Bio"
-            value={_bio}
+            value={bio}
             className="h-64"
             onChange={(e) => {
               setBio(e.target.value);

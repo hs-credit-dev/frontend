@@ -6,21 +6,18 @@ import {
     // faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai";
-import { IconButton } from '@material-tailwind/react';
 
 import { userInSession } from "../../App";
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-
-import { ReactComponent as BackArrow } from "./back_arrow.svg";
+import CloseButton from './../../components/CloseButton';
 
 const Mint = () => {
     const [user] = useAtom(userInSession);
 
     const [title, setTitle] = useState("");
-    const [field, setField] = useState("");
-    const [subField, setSubField] = useState("");
+    const [abstract, setAbstract] = useState("");
     const [warning,] = useState("");
 
     const navigate = useNavigate();
@@ -44,16 +41,12 @@ const Mint = () => {
                     className='font-bold text-4xl'>
                     Mint
                 </p>
-                <IconButton
-                    className='ml-auto bg-transparent shadow-none hover:shadow-none'
-                    onClick={() => {
-                        navigate('/dashboard');
-                    }}><BackArrow /></IconButton>
+                <CloseButton to='/dashboard' className='ml-auto' />
             </div>
             <p>
                 You did it! Upload your final work product of no more than 10 minutes and give your work a title here. Your teacher will receive an email to verify that they approve this work for submission and then it will be routed to our credit expert team for final evaluation. You will receive an email when the scores are in. Congratulations!
             </p>
-            <form className="grid grid-cols-4 gap-16" onSubmit={handleSubmit}>
+            <form className="grid grid-cols-3 gap-16" onSubmit={handleSubmit}>
                 <Input
                     name="title"
                     label={
@@ -68,45 +61,26 @@ const Mint = () => {
                     onChange={(e) => {
                         setTitle(e.target.value);
                     }}
-                    className="col-span-4 lg:col-span-2"
+                    className="col-span-2 lg:col-span-2"
                 />
-                <span className='hidden lg:block col-span-2'></span>
+                <span className='hidden lg:block col-span-1'></span>
                 <Input
-                    name="field"
-                    type="select"
+                    name="content-staked"
+                    type="textarea"
                     label={
                         <>
-                            <p>Field of study</p>
+                            <p>Content Staked</p>
                             <FontAwesomeIcon
                                 icon={faQuestionCircle}
                                 className="cursor-pointer"
                             />
                         </>}
-                    value={field}
+                    value={abstract}
                     onChange={(e) => {
-                        setField(e.target.value);
+                        setAbstract(e.target.value);
                     }}
-                    className="col-span-4 lg:col-span-1"
+                    className="h-52 col-span-3"
                 />
-                <span className='hidden lg:block col-span-3'></span>
-                <Input
-                    name="subfield"
-                    type="select"
-                    label={
-                        <>
-                            <p>Subfield</p>
-                            <FontAwesomeIcon
-                                icon={faQuestionCircle}
-                                className="cursor-pointer"
-                            />
-                        </>}
-                    value={subField}
-                    onChange={(e) => {
-                        setSubField(e.target.value);
-                    }}
-                    className="col-span-4 lg:col-span-1"
-                />
-                <span className='hidden lg:block col-span-3'></span>
                 <SubmitButton name="Click here to upload" className="col-span-4" />
             </form>
             <p className="text-sm text-gray-900 font-semibold italic col-span-4">

@@ -1,15 +1,42 @@
-import { useNavigate } from 'react-router-dom';
-import { Typography, IconButton } from '@material-tailwind/react';
+import { useEffect, useState } from 'react';
+import { Typography } from '@material-tailwind/react';
+import { useSearchParams } from "react-router-dom";
 
 import Header from './../../components/Header/index';
-import Credit from './components/Credit';
-import CreditIcon from './assets/credit.svg';
+import CreditDisplay from './components/CreditDisplay';
+import CloseButton from './../../components/CloseButton';
+import { credits } from '../../api_fake';
+import { userInSession } from './../../App';
+import { useAtom } from 'jotai';
+import { isStudent } from './../../api_fake/students';
+import Spinner from './../../components/Spinner';
 
-import { ReactComponent as BackArrow } from "./assets/back_arrow.svg";
 
+const CreditPage = () => {
+    const [user] = useAtom(userInSession);
+    const [searchParams] = useSearchParams();
+    const [credit, setCredit] = useState(null);
 
-const CreditPage = ({ credit }) => {
-    const navigate = useNavigate();
+    useEffect(() => {
+        (async () => {
+            if (!isStudent(user)) {
+                return;
+            }
+
+            const id = searchParams.get('id');
+            const credit = credits.get(user.studentId, id);
+            setCredit(credit);
+
+        })();
+    }, [user, searchParams]);
+
+    if (!credit) {
+        return <>
+            <div className="flex h-full justify-center items-center">
+                <Spinner />
+            </div>
+        </>
+    }
 
     return <>
         <Header className="mb-auto" />
@@ -19,23 +46,9 @@ const CreditPage = ({ credit }) => {
                     variant="h3">
                     Credit Detail
                 </Typography>
-                <IconButton
-                    className='ml-auto bg-transparent shadow-none hover:shadow-none'
-                    onClick={() => {
-                        navigate('/dashboard');
-                    }}><BackArrow /></IconButton>
+                <CloseButton to="/dashboard" className="ml-auto" />
             </div>
-            <Credit credit={{
-                icon: CreditIcon,
-                title: 'Climate Change',
-                discipline: 'Life Science',
-                rubric: 'hs.credit',
-                Status: 'Pitch - Pending',
-                teacherEmail: 'nzeimer@hs.credit',
-                dateStaked: new Date(),
-                datePitched: new Date(),
-                dateMinted: undefined,
-            }} />
+            <CreditDisplay credit={credit} />
         </div>
     </>
 };

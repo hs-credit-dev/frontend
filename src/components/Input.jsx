@@ -1,3 +1,45 @@
+import { useState } from 'react';
+import Button from "./Button";
+import TransparentButton from './TransparentButton';
+
+const YesNoButtons = ({ name, props }) => {
+  const classname = `grow w-32 h-10 p-2 drop-shadow-lg rounded-3xl`;
+
+  const [isYes, setIsYes] = useState(false);
+
+  const YesButtonType = isYes ? Button : TransparentButton;
+  const NoButtonType = isYes ? TransparentButton : Button;
+
+  return (
+    <>
+      <span className="flex items-center gap-4">
+        <YesButtonType
+          aria-label={`${name}-yes`}
+          name={`${name}-yes`}
+          className={classname}
+          {...props}
+          onClick={() => {
+            setIsYes(true);
+          }}
+        >
+          Yes
+        </YesButtonType>
+        <NoButtonType
+          aria-label={`${name}-no`}
+          name={`${name}-no`}
+          className={classname}
+          {...props}
+          onClick={() => {
+            setIsYes(false);
+          }}
+        >
+          No
+        </NoButtonType>
+      </span>
+    </>
+  );
+};
+
 const Input = ({ name, label, small, type, className, children, ...props }) => {
   const classname = `grow p-2 drop-shadow-lg rounded-md`;
 
@@ -24,6 +66,20 @@ const Input = ({ name, label, small, type, className, children, ...props }) => {
           >
             {children}
           </select>
+        );
+      case "file":
+        return (
+          <Button
+            aria-label={name}
+            name={name}
+            className={`${classname}`}
+            {...props}>
+            {children}
+          </Button>
+        );
+      case "y/n":
+        return (
+          <YesNoButtons name={name} {...props} />
         );
       default:
         return (

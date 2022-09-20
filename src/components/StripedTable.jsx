@@ -3,7 +3,7 @@
  * 'data' in props must be a 2 dimensional array.
  * the first row in 'data' are the headers.
  */
-const StripedTable = ({ headers, data, className }) => {
+const StripedTable = ({ headers, data, className, trParams }) => {
   return (
     <>
       <div className={`flex ${className}`}>
@@ -35,8 +35,10 @@ const StripedTable = ({ headers, data, className }) => {
             {data.map((row, i) => (
               <tr
                 key={i}
+                {...trParams}
                 className={`font-normal ${i % 2 === 0 ? "bg-white" : "bg-hsbeige"
-                  }`}
+                  } ${trParams?.className}`
+                }
               >
                 {row.map((d, j) => (
                   <td key={j} className="p-2">

@@ -47,9 +47,9 @@ const Login = () => {
     <>
       <div className="flex flex-col align-middle my-auto h-4/5">
         <div className="flex flex-col gap-6 mt-auto">
-          <NavLink to="/">
-            <Logo className="mx-auto mb-4" />
-          </NavLink>
+          {/* <NavLink to="/"> */}
+          <Logo className="mx-auto mb-4" />
+          {/* </NavLink> */}
           <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
             <Input
               name="username"

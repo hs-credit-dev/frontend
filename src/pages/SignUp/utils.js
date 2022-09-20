@@ -2,7 +2,6 @@ import { writeAtom } from 'jotai-nexus';
 
 import { page, userType } from '.';
 import { username, email, password } from './components/SignUpUser';
-import { firstName, middleName, lastName, schoolId, schoolName, bio } from './components/SignUpStudent';
 
 // Reset all atomic state in SignUp Page
 export const resetState = () => {
@@ -11,10 +10,4 @@ export const resetState = () => {
     writeAtom(username, "");
     writeAtom(email, "");
     writeAtom(password, "");
-    writeAtom(firstName, "");
-    writeAtom(middleName, "");
-    writeAtom(lastName, "");
-    writeAtom(schoolId, "");
-    writeAtom(schoolName, "");
-    writeAtom(bio, "");
 }
