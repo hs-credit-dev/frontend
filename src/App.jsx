@@ -31,13 +31,13 @@ const App = () => {
 
   if (!isLoaded)
     return (
-      <div className="flex h-full justify-center items-center">
+      <div className="flex min-h-full justify-center items-center">
         <Spinner />
       </div>
     );
 
   return (
-    <div className="app h-full flex flex-col">
+    <div className="app min-h-full flex flex-col">
       <Routes />
       <Footer className="mt-auto" />
     </div>

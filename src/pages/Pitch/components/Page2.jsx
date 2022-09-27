@@ -5,7 +5,7 @@ import Button from './../../../components/Button';
 
 const Page2 = ({ pageState, credit }) => {
     const rubrics = disciplines[credit.discipline].rubrics;
-    const rubric = rubrics.default;
+    const rubric = rubrics[Object.keys(rubrics)[0]];
     const [page, setPage] = pageState;
 
     return (

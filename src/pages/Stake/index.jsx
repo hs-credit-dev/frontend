@@ -4,7 +4,7 @@ import { Typography } from '@material-tailwind/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faQuestionCircle,
-    // faCheckCircle,
+    faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai";
 
@@ -18,6 +18,8 @@ import CloseButton from './../../components/CloseButton';
 import disciplines from '../../data/disciplines';
 import { isStudent } from './../../api_fake/students';
 
+import { emailRegex } from 'util/regex';
+
 const Stake = () => {
     const [user] = useAtom(userInSession);
 
@@ -26,9 +28,14 @@ const Stake = () => {
     const [discipline, setDiscipline] = useState(Object.keys(disciplines)[0]);
     const [contentStaked, setContentStaked] = useState("");
     const [teacherEmail, setTeacherEmail] = useState("");
-    const [warning,] = useState("");
+    const [warning, setWarning] = useState("");
 
     const navigate = useNavigate();
+
+    const isValidEmail = () => {
+        return emailRegex.test(teacherEmail);
+    };
+
 
     useEffect(() => {
         if (!user) {
@@ -53,6 +60,8 @@ const Stake = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (contentStaked.trim() === '') return setWarning("Specify content staked")
+        if (!isValidEmail()) return setWarning("Email is not valid");
         if (!isStudent(user)) return;
 
         const id = searchParams.get('id');
@@ -128,6 +137,11 @@ const Stake = () => {
                                 icon={faQuestionCircle}
                                 className="cursor-pointer"
                             />
+                            {isValidEmail() && (
+                                <>
+                                    <FontAwesomeIcon icon={faCheckCircle} />
+                                </>
+                            )}
                         </>}
                     value={teacherEmail}
                     small="Teacher will have access to your full name. Your teacher will meet with you to review your notes before approving your STAKE."

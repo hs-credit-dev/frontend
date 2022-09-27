@@ -8,6 +8,7 @@ import { resetState } from "./../utils";
 
 import Input from "../../../components/Input";
 import SubmitButton from "../../../components/SubmitButton";
+import Button from './../../../components/Button';
 
 const SignUpTeacher = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const SignUpTeacher = () => {
 
     if (!confirmed)
       return setWarning(
-        "Please agree to our terms/services and Privacy Policy before continuing."
+        "Please agree to our terms/services and Privacy Policy before continuing"
       );
 
     try {
@@ -104,17 +105,16 @@ const SignUpTeacher = () => {
           <Input
             name="school-id"
             label={
-              <>
+              <span className="flex items-center gap-4">
                 <p>CEEB</p>
                 <a
                   href="https://satsuite.collegeboard.org/k12-educators/tools-resources/k12-school-code-search"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="ml-auto"
                 >
-                  <p className="text-blue-700">Find code here</p>
+                  <Button className="h-8 p-2 w-32 ">Find CEEB code</Button>
                 </a>
-              </>
+              </span>
             }
             value={schoolId}
             onChange={(e) => {
@@ -147,7 +147,7 @@ const SignUpTeacher = () => {
           <Input
             type="textarea"
             name="bio"
-            label="Bio"
+            label="Bio (optional)"
             value={bio}
             className="h-64"
             onChange={(e) => {

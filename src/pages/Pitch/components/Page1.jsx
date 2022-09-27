@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Input from './../../../components/Input';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import disciplines from '../../../data/disciplines';
-import Button from './../../../components/Button';
+import Input from 'components/Input';
+import Button from 'components/Button';
 
 const Page1 = ({ pageState, credit }) => {
     const rubrics = disciplines[credit.discipline].rubrics;
@@ -49,7 +49,7 @@ const Page1 = ({ pageState, credit }) => {
                             className="cursor-pointer"
                         />
                     </>}
-                small="Please make sure your attachment doesn't exceed 25 MB."
+                small="Please make sure your attachment is a PDF file"
                 value={null}
                 onChange={(e) => {
 

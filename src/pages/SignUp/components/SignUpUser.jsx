@@ -10,6 +10,8 @@ import {
 import Input from "../../../components/Input";
 import SubmitButton from "./../../../components/SubmitButton";
 
+import { emailRegex } from "util/regex";
+
 // SignUp State
 import { page, userType } from "..";
 
@@ -17,9 +19,6 @@ import { page, userType } from "..";
 export const username = atom("");
 export const email = atom("");
 export const password = atom("");
-
-/* eslint-disable-next-line */
-const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const SignUpUser = () => {
   // SignUp State
@@ -52,17 +51,17 @@ const SignUpUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (type === "") return setWarning("Please select an account type.");
+    if (type === "") return setWarning("Please select an account type");
     else if (!isValidUsername())
-      return setWarning("Username must be between 6 and 24 characters.");
-    else if (!isValidEmail()) return setWarning("Email is not valid.");
-    else if (_email !== confirmEmail) return setWarning("Emails don't match.");
+      return setWarning("Username must be between 6 and 24 characters");
+    else if (!isValidEmail()) return setWarning("Email is not valid");
+    else if (_email !== confirmEmail) return setWarning("Emails don't match");
     else if (!isValidPassword())
       return setWarning(
-        "Password is not valid. Password needs to be at least 8 characters. Please try again."
+        "Password is not valid. Password needs to be at least 8 characters. Please try again"
       );
     else if (_password !== confirmPassword)
-      return setWarning("Passwords do not match.");
+      return setWarning("Passwords do not match");
 
     setPage(1);
   };

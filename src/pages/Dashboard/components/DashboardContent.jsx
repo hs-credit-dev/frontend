@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { credits } from "../../../api_fake";
 import disciplines from "../../../data/disciplines";
@@ -10,10 +10,7 @@ import Table from "../../../components/StripedTable";
 import { useAtom } from 'jotai';
 import { userInSession } from './../../../App';
 
-const options = {
-    credits: { value: "credits", html: <>Your Credits</> },
-    narrative: { value: "narrative", html: <>Narrative</> },
-};
+import { ReactComponent as SortedTriangle } from '../assets/triangle.svg';
 
 const Content = ({ type }) => {
     const [user] = useAtom(userInSession);
@@ -21,11 +18,11 @@ const Content = ({ type }) => {
     const [data, setData] = useState(credits.getAll(user.studentId)
         .map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, disciplines[c.discipline].name, c.rubric, c.status, <span className="hidden">{c.id}</span>]));
 
-    const [dateSorted, setDateSorted] = useState(false);
-    const [titleSorted, setTitleSorted] = useState(false);
-    const [disciplineSorted, setDisciplineSorted] = useState(false);
-    const [rubricSorted, setRubricSorted] = useState(false);
-    const [statusSorted, setStatusSorted] = useState(false);
+    const [dateSorted, setDateSorted] = useState(null);
+    const [titleSorted, setTitleSorted] = useState(null);
+    const [disciplineSorted, setDisciplineSorted] = useState(null);
+    const [rubricSorted, setRubricSorted] = useState(null);
+    const [statusSorted, setStatusSorted] = useState(null);
 
     if (!user) return <></>;
 
@@ -41,17 +38,12 @@ const Content = ({ type }) => {
                                 setData(data.sort((a, b) => new Date(a[0]) - new Date(b[0])).reverse());
                             }
                             setDateSorted(!dateSorted);
+                            setTitleSorted(null);
+                            setDisciplineSorted(null);
+                            setRubricSorted(null);
+                            setStatusSorted(null);
                         }}
-                            className='cursor-pointer'>Date</span>,
-                        <span onClick={() => {
-                            if (!titleSorted) {
-                                setData(data.sort((a, b) => a[1]?.localeCompare(b[1])));
-                            } else {
-                                setData(data.sort((a, b) => a[1]?.localeCompare(b[1])).reverse());
-                            }
-                            setTitleSorted(!titleSorted);
-                        }}
-                            className='cursor-pointer'>Title</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Date {dateSorted !== null && (dateSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
                         <span onClick={() => {
                             if (!disciplineSorted) {
                                 setData(data.sort((a, b) => a[2].localeCompare(b[2])));
@@ -59,8 +51,12 @@ const Content = ({ type }) => {
                                 setData(data.sort((a, b) => a[2].localeCompare(b[2])).reverse());
                             }
                             setDisciplineSorted(!disciplineSorted);
+                            setDateSorted(null);
+                            setTitleSorted(null);
+                            setRubricSorted(null);
+                            setStatusSorted(null);
                         }}
-                            className='cursor-pointer'>Discipline</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Discipline {disciplineSorted !== null && (disciplineSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
                         <span onClick={() => {
                             if (!rubricSorted) {
                                 setData(data.sort((a, b) => a[3]?.localeCompare(b[3])));
@@ -68,8 +64,25 @@ const Content = ({ type }) => {
                                 setData(data.sort((a, b) => a[3]?.localeCompare(b[3])).reverse());
                             }
                             setRubricSorted(!rubricSorted);
+                            setDateSorted(null);
+                            setTitleSorted(null);
+                            setDisciplineSorted(null);
+                            setStatusSorted(null);
                         }}
-                            className='cursor-pointer'>Rubric</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Rubric {rubricSorted !== null && (rubricSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
+                        <span onClick={() => {
+                            if (!titleSorted) {
+                                setData(data.sort((a, b) => a[1]?.localeCompare(b[1])));
+                            } else {
+                                setData(data.sort((a, b) => a[1]?.localeCompare(b[1])).reverse());
+                            }
+                            setTitleSorted(!titleSorted);
+                            setDateSorted(null);
+                            setDisciplineSorted(null);
+                            setRubricSorted(null);
+                            setStatusSorted(null);
+                        }}
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Title {titleSorted !== null && (titleSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
                         <span onClick={() => {
                             if (!statusSorted) {
                                 setData(data.sort((a, b) => a[4].localeCompare(b[4])));
@@ -77,8 +90,12 @@ const Content = ({ type }) => {
                                 setData(data.sort((a, b) => a[4].localeCompare(b[4])).reverse());
                             }
                             setStatusSorted(!statusSorted);
+                            setDateSorted(null);
+                            setTitleSorted(null);
+                            setDisciplineSorted(null);
+                            setRubricSorted(null);
                         }}
-                            className='cursor-pointer'>Status</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Status {statusSorted !== null && (statusSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
                         ""]}
                     data={[
                         ...data,
@@ -112,6 +129,11 @@ const Content = ({ type }) => {
 
 const DashboardContent = () => {
     const [type, setType] = useState("credits");
+
+    const options = {
+        credits: { value: "credits", html: <>Your Credits</> },
+        narrative: { value: "narrative", html: <>Narrative</> },
+    };
 
     return (
         <div className="w-full bg-white rounded-3xl font-semibold flex flex-col gap-4 pb-5 items-start">

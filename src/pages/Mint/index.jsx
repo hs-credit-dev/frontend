@@ -18,7 +18,7 @@ const Mint = () => {
 
     const [title, setTitle] = useState("");
     const [abstract, setAbstract] = useState("");
-    const [warning,] = useState("");
+    const [warning, setWarning] = useState("");
 
     const navigate = useNavigate();
 
@@ -30,6 +30,10 @@ const Mint = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (title.trim() === '') return setWarning('Specify a title');
+        if (abstract.trim() === '') return setWarning('Describe your work');
+
         navigate('/dashboard');
     }
 
@@ -65,11 +69,11 @@ const Mint = () => {
                 />
                 <span className='hidden lg:block col-span-1'></span>
                 <Input
-                    name="content-staked"
+                    name="abstract"
                     type="textarea"
                     label={
                         <>
-                            <p>Content Staked</p>
+                            <p>Abstract</p>
                             <FontAwesomeIcon
                                 icon={faQuestionCircle}
                                 className="cursor-pointer"
