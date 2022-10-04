@@ -1,10 +1,10 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import qr from "qrcode";
 import { Typography } from "@material-tailwind/react";
 
-import { credits } from "../../../api_fake";
+import * as credits from "api/credits";
 
-import StripedTable from "./../../../components/StripedTable";
+import StripedTable from "components/StripedTable";
 
 import background from "../assets/transcript-bg.svg";
 import logo from "../../../assets/svg/hsc-logo-no-text.svg";
@@ -35,23 +35,30 @@ const FooterElement = ({ children, className, ...props }) => {
  */
 const Transcript = forwardRef(({ user, student, className }, ref) => {
   const [qrCode, setQrCode] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+
+    (async () => {
+      const res = await credits.getMine();
+      const data = res.data.data;
+      setData(data?.filter(c => {
+        return c.status?.toLowerCase() === "minted";
+      })
+        ?.map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, c.discipline, '']));
+    })();
+  }, []);
 
   if (!user || !student) return <></>;
 
   const { firstName, lastName } = user;
   const { schoolName, dob, ceebCode, id } = student;
 
-  const data = credits.getAll(user.studentId)
-    .filter(c => {
-      return c.status.toLowerCase() === "minted";
+  if (!qrCode) {
+    qr.toDataURL(`${window.location.origin}/profile?id=${id}`).then(code => {
+      setQrCode(code);
     })
-    .map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, c.discipline, '']);
-
-  (async () => {
-    setQrCode(
-      await qr.toDataURL(`${window.location.origin}/profile?id=${id}`)
-    );
-  })();
+  }
 
   return (
     <div

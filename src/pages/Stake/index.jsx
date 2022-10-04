@@ -7,18 +7,15 @@ import {
     faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAtom } from "jotai";
-
 import { userInSession } from "../../App";
-import { credits } from "../../api_fake";
-import Header from '../../components/Header';
-import Input from '../../components/Input';
-import SubmitButton from '../../components/SubmitButton';
-import CloseButton from './../../components/CloseButton';
-
-import disciplines from '../../data/disciplines';
-import { isStudent } from './../../api_fake/students';
-
+import * as credits from 'api/credits';
 import { emailRegex } from 'util/regex';
+import { isStudent } from 'util/api';
+import disciplines from 'data/disciplines';
+import Header from 'components/Header';
+import Input from 'components/Input';
+import SubmitButton from 'components/SubmitButton';
+import CloseButton from 'components/CloseButton';
 
 const Stake = () => {
     const [user] = useAtom(userInSession);
@@ -66,12 +63,10 @@ const Stake = () => {
 
         const id = searchParams.get('id');
 
-        console.log(id);
-
         if (!id) {
-            await credits.stake(user.studentId, discipline, contentStaked, teacherEmail);
+            await credits.stake(discipline, contentStaked, teacherEmail);
         } else {
-            await credits.update(user.studentId, id, { discipline, contentStaked, teacherEmail, });
+            await credits.update(id, { discipline, contentStaked, teacherEmail, });
         }
 
 

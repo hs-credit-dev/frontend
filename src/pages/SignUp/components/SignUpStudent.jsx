@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
 
-import { students, is2XXResponse } from "../../../api_fake";
+import * as students from "api/students";
+import { is2XXResponse } from "util/axios";
 import { username, email, password } from "./SignUpUser";
 import { resetState } from "./../utils";
 
-import Input from "../../../components/Input";
-import SubmitButton from "../../../components/SubmitButton";
-import Button from "../../../components/Button";
+import Input from 'components/Input';
+import Button from 'components/Button';
+import SubmitButton from 'components/SubmitButton';
 
 const SignUpStudent = () => {
   const navigate = useNavigate();
@@ -151,7 +152,7 @@ const SignUpStudent = () => {
             name="bio"
             label="Bio (optional)"
             value={bio}
-            className="h-64"
+            inputClassName="h-64"
             onChange={(e) => {
               setBio(e.target.value);
             }}

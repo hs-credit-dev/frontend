@@ -1,12 +1,13 @@
+import { useState } from 'react';
+import { useAtom } from 'jotai';
 import { Typography } from '@material-tailwind/react';
-import StripedTable from 'components/StripedTable';
+import { useNavigate } from 'react-router-dom';
+import * as credits from 'api/credits';
+import { userInSession } from 'App';
 import Button from 'components/Button';
 import Input from 'components/Input';
-import { useNavigate } from 'react-router-dom';
-import { credits, students } from '../../../api_fake';
-import { useAtom } from 'jotai';
-import { userInSession } from 'App';
-import { useState } from 'react';
+import StripedTable from 'components/StripedTable';
+import { isStudent } from 'util/api';
 
 const Page3 = ({ credit }) => {
     const todayFormatted = new Date().toLocaleDateString('en-CA');
@@ -16,7 +17,6 @@ const Page3 = ({ credit }) => {
     const [dueDate, setDueDate] = useState(todayFormatted);
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
-
 
     const resetState = () => {
         setIsAdding(false);
@@ -74,8 +74,8 @@ const Page3 = ({ credit }) => {
                 }}
             />
             <Button onClick={async () => {
-                if (students.isStudent(user)) {
-                    await credits.pitch(user.studentId, credit.id);
+                if (isStudent(user)) {
+                    await credits.pitch(credit.id);
                 }
 
                 navigate('/dashboard');

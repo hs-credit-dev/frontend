@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const { REACT_APP_API_URL } = process.env;
 
-export const create = async (username, email, password, firstName, lastName, dob, schoolName, ceebCode, bio) => {
-    return await axios.post(`${REACT_APP_API_URL}/api/teachers/create`, { username, email, password, firstName, lastName, dob, schoolName, ceebCode, bio });
+export const create = async (username, email, password, firstName, lastName, ceebCode, schoolName, schoolWebsite, bio = '', middleInitial = '') => {
+    return await axios.post(`${REACT_APP_API_URL}/api/teachers/create`, { username, email, password, firstName, middleInitial, lastName, schoolName, schoolWebsite, ceebCode, bio });
 };
 
 /**

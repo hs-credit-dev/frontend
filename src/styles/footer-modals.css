@@ -1,93 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
-
-* {
-    color: black;
-    font-family: "Montserrat";
-}
 /* footer */
 .footer-text-link {
-    cursor: pointer;
-    font-weight: 700;
-    text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .footer-text-link:hover {
-    color: #805DBE;
+  color: #805dbe;
 }
 
 /* modal */
-ol li {
-    display: list-item;
-    list-style-type: decimal;
-}
-
-ul li {
-    display: list-item;
-    list-style-type: disc;
-}
 
 .ReactModal__Content--after-open {
-    height: 60vh;
-    overflow-y: scroll !important;
-    margin-top: 15vh;
+  height: 60vh;
+  overflow-y: scroll !important;
+  margin-top: 15vh;
 }
 
 .detailModal {
-    background-color: #F5F4FB;
-    padding: 1em 3em 3em;
-    margin-left: auto;
-    margin-right: auto;
-    outline: none;
-    width: 65vw;
+  background-color: #f5f4fb;
+  padding: 1em 3em 3em;
+  margin-left: auto;
+  margin-right: auto;
+  outline: none;
+  width: 65vw;
 }
 
 .modal-container {
-    font-size: 0.8em;
-    position: relative;
+  font-size: 0.8em;
+  position: relative;
 }
 
 .modal-header {
-    align-items: center;
-    border: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding: 0;
+  align-items: center;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 0;
 }
 
 .header-logo {
-    display: inline-block;
-    height: 10vh;
-    line-height: 0;
+  display: inline-block;
+  height: 10vh;
+  line-height: 0;
 }
 
 .header-text {
-    font-size: 1.5em;
-    font-weight: 600;
+  font-size: 1.5em;
+  font-weight: 600;
 }
 
 .main-title {
-    border: none;
-    font-weight: 600;
-    margin-bottom: 2em;
-    text-align: center;
+  border: none;
+  font-weight: 600;
+  margin-bottom: 2em;
+  text-align: center;
 }
 
 .main-paragraph {
-    text-align: justify;
-    margin: 1em 0;
+  text-align: justify;
+  margin: 1em 0;
 }
 
 .main-subtitle {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .main-ordered-list {
-    padding: 0 0 0 1em;
+  padding: 0 0 0 1em;
 }
 
 .close-btn {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }

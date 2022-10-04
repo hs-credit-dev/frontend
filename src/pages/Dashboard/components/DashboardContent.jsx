@@ -1,28 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { credits } from "../../../api_fake";
+import * as credits from "api/credits";
 import disciplines from "../../../data/disciplines";
 
 
 import Narrative from "./Narrative.jsx";
-import Table from "../../../components/StripedTable";
+import Table from "components/StripedTable";
 import { useAtom } from 'jotai';
-import { userInSession } from './../../../App';
+import { userInSession } from 'App';
 
 import { ReactComponent as SortedTriangle } from '../assets/triangle.svg';
 
 const Content = ({ type }) => {
     const [user] = useAtom(userInSession);
     const navigate = useNavigate();
-    const [data, setData] = useState(credits.getAll(user.studentId)
-        .map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, disciplines[c.discipline].name, c.rubric, c.status, <span className="hidden">{c.id}</span>]));
+    const [data, setData] = useState([]);
 
     const [dateSorted, setDateSorted] = useState(null);
     const [titleSorted, setTitleSorted] = useState(null);
     const [disciplineSorted, setDisciplineSorted] = useState(null);
     const [rubricSorted, setRubricSorted] = useState(null);
     const [statusSorted, setStatusSorted] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            const res = await credits.getMine();
+            const data = res.data.data;
+            setData(data?.map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, disciplines[c.discipline].name, c.rubric, c.status, <span className="hidden">{c.id}</span>]));
+        })();
+    }, [user]);
 
     if (!user) return <></>;
 
@@ -43,7 +50,7 @@ const Content = ({ type }) => {
                             setRubricSorted(null);
                             setStatusSorted(null);
                         }}
-                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Date {dateSorted !== null && (dateSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Date {dateSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />}</span>,
                         <span onClick={() => {
                             if (!disciplineSorted) {
                                 setData(data.sort((a, b) => a[2].localeCompare(b[2])));
@@ -56,7 +63,7 @@ const Content = ({ type }) => {
                             setRubricSorted(null);
                             setStatusSorted(null);
                         }}
-                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Discipline {disciplineSorted !== null && (disciplineSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Discipline {disciplineSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />}</span>,
                         <span onClick={() => {
                             if (!rubricSorted) {
                                 setData(data.sort((a, b) => a[3]?.localeCompare(b[3])));
@@ -69,7 +76,7 @@ const Content = ({ type }) => {
                             setDisciplineSorted(null);
                             setStatusSorted(null);
                         }}
-                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Rubric {rubricSorted !== null && (rubricSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Rubric {rubricSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />}</span>,
                         <span onClick={() => {
                             if (!titleSorted) {
                                 setData(data.sort((a, b) => a[1]?.localeCompare(b[1])));
@@ -82,7 +89,7 @@ const Content = ({ type }) => {
                             setRubricSorted(null);
                             setStatusSorted(null);
                         }}
-                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Title {titleSorted !== null && (titleSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Title {titleSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />}</span>,
                         <span onClick={() => {
                             if (!statusSorted) {
                                 setData(data.sort((a, b) => a[4].localeCompare(b[4])));
@@ -95,7 +102,7 @@ const Content = ({ type }) => {
                             setDisciplineSorted(null);
                             setRubricSorted(null);
                         }}
-                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Status {statusSorted !== null && (statusSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />)}</span>,
+                            className='cursor-pointer select-none flex items-center place-content-center gap-2'>Status {statusSorted ? <SortedTriangle className="rotate-180" /> : <SortedTriangle />}</span>,
                         ""]}
                     data={[
                         ...data,

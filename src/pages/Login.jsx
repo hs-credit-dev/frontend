@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useAtom } from "jotai";
 
-import { users } from "../api_fake";
+import * as users from "api/users";
 import { userInSession } from "../App";
 
 import Logo from "../components/Logo";
@@ -12,9 +12,6 @@ import SubmitButton from "../components/SubmitButton";
 
 const Login = () => {
   const [user, setUser] = useAtom(userInSession);
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [warning, setWarning] = useState("");
 
   const navigate = useNavigate();
@@ -22,12 +19,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!username || !password) return;
+    if (!e.target.username.value || !e.target.password.value) return;
+
+    setWarning("");
 
     try {
-      setWarning("");
-      const res = await users.login(username, password);
-      const user = res.data.data.user;
+      const res = await users.login(e.target.username.value, e.target.password.value);
+      const user = res.data?.data?.user;
       if (!user) {
         setWarning("incorrect username or password");
         return;
@@ -45,41 +43,33 @@ const Login = () => {
 
   return (
     <>
-      <div className="flex flex-col align-middle my-auto h-4/5">
-        <div className="flex flex-col gap-6 mt-auto">
-          {/* <NavLink to="/"> */}
-          <Logo className="mx-auto mb-4" />
-          {/* </NavLink> */}
-          <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
+      <div className="flex flex-col items-center grow py-16">
+        <div className="flex flex-col items-center my-auto w-full gap-4">
+          <NavLink to="/">
+            <Logo />
+          </NavLink>
+          <form className="flex flex-col gap-8 items-center w-full" onSubmit={handleSubmit}>
             <Input
               name="username"
               autoComplete="username"
               placeholder="Username"
-              className="mx-auto text-center w-4/5 sm:w-full max-w-lg"
-              onChange={(e) => {
-                setWarning("");
-                setUsername(e.target.value);
-              }}
+              className="w-full max-w-md"
             />
             <Input
               type="password"
               autoComplete="current-password"
               name="password"
               placeholder="Password"
-              className="mx-auto text-center w-4/5 sm:w-full max-w-lg"
-              onChange={(e) => {
-                setWarning("");
-                setPassword(e.target.value);
-              }}
+              className="w-full max-w-md"
             />
             <SubmitButton name="Log In" className="mx-auto" />
           </form>
-          <a className="mx-auto font-bold text-blue-700" href="/">
+          <a className="font-bold text-hslink" href="/">
             Forgot password?
           </a>
-          <p className="mx-auto text-red-600 font-bold">{warning}</p>
+          <p className="text-hswarn font-bold">{warning}</p>
         </div>
-        <NavLink to="/signup" className="mx-auto mb-12 mt-auto">
+        <NavLink to="/signup" className="mt-auto">
           <Button>Create account</Button>
         </NavLink>
       </div>

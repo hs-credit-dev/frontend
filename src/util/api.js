@@ -1,3 +1,7 @@
-export const is2XXResponse = (status) => {
-    return `${status}`[0] === '2';
-}
+export const isStudent = (user) => {
+    return !!user.studentId;
+};
+
+export const isTeacher = (user) => {
+    return !!user.teacherId;
+};

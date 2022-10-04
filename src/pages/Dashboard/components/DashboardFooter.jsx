@@ -1,13 +1,13 @@
 import { useRef, useEffect, useState } from "react";
 import { Avatar, Typography } from "@material-tailwind/react";
 
-import shareIcon from "../../../assets/svg/share-icon.svg";
-import downloadIcon from "../../../assets/svg/download-icon.svg";
+import shareIcon from "assets/svg/share-icon.svg";
+import downloadIcon from "assets/svg/download-icon.svg";
 import Transcript from "./Transcript";
-import { userInSession } from "./../../../App";
+import { userInSession } from "App";
 import { useAtom } from "jotai";
 import { useReactToPrint } from "react-to-print";
-import { students } from "../../../api_fake";
+import * as students from "api/students";
 
 const DashboardFooter = () => {
   const [user] = useAtom(userInSession);

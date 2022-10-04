@@ -15,7 +15,9 @@ module.exports = withMT({
       'hspurple': '#805DBE',  // primary color
       'hsbg': '#F6F4FA',      // background color
       'hsbeige': '#EDEDED',   // background color for dashboard table
-      'hsblue': '#85C4E9'     // background color for profile icon
+      'hsblue': '#85C4E9',     // background color for profile icon
+      'hslink': '#1975D2',
+      'hswarn': '#e53935'
     }
   },
   fontFamily: {

@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
-import { useAtom } from "jotai";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-
-import { students, teachers } from "../../api_fake";
-import { isStudent } from "../../api_fake/students";
-import { isTeacher } from "../../api_fake/teachers";
-import { userInSession } from "../../App";
-
-import Header from "../../components/Header";
-import Spinner from "../../components/Spinner";
+import { useAtom } from "jotai";
+import { isStudent, isTeacher } from 'util/api';
+import * as students from 'api/students';
+import * as teachers from 'api/teachers';
+import { userInSession } from "App";
 import StudentProfile from "./StudentProfile";
 import TeacherProfile from "./TeacherProfile";
+import Header from "components/Header";
+import Spinner from "components/Spinner";
+import NotFound from "pages/NotFound";
 
 
 const Profile = () => {
@@ -34,13 +33,13 @@ const Profile = () => {
       if (isStudent(user)) {
         const id = paramsId || user.studentId;
         const res = await students.get(id);
-        const student = res.data.data.student;
+        const student = res?.data?.data?.student;
         setStudent(student);
       }
       else if (isTeacher(user)) {
         const id = paramsId || user.teacherId;
         const res = await teachers.get(id);
-        const teacher = res.data.data.teacher;
+        const teacher = res?.data?.data?.teacher;
         setTeacher(teacher);
       }
 
@@ -61,22 +60,22 @@ const Profile = () => {
       </>
     );
 
-  const renderProfile = () => {
-    if (isStudent(user)) {
-      return <StudentProfile student={student} />;
-    }
-    else if (isTeacher(user)) {
-      return <TeacherProfile teacher={teacher} />;
-    }
-    else {
-      return <></>;
-    }
-  }
-
   return (
     <>
       <Header />
-      {renderProfile()}
+      {(() => {
+        if (!student && !teacher) return <NotFound />
+
+        if (isStudent(user)) {
+          return <StudentProfile student={student} />;
+        }
+        else if (isTeacher(user)) {
+          return <TeacherProfile teacher={teacher} />;
+        }
+        else {
+          return <></>;
+        }
+      })()}
     </>
   );
 };

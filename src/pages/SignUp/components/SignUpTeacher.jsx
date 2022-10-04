@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
 
-import { teachers, is2XXResponse } from "../../../api_fake";
+import * as teachers from 'api/teachers';
+import { is2XXResponse } from 'util/axios';
 import { username, email, password } from "./SignUpUser";
 import { resetState } from "./../utils";
 
-import Input from "../../../components/Input";
-import SubmitButton from "../../../components/SubmitButton";
-import Button from './../../../components/Button';
+import Input from 'components/Input';
+import SubmitButton from 'components/SubmitButton';
+import Button from 'components/Button';
 
 const SignUpTeacher = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const SignUpTeacher = () => {
         schoolName,
         schoolWebsite,
         bio,
+        middleName,
       );
 
       if (is2XXResponse(res.status)) {
@@ -149,7 +151,7 @@ const SignUpTeacher = () => {
             name="bio"
             label="Bio (optional)"
             value={bio}
-            className="h-64"
+            inputClassName="h-64"
             onChange={(e) => {
               setBio(e.target.value);
             }}

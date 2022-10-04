@@ -10,7 +10,8 @@ const Page2 = ({ pageState, credit }) => {
 
     return (
         <>
-            {rubric.questions.map((q, i) => <span key={i} className="flex flex-col items-start gap-4"><p className='font-semibold'>{i + 1}. {q.text}</p><Input type={q.type}></Input></span>)}
+            {rubric.questions.map((q, i) => <span key={i} className="flex flex-col items-start gap-4 w-full"><p className='font-semibold'>{i + 1}. {q.text}</p><Input className={'w-full'} inputClassName={q.type === 'textarea' ? 'h-64' : ''} type={q.type}></Input></span>)
+            }
             <Button onClick={() => { setPage(page + 1) }} className="mt-24 ml-auto">Next</Button>
         </>
     );

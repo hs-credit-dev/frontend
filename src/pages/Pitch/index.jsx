@@ -5,30 +5,15 @@ import { useAtom } from "jotai";
 
 import { userInSession } from "../../App";
 
-import Header from './../../components/Header/index';
-import CloseButton from './../../components/CloseButton';
 
+import { isStudent } from 'util/api';
+import * as credits from 'api/credits';
+import Header from 'components/Header';
+import Spinner from 'components/Spinner';
+import CloseButton from 'components/CloseButton';
 import Page1 from './components/Page1';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
-import Spinner from './../../components/Spinner';
-import { credits } from '../../api_fake';
-import { isStudent } from './../../api_fake/students';
-
-const Page = ({ pageState, credit }) => {
-    const [page] = pageState;
-
-    switch (page) {
-        case 0:
-            return <Page1 pageState={pageState} credit={credit} />;
-        case 1:
-            return <Page2 pageState={pageState} credit={credit} />;
-        case 2:
-            return <Page3 pageState={pageState} credit={credit} />;
-        default:
-            return <></>;
-    }
-};
 
 const Pitch = () => {
     const [user] = useAtom(userInSession);
@@ -54,7 +39,8 @@ const Pitch = () => {
             }
 
             const id = searchParams.get('id');
-            const credit = credits.get(user.studentId, id);
+            const res = await credits.get(id);
+            const credit = res.data.data;
             setCredit(credit);
 
         })();
@@ -91,7 +77,22 @@ const Pitch = () => {
                         <CloseButton to='/dashboard' />
                     </div>
                 </div>
-                <Page pageState={pageState} credit={credit} />
+                {
+                    (() => {
+                        const [page] = pageState;
+
+                        switch (page) {
+                            case 0:
+                                return <Page1 pageState={pageState} credit={credit} />;
+                            case 1:
+                                return <Page2 pageState={pageState} credit={credit} />;
+                            case 2:
+                                return <Page3 pageState={pageState} credit={credit} />;
+                            default:
+                                return <></>;
+                        }
+                    })()
+                }
             </div>
         </>
     );

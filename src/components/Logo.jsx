@@ -1,15 +1,11 @@
-import { Avatar } from "@material-tailwind/react";
+import src from "assets/svg/hsc-logo-no-text.svg";
 
-import img from "../assets/svg/hsc-logo-no-text.svg";
-
-const Logo = ({ className, ...props }) => {
+const Logo = () => {
   return (
-    <>
-      <span className={`flex items-center w-fit h-20 ${className}`} {...props}>
-        <Avatar src={img} alt="logo" className="inline-block w-fit h-full" />
-        <p className="inline-block pl-4 font-bold text-3xl">hs.credit</p>
-      </span>
-    </>
+    <span className='flex items-center gap-2'>
+      <img src={src} alt="logo" />
+      <p className="font-bold text-3xl text-black">hs.credit</p>
+    </span>
   );
 };
 

@@ -1,18 +1,18 @@
 import { Navigate, useSearchParams } from "react-router-dom";
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { verify } from "api/users";
+import { verify } from "api/credits";
 import Spinner from "components/Spinner";
 
-const Verification = () => {
+const StakeVerification = () => {
     const [searchParams] = useSearchParams();
     const [isVerifying, setIsVerifying] = useState(true);
 
     useEffect(() => {
-        const userId = searchParams.get('id');
+        const creditId = searchParams.get('id');
         const verificationPassword = searchParams.get('password');
 
-        verify(userId, verificationPassword).then((res) => {
+        verify(creditId, verificationPassword).then((res) => {
             setIsVerifying(false);
         });
     }, [isVerifying, searchParams]);
@@ -33,4 +33,4 @@ const Verification = () => {
     );
 };
 
-export default Verification;
+export default StakeVerification;

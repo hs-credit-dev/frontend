@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { Typography } from '@material-tailwind/react';
 import { useSearchParams } from "react-router-dom";
 
-import Header from './../../components/Header/index';
 import CreditDisplay from './components/CreditDisplay';
-import CloseButton from './../../components/CloseButton';
-import { credits } from '../../api_fake';
-import { userInSession } from './../../App';
+import CloseButton from 'components/CloseButton';
+import * as credits from 'api/credits';
+import { userInSession } from 'App';
 import { useAtom } from 'jotai';
-import { isStudent } from './../../api_fake/students';
-import Spinner from './../../components/Spinner';
+import { isStudent } from 'util/api';
+import Header from 'components/Header/index';
+import Spinner from 'components/Spinner';
 
 
 const CreditPage = () => {
@@ -24,7 +24,8 @@ const CreditPage = () => {
             }
 
             const id = searchParams.get('id');
-            const credit = credits.get(user.studentId, id);
+            const res = await credits.get(id);
+            const credit = res.data.data;
             setCredit(credit);
 
         })();

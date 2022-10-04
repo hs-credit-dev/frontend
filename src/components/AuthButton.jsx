@@ -3,13 +3,14 @@ import { useAtom } from "jotai";
 import { IconButton } from "@material-tailwind/react";
 
 import { userInSession } from "../App";
-import { users } from "../api_fake";
+import * as users from "api/users";
 import Button from "./Button";
 
 import { ReactComponent as LogoutIcon } from "../assets/svg/log-out-icon.svg";
 
 /**
  * Button that conditionally renders Login/Logout depending on session state
+ * & handles login/logout functionality
  */
 const AuthButton = ({ className, ...props }) => {
   const [user, setUser] = useAtom(userInSession);

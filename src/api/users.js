@@ -6,6 +6,7 @@ const { REACT_APP_API_URL } = process.env;
  * 
  * @param {*} username account username (or email)  
  * @param {*} password account password
+ * @returns user data
  */
 export const login = async (username, password) => {
     return await axios.post(`${REACT_APP_API_URL}/api/users/login`, { username, password });
@@ -25,8 +26,8 @@ export const getUserInSession = async () => {
  * @param {any} data 
  * @returns 
  */
-export const updateUserInSession = async (data) => {
-    return await axios.put(`${REACT_APP_API_URL}/api/users/me`);
+export const updateUserInSession = async (changes) => {
+    return await axios.put(`${REACT_APP_API_URL}/api/users/me`, changes);
 };
 
 export const deleteUserInSession = async () => {

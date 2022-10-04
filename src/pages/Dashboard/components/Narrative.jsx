@@ -3,9 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-import { students } from "../../../api_fake";
+import * as students from "api/students";
+import * as users from 'api/users';
 import { useAtom } from 'jotai';
-import { userInSession } from './../../../App';
+import { userInSession } from 'App';
+import { isStudent } from "util/api";
 
 const Narrative = () => {
   const [user] = useAtom(userInSession);
@@ -14,7 +16,7 @@ const Narrative = () => {
   const [narrative, setNarrative] = useState("");
 
   useEffect(() => {
-    if (!students.isStudent(user)) return;
+    if (!isStudent(user)) return;
     students.get(user.studentId).then(res => {
       const student = res.data.data.student;
       setNarrative(student.narrative);
@@ -30,11 +32,8 @@ const Narrative = () => {
             setisEditing(!isEditing);
             setEditingMessage("Editing...");
             if (!isEditing) return;
-            if (!students.isStudent(user)) return;
-            const res = await students.get(user.studentId);
-            const student = res.data.data.student;
-            student.narrative = narrative;
-            await students.update(student);
+            if (!isStudent(user)) return;
+            await users.updateUserInSession({ narrative });
             setEditingMessage("Saved!");
           }}
           icon={faPenToSquare}

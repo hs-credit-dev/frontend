@@ -91,69 +91,73 @@ const disciplines = {
     english: {
         name: 'English',
         icon: EnglishIcon,
-        'english': {
-            questions: [
-                {
-                    text: 'Does the task ask you to develop a strong interpretation/point of view?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'Does the task require you to develop evidence that supports your interpretation/point of view?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'Does the task require that you consider other interpretatios?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'What kinds of analysis and connections does the task require?',
-                    type: 'textarea',
-                },
-                {
-                    text: 'Does the task require you to critique the craft employed by the author in her/his work?',
-                    type: 'textarea',
-                },
-                {
-                    text: 'Does the task ask you to practice the craft of communication (research paper, podcast, documentary, etc)?',
-                    type: 'y/n',
-                },
-            ],
+        rubrics: {
+            'english': {
+                questions: [
+                    {
+                        text: 'Does the task ask you to develop a strong interpretation/point of view?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'Does the task require you to develop evidence that supports your interpretation/point of view?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'Does the task require that you consider other interpretatios?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'What kinds of analysis and connections does the task require?',
+                        type: 'textarea',
+                    },
+                    {
+                        text: 'Does the task require you to critique the craft employed by the author in her/his work?',
+                        type: 'textarea',
+                    },
+                    {
+                        text: 'Does the task ask you to practice the craft of communication (research paper, podcast, documentary, etc)?',
+                        type: 'y/n',
+                    },
+                ],
+            },
         },
     },
     science: {
         name: 'Science',
         icon: ScienceIcon,
-        'science': {
-            questions: [
-                {
-                    text: 'Does the task ask you to write a hypothesis statement that includes a discussion of the context and background/history?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'Does the task ask you to carefully and with detail describe the  procedure with attention paid to biases?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'Does the task ask you to collect, organize, and present relevant data that includes a mathematical analysis?',
-                    type: 'textarea',
-                },
-                {
-                    text: 'Does the task ask you to analyze your conclusions (particularly vis-a-vis the original question) and examine sources of error and their implications?',
-                    type: 'textarea',
-                },
-                {
-                    text: 'Does the task ask you to offer revisions for the experimental design?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'Does the task ask you to discuss the import of your conclusions?',
-                    type: 'y/n',
-                },
-                {
-                    text: 'Does the task ask you to practice the craft of the communication strategy (research paper, podcast, documentary, etc)',
-                    type: 'y/n',
-                },
-            ],
+        rubrics: {
+            'science': {
+                questions: [
+                    {
+                        text: 'Does the task ask you to write a hypothesis statement that includes a discussion of the context and background/history?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'Does the task ask you to carefully and with detail describe the  procedure with attention paid to biases?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'Does the task ask you to collect, organize, and present relevant data that includes a mathematical analysis?',
+                        type: 'textarea',
+                    },
+                    {
+                        text: 'Does the task ask you to analyze your conclusions (particularly vis-a-vis the original question) and examine sources of error and their implications?',
+                        type: 'textarea',
+                    },
+                    {
+                        text: 'Does the task ask you to offer revisions for the experimental design?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'Does the task ask you to discuss the import of your conclusions?',
+                        type: 'y/n',
+                    },
+                    {
+                        text: 'Does the task ask you to practice the craft of the communication strategy (research paper, podcast, documentary, etc)',
+                        type: 'y/n',
+                    },
+                ],
+            },
         },
     },
 };

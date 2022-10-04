@@ -3,6 +3,7 @@ import { Typography } from '@material-tailwind/react';
 
 import disciplines from '../../../data/disciplines';
 import { useNavigate } from 'react-router-dom';
+import Spinner from 'components/Spinner';
 
 // Dark gray bold
 const B = ({ children }) => {
@@ -11,6 +12,8 @@ const B = ({ children }) => {
 
 const CreditDisplay = ({ credit }) => {
     const navigate = useNavigate();
+
+    if (!credit) return <Spinner />;
 
     return <div className='flex flex-col items-center gap-8'>
         <img src={disciplines[credit.discipline].icon} alt="icon" />
