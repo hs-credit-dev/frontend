@@ -27,6 +27,8 @@ const Content = ({ type }) => {
         (async () => {
             const res = await credits.getMine();
             const data = res.data.data;
+            console.log(res);
+            if (!data) return;
             setData(data?.map(c => [new Date(c.dateStaked).toLocaleDateString("en-US"), c.title, disciplines[c.discipline].name, c.rubric, c.status, <span className="hidden">{c.id}</span>]));
         })();
     }, [user]);

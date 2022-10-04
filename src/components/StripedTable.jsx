@@ -14,7 +14,7 @@ const StripedTable = ({ headers, data, className, trParams }) => {
             </tr>
           </thead>
           <tbody className="font-bold">
-            {[...Array(data.length + 1)].map((_, i) => (
+            {[...Array((data?.length || 0) + 1)].map((_, i) => (
               <tr key={i}>
                 <td className="p-2">{i === 0 ? " " : i}</td>
               </tr>
@@ -32,7 +32,7 @@ const StripedTable = ({ headers, data, className, trParams }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, i) => (
+            {data?.map((row, i) => (
               <tr
                 key={i}
                 {...trParams}
