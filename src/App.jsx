@@ -11,7 +11,6 @@ export const userTypeInSession = atom(null); // student | teacher
 
 const App = () => {
   const [user, setUser] = useAtom(userInSession);
-  const [userType, setUserType] = useAtom(userTypeInSession);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
