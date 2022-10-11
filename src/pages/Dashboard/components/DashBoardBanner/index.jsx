@@ -17,11 +17,8 @@ const Dashboard = () => {
           className="text-white col-span-2 whitespace-nowrap"
           variant="h3"
         >
-          Welcome back, {user?.firstName}
+          Welcome back, {user?.firstName}!
         </Typography>
-        <p className="col-span-1 justify-self-center text-2xl hidden lg:block">
-          👋
-        </p>
         <Avatar
           src={humanFigure}
           alt="human"
