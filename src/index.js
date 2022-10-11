@@ -10,11 +10,6 @@ import App from './App';
 
 import './index.css';
 
-// Init axios
-// axios.defaults.headers.common['Access-Control-Allow-Origin'] = "true";
-axios.defaults.withCredentials = true; // send cookies
-axios.defaults.validateStatus = () => true; // don't throw errors on non-200 response
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <StrictMode>
