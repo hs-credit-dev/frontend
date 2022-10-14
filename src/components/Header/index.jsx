@@ -61,7 +61,7 @@ const Header = () => {
         </div>
         <IconButton
           variant="text"
-          className="text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden mx-auto"
+          className="text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden mx-auto"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
         >
@@ -69,9 +69,12 @@ const Header = () => {
         </IconButton>
         <MobileNav
           open={openNav}
-          className="flex flex-col items-center gap-8 h-fit overflow-visible"
+          className="flex flex-col items-stretch gap-4 h-fit overflow-visible"
         >
-          {openNav && navList}
+          {openNav && (<>
+            <NavLink to="/profile" className='p-4 text-black text-center rounded-3xl bg-hswhite bg-opacity-50' onClick={() => { setOpenNav(false) }}>Profile</NavLink>
+            <AuthButton className='p-6 rounded-3xl bg-hswhite bg-opacity-50 hover:bg-hswhite max-w-full w-full' />
+          </>)}
         </MobileNav>
       </Navbar>
     </>

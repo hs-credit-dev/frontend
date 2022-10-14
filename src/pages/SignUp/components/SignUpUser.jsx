@@ -85,7 +85,7 @@ const SignUpUser = () => {
             Select
           </option>
           <option value="student">Students</option>
-          <option value="teacher">Teacher</option>
+          <option value="teacher">Teachers</option>
         </Input>
         <span></span>
         <Input

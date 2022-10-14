@@ -4,7 +4,7 @@ import ReactModal from 'react-modal';
 import '../../styles/footer-modals.css';
 import logo from '../../assets/svg/hsc-logo-with-text.svg';
 
-export default function TermsOfServiceModal() {
+export default function TermsOfServiceModal({ text }) {
 
     const [modal, setModal] = useState({ showModal: false });
 
@@ -18,8 +18,8 @@ export default function TermsOfServiceModal() {
 
 
     return (
-        <div className='text-container'>
-            <p className="footer-text-link text-sm" onClick={() => seeDetail()}>Terms & Services</p>
+        <span className='text-container'>
+            <span className="footer-text-link text-sm" onClick={() => seeDetail()}>{text}</span>
 
             <ReactModal
                 ariaHideApp={false}
@@ -533,6 +533,6 @@ export default function TermsOfServiceModal() {
                 </div>
             </ReactModal>
 
-        </div>
+        </span>
     );
 }

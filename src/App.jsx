@@ -4,19 +4,14 @@ import { getUserInSession } from "./api/users";
 import Routes from './Routes';
 import Spinner from "components/Spinner";
 import Footer from "components/Footer";
-import axios from 'axios'
 
 // State
 export const userInSession = atom(null);
 export const userTypeInSession = atom(null); // student | teacher
 
-// Init axios
-axios.defaults.withCredentials = true; // send cookies
-axios.defaults.validateStatus = () => true; // don't throw errors on non-200 response
+
 
 const App = () => {
-
-
   const [user, setUser] = useAtom(userInSession);
 
   const [isLoaded, setIsLoaded] = useState(false);

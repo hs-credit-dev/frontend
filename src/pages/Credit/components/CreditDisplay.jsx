@@ -59,7 +59,9 @@ const CreditDisplay = ({ credit }) => {
                     {
                         credit.datePitched ?
                             <>
-                                {<TransparentButton>Edit</TransparentButton>}
+                                {<TransparentButton onClick={() => {
+                                    navigate(`/pitch?id=${credit.id}`);
+                                }}>Edit</TransparentButton>}
                                 <Typography className='italic text-gray-700' variant="small">Submitted {new Date(credit.datePitched).toLocaleDateString("en-US")}</Typography>
                             </> :
                             <>

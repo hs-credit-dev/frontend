@@ -30,3 +30,11 @@ export const update = async (id, changes) => {
 export const pitch = async (id) => {
     return await axios.put(`${BASE_URL}/pitch/${id}`);
 };
+
+export const addCheckpoint = async (creditId, date, description) => {
+    return await axios.post(`${BASE_URL}/${creditId}/checkpoint`, { date, description });
+};
+
+export const getCheckpoints = async (creditId) => {
+    return await axios.get(`${BASE_URL}/${creditId}/checkpoints`);
+};

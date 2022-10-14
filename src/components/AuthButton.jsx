@@ -17,17 +17,14 @@ const AuthButton = ({ className, ...props }) => {
   const navigate = useNavigate();
 
   return (
-    <>
-      {/* Only render login button if no user in session */}
-      {!user && (
-        <NavLink to="/login">
-          <Button className={className} {...props}>
-            Login
-          </Button>
-        </NavLink>
-      )}
-      {/* Only render logout button if user in session */}
-      {user && (
+    !user ? (
+      <NavLink to="/login">
+        <Button className={className} {...props}>
+          Login
+        </Button>
+      </NavLink>
+    ) :
+      (
         <IconButton
           variant="text"
           onClick={async () => {
@@ -40,8 +37,7 @@ const AuthButton = ({ className, ...props }) => {
         >
           <LogoutIcon />
         </IconButton>
-      )}
-    </>
+      )
   );
 };
 

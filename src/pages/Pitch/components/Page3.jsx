@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { Typography } from '@material-tailwind/react';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Button from 'components/Button';
 import Input from 'components/Input';
 import StripedTable from 'components/StripedTable';
 import { isStudent } from 'util/api';
+import { is2XXResponse } from './../../../util/axios';
 
 const Page3 = ({ credit }) => {
     const todayFormatted = new Date().toLocaleDateString('en-CA');
@@ -17,12 +18,21 @@ const Page3 = ({ credit }) => {
     const [dueDate, setDueDate] = useState(todayFormatted);
     const [description, setDescription] = useState('');
     const navigate = useNavigate();
+    const [checkpoints, setCheckpoints] = useState([]);
 
     const resetState = () => {
         setIsAdding(false);
         setDueDate(todayFormatted);
         setDescription('');
     }
+
+    useEffect(() => {
+        (async () => {
+            const res = await credits.getCheckpoints(credit.id);
+            if (!is2XXResponse(res.status)) return;
+            setCheckpoints(res.data.data);
+        })();
+    }, [credit]);
 
     return (
         <>
@@ -36,7 +46,7 @@ const Page3 = ({ credit }) => {
                 '',
             ]} data={
                 [
-                    ...credit.checkpoints.sort((a, b) => a.dueDate - b.dueDate).map(c => [c.dueDate, c.description]),
+                    ...checkpoints.sort((a, b) => a.dueDate - b.dueDate).map(c => [new Date(c.dueDate).toLocaleDateString('en-US'), c.description]),
                     isAdding ?
                         [<Input
                             type="date"
@@ -53,7 +63,13 @@ const Page3 = ({ credit }) => {
                             onChange={(e) => {
                                 setDescription(e.target.value);
                             }}
-                        />, <Button className='w-16' onClick={() => {
+                        />, <Button className='w-16' onClick={async () => {
+                            await credits.addCheckpoint(credit.id, dueDate, description);
+                            const res = await credits.getCheckpoints(credit.id);
+                            if (is2XXResponse(res.status)) {
+                                setCheckpoints(res.data.data);
+                            }
+
                             resetState();
                         }}>Add</Button>]
                         :

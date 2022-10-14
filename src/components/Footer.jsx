@@ -27,11 +27,11 @@ const Footer = ({ className, ...props }) => {
         <FooterElement className="lg:ml-8">Powered by <a href="https://hs.credit/" className="hover:text-hspurple">hs.credit</a></FooterElement>
         <FooterElement>|</FooterElement>
         {/* <FooterElement> */}
-        <TermsOfServiceModal />
+        <TermsOfServiceModal text='Terms & Services' />
         {/* </FooterElement> */}
         <FooterElement>|</FooterElement>
         {/* <FooterElement> */}
-        <PrivacyPolicyModal />
+        <PrivacyPolicyModal text='Privacy Policy' />
         {/* </FooterElement> */}
         <FooterElement>|</FooterElement>
         <FooterElement>© 2022 Academic Capital Foundation, Inc.</FooterElement>

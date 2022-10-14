@@ -1,5 +1,5 @@
 <div class="triangle-container">
     <svg height="9" width="9">
-        <polygon points="9,0 0,17 17,17" />
+        <polygon points="5,0 0,9 9,9" />
     </svg>
 </div>

@@ -10,6 +10,8 @@ import { resetState } from "./../utils";
 import Input from 'components/Input';
 import Button from 'components/Button';
 import SubmitButton from 'components/SubmitButton';
+import TermsOfServiceModal from 'components/modals/TermsOfServiceModal';
+import PrivacyPolicyModal from "components/modals/PrivacyPolicyModal";
 
 const SignUpStudent = () => {
   const navigate = useNavigate();
@@ -170,7 +172,7 @@ const SignUpStudent = () => {
             <p className="italic text-sm font-semibold">
               By checking this box, you are confirming that you are at least 13
               years of age or older. You are also consenting to our
-              terms/services and Data Use Policy.
+              <TermsOfServiceModal text=' terms/services ' /> and <PrivacyPolicyModal text=' Data Use Policy' />.
             </p>
           </span>
           <SubmitButton name="Create Account" />

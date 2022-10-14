@@ -10,6 +10,8 @@ import { resetState } from "./../utils";
 import Input from 'components/Input';
 import SubmitButton from 'components/SubmitButton';
 import Button from 'components/Button';
+import TermsOfServiceModal from 'components/modals/TermsOfServiceModal';
+import PrivacyPolicyModal from 'components/modals/PrivacyPolicyModal';
 
 const SignUpTeacher = () => {
   const navigate = useNavigate();
@@ -168,8 +170,8 @@ const SignUpTeacher = () => {
               value={confirmed}
             />
             <p className="italic text-sm font-semibold">
-              By checking this box, you are consenting to our terms/services and
-              Privacy Policy.
+              By checking this box, you are consenting to our <TermsOfServiceModal text=' terms/services ' /> and
+              <PrivacyPolicyModal text=' Privacy Policy' />.
             </p>
           </span>
           <SubmitButton name="Create Account" />
