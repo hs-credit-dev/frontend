@@ -6,6 +6,8 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { exists } from 'api/users';
+
 // Components
 import Input from "../../../components/Input";
 import SubmitButton from "./../../../components/SubmitButton";
@@ -14,6 +16,7 @@ import { emailRegex } from "util/regex";
 
 // SignUp State
 import { page, userType } from "..";
+import { is2XXResponse } from './../../../util/axios';
 
 // User State
 export const username = atom("");
@@ -48,6 +51,16 @@ const SignUpUser = () => {
     );
   };
 
+  const usernameExists = async () => {
+    const res = await exists(_username);
+    return is2XXResponse(res.status);
+  };
+
+  const emailExists = async () => {
+    const res = await exists(undefined, _email);
+    return is2XXResponse(res.status);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -62,6 +75,10 @@ const SignUpUser = () => {
       );
     else if (_password !== confirmPassword)
       return setWarning("Passwords do not match");
+    else if (await usernameExists())
+      return setWarning("User with that username already exists");
+    else if (await emailExists())
+      return setWarning("User with that email already exists");
 
     setPage(1);
   };

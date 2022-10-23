@@ -37,3 +37,7 @@ export const deleteUserInSession = async () => {
 export const verify = async (id, password) => {
     return await axios.put(`${REACT_APP_API_URL}/api/users/verify/${id}?password=${password}`);
 };
+
+export const exists = async (username, email) => {
+    return await axios.get(`${REACT_APP_API_URL}/api/users/exists?username=${username || ""}&email=${email || ""}`);
+};
