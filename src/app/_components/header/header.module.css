@@ -1,0 +1,11 @@
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#headActions {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 140px;
+}

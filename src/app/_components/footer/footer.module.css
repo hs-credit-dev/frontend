@@ -1,0 +1,16 @@
+#footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#smallLogo{
+    width: 50px;
+}
+
+#bottomNav{
+    display: flex;
+    justify-content: space-between;
+    min-width: 500px;
+    width: 45rem;
+}

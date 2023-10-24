@@ -1,0 +1,29 @@
+:root {
+  
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body{
+  background-color: rgba(128, 93, 190, 0.07);
+  height: 100%;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 37.5rem;
+  height: 95dvh;
+  margin: 1.5rem;
+}
