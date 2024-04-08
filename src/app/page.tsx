@@ -1,11 +1,6 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import Students from "./students/pages"
 
-export default function Home() {
+export default function Page() {
   return (
-    <>
-    <Students></Students>
-    </>
+    <h1>Hello, Home page!</h1>
   )
 }
