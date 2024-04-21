@@ -2,25 +2,29 @@
 
 import Image from "next/image";
 import Modal from "../_components/Modal/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+
+type CreditsProps = {
+	id: string;
+	url: string;
+	creditname: string;
+};
 
 export default function Page() {
-	const [showModal, setShowModal] = useState(false);
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [credits, setCredits] = useState<CreditsProps[] | null>(null);
+	const [search, setSearch] = useState<string>("");
 
-	const titleArray: string[] = [
-		"Filmmaking",
-		"African American Studies",
-		"Cognitive Science",
-		"Music Theory",
-		"Data Science",
-		"Digital Animation",
-		"Business Administration",
-		"Clinical Psychology",
-		"Data Science",
-		"Digital Animation",
-		"Business Administration",
-		"Clinical Psychology",
-	];
+	useEffect(() => {
+		fetch("http://localhost:8000/credits")
+			.then((res) => {
+				return res.json();
+			})
+			.then((data) => {
+				setCredits(data);
+			});
+	}, []);
 
 	return (
 		<>
@@ -35,6 +39,7 @@ export default function Page() {
 						<input
 							className="px-4 py-2 border text-sm bg-none border-gray-400 rounded-full appearance-none focus:outline-none focus:shadow-md focus:border-hsPurple"
 							type="text"
+							onChange={(e) => setSearch(e.target.value)}
 							placeholder="Search..."
 						/>
 						<figure>
@@ -57,24 +62,41 @@ export default function Page() {
 						</button>
 					</section>
 				</nav>
-				<section className="mx-0 mt-10 h-96 overflow-y-scroll grid justify-items-center md:pr-6 md:mt-10 md:grid-cols-4 gap-6 md:justify-items-start">
-					<>
-						{titleArray.map((title, index) => (
-							<figure key={index}>
-								<Image
-									src="/dummyimage.webp"
-									width={200}
-									height={200}
-									alt="Picture of the credit"
-									className="transition-opacity opacity-0 duration-300"
-									onLoadingComplete={(image) =>
-										image.classList.remove("opacity-0")
-									}
-								/>
-								<p className="text-sm font-semibold mt-2">{title}</p>
-							</figure>
-						))}
-					</>
+				<section className="mx-0 mt-10 max-h-72 md:max-h-96 overflow-y-scroll grid justify-items-center md:pr-6 md:mt-10 md:grid-cols-4 gap-6 md:justify-items-start">
+					{credits && (
+						<>
+							{credits
+								.filter((credit) => {
+									return search.toLowerCase() === ""
+										? credit
+										: credit.creditname.toLowerCase().includes(search);
+								})
+								.map((credit) => (
+									<div key={credit.id}>
+										<figure className="h-[200px] w-[200px] md:h-[125px] md:w-[125px] lg:h-[200px] lg:w-[200px] ">
+											<Link href="/">
+												<Image
+													src={credit.url}
+													width={0}
+													height={0}
+													sizes="100vw"
+													alt="Picture of the credit"
+													className="w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-purple-500"
+													onLoadingComplete={(image) =>
+														image.classList.remove("opacity-0")
+													}
+												/>
+											</Link>
+										</figure>
+										<Link href="/">
+											<p className="text-sm font-semibold mt-2">
+												{credit.creditname}
+											</p>
+										</Link>
+									</div>
+								))}
+						</>
+					)}
 				</section>
 				<section className="fixed right-4 bottom-0 -mb-1 md:right-0 md:top-1/2 md:-mr-12">
 					<button
