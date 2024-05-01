@@ -1,6 +1,6 @@
 "use client";
 
-import Modal from "../components/Modal/Modal";
+import FeedbackModal from "../components/Modal/FeedbackModal";
 import { useState } from "react";
 import Button from "../components/Button/Button";
 import CreditList from "./CreditList";
@@ -46,7 +46,10 @@ export default function Page() {
 					</button>
 				</section>
 			</section>
-			<Modal isVisible={showModal} onClose={() => setShowModal(false)} />
+			<FeedbackModal
+				isVisible={showModal}
+				onClose={() => setShowModal(false)}
+			/>
 		</>
 	);
 }
