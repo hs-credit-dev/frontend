@@ -84,6 +84,8 @@ const Modal = ({ isVisible, onClose }: ModalProps) => {
 							</div>
 						</div>
 					</section>
+
+					{/* Rating Question 2*/}
 					<section>
 						<h2 className="font-medium mt-6 mb-2 text-gray-800">
 							How would you rate the design of this page?? (5 being excellent
@@ -108,6 +110,7 @@ const Modal = ({ isVisible, onClose }: ModalProps) => {
 						</div>
 					</section>
 
+					{/* Feedback textarea*/}
 					<section>
 						<h2 className="font-medium mt-6 mb-2 text-gray-800">
 							Please leave your feedback below:
