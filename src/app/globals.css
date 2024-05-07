@@ -10,7 +10,9 @@
   padding: 0;
   margin: 0;
 }
-
+html {
+  @apply leading-[normal];
+}
 html,
 body {
   max-width: 100vw;
@@ -20,6 +22,7 @@ body {
 body {
   background-color: rgba(128, 93, 190, 0.07);
   height: 100%;
+  @apply text-[#333333];
 }
 
 .container {
@@ -36,4 +39,32 @@ main {
   background-color: #ffffff;
   border-radius: 20px;
   margin: 0 50px;
+}
+
+h1 {
+  @apply font-bold text-[2rem];
+}
+
+h3 {
+  @apply text-[1.125rem];
+}
+
+h2 {
+  @apply text-[1.25rem];
+}
+
+p {
+  @apply text-[0.875rem];
+}
+
+.btn {
+  @apply block rounded-[1.35rem] bg-[#805DBE] text-white font-bold;
+}
+
+p a {
+  @apply underline;
+}
+
+p.staked a {
+  @apply italic font-bold text-[#85C4E9];
 }
