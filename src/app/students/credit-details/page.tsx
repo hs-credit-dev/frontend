@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import parse from "html-react-parser";
-import Actions from "@/app/_components/students/credit-details/actions";
 
 const creditDetails: CreditDetails = {
   image: "/Credit-Details.png",
@@ -50,7 +49,122 @@ export type CreditDetails = {
   pitchDetails?: PitchDetails;
   mintDetails?: MintDetails;
 };
-export default function Page() {
+
+export type Props = {
+  creditDetails: CreditDetails;
+};
+
+function Actions({ creditDetails }: Props) {
+  return (
+    <div className="flex text-center w-full">
+      <div className="basis-1/3 flex justify-center">
+        <div className="max-w-[18.3125rem] flex flex-col gap-y-[2.4375rem]">
+          <div>
+            {creditDetails?.status && (
+              <div className="flex flex-col items-center gap-y-[0.375rem] text-[0.875rem] font-medium">
+                <Link
+                  href=""
+                  className="rounded-[1.25rem] border-2 border-solid border-[#805DBE] min-w-[6.25rem] py-1 text-black"
+                >
+                  View
+                </Link>
+                <Link
+                  href=""
+                  className="rounded-[1.25rem] border-2 border-solid border-[#805DBE] min-w-[6.25rem] py-1 text-black"
+                >
+                  Edit
+                </Link>
+                {creditDetails?.stakeDetails?.submitted && (
+                  <span className="text-[#949494] text-[0.625rem] italic pt-[0.4375rem]">
+                    {`Submitted ${creditDetails.stakeDetails?.submitted}`}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="basis-1/3 flex justify-center border-r-[3px] border-l-[3px] border-r-solid border-l-solid border-r-black border-l-black">
+        <div className="max-w-[21.9375rem] flex flex-col gap-y-[2.4375rem]">
+          <div>
+            {creditDetails?.status === "stake" && (
+              <div className="flex flex-col items-center text-[0.875rem] font-medium">
+                <Link
+                  href=""
+                  className="rounded-[1.25rem] border-2 border-solid border-[#805DBE] min-w-[6.25rem] py-1 text-black"
+                >
+                  Start
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="basis-1/3 flex justify-center">
+        <div className="max-w-[14.9375rem] flex flex-col gap-y-[2.4375rem]">
+          <div>
+            {creditDetails?.status === "stake" && (
+              <div className="flex flex-col items-center text-[0.875rem] font-medium">
+                <Link
+                  href=""
+                  className="rounded-[1.25rem] border-2 border-solid border-[#8A8A8A] min-w-[6.25rem] py-1 text-[#A7A7A7A] pointer-events-none cursor-default"
+                >
+                  Start
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Content({ creditDetails }: Props) {
+  return (
+    <div className="w-full">
+      <div className="flex text-center w-full">
+        <div className="basis-1/3 flex justify-center">
+          <div className="max-w-[18.3125rem] flex flex-col gap-y-[2.4375rem]">
+            <h2 className="font-bold">Stake</h2>
+            <div>
+              {creditDetails?.stakeDetails && (
+                <p className="details text-[0.6875rem] font-medium min-h-[9.25rem] pb-2">
+                  {parse(creditDetails.stakeDetails?.description)}
+                </p>
+              )}
+              {!creditDetails?.stakeDetails && (
+                <p>{parse(creditDetails?.stake)}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="basis-1/3 flex justify-center border-r-[3px] border-l-[3px] border-r-solid border-l-solid border-r-black border-l-black">
+          <div className="max-w-[21.9375rem] flex flex-col gap-y-[2.4375rem]">
+            <h2 className="font-bold">Pitch</h2>
+            <div>
+              {!creditDetails?.status && <p>{creditDetails?.pitch}</p>}
+              {creditDetails?.pitchDetails?.description && (
+                <p className="details text-[0.6875rem] font-medium min-h-[9.625rem] pb-2">
+                  {parse(creditDetails?.pitchDetails?.description)}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="basis-1/3 flex justify-center">
+          <div className="max-w-[14.9375rem] flex flex-col gap-y-[2.4375rem]">
+            <h2 className="font-bold">Mint</h2>
+            <div>{!creditDetails?.status && <p>{creditDetails?.mint}</p>}</div>
+          </div>
+        </div>
+      </div>
+      {creditDetails?.status && <Actions creditDetails={creditDetails} />}
+    </div>
+  );
+}
+
+function HeaderDetails({ creditDetails }: Props) {
   const statusCheck = (status: string) => {
     switch (status) {
       case "stake":
@@ -60,6 +174,48 @@ export default function Page() {
         return "";
     }
   };
+  return (
+    <div
+      className={`text-center pb-20  flex items-center ${
+        !creditDetails?.status
+          ? "text-black flex-col text-[1.125rem]"
+          : "text-[#949494] text-[0.875rem] gap-x-2"
+      }`}
+    >
+      <h3 className="font-normal flex gap-x-1">
+        <strong className="font-semibold">Credit:</strong>
+        <span>{creditDetails?.credit}</span>
+      </h3>
+      {!creditDetails?.status ? (
+        <h3 className="font-normal flex gap-x-1">
+          <strong className="font-semibold">Credit Partner:</strong>
+          <span className="font-medium italic">
+            {creditDetails?.creditPartner}
+          </span>
+        </h3>
+      ) : (
+        <>
+          <div className="text-[0.625rem]">•</div>
+          <h3 className="font-normal flex gap-x-1">
+            <strong className="font-semibold">Status:</strong>
+            <span className="font-medium">
+              {statusCheck(creditDetails.status)}
+            </span>
+          </h3>
+          <div className="text-[0.625rem]">•</div>
+          <h3 className="font-normal flex gap-x-1">
+            <strong className="font-semibold">Teacher&apos;s Email:</strong>
+            <span className="font-medium">
+              {creditDetails?.stakeDetails?.teacherEmail}
+            </span>
+          </h3>
+        </>
+      )}
+    </div>
+  );
+}
+
+export default function Page() {
   return (
     <div className="pt-[1.6875rem] pb-[3.75rem] pl-[4.3125rem] pr-14">
       <div className="flex justify-between items-center">
@@ -83,84 +239,8 @@ export default function Page() {
             height={200}
           />
         </div>
-        <div
-          className={`text-center pb-20  flex items-center ${
-            !creditDetails?.status
-              ? "text-black flex-col text-[1.125rem]"
-              : "text-[#949494] text-[0.875rem] gap-x-2"
-          }`}
-        >
-          <h3 className="font-normal flex gap-x-1">
-            <strong className="font-semibold">Credit:</strong>
-            <span>{creditDetails?.credit}</span>
-          </h3>
-          {!creditDetails?.status ? (
-            <h3 className="font-normal flex gap-x-1">
-              <strong className="font-semibold">Credit Partner:</strong>
-              <span className="font-medium italic">
-                {creditDetails?.creditPartner}
-              </span>
-            </h3>
-          ) : (
-            <>
-              <div className="text-[0.625rem]">•</div>
-              <h3 className="font-normal flex gap-x-1">
-                <strong className="font-semibold">Status:</strong>
-                <span className="font-medium">
-                  {statusCheck(creditDetails.status)}
-                </span>
-              </h3>
-              <div className="text-[0.625rem]">•</div>
-              <h3 className="font-normal flex gap-x-1">
-                <strong className="font-semibold">Teacher&apos;s Email:</strong>
-                <span className="font-medium">
-                  {creditDetails?.stakeDetails?.teacherEmail}
-                </span>
-              </h3>
-            </>
-          )}
-        </div>
-        <div className="w-full">
-          <div className="flex text-center w-full">
-            <div className="basis-1/3 flex justify-center">
-              <div className="max-w-[18.3125rem] flex flex-col gap-y-[2.4375rem]">
-                <h2 className="font-bold">Stake</h2>
-                <div>
-                  {creditDetails?.stakeDetails && (
-                    <p className="details text-[0.6875rem] font-medium min-h-[9.25rem] pb-2">
-                      {parse(creditDetails.stakeDetails?.description)}
-                    </p>
-                  )}
-                  {!creditDetails?.stakeDetails && (
-                    <p>{parse(creditDetails?.stake)}</p>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="basis-1/3 flex justify-center border-r-[3px] border-l-[3px] border-r-solid border-l-solid border-r-black border-l-black">
-              <div className="max-w-[21.9375rem] flex flex-col gap-y-[2.4375rem]">
-                <h2 className="font-bold">Pitch</h2>
-                <div>
-                  {!creditDetails?.status && <p>{creditDetails?.pitch}</p>}
-                  {creditDetails?.pitchDetails?.description && (
-                    <p className="details text-[0.6875rem] font-medium min-h-[9.625rem] pb-2">
-                      {parse(creditDetails?.pitchDetails?.description)}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="basis-1/3 flex justify-center">
-              <div className="max-w-[14.9375rem] flex flex-col gap-y-[2.4375rem]">
-                <h2 className="font-bold">Mint</h2>
-                <div>
-                  {!creditDetails?.status && <p>{creditDetails?.mint}</p>}
-                </div>
-              </div>
-            </div>
-          </div>
-          {creditDetails?.status && <Actions creditDetails={creditDetails} />}
-        </div>
+        <HeaderDetails creditDetails={creditDetails} />
+        <Content creditDetails={creditDetails} />
         {!creditDetails?.status && (
           <div className="flex pt-6">
             <Link
