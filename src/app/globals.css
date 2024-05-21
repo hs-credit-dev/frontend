@@ -1,5 +1,4 @@
 :root {
-  
 }
 
 * {
@@ -14,12 +13,12 @@ body {
   overflow-x: hidden;
 }
 
-body{
+body {
   background-color: rgba(128, 93, 190, 0.07);
   height: 100%;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -27,8 +26,20 @@ body{
   height: 95dvh;
 }
 
-main{
-  flex:1;
+main {
+  flex: 1;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 37.5rem;
+  height: 95dvh;
+}
+
+.main {
+  flex: 1;
   background-color: #ffffff;
   border-radius: 20px;
   margin: 0 50px;
