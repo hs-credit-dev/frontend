@@ -29,12 +29,12 @@ const creditData: CreditData[] = [
 		credit: "Credit 4",
 		discipline: "Discipline 3",
 		status: "Minted",
-		date: "1/7/23",
+		date: "1/17/23",
 		id: 4,
 	},
 ];
 
-export type CreditData = {
+type CreditData = {
 	credit: string;
 	discipline: string;
 	status: string;
@@ -47,15 +47,14 @@ export default function DashboardPage() {
 		<section className="pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0">
 			<h1 className="pl-[4.3125rem]">My Dashboard</h1>
 			<div className="flex px-12">
-
-				{/* Row number one-column table */}
+				{/* Row number - one-column table */}
 				<table className="text-center mt-[2.8125rem] mr-4">
 					<thead className="bg-[#EDEDED]">
 						<tr></tr>
 					</thead>
 					<tbody className="text-[0.875rem] font-bold">
 						{creditData.map((item, index) => (
-							<tr key={item.id} className="h-[40px]">
+							<tr key={item.id}>
 								<td>{index + 1}</td>
 							</tr>
 						))}
@@ -63,7 +62,7 @@ export default function DashboardPage() {
 					</tbody>
 				</table>
 
-				{/* Credit detail table */}
+				{/* Credit detail four-column table */}
 				<table className="flex-1 text-center mt-[2.8125rem]">
 					<thead className="bg-[#EDEDED]">
 						<tr className="text-[0.875rem]">
@@ -75,10 +74,7 @@ export default function DashboardPage() {
 					</thead>
 					<tbody className="text-[0.875rem] font-light">
 						{creditData.map((data) => (
-							<tr
-								key={data.id}
-								className="odd:bg-white even:bg-[#EDEDED] h-[40px]"
-							>
+							<tr key={data.id} className="odd:bg-white even:bg-[#EDEDED]">
 								<td>{data.credit}</td>
 								<td>{data.discipline}</td>
 								<td className="flex justify-center gap-4">
