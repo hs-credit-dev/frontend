@@ -45,7 +45,7 @@ const CreditList = ({ search }: SearchValueProps) => {
 						})
 						.map((credit) => (
 							<div key={credit.id}>
-								<figure className="h-[200px] w-[200px] md:h-[125px] md:w-[125px] lg:h-[200px] lg:w-[200px] ">
+								<figure className="h-[12.5rem] w-[12.5rem] md:h-[7.8125rem] md:w-[7.8125rem] lg:h-[12.5rem] lg:w-[12.5rem] ">
 									<Link href="/">
 										<Image
 											src={credit.url}
@@ -53,7 +53,7 @@ const CreditList = ({ search }: SearchValueProps) => {
 											height={0}
 											sizes="100vw"
 											alt="Picture of the credit"
-											className="w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-purple-500"
+											className="w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]"
 											onLoadingComplete={(image) =>
 												image.classList.remove("opacity-0")
 											}
