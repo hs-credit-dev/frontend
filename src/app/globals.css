@@ -53,30 +53,24 @@ main {
 	margin: 0 50px;
 }
 
-h1 {
-	@apply font-bold text-[2rem];
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
 }
 
-h2 {
-	@apply text-[1.25rem];
+/* Track */
+::-webkit-scrollbar-track {
+	background: #eeeeee;
+	border-radius: 5px;
 }
 
-p {
-	@apply text-[0.875rem];
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #805dbe;
+	border-radius: 5px;
 }
 
-.btn {
-	@apply block rounded-[1.35rem] bg-[#805DBE] text-white font-bold;
-}
-
-p a {
-	@apply underline;
-}
-
-p.details a {
-	@apply italic font-bold text-[#85C4E9];
-}
-
-tr {
-	@apply h-10;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #805dbe;
 }
