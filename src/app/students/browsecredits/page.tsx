@@ -1,6 +1,6 @@
 "use client";
 
-import FeedbackModal from "../components/Modal/FeedbackModal";
+import FeedbackModal from "../../components/Modal/FeedbackModal";
 import { useState } from "react";
 import BackButton from "./BackButton";
 import CreditList from "./CreditList";
