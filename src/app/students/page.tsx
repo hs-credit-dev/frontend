@@ -2,9 +2,9 @@
 
 import FeedbackModal from "../components/Modal/FeedbackModal";
 import { useState } from "react";
-import Button from "../components/Button/Button";
+import BackButton from "./BackButton";
 import CreditList from "./CreditList";
-import Search from "../components/Search/Search";
+import Search from "./Search";
 
 export default function Page() {
 	const [showModal, setShowModal] = useState<boolean>(false);
@@ -33,7 +33,7 @@ export default function Page() {
 						/>
 					</section>
 					<section className="flex justify-center items-center md:justify-end">
-						<Button text="Back" width="82px" />
+						<BackButton />
 					</section>
 				</nav>
 				<section className="mx-0 mt-10 max-h-72 md:max-h-96 overflow-y-scroll grid justify-items-center md:pr-6 md:mt-10 md:grid-cols-4 gap-6 md:justify-items-start">
