@@ -9,7 +9,7 @@ const Search = ({ handleInputChange, searchInputValue }: SearchProps) => {
 	return (
 		<>
 			<input
-				className="px-4 py-2 border text-sm bg-none border-gray-400 rounded-full appearance-none focus:outline-none focus:shadow-md focus:border-hsPurple"
+				className="px-4 py-2 border text-sm bg-none border-gray-400 rounded-full appearance-none focus:outline-none focus:shadow-md focus:border-[#805DBE]"
 				type="text"
 				value={searchInputValue}
 				onChange={handleInputChange}
