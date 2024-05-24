@@ -1,5 +1,6 @@
 "use client";
 
+// To display credits create local server "npx json-server --watch src/app/students/credits.json --port 8000" in terminal
 // Temporary data from credit.json file => ..app/students/credits.json
 const getCredits = async () => {
 	try {
