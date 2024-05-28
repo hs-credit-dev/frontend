@@ -64,24 +64,3 @@ p a {
 p.details a {
   @apply italic font-bold text-[#85C4E9];
 }
-
-tr {
-  @apply h-10;
-}
-
-/* InnerScroll for Browse Credits page - width */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* InnerScroll for Browse Credits page - track color */
-::-webkit-scrollbar-track {
-  background: #eeeeee;
-  border-radius: 5px;
-}
-
-/* InnerScroll for Browse Credits page - scroll color */
-::-webkit-scrollbar-thumb {
-  background: #805dbe;
-  border-radius: 5px;
-}
