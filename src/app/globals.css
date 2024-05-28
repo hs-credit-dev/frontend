@@ -64,6 +64,7 @@ p a {
 p.details a {
 	@apply italic font-bold text-[#85C4E9];
 }
+<<<<<<< HEAD
 
 tr {
   @apply h-10;
@@ -90,3 +91,5 @@ tr {
 ::-webkit-scrollbar-thumb:hover {
 	background: #805dbe;
 }
+=======
+>>>>>>> cb678f49 (update: remove styling to resolve conflict)
