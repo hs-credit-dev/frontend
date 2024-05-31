@@ -29,7 +29,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center">
-			<div className="w-[55%] h-[61%] flex flex-col p-8 rounded-lg shadow bg-[#f9f7fc]">
+			<div className="w-[55%] py-[2.5rem] flex flex-col p-8 rounded-lg shadow bg-[#f9f7fc]">
 				<h1 className="text-2xl font-bold text-gray-800 mb-8">Your Feedback</h1>
 
 				<div className="font-normal text-xs">
