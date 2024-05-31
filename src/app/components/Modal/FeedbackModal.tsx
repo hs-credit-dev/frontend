@@ -53,11 +53,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 							Select
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={2}
-								stroke="currentColor"
-								className="w-3 h-3"
+								className="w-6 h-6 stroke-slate-500 stroke-[2] fill-none"
 							>
 								<path
 									strokeLinecap="round"
@@ -97,11 +93,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 							Select
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								strokeWidth={2}
-								stroke="currentColor"
-								className="w-3 h-3"
+								className="w-6 h-6 stroke-slate-500 stroke-[2] fill-none"
 							>
 								<path
 									strokeLinecap="round"
