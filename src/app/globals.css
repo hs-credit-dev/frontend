@@ -26,19 +26,19 @@ body {
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 37.5rem;
-  height: 95dvh;
-  @apply max-w-none;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 37.5rem;
+	height: 95dvh;
+	@apply max-w-none;
 }
 
 main {
-  flex: 1;
-  background-color: #ffffff;
-  border-radius: 20px;
-  margin: 0 50px;
+	flex: 1;
+	background-color: #ffffff;
+	border-radius: 20px;
+	margin: 0 50px;
 }
 
 h1 {
@@ -64,32 +64,29 @@ p a {
 p.details a {
 	@apply italic font-bold text-[#85C4E9];
 }
-<<<<<<< HEAD
 
 tr {
-  @apply h-10;
+	@apply h-10;
 }
 
 /* InnerScroll for Browse Credits page - width */
 ::-webkit-scrollbar {
-  width: 5px;
+	width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #eeeeee;
-  border-radius: 5px;
+	background: #eeeeee;
+	border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #805dbe;
-  border-radius: 5px;
+	background: #805dbe;
+	border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 	background: #805dbe;
 }
-=======
->>>>>>> cb678f49 (update: remove styling to resolve conflict)
