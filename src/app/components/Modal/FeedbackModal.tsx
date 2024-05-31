@@ -46,7 +46,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 						<h2 className="font-medium mt-6 mb-2 text-gray-800">
 							Is this page easy to use?
 						</h2>
-						<div
+						<button
 							onClick={toggleQuestionOneDropdown}
 							className="w-36 h-8 p-2 flex items-center justify-between rounded drop-shadow-sm bg-white hover:drop-shadow"
 						>
@@ -65,7 +65,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 									d="m19.5 8.25-7.5 7.5-7.5-7.5"
 								/>
 							</svg>
-						</div>
+						</button>
 						{isQuestionOneDropdown && (
 							<ul className="absolute z-10 w-36 mt-1 bg-white drop-shadow-md">
 								<li className="p-2 text-xs hover:bg-[#805DBE] hover:text-white">
@@ -90,7 +90,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 						<h2 className="font-medium mt-6 mb-2 text-gray-800">
 							How would you rate the design of this page?
 						</h2>
-						<div
+						<button
 							onClick={toggleQuestionTwoDropdown}
 							className="z-0 w-36 h-8 p-2 flex items-center justify-between rounded drop-shadow-sm bg-white hover:drop-shadow"
 						>
@@ -109,7 +109,7 @@ const Modal = ({ isVisible, onClose, pageTitle }: ModalProps) => {
 									d="m19.5 8.25-7.5 7.5-7.5-7.5"
 								/>
 							</svg>
-						</div>
+						</button>
 						{isQuestionTwoDropdown && (
 							<ul className="absolute z-10 w-36 mt-1 bg-white drop-shadow-md">
 								<li className="p-2 text-xs hover:bg-[#805DBE] hover:text-white">
