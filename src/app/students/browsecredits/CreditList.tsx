@@ -53,7 +53,7 @@ const CreditList = ({ search }: SearchValueProps) => {
 											height={0}
 											sizes="100vw"
 											alt="Picture of the credit"
-											className="w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]"
+											className="w-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]"
 											onLoadingComplete={(image) =>
 												image.classList.remove("opacity-0")
 											}
