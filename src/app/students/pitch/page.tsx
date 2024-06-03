@@ -1,4 +1,5 @@
 import BackButton from "./BackButton";
+import InfoIcon from "./InfoIcon";
 
 export default function PitchPage() {
 	return (
@@ -18,7 +19,10 @@ export default function PitchPage() {
 				</p>
 				<form>
 					<div className="flex flex-col gap-2">
-						<label>Credit in Progress</label>
+						<div className="inline-flex mb-[.4rem]">
+							<label>Credit in Progress</label>
+							<InfoIcon message="This the current credit you are working on." />
+						</div>
 						<textarea
 							className="bg-[#E0E0E0] py-[1.25rem] w-[28.125rem] text-center justify-center rounded-md shadow-md resize-none focus:outline-none"
 							readOnly
@@ -27,7 +31,10 @@ export default function PitchPage() {
 							BrandeisMedia: Podcast episode about foster care
 						</textarea>
 
-						<label className="mt-[2.5rem] mb-[.5rem]">Task</label>
+						<div className="inline-flex mt-[2.5rem] mb-[.4rem]">
+							<label>Task</label>
+							<InfoIcon message="No sentence provided." />
+						</div>
 						<button
 							className="h-[2.4375rem] 
                   w-[10.125rem] 
@@ -44,9 +51,12 @@ export default function PitchPage() {
 							Please make sure your attachment doesn’t exceed 25 MB.
 						</p>
 
-						<label className="mt-[2.5rem] mb-[.5rem]">
-							Checkpoints <span className="text-sm">(Optional)</span>
-						</label>
+						<div className="inline-flex mt-[2.5rem] mb-[.4rem]">
+							<label className="text-sm">
+								Checkpoints <span className="text-sm">(Optional)</span>
+							</label>
+							<InfoIcon message="Add/Edit key milestones to keep you and your teacher on the same page." />
+						</div>
 						<button
 							className="h-[2.4375rem] 
                   w-[10.125rem] 
