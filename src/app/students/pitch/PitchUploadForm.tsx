@@ -65,7 +65,7 @@ const PitchUploadForm = () => {
 				<InfoIcon message="Add/Edit key milestones to keep you and your teacher on the same page." />
 			</div>
 			<Link
-				href="/"
+				href="/students/checkpoints"
 				className="py-2 px-6 rounded-full border-[#805DBE] border-2 text-black text-xs font-bold hover:bg-[#805DBE] hover:text-white"
 			>
 				Add/Edit
