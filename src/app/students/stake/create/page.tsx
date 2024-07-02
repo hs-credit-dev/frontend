@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <div className="pt-[1.75rem] pb-[2.125rem] pl-[4.3125rem] pr-14">
       <div className="flex justify-between items-center">
-        <h1>Stake</h1>{" "}
+        <h1>Stake</h1>
         <div>
           <Link
             href="/students/credit-details"

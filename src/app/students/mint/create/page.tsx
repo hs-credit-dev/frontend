@@ -11,20 +11,17 @@ export default function Page() {
 
   const editor = useRef(null);
   const [abstract, setAbstract] = useState("");
-  const config = useMemo(
-    () => ({
-      showCharsCounter: false,
-      showWordsCounter: false,
-      showXPathInStatusbar: false,
-      editorClassName: "textarea min-h-[170px]",
-      disablePlugins: "add-new-line",
-      minHeight: "13.4375rem",
-      minWidth: "none",
-      buttons:
-        "bold,italic,underline,strikethrough,ul,ol,paragraph,superscript,subscript,cut,copy,paste,selectall,copyformat,link,undo,redo,find,source",
-    }),
-    []
-  );
+  const config = {
+    showCharsCounter: false,
+    showWordsCounter: false,
+    showXPathInStatusbar: false,
+    editorClassName: "textarea min-h-[170px]",
+    disablePlugins: "add-new-line",
+    minHeight: "13.4375rem",
+    minWidth: "none",
+    buttons:
+      "bold,italic,underline,strikethrough,ul,ol,paragraph,superscript,subscript,cut,copy,paste,selectall,copyformat,link,undo,redo,find,source",
+  };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -37,7 +34,7 @@ export default function Page() {
   return (
     <div className="pt-[1.75rem] pb-[2.125rem] pl-[4.3125rem] pr-14">
       <div className="flex justify-between items-center">
-        <h1>Mint</h1>{" "}
+        <h1>Mint</h1>
         <div>
           <Link
             href="/students/credit-details"
