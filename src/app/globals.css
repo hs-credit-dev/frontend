@@ -103,7 +103,8 @@ tr {
 }
 input,
 label,
-textarea {
+textarea,
+.textarea {
   @apply text-[1rem] font-medium;
 }
 
@@ -112,10 +113,35 @@ textarea {
   @apply rounded-lg shadow-[0_4px_20px_0_rgba(0,0,0,0.1)] outline-none;
 }
 
+.jodit-react-container .jodit-container.jodit .jodit-workplace {
+  @apply rounded-b-lg shadow-[0_4px_20px_0_rgba(0,0,0,0.1)] outline-none;
+}
+
 input {
   @apply py-5 px-2;
 }
 
-textarea {
+textarea,
+.jodit-react-container .jodit-container.jodit .textarea {
   @apply pt-[1.4375rem] pb-[1.8125rem] pl-[1.6875rem] pr-[1.5625rem];
+}
+
+.jodit-react-container .jodit-container.jodit {
+  @apply border-none;
+}
+
+.jodit-react-container .jodit-container .jodit-toolbar__box {
+  @apply rounded-t-lg;
+}
+
+.jodit-react-container .jodit-container.abstract .jodit-workplace {
+  @apply min-h-[11rem];
+}
+
+.jodit-react-container .jodit-container.content .jodit-workplace {
+  @apply min-h-[5.75rem] bg-[#E0E0E0];
+}
+
+.jodit-react-container .jodit-container.stake .jodit-workplace {
+  @apply min-h-[10.5625rem];
 }
