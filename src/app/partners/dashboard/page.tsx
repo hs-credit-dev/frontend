@@ -1,12 +1,8 @@
 "use client";
 
-import FeedbackModal from "../../components/Modal/FeedbackModal";
-import { useState } from "react";
 import OwnerCreditList from "./OwnerCreditList";
 
 export default function Page() {
-	const title = "Owner Credits";
-
 	return (
 		<>
 			<section className="mx-auto py-14 px-10 max-w-screen-lg md:max-w-screen-md lg:max-w-screen-lg">
