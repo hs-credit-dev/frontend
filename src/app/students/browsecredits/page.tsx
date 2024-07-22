@@ -36,7 +36,7 @@ export default function Page() {
 						<BackButton />
 					</section>
 				</nav>
-				<section className="mx-0 mt-10 max-h-72 md:max-h-96 overflow-y-scroll grid justify-items-center md:pr-6 md:mt-10 md:grid-cols-4 gap-6 md:justify-items-start">
+				<section className="mx-0 mt-10 max-h-full overflow-y-scroll grid justify-items-center md:pr-6 md:mt-10 md:grid-cols-4 gap-6 md:justify-items-start">
 					<CreditList search={searchInputValue} />
 				</section>
 				<section className="fixed right-4 bottom-0 -mb-1 md:right-0 md:top-1/2 md:-mr-12">
