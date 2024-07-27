@@ -145,3 +145,7 @@ textarea,
 .jodit-react-container .jodit-container.stake .jodit-workplace {
   @apply min-h-[10.5625rem];
 }
+
+.btn[disabled] {
+  @apply bg-[#8A8A8A];
+}
