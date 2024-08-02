@@ -149,3 +149,11 @@ textarea,
 .btn[disabled] {
   @apply bg-[#8A8A8A];
 }
+
+.btn-active {
+  @apply bg-[#1DCC00];
+}
+
+.btn-deactivate {
+  @apply bg-[#D40000];
+}

@@ -17,6 +17,8 @@ export default function Page() {
     value: "",
   });
   const [creditName, setCreditName] = useState("");
+  const [canPublish, setCanPublish] = useState(false);
+  const [published, setPublished] = useState(false);
   const disciplines: { id: number; label: string; value: string }[] = [
     {
       id: 0,
@@ -181,13 +183,31 @@ export default function Page() {
                 </div>
               </div>
               <div className="flex max-w-[18.6875rem] w-full">
-                <button
-                  type="button"
-                  disabled
-                  className="btn py-4 px-[4.527rem]"
-                >
-                  Publish
-                </button>
+                {!published ? (
+                  canPublish ? (
+                    <button
+                      type="button"
+                      className="btn btn-active py-[1.036rem] px-[4.531rem]"
+                    >
+                      Publish
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled
+                      className="btn py-[1.036rem] px-[4.531rem]"
+                    >
+                      Publish
+                    </button>
+                  )
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-deactivate py-[1.036rem] px-[3.716rem]"
+                  >
+                    Deactivate
+                  </button>
+                )}
               </div>
             </div>
             <div className="flex gap-x-[2.125rem]">
