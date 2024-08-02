@@ -1,17 +1,22 @@
 "use client";
 
 import { CloseIcon } from "@/app/components/icons";
-import Select from "@/app/components/Select";
+import Select, { Option } from "@/app/components/Select";
 import InfoIcon from "@/app/students/pitch/InfoIcon";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 export default function Page() {
-  const discipline = useRef<HTMLSelectElement>(null);
+  const discipline = useRef<HTMLButtonElement>(null);
   const [file, setFile] = useState<File | null>(null);
   const [image, setImage] = useState("");
-  const [courseCode, setCourseCode] = useState("");
-  const [creditCode, setCreditCode] = useState("");
+  const [canSubmit, setCanSubmit] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const [selectedDiscipline, setSelectedDiscipline] = useState<Option>({
+    label: " ",
+    value: "",
+  });
+  const [creditName, setCreditName] = useState("");
   const disciplines: { id: number; label: string; value: string }[] = [
     {
       id: 0,
@@ -82,19 +87,22 @@ export default function Page() {
     },
   ];
 
-  const instuitionCode = "BMCC";
-  const courseNumber = "0001";
-  const updateCreditCode = (value: string) => {
-    setCourseCode(value ?? "");
-  };
-
   useEffect(() => {
-    if (courseCode) {
-      setCreditCode(`${instuitionCode}${courseCode}${courseNumber}`);
-    } else {
-      setCreditCode("");
-    }
-  }, [courseCode]);
+    const handler = (evt: Event) => {
+      if (
+        discipline &&
+        discipline.current &&
+        !discipline.current.contains(evt.target as HTMLElement)
+      ) {
+        setShowMenu(false);
+      }
+    };
+
+    window.addEventListener("click", handler);
+    return () => {
+      window.removeEventListener("click", handler);
+    };
+  }, []);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -106,6 +114,24 @@ export default function Page() {
     setFile(null);
   };
 
+  const onItemClick = (option: Option) => {
+    const newValue: Option = option;
+    setSelectedDiscipline(newValue);
+    // onChange && onChange(newValue.value);
+  };
+  useEffect(() => {
+    if (
+      selectedDiscipline &&
+      admins.length &&
+      creditName &&
+      creditName.trim().length > 5 &&
+      file
+    ) {
+      setCanSubmit(true);
+    } else {
+      canSubmit && setCanSubmit(false);
+    }
+  }, [selectedDiscipline, creditName, file]);
   return (
     <div className="pt-[1.75rem] pb-[2.125rem] pl-[4.3125rem] pr-14">
       <div className="flex justify-between items-center">
@@ -130,9 +156,15 @@ export default function Page() {
                     <InfoIcon message="Tooltip message for Discipline" />
                   </div>
                   <Select
+                    ref={discipline}
                     options={disciplines}
-                    onChange={updateCreditCode}
                     placeHolder=""
+                    showMenu={showMenu}
+                    onClick={() => {
+                      setShowMenu(!showMenu);
+                    }}
+                    onItemClick={onItemClick}
+                    selectedValue={selectedDiscipline}
                   />
                 </div>
                 <div className="flex flex-col gap-y-[0.625rem]">
@@ -169,6 +201,8 @@ export default function Page() {
                   name="credti_name"
                   id="credit_name"
                   maxLength={50}
+                  value={creditName}
+                  onChange={(evt) => setCreditName(evt.target.value)}
                 />
               </div>
 
@@ -247,7 +281,7 @@ export default function Page() {
                 </section>
               )}
               <div className="flex justify-center pt-[0.5625rem]">
-                <button>
+                <button type="button">
                   <Image
                     src="/add-icon.png"
                     width={25}
@@ -258,13 +292,19 @@ export default function Page() {
               </div>
             </div>
             <div className="flex pt-[4.6875rem]">
-              <button
-                type="submit"
-                disabled
-                className="btn  py-4 px-[4.602rem]"
-              >
-                Submit
-              </button>
+              {canSubmit ? (
+                <button type="submit" className="btn  py-4 px-[4.602rem]">
+                  Submit
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  disabled
+                  className="btn  py-4 px-[4.602rem]"
+                >
+                  Submit
+                </button>
+              )}
             </div>
           </fieldset>
         </form>

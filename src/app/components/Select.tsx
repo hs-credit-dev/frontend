@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 
-type Option = {
+export type Option = {
   id?: string | number;
   label: string;
   value: string;
@@ -8,8 +8,10 @@ type Option = {
 type Props = {
   placeHolder?: string;
   options: Option[];
-  isSearchable?: boolean;
-  onChange: (value: string) => void;
+  showMenu: boolean;
+  onItemClick: (option: Option) => void;
+  onClick: () => void;
+  selectedValue: Option;
 };
 
 const Icon = ({ isOpen }: { isOpen: boolean }) => {
@@ -27,91 +29,66 @@ const Icon = ({ isOpen }: { isOpen: boolean }) => {
     </svg>
   );
 };
-const Select = ({ placeHolder, options, isSearchable, onChange }: Props) => {
-  const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Option | null>(null);
-
-  const inputRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const handler = (e: Event) => {
-      if (
-        inputRef.current &&
-        !inputRef.current.contains(e.target as HTMLElement)
-      ) {
-        setShowMenu(false);
+const Select = forwardRef<HTMLButtonElement, Props>(
+  (
+    { placeHolder, options, showMenu, onClick, onItemClick, selectedValue },
+    ref
+  ) => {
+    const getDisplay = () => {
+      if (!selectedValue) {
+        return placeHolder || <>&nbsp;</>;
       }
+      return selectedValue.label;
     };
 
-    window.addEventListener("click", handler);
-    return () => {
-      window.removeEventListener("click", handler);
+    const isSelected = (option: Option) => {
+      if (!selectedValue) {
+        return false;
+      }
+
+      return selectedValue.value === option.value;
     };
-  });
 
-  const handleInputClick = () => {
-    setShowMenu(!showMenu);
-  };
+    const getOptions = () => {
+      return options;
+    };
 
-  const getDisplay = () => {
-    if (!selectedValue) {
-      return placeHolder || <>&nbsp;</>;
-    }
-    return selectedValue.label;
-  };
-
-  const onItemClick = (option: Option) => {
-    const newValue: Option = option;
-    setSelectedValue(newValue);
-    onChange(newValue.value);
-  };
-
-  const isSelected = (option: Option) => {
-    if (!selectedValue) {
-      return false;
-    }
-
-    return selectedValue.value === option.value;
-  };
-
-  const getOptions = () => {
-    return options;
-  };
-
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        ref={inputRef}
-        onClick={handleInputClick}
-        className="text-[1.01rem] text-left flex items-center gap-x-10 rouded-lg shadow-[0_4px_14px_0_rgba(0,0,0,0.10)] pl-[0.875rem] py-5 pr-[0.939rem]"
-      >
-        <div className="min-w-[9.6875rem]">{getDisplay()}</div>
-        <div className="dropdown-tools">
-          <div className="dropdown-tool">
-            <Icon isOpen={showMenu} />
+    return (
+      <div className="relative">
+        <button
+          type="button"
+          ref={ref}
+          onClick={onClick}
+          className="text-[1.01rem] text-left flex items-center gap-x-10 rouded-lg shadow-[0_4px_14px_0_rgba(0,0,0,0.10)] pl-[0.875rem] py-5 pr-[0.939rem]"
+          value={selectedValue?.value || ""}
+        >
+          <div className="min-w-[9.6875rem]">{getDisplay()}</div>
+          <div className="dropdown-tools">
+            <div className="dropdown-tool">
+              <Icon isOpen={showMenu} />
+            </div>
           </div>
-        </div>
-      </button>
+        </button>
 
-      {showMenu && (
-        <div className="flex flex-col absolute top-[4.25rem] bg-white rounded-lg justify-center gap-[1px] left-0 shadow-[0_4px_14px_0_rgba(0,0,0,0.10)] w-full z-20">
-          {getOptions().map((option) => (
-            <button
-              type="button"
-              onClick={() => onItemClick(option)}
-              key={option.value}
-              className={`text-left pt-3 px-4 pb-[1.0625rem]${
-                isSelected(option) ? " selected" : ""
-              }`}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
+        {showMenu && (
+          <div className="flex flex-col absolute top-[4.25rem] bg-white rounded-lg justify-center gap-[1px] left-0 shadow-[0_4px_14px_0_rgba(0,0,0,0.10)] w-full z-20">
+            {getOptions().map((option) => (
+              <button
+                type="button"
+                onClick={() => onItemClick(option)}
+                key={option.value}
+                className={`text-left pt-3 px-4 pb-[1.0625rem]${
+                  isSelected(option) ? " selected" : ""
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
 
 export default Select;
