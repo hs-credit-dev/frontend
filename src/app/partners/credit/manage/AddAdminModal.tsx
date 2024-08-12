@@ -19,9 +19,6 @@ const AddAdminModal: React.FC<Props> = ({
     const firstName = formData.get("firstName")?.toString().trim();
     const lastName = formData.get("lastName")?.toString().trim();
     const email = formData.get("email")?.toString().trim();
-    console.log(firstName);
-    console.log(lastName);
-    console.log(email);
     if (firstName && lastName && email) {
       onSubmit({
         name: `${firstName} ${lastName}`,
