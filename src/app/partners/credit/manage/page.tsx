@@ -182,18 +182,6 @@ export default function Page() {
                       selectedValue={selectedDiscipline}
                     />
                   </div>
-                  <div className="flex flex-col gap-y-[0.625rem]">
-                    <div className="flex gap-x-[0.3125rem]">
-                      <label htmlFor="credit_code">Credit Code</label>
-                    </div>
-                    <input
-                      type="text"
-                      name="credit_code"
-                      id="credit_code"
-                      className="bg-[#E0E0E0] py-[1.1875rem] px-[1.3125rem]"
-                      readOnly
-                    />
-                  </div>
                 </div>
                 <div className="flex max-w-[18.6875rem] w-full">
                   {!published ? (
