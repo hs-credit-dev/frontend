@@ -14,8 +14,6 @@ export default function footer() {
       </div>
       <div id={styles.bottomNav}>
         <div>Powered by hs.credit</div>
-        <div>Terms & Service</div>
-        <div>Privacy Policy</div>
         <div>&#169; Academic Capital Foundation, Inc.</div>
       </div>
     </footer>
