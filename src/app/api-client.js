@@ -101,6 +101,7 @@ async function create_credit(data) {
 	return await api.request('api/credits/', {
 		method: 'POST',
 		body: JSON.stringify(data),
+		headers: { 'content-type': 'application/json' },
 	})
 };
 
