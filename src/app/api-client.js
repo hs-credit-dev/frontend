@@ -117,9 +117,9 @@ async function update_credit(id, options) {
 };
 
 async function upload_credit_logo(id, fileInput) {
-	const data = new FormData();
-	data.append('logo', fileInput);
-	return await api.update_credit(id, { body: data });
+	const body = new FormData();
+	body.append('logo', fileInput);
+	return await api.update_credit(id, { body });
 };
 
 async function publish_credit(id) {
