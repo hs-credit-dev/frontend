@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { AdminsProp } from "./page";
+import { ExpertsProp } from "./page";
 
 type Props = {
   openModal: boolean;
   setOpenModal: (value: boolean) => void;
-  onSubmit: (value: AdminsProp) => void;
+  onSubmit: (value: ExpertsProp) => void;
 };
-const AddAdminModal: React.FC<Props> = ({
+const AddExpertModal: React.FC<Props> = ({
   openModal,
   setOpenModal,
   onSubmit,
@@ -35,7 +35,7 @@ const AddAdminModal: React.FC<Props> = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center px-4">
           <div className=" flex flex-col rounded-lg shadow bg-[#fff] max-w-[47.375rem] w-full pt-[3.125rem] pb-[4.375rem] pr-[4.8125rem] pl-[4.3125rem] gap-y-[4.375rem]">
             <div className="flex justify-between items-center">
-              <h2 className="text-[2rem] font-bold">Add Admin</h2>
+              <h2 className="text-[2rem] font-bold">Add Expert</h2>
               <div>
                 <button
                   type="button"
@@ -104,4 +104,4 @@ const AddAdminModal: React.FC<Props> = ({
   );
 };
 
-export default AddAdminModal;
+export default AddExpertModal;
