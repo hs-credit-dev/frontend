@@ -7,6 +7,7 @@
 	"semi": true,
 	"useTabs": true,
 	"bracketSameLine": false,
-	"jsxSingleQuote": false,
+	"jsxSingleQuote": true,
 	"arrowParens": "always"
 }
+

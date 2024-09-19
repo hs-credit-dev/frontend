@@ -1,5 +1,10 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript", "plugin:prettier/recommended", "plugin:react-hooks/recommended"],
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended"
+  ],
   "plugins": ["simple-import-sort", "react-hooks"],
   "parser": "@typescript-eslint/parser",
   "rules": {
@@ -10,21 +15,16 @@
       "error",
       {
         "groups": [
-          // Packages `react` related packages come first.
-          ["^react", "^@?\\w"],
-          // Internal packages.
-          ["^(@|components)(/.*|$)"],
-          // Side effect imports.
-          ["^\\u0000"],
-          // Parent imports. Put `..` last.
-          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-          // Style imports.
-          ["^.+\\.?(css)$"]
+          ["^react", "^@?\\w"], // React and other external packages
+          ["^(@|components)(/.*|$)"], // Internal packages
+          ["^\\u0000"], // Side effect imports
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"], // Parent imports
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"], // Other relative imports
+          ["^.+\\.?(css)$"] // Style imports
         ]
       }
     ],
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "quotes": ["error", "single", { "avoidEscape": true }] // Enforce single quotes with escape exceptions
   }
 }
