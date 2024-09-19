@@ -91,20 +91,20 @@ const CreditList = ({ search }: SearchValueProps) => {
 								: credit.creditname.toLowerCase().includes(search);
 						})
 						.map((credit) => (
-							<div key={credit.id} className="mb-8">
-								<Link href="/">
+							<div key={credit.id} className='mb-8'>
+								<Link href='/'>
 									<Image
 										src={credit.url}
 										width={200}
 										height={200}
-										sizes="100vw"
-										alt="Picture of the credit"
-										className="w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]"
+										sizes='100vw'
+										alt='Picture of the credit'
+										className='w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]'
 										onLoadingComplete={(image) => image.classList.remove('opacity-0')}
 									/>
 								</Link>
-								<Link href="/">
-									<p className="text-sm font-semibold mt-2">{credit.creditname}</p>
+								<Link href='/'>
+									<p className='text-sm font-semibold mt-2'>{credit.creditname}</p>
 								</Link>
 							</div>
 						))}

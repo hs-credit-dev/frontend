@@ -7,10 +7,10 @@ export default function footer() {
 		<footer id={styles.footer}>
 			<div id={styles.smallLogo}>
 				<Image
-					src="/hscreditlogonowords-2.svg"
+					src='/hscreditlogonowords-2.svg'
 					width={22}
 					height={22}
-					alt="hs.credit logo"
+					alt='hs.credit logo'
 				/>
 			</div>
 			<div id={styles.bottomNav}>

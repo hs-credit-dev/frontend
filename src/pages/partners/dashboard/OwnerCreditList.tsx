@@ -47,30 +47,30 @@ const OwnerCreditList = () => {
 
 	return (
 		<>
-			<div className="flex flex-col items-center mt-10 ml-12 ">
-				<Link href="/">
-					<Image src="/add-credit-icon.png" alt="Add Credit" width={100} height={100} />
+			<div className='flex flex-col items-center mt-10 ml-12 '>
+				<Link href='/'>
+					<Image src='/add-credit-icon.png' alt='Add Credit' width={100} height={100} />
 				</Link>
-				<p className="font-bold">New Credit</p>
+				<p className='font-bold'>New Credit</p>
 			</div>
 			{creditsData && (
 				<>
 					{creditsData.map((credit) => (
-						<div key={credit.id} className="mb-8">
-							<Link href="/">
+						<div key={credit.id} className='mb-8'>
+							<Link href='/'>
 								<Image
 									src={credit.url}
 									width={200}
 									height={200}
-									sizes="100vw"
-									alt="Picture of the credit"
-									className="w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]"
+									sizes='100vw'
+									alt='Picture of the credit'
+									className='w-full h-full object-cover transition-opacity opacity-0 duration-300 border-2 border-transparent hover:border-[#805DBE]'
 									onLoadingComplete={(image) => image.classList.remove('opacity-0')}
 								/>
 							</Link>
-							<div className="flex items-center justify-between">
-								<Link href="/">
-									<p className="text-sm font-semibold mt-2">{credit.creditname}</p>
+							<div className='flex items-center justify-between'>
+								<Link href='/'>
+									<p className='text-sm font-semibold mt-2'>{credit.creditname}</p>
 								</Link>
 								<StateIcon state={credit.state} />
 							</div>

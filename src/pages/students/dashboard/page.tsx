@@ -45,15 +45,15 @@ type CreditData = {
 
 export default function DashboardPage() {
 	return (
-		<section className="pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0">
-			<h1 className="pl-[4.3125rem]">My Dashboard</h1>
-			<div className="flex px-12">
+		<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0'>
+			<h1 className='pl-[4.3125rem]'>My Dashboard</h1>
+			<div className='flex px-12'>
 				{/* Row number - one-column table */}
-				<table className="text-center mt-[2.8125rem] mr-4">
-					<thead className="bg-[#EDEDED]">
+				<table className='text-center mt-[2.8125rem] mr-4'>
+					<thead className='bg-[#EDEDED]'>
 						<tr></tr>
 					</thead>
-					<tbody className="text-[0.875rem] font-bold">
+					<tbody className='text-[0.875rem] font-bold'>
 						{creditData.map((item, index) => (
 							<tr key={item.id}>
 								<td>{index + 1}</td>
@@ -64,39 +64,39 @@ export default function DashboardPage() {
 				</table>
 
 				{/* Credit detail four-column table */}
-				<table className="flex-1 text-center mt-[2.8125rem]">
-					<thead className="bg-[#EDEDED]">
-						<tr className="text-[0.875rem]">
-							<th className="w-1/5">Credit</th>
-							<th className="w-1/5">Discipline</th>
+				<table className='flex-1 text-center mt-[2.8125rem]'>
+					<thead className='bg-[#EDEDED]'>
+						<tr className='text-[0.875rem]'>
+							<th className='w-1/5'>Credit</th>
+							<th className='w-1/5'>Discipline</th>
 							<th>Status</th>
 							<th></th>
 						</tr>
 					</thead>
-					<tbody className="text-[0.875rem] font-light">
+					<tbody className='text-[0.875rem] font-light'>
 						{creditData.map((data) => (
-							<tr key={data.id} className="odd:bg-white even:bg-[#EDEDED]">
+							<tr key={data.id} className='odd:bg-white even:bg-[#EDEDED]'>
 								<td>{data.credit}</td>
 								<td>{data.discipline}</td>
-								<td className="flex justify-center gap-4">
+								<td className='flex justify-center gap-4'>
 									<StatusCircles status={data.status} />
-									<span className="pt-3 text-center">
+									<span className='pt-3 text-center'>
 										{data.status} on {data.date}
 									</span>
 								</td>
 								<td>
-									<span className="flex flex-row gap-4 justify-center">
+									<span className='flex flex-row gap-4 justify-center'>
 										<TakeActionButton />
 										<DeleteButton />
 									</span>
 								</td>
 							</tr>
 						))}
-						<tr className="border-b border-[#EDEDED]">
+						<tr className='border-b border-[#EDEDED]'>
 							<td></td>
 							<td></td>
-							<td className="text-left">
-								<Link href="" className="text-sm text-gray-400">
+							<td className='text-left'>
+								<Link href='' className='text-sm text-gray-400'>
 									+ Click to Browse Credits +
 								</Link>
 							</td>
