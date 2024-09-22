@@ -31,7 +31,7 @@ type CheckpointsData = {
 	id: number;
 };
 
-export default function Checkpoints() {
+const Checkpoints = () => {
 	return (
 		<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0'>
 			<div className='flex justify-between pl-[4.3125rem] pr-[4.3125rem]'>
@@ -82,4 +82,6 @@ export default function Checkpoints() {
 			</div>
 		</section>
 	);
-}
+};
+
+export default Checkpoints;

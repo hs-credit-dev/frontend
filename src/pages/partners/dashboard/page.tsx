@@ -2,7 +2,7 @@
 
 import OwnerCreditList from './OwnerCreditList';
 
-export default function Page() {
+const Page = () => {
 	return (
 		<>
 			<section className='mx-auto py-14 px-10 max-w-screen-lg md:max-w-screen-md lg:max-w-screen-lg'>
@@ -19,4 +19,6 @@ export default function Page() {
 			</section>
 		</>
 	);
-}
+};
+
+export default Page;

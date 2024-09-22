@@ -1,5 +1,3 @@
-'use client';
-
 type SearchProps = {
 	handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	searchInputValue: string;

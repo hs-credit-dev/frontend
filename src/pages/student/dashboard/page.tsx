@@ -43,7 +43,7 @@ type CreditData = {
 	id: number;
 };
 
-export default function DashboardPage() {
+const DashboardPage = () => {
 	return (
 		<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0'>
 			<h1 className='pl-[4.3125rem]'>My Dashboard</h1>
@@ -107,4 +107,6 @@ export default function DashboardPage() {
 			</div>
 		</section>
 	);
-}
+};
+
+export default DashboardPage;

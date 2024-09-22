@@ -7,7 +7,7 @@ import BackButton from './BackButton';
 import CreditList from './CreditList';
 import Search from './Search';
 
-export default function Page() {
+const Page = () => {
 	// const [showModal, setShowModal] = useState<boolean>(false);
 	const [searchInputValue, setSearchInputValue] = useState<string>(''); // Value from Search component
 
@@ -51,4 +51,6 @@ export default function Page() {
 			</section>
 		</>
 	);
-}
+};
+
+export default Page;

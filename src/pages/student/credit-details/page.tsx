@@ -246,3 +246,9 @@
 // 		</div>
 // 	);
 // }
+
+const CreditDetails = () => {
+	return <div>Hello</div>;
+};
+
+export default CreditDetails;

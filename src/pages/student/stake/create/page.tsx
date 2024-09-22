@@ -112,3 +112,7 @@
 // 		</div>
 // 	);
 // }
+
+const StakePage = () => <div>Hello</div>;
+
+export default StakePage;

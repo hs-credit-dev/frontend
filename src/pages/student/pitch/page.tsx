@@ -2,7 +2,7 @@ import BackButton from './BackButton';
 import InfoIcon from './InfoIcon';
 import PitchUploadForm from './PitchUploadForm';
 
-export default function PitchPage() {
+const PitchPage = () => {
 	return (
 		<section className='pt-[1.6875rem] pb-[3.75rem] pl-[4.3125rem] pr-[4.3125rem]'>
 			<div className='flex justify-between'>
@@ -34,4 +34,6 @@ export default function PitchPage() {
 			<PitchUploadForm />
 		</section>
 	);
-}
+};
+
+export default PitchPage;
