@@ -153,7 +153,7 @@
 // 					<h1>Manage Credit</h1>
 // 					<div>
 // 						<Link
-// 							href='/students/credit-details'
+// 							href='/student/credit-details'
 // 							className='btn text-[0.75rem] px-[1.6875rem] py-3'
 // 						>
 // 							Back

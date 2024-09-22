@@ -1,36 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image';
+import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as yup from 'yup';
 
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Label from '../../../components/Label';
 import Typography from '../../../components/Typography';
+import Page from '../../../layout/Page';
 
 interface RegisterFormValues {
-	firstName: string;
-	middleInitial?: string;
-	lastName: string;
-	ceeb: string;
-	schoolName: string;
+	first_name: string;
+	last_name: string;
+	middle_initial?: string;
+	ceeb_code: string;
+	school_name: string;
 	bio: string;
 	ageConfirmation: boolean;
+	password: string;
+	confirmPassword: string;
+	dob: string;
 }
 
 const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
-	firstName: yup.string().required('First name is required'),
-	middleInitial: yup.string().max(1, 'M.I. must be one character').optional(),
-	lastName: yup.string().required('Last name is required'),
-	ceeb: yup.string().required('CEEB code is required'),
-	schoolName: yup.string().required('School name is required'),
+	first_name: yup.string().required('First name is required'),
+	last_name: yup.string().required('Last name is required'),
+	middle_initial: yup.string().max(1, 'M.I. must be one character').optional(),
+	ceeb_code: yup.string().required('CEEB code is required'),
+	school_name: yup.string().required('School name is required'),
 	bio: yup.string().required('Bio is required'),
 	ageConfirmation: yup
 		.boolean()
 		.oneOf([true], 'You must confirm that you are at least 13 years old')
 		.required(),
+	password: yup
+		.string()
+		.required('Password is required')
+		.min(6, 'Password must be at least 6 characters'),
+	confirmPassword: yup
+		.string()
+		.oneOf([yup.ref('password'), undefined], 'Passwords must match')
+		.required('Please confirm your password'),
+	dob: yup.string().required('Date of birth is required'),
 });
 
 const RegisterPersonalInfo = () => {
@@ -43,39 +57,55 @@ const RegisterPersonalInfo = () => {
 		resolver: yupResolver(schema),
 	});
 
+	const { query } = useRouter();
+	console.log('qe', query);
 	const isAgeConfirmed = watch('ageConfirmation', false);
 
-	const onSubmit = (data: RegisterFormValues) => {
-		console.log('Form data:', data);
+	const fetchAccount = async () => {
+		try {
+			const { data } = await axios.get(
+				`http://localhost:8000/api/signup/${query.accountId}`,
+			);
+			console.log('data', data);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	useEffect(() => {
+		if (query.accountId) {
+			fetchAccount();
+		}
+	}, []);
+
+	const onSubmit = async (values: RegisterFormValues) => {
+		console.log('Form data:', values);
+		try {
+			const { data } = await axios.patch(
+				`http://localhost:8000/api/signup/${query.accountId}/`,
+				{
+					...values,
+				},
+			);
+			console.log(data);
+		} catch (e) {
+			console.log('e');
+		}
 	};
 
 	return (
-		<div className='min-h-screen w-full bg-gray-100 flex flex-col'>
-			<div className='flex flex-col sm:flex-row justify-between w-full pt-5'>
-				<div className='flex items-center space-x-4 lg:pl-[170px]'>
-					<Image
-						src='/images/icons/hscreditlogonowords3.png'
-						alt='logo'
-						width={65}
-						height={65}
-					/>
-					<Typography className='text-black text-base'>hs.credit</Typography>
-				</div>
-				<Typography className='text-black text-3xl font-bold pr-4 sm:pr-8 lg:pr-[170px] pt-4 sm:pt-8 text-center sm:text-right'>
-					Account Creation
-				</Typography>
-			</div>
+		<Page>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='flex flex-col space-y-6 mt-8 px-4 sm:px-8 lg:px-[170px] w-full'
 			>
 				<div className='flex flex-col sm:flex-row sm:space-x-6'>
 					<div className='flex flex-col space-y-2'>
-						<Label htmlFor='firstName' className='text-black'>
+						<Label htmlFor='first_name' className='text-black'>
 							First Name
 						</Label>
 						<Controller
-							name='firstName'
+							name='first_name'
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -86,19 +116,19 @@ const RegisterPersonalInfo = () => {
 								/>
 							)}
 						/>
-						{errors.firstName && (
+						{errors.first_name && (
 							<Typography className='text-red-500 text-xs'>
-								{errors.firstName.message}
+								{errors.first_name.message}
 							</Typography>
 						)}
 					</div>
 
 					<div className='flex flex-col space-y-2'>
-						<Label htmlFor='middleInitial' className='text-black'>
+						<Label htmlFor='middle_initial' className='text-black'>
 							M.I.
 						</Label>
 						<Controller
-							name='middleInitial'
+							name='middle_initial'
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -109,19 +139,19 @@ const RegisterPersonalInfo = () => {
 								/>
 							)}
 						/>
-						{errors.middleInitial && (
+						{errors.middle_initial && (
 							<Typography className='text-red-500 text-xs'>
-								{errors.middleInitial.message}
+								{errors.middle_initial.message}
 							</Typography>
 						)}
 					</div>
 
 					<div className='flex flex-col space-y-2 w-full'>
-						<Label htmlFor='lastName' className='text-black'>
+						<Label htmlFor='last_name' className='text-black'>
 							Last Name
 						</Label>
 						<Controller
-							name='lastName'
+							name='last_name'
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -132,9 +162,9 @@ const RegisterPersonalInfo = () => {
 								/>
 							)}
 						/>
-						{errors.lastName && (
+						{errors.last_name && (
 							<Typography className='text-red-500 text-xs'>
-								{errors.lastName.message}
+								{errors.last_name.message}
 							</Typography>
 						)}
 					</div>
@@ -153,7 +183,7 @@ const RegisterPersonalInfo = () => {
 							</Link>
 						</div>
 						<Controller
-							name='ceeb'
+							name='ceeb_code'
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -164,19 +194,19 @@ const RegisterPersonalInfo = () => {
 								/>
 							)}
 						/>
-						{errors.ceeb && (
+						{errors.ceeb_code && (
 							<Typography className='text-red-500 text-xs'>
-								{errors.ceeb.message}
+								{errors.ceeb_code.message}
 							</Typography>
 						)}
 					</div>
 
 					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
-						<Label htmlFor='schoolName' className='text-black'>
+						<Label htmlFor='school_name' className='text-black'>
 							School Name
 						</Label>
 						<Controller
-							name='schoolName'
+							name='school_name'
 							control={control}
 							render={({ field }) => (
 								<Input
@@ -187,9 +217,9 @@ const RegisterPersonalInfo = () => {
 								/>
 							)}
 						/>
-						{errors.schoolName && (
+						{errors.school_name && (
 							<Typography className='text-red-500 text-xs'>
-								{errors.schoolName.message}
+								{errors.school_name.message}
 							</Typography>
 						)}
 					</div>
@@ -213,6 +243,73 @@ const RegisterPersonalInfo = () => {
 					{errors.bio && (
 						<Typography className='text-red-500 text-xs'>{errors.bio.message}</Typography>
 					)}
+				</div>
+				<div className='flex flex-col space-y-2 w-full sm:w-auto'>
+					<Label htmlFor='dob' className='text-black'>
+						DOB MM/DD/YYYY
+					</Label>
+					<Controller
+						name='dob'
+						control={control}
+						render={({ field }) => (
+							<Input
+								{...field}
+								type='date'
+								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[160px] h-10 md:h-[35px]'
+							/>
+						)}
+					/>
+					{errors.dob && (
+						<Typography variant='p' className='text-red-500 text-xs'>
+							{errors.dob.message}
+						</Typography>
+					)}
+				</div>
+				<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
+					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
+						<Label htmlFor='password' className='text-black'>
+							Password
+						</Label>
+						<Controller
+							name='password'
+							control={control}
+							render={({ field }) => (
+								<Input
+									{...field}
+									type='password'
+									placeholder='Enter your password'
+									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
+								/>
+							)}
+						/>
+						{errors.password && (
+							<Typography variant='p' className='text-red-500 text-xs'>
+								{errors.password.message}
+							</Typography>
+						)}
+					</div>
+					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
+						<Label htmlFor='confirmPassword' className='text-black'>
+							Confirm Password
+						</Label>
+						<Controller
+							name='confirmPassword'
+							control={control}
+							render={({ field }) => (
+								<Input
+									{...field}
+									type='password'
+									placeholder='Confirm your password'
+									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
+								/>
+							)}
+						/>
+						{errors.confirmPassword && (
+							<Typography variant='p' className='text-red-500 text-xs'>
+								{errors.confirmPassword.message}
+							</Typography>
+						)}
+					</div>
 				</div>
 				<div className='flex flex-col space-y-4'>
 					<div className='flex items-center space-x-2'>
@@ -253,7 +350,7 @@ const RegisterPersonalInfo = () => {
 					</div>
 				</div>
 			</form>
-		</div>
+		</Page>
 	);
 };
 

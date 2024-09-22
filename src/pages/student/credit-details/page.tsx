@@ -12,12 +12,12 @@
 // 	mint: 'Here is what would be required for Mint phase.',
 // 	status: 'stake',
 // 	stakeDetails: {
-// 		description: `“Students: select 12 items to study from the 55 sources found <a href="#">HERE.</a> These are reputable articles about various health conditions. Teachers: offer your favorite graphic organizer for students to summarize the readings with key details and notes about why they chose each of the 12 sources.”`,
+// 		description: `“Students: select 12 items to study from the 55 sources found <a href="#">HERE.</a> These are reputable articles about various health conditions. Teachers: offer your favorite graphic organizer for student to summarize the readings with key details and notes about why they chose each of the 12 sources.”`,
 // 		submitted: '4/25/22',
 // 		teacherEmail: 'info@hs.credit',
 // 	},
 // 	pitchDetails: {
-// 		description: `“Students: Based on your STAKE, prepare a questionnaire to interview grandparents, parents, aunts, uncles, and cousins about family health history. Teachers: use <a href="">these questions</a> to assess the students’ readiness to organize their health history event. EVENT: Students collect family health history and present their findings at a family health history celebration. They record audio interviews at the event. Students edit audio interviews into a 10-minute report. Approved credits are reviewed by public radio staff for broadcast.” `,
+// 		description: `“Students: Based on your STAKE, prepare a questionnaire to interview grandparents, parents, aunts, uncles, and cousins about family health history. Teachers: use <a href="">these questions</a> to assess the student’ readiness to organize their health history event. EVENT: Students collect family health history and present their findings at a family health history celebration. They record audio interviews at the event. Students edit audio interviews into a 10-minute report. Approved credits are reviewed by public radio staff for broadcast.” `,
 // 	},
 // };
 //
@@ -215,7 +215,7 @@
 // 			<div className="flex justify-between items-center">
 // 				<h1>Credit Detail</h1>{' '}
 // 				<div>
-// 					<Link href="/students" className="btn text-[0.75rem] px-[1.6875rem] py-3">
+// 					<Link href="/student" className="btn text-[0.75rem] px-[1.6875rem] py-3">
 // 						Back
 // 					</Link>
 // 				</div>
@@ -235,7 +235,7 @@
 // 				{!creditDetails?.status && (
 // 					<div className="flex pt-6">
 // 						<Link
-// 							href="/students"
+// 							href="/student"
 // 							className="text-[0.875rem] btn pt-[1.125rem] pb-[1.0625rem] px-[3.875rem]"
 // 						>
 // 							Start Credit
