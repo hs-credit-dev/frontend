@@ -57,37 +57,38 @@ const RegisterPersonalInfo = () => {
 		resolver: yupResolver(schema),
 	});
 
-	const { query } = useRouter();
+	const { query, push } = useRouter();
 	console.log('qe', query);
 	const isAgeConfirmed = watch('ageConfirmation', false);
 
-	const fetchAccount = async () => {
-		try {
-			const { data } = await axios.get(
-				`http://localhost:8000/api/signup/${query.accountId}`,
-			);
-			console.log('data', data);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
 	useEffect(() => {
+		const fetchAccount = async () => {
+			try {
+				const { data } = await axios.get(
+					`https://api.hs.credit/api/signup/${query.accountId}`,
+				);
+				console.log('data', data);
+			} catch (e) {
+				console.log(e);
+			}
+		};
+
 		if (query.accountId) {
 			fetchAccount();
 		}
-	}, []);
+	}, [query.accountId]);
 
 	const onSubmit = async (values: RegisterFormValues) => {
 		console.log('Form data:', values);
 		try {
 			const { data } = await axios.patch(
-				`http://localhost:8000/api/signup/${query.accountId}/`,
+				`https://api.hs.credit/api/signup/${query.accountId}/`,
 				{
 					...values,
 				},
 			);
 			console.log(data);
+			push('/login');
 		} catch (e) {
 			console.log('e');
 		}

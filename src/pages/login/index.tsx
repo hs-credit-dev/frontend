@@ -1,8 +1,10 @@
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 
 import Button from '../../components/Button';
@@ -10,12 +12,12 @@ import Input from '../../components/Input';
 import Typography from '../../components/Typography';
 
 interface LoginFormInputs {
-	username: string;
+	email: string;
 	password: string;
 }
 
 const validationSchema = Yup.object().shape({
-	username: Yup.string()
+	email: Yup.string()
 		.required('Username is required')
 		.min(4, 'Username must be at least 4 characters long'),
 	password: Yup.string()
@@ -31,9 +33,16 @@ const Login = () => {
 	} = useForm({
 		resolver: yupResolver(validationSchema),
 	});
+	const { push } = useRouter();
 
-	const onSubmit = (data: LoginFormInputs) => {
-		console.log(data);
+	const onSubmit = async (values: LoginFormInputs) => {
+		try {
+			const { data } = await axios.post('https://api.hs.credit/auth/login', values);
+			await push('/student');
+			console.log(data);
+		} catch (e) {
+			console.log('e', e);
+		}
 	};
 
 	return (
@@ -60,7 +69,7 @@ const Login = () => {
 					className='flex flex-col items-center space-y-4 md:space-y-[20px] w-full md:max-w-[690px]'
 				>
 					<Controller
-						name='username'
+						name='email'
 						control={control}
 						render={({ field }) => (
 							<Input
@@ -84,9 +93,9 @@ const Login = () => {
 							/>
 						)}
 					/>
-					{errors.username && (
+					{errors.email && (
 						<Typography className='text-red-500 text-sm'>
-							{errors.username.message}
+							{errors.email.message}
 						</Typography>
 					)}
 					<Controller

@@ -48,7 +48,8 @@ const Signup = () => {
 		setErrorMessage('');
 		setSuccessMessage('');
 		try {
-			await axios.post('http://localhost:8000/api/signup/', values);
+			const { data } = await axios.post('https://api.hs.credit/api/signup/', values);
+			console.log('data', data);
 			setSuccessMessage('Please check your email.');
 		} catch (e) {
 			if (isAxiosError(e) && e.response) {
@@ -62,7 +63,7 @@ const Signup = () => {
 	return (
 		<Page>
 			<form onSubmit={handleSubmit(onSubmit)} className='flex bg-gray-100'>
-				<div className='p-4 sm:p-8 ml-4 sm:ml-8 mt-4 sm:mt-8 space-y-6 sm:space-y-8 w-full sm:w-auto'>
+				<div className='p-4 sm:p-8 sm:ml-8 mt-4 sm:mt-8 space-y-6 sm:space-y-8 w-full sm:w-auto'>
 					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 						<Label htmlFor='accountType' className='text-black'>
 							Account Type
