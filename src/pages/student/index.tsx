@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 import Page from '../../layout/Page';
@@ -47,14 +48,17 @@ const Student = () => {
 	return (
 		<Page>
 			<section className='py-[3rem] bg-[#805DBE] rounded-xl mb-6'>
-				<h2 className='text-[2rem] font-bold text-white pl-[4.3125rem]'>
-					Welcome back, Nyah
-				</h2>
-				<p className='text-[0.9375rem] font-light text-white pt-[1.5rem] pl-[4.3125rem]'>
-					The only purpose of education is <span className='font-bold'>freedom</span>; the
-					only method is
-					<span className='font-bold'> experience</span>.
-				</p>
+				<div className='flex flex-col'>
+					<div className='flex items-center justify-between space-x-4 pl-[4.3125rem] w-[570px]'>
+						<h2 className='text-[2rem] font-bold text-white'>Welcome back, Nyah</h2>
+						<Image src='/images/icons/handWave.png' alt='logo' width={42} height={35} />
+					</div>
+					<p className='text-[0.9375rem] font-light text-white pt-[1.5rem] pl-[4.3125rem]'>
+						The only purpose of education is <span className='font-bold'>freedom</span>;
+						the only method is
+						<span className='font-bold'> experience</span>.
+					</p>
+				</div>
 			</section>
 			<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0'>
 				<h1 className='pl-[4.3125rem]'>My Dashboard</h1>
