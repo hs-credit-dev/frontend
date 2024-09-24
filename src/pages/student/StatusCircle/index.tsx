@@ -2,7 +2,7 @@ export type StatusCircles = {
 	status: string;
 };
 
-const StatusCircles = ({ status }: StatusCircles) => {
+const StatusCircle = ({ status }: StatusCircles) => {
 	switch (status) {
 		case 'Staked':
 			return (
@@ -31,4 +31,4 @@ const StatusCircles = ({ status }: StatusCircles) => {
 	}
 };
 
-export default StatusCircles;
+export default StatusCircle;

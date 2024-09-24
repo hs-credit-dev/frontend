@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@tanstack/react-query": "^5.56.2",
     "axios": "^1.7.7",
     "next": "14.2.11",
     "react": "^18",
@@ -22,6 +23,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.57.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
