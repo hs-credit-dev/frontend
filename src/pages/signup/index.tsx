@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios, { isAxiosError } from 'axios';
 import * as yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Label from '../../components/Label';
 import Typography from '../../components/Typography';
+import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
 
 interface SignupFormValues {
@@ -41,23 +41,10 @@ const Signup = () => {
 	} = useForm<SignupFormValues>({
 		resolver: yupResolver(schema),
 	});
-	const [successMessage, setSuccessMessage] = useState('');
-	const [errorMessage, setErrorMessage] = useState('');
+	const signupMutation = useSignup();
 
 	const onSubmit = async (values: SignupFormValues) => {
-		setErrorMessage('');
-		setSuccessMessage('');
-		try {
-			const { data } = await axios.post('https://api.hs.credit/api/signup/', values);
-			console.log('data', data);
-			setSuccessMessage('Please check your email.');
-		} catch (e) {
-			if (isAxiosError(e) && e.response) {
-				setErrorMessage(e.response.data.email[0]);
-			} else {
-				setErrorMessage('Something went wrong, please try again later.');
-			}
-		}
+		signupMutation.mutate(values);
 	};
 
 	return (
@@ -166,8 +153,6 @@ const Signup = () => {
 						</div>
 					</div>
 					<div className='flex flex-col space-y-2'>
-						{successMessage && <p>{successMessage}</p>}
-						{errorMessage && <p>{errorMessage}</p>}
 						<Button
 							type='submit'
 							className={`bg-[#805DBE] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px] ${

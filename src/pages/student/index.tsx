@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Page from '../../layout/Page';
+import useUserStore from '../../store';
 
 import StatusCircle from './StatusCircle';
 
@@ -45,12 +46,15 @@ type CreditData = {
 };
 
 const Student = () => {
+	const firstName = useUserStore((state) => state.user?.first_name);
 	return (
 		<Page>
 			<section className='relative flex py-[3rem] bg-[#805DBE] rounded-xl mb-6'>
 				<div className='flex flex-col'>
 					<div className='flex items-center justify-between space-x-4 pl-[4.3125rem] w-[570px]'>
-						<h2 className='text-[2rem] font-bold text-white'>Welcome back, Nyah</h2>
+						<h2 className='text-[2rem] font-bold text-white'>
+							Welcome back, {firstName}
+						</h2>
 						<Image src='/images/icons/handWave.png' alt='logo' width={42} height={35} />
 					</div>
 					<p className='text-[0.9375rem] font-light text-white pt-[1.5rem] pl-[4.3125rem]'>
