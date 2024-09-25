@@ -47,7 +47,7 @@ const Signup = () => {
 		toastSuccess('Signup was successfully, please check your inbox!');
 	};
 
-	const onErrorMutation = (message: string) => {
+	const onErrorMutation = (message?: string) => {
 		toastError(message);
 	};
 
