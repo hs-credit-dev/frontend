@@ -58,8 +58,6 @@ const Student = () => {
 						the only method is <span className='font-bold'> experience</span>.
 					</p>
 				</div>
-
-				{/* Banner wrapper with absolute positioning */}
 				<div className='absolute right-0 top-0 z-10'>
 					<Image
 						src='/images/icons/humansSpace.png'
