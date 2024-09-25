@@ -3,10 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Typography from '../../components/Typography';
+import useUserStore from '../../store';
 
 const Header = () => {
 	const router = useRouter();
-
+	const firstName = useUserStore((state) => state.user?.first_name);
 	const isAccountCreationPage = router.pathname === '/signup';
 
 	return (
@@ -31,7 +32,9 @@ const Header = () => {
 							<Typography className='ml-2 text-[22px] font-bold'>hs.credit</Typography>
 						</div>
 						<div className='flex items-center space-x-4'>
-							<Image src='/images/icons/nIcon.png' alt='logo' width={40} height={40} />
+							<button className='text-2xl w-10 h-10 text-white bg-[#85C4E9] rounded'>
+								{firstName && firstName[0]}
+							</button>
 							<Image src='/images/icons/quitIcon.png' alt='logo' width={27} height={27} />
 						</div>
 					</div>

@@ -1,20 +1,15 @@
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Typography from '../../components/Typography';
-
-interface LoginFormInputs {
-	email: string;
-	password: string;
-}
+import { useLogin } from '../../hooks/auth';
+import { LoginFormInputs } from '../../types';
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string()
@@ -33,16 +28,11 @@ const Login = () => {
 	} = useForm({
 		resolver: yupResolver(validationSchema),
 	});
-	const { push } = useRouter();
+
+	const loginMutation = useLogin();
 
 	const onSubmit = async (values: LoginFormInputs) => {
-		try {
-			const { data } = await axios.post('https://api.hs.credit/auth/login', values);
-			await push('/student');
-			console.log(data);
-		} catch (e) {
-			console.log('e', e);
-		}
+		loginMutation.mutate(values);
 	};
 
 	return (

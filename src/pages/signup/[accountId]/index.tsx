@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
@@ -10,20 +9,9 @@ import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Label from '../../../components/Label';
 import Typography from '../../../components/Typography';
+import { useCompleteUserSignup, useFetchSignupUser } from '../../../hooks/auth';
 import Page from '../../../layout/Page';
-
-interface RegisterFormValues {
-	first_name: string;
-	last_name: string;
-	middle_initial?: string;
-	ceeb_code: string;
-	school_name: string;
-	bio: string;
-	ageConfirmation: boolean;
-	password: string;
-	confirmPassword: string;
-	dob: string;
-}
+import { RegisterFormValues } from '../../../types';
 
 const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
 	first_name: yup.string().required('First name is required'),
@@ -57,41 +45,15 @@ const RegisterPersonalInfo = () => {
 		resolver: yupResolver(schema),
 	});
 
-	const { query, push } = useRouter();
-	console.log('qe', query);
+	const { query } = useRouter();
+	const completeSignupMutation = useCompleteUserSignup(query.accountId as string);
+
+	useFetchSignupUser(query?.accountId as string);
+
 	const isAgeConfirmed = watch('ageConfirmation', false);
 
-	useEffect(() => {
-		const fetchAccount = async () => {
-			try {
-				const { data } = await axios.get(
-					`https://api.hs.credit/api/signup/${query.accountId}`,
-				);
-				console.log('data', data);
-			} catch (e) {
-				console.log(e);
-			}
-		};
-
-		if (query.accountId) {
-			fetchAccount();
-		}
-	}, [query.accountId]);
-
 	const onSubmit = async (values: RegisterFormValues) => {
-		console.log('Form data:', values);
-		try {
-			const { data } = await axios.patch(
-				`https://api.hs.credit/api/signup/${query.accountId}/`,
-				{
-					...values,
-				},
-			);
-			console.log(data);
-			push('/login');
-		} catch (e) {
-			console.log('e');
-		}
+		completeSignupMutation.mutate(values);
 	};
 
 	return (
