@@ -41,7 +41,7 @@ const Login = () => {
 		}, 2000);
 	};
 
-	const onErrorMutation = (message: string) => {
+	const onErrorMutation = (message?: string) => {
 		toastError(message);
 	};
 
