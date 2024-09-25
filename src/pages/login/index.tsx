@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 
 import Button from '../../components/Button';
@@ -10,6 +11,7 @@ import Input from '../../components/Input';
 import Typography from '../../components/Typography';
 import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
+import { toastError, toastSuccess } from '../../utils';
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string()
@@ -24,15 +26,29 @@ const Login = () => {
 	const {
 		handleSubmit,
 		control,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = useForm({
 		resolver: yupResolver(validationSchema),
 	});
 
-	const loginMutation = useLogin();
+	const { push } = useRouter();
+
+	const onSuccessMutation = () => {
+		console.log('success');
+		toastSuccess('Login successfully!');
+		setTimeout(() => {
+			push('/student');
+		}, 2000);
+	};
+
+	const onErrorMutation = (message?: string) => {
+		toastError(message);
+	};
+
+	const { mutate, isPending } = useLogin(onSuccessMutation, onErrorMutation);
 
 	const onSubmit = async (values: LoginFormInputs) => {
-		loginMutation.mutate(values);
+		mutate(values);
 	};
 
 	return (
@@ -119,12 +135,13 @@ const Login = () => {
 					)}
 					<Button
 						type='submit'
+						disabled={isPending || !isValid}
 						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full'
 					>
 						Log In
 					</Button>
 					<Link
-						href='/forgotPassword'
+						href='#'
 						className='text-sm text-[#0077ff] hover:text-blue-600 transition-colors duration-300 ease-in-out no-underline'
 					>
 						Forgot password

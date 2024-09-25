@@ -1,27 +1,66 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
+import { AxiosError } from 'axios';
 
 import { completeUserSignup, getSignupUser, loginUser, signupUser } from '../api/auth';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
 import { RegisterFormValues } from '../types';
 
-const useLogin = () => {
-	const { push } = useRouter();
+type OnSuccessCallback = () => void;
+type OnErrorCallback = (message?: string) => void;
 
+const isObject = (value: unknown): value is Record<string, unknown> => {
+	return value !== null && typeof value === 'object';
+};
+const isArrayOfString = (value: unknown): value is string[] => {
+	return Array.isArray(value) && value.every((item) => typeof item === 'string');
+};
+
+const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	return useMutation({
 		mutationFn: loginUser,
 		onSuccess: (response) => {
-			push('/student');
 			localStorage.setItem('hstoken', response.token);
+			onSuccess();
+		},
+		onError: (error: AxiosError) => {
+			const responseData = error.response?.data;
+
+			if (isObject(responseData) && 'non_field_errors' in responseData) {
+				const nonFieldErrors = responseData.non_field_errors;
+
+				// Check if nonFieldErrors is an array of strings
+				if (isArrayOfString(nonFieldErrors)) {
+					onError(nonFieldErrors[0]);
+				} else {
+					onError('Something went wrong, please try again');
+				}
+			} else {
+				onError('Something went wrong, please try again');
+			}
 		},
 	});
 };
 
-const useSignup = () => {
+const useSignup = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	return useMutation({
 		mutationFn: signupUser,
-		onSuccess: (response) => {
-			console.log(response);
+		onSuccess: () => {
+			onSuccess();
+		},
+		onError: (error: AxiosError) => {
+			const responseData = error.response?.data;
+
+			if (isObject(responseData) && 'email' in responseData) {
+				const nonFieldErrors = responseData.email;
+
+				if (isArrayOfString(nonFieldErrors)) {
+					onError(nonFieldErrors[0]);
+				} else {
+					onError('Something went wrong, please try again');
+				}
+			} else {
+				onError('Something went wrong, please try again');
+			}
 		},
 	});
 };
@@ -32,17 +71,22 @@ const useFetchSignupUser = (accountId: string) => {
 		queryFn: () => getSignupUser(accountId),
 		staleTime: 1_000 * 60 * 60,
 		enabled: !!accountId,
+		retry: false,
 	});
 };
 
-const useCompleteUserSignup = (accountId: string) => {
-	const { push } = useRouter();
-
+const useCompleteUserSignup = (
+	accountId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
 	return useMutation({
 		mutationFn: (values: RegisterFormValues) => completeUserSignup(accountId, values),
-		onSuccess: (response) => {
-			console.log(response);
-			push('/login');
+		onSuccess: () => {
+			onSuccess();
+		},
+		onError: () => {
+			onError();
 		},
 	});
 };
