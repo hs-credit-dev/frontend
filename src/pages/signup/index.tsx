@@ -9,6 +9,7 @@ import Label from '../../components/Label';
 import Typography from '../../components/Typography';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
+import { toastError, toastSuccess } from '../../utils';
 
 interface SignupFormValues {
 	email: string;
@@ -41,10 +42,19 @@ const Signup = () => {
 	} = useForm<SignupFormValues>({
 		resolver: yupResolver(schema),
 	});
-	const signupMutation = useSignup();
+
+	const onSuccessMutation = () => {
+		toastSuccess('Signup was successfully, please check your inbox!');
+	};
+
+	const onErrorMutation = (message: string) => {
+		toastError(message);
+	};
+
+	const { mutate, isPending } = useSignup(onSuccessMutation, onErrorMutation);
 
 	const onSubmit = async (values: SignupFormValues) => {
-		signupMutation.mutate(values);
+		mutate(values);
 	};
 
 	return (
@@ -158,7 +168,7 @@ const Signup = () => {
 							className={`bg-[#805DBE] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px] ${
 								!isValid ? 'opacity-50 cursor-not-allowed' : ''
 							}`}
-							disabled={!isValid}
+							disabled={!isValid || isPending}
 						>
 							Create Account
 						</Button>

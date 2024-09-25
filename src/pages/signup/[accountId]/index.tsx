@@ -12,6 +12,7 @@ import Typography from '../../../components/Typography';
 import { useCompleteUserSignup, useFetchSignupUser } from '../../../hooks/auth';
 import Page from '../../../layout/Page';
 import { RegisterFormValues } from '../../../types';
+import { toastError, toastSuccess } from '../../../utils';
 
 const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
 	first_name: yup.string().required('First name is required'),
@@ -39,21 +40,43 @@ const RegisterPersonalInfo = () => {
 	const {
 		control,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isValid },
 		watch,
 	} = useForm<RegisterFormValues>({
 		resolver: yupResolver(schema),
 	});
 
-	const { query } = useRouter();
-	const completeSignupMutation = useCompleteUserSignup(query.accountId as string);
+	const { query, push } = useRouter();
 
-	useFetchSignupUser(query?.accountId as string);
+	const onSuccessMutation = () => {
+		toastSuccess('Signup was successfully, please check your inbox!');
+		push('/login');
+	};
 
+	const onErrorMutation = () => {
+		toastError('Account already completed!');
+	};
+
+	const { mutate, isPending } = useCompleteUserSignup(
+		query.accountId as string,
+		onSuccessMutation,
+		onErrorMutation,
+	);
+
+	const { isSuccess: isEmailConfirmSuccess, isError: isEmailConfirmError } =
+		useFetchSignupUser(query?.accountId as string);
+
+	if (isEmailConfirmSuccess) {
+		toastSuccess('Email confirmed successfully, please complete signup');
+	}
+
+	if (isEmailConfirmError) {
+		toastError('We have problem with confirming your email, please try again');
+	}
 	const isAgeConfirmed = watch('ageConfirmation', false);
 
 	const onSubmit = async (values: RegisterFormValues) => {
-		completeSignupMutation.mutate(values);
+		mutate(values);
 	};
 
 	return (
@@ -304,9 +327,11 @@ const RegisterPersonalInfo = () => {
 						<Button
 							type='submit'
 							className={`bg-[#805DBE] text-white font-bold py-2 px-4 rounded-full hover:bg-[#6b4aa6] focus:outline-none focus:shadow-outline w-[205px] h-[52px] ${
-								!isAgeConfirmed ? 'opacity-50 cursor-not-allowed' : ''
+								!isAgeConfirmed || !isValid || isPending
+									? 'opacity-50 cursor-not-allowed'
+									: ''
 							}`}
-							disabled={!isAgeConfirmed}
+							disabled={!isAgeConfirmed || !isValid || isPending}
 						>
 							Create Account
 						</Button>
