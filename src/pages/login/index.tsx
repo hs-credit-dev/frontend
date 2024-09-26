@@ -23,6 +23,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const Login = () => {
+	const router = useRouter();
+
+	const redirectToSignup = () => {
+		router.push('/signup');
+	};
+
 	const {
 		handleSubmit,
 		control,
@@ -149,6 +155,7 @@ const Login = () => {
 					<Button
 						type='button'
 						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full'
+						onClick={redirectToSignup}
 					>
 						Create Account
 					</Button>
