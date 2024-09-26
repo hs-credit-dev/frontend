@@ -1,6 +1,15 @@
+import { Fragment, useMemo, useState } from 'react';
+import {
+	ColumnDef,
+	getCoreRowModel,
+	getPaginationRowModel,
+	PaginationState,
+	useReactTable,
+} from '@tanstack/react-table';
 import Image from 'next/image';
-import Link from 'next/link';
 
+import Button from '../../components/Button';
+import Dashboard from '../../components/Dashboard';
 import Page from '../../layout/Page';
 import useUserStore from '../../store';
 
@@ -77,6 +86,13 @@ const creditData: CreditData[] = [
 		date: '5/15/23',
 		id: 10,
 	},
+	{
+		credit: 'Credit 10',
+		discipline: 'Discipline 10',
+		status: 'Minted',
+		date: '5/15/23',
+		id: 11,
+	},
 ];
 
 type CreditData = {
@@ -88,7 +104,65 @@ type CreditData = {
 };
 
 const Student = () => {
+	const [pagination, setPagination] = useState<PaginationState>({
+		pageIndex: 0,
+		pageSize: 10,
+	});
 	const firstName = useUserStore((state) => state.user?.first_name);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [data, setData] = useState<CreditData[]>(creditData);
+
+	const COLUMNS: ColumnDef<CreditData>[] = [
+		{
+			header: '',
+			id: 'index',
+			accessorFn: (_, index) => index + 1,
+		},
+		{
+			header: 'Credit',
+			accessorKey: 'credit',
+		},
+		{
+			header: 'Discipline',
+			accessorKey: 'discipline',
+		},
+		{
+			header: 'Status',
+			accessorKey: 'status',
+			cell: ({ row }) => (
+				<div className='flex items-center justify-between'>
+					<StatusCircle status={row.original.status} />
+					<Button className='bg-[#805DBE] text-white text-[.75rem] font-normal hover:bg-violet-700'>
+						Action
+					</Button>
+				</div>
+			),
+		},
+	];
+
+	const columns = useMemo(() => COLUMNS, [COLUMNS]);
+
+	const table = useReactTable({
+		columns,
+		data,
+		getCoreRowModel: getCoreRowModel(),
+		getPaginationRowModel: getPaginationRowModel(),
+		onPaginationChange: setPagination,
+		state: {
+			pagination,
+		},
+	});
+
+	const {
+		getHeaderGroups,
+		getRowModel,
+		previousPage,
+		getCanPreviousPage,
+		nextPage,
+		getCanNextPage,
+		getState,
+	} = table;
+
 	return (
 		<Page>
 			<section className='relative flex py-[3rem] bg-[#805DBE] rounded-xl mb-6'>
@@ -113,85 +187,74 @@ const Student = () => {
 					/>
 				</div>
 			</section>
-
-			<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0 bg-white rounded-t-[20px]'>
-				<h1 className='pl-[4.3125rem]'>My Dashboard</h1>
-				<div className='flex px-12'>
-					{/* Row number - one-column table */}
-					<table className='text-center mt-[2.8125rem] mr-4'>
-						<thead className='bg-[#EDEDED]'>
-							<tr></tr>
-						</thead>
-						<tbody className='text-[0.875rem] font-bold'>
-							{creditData.map((item, index) => (
-								<tr key={item.id}>
-									<td>{index + 1}</td>
-								</tr>
+			<Dashboard
+				title='My Dashboard'
+				previousPage={previousPage}
+				getCanNextPage={getCanNextPage}
+				getCanPreviousPage={getCanPreviousPage}
+				nextPage={nextPage}
+				getState={getState}
+			>
+				<table className='bg-[#805DBE12] w-full table-fixed'>
+					<thead>
+						<tr>
+							{getHeaderGroups().map((headerGroup) => (
+								<Fragment key={headerGroup.id}>
+									{headerGroup.headers.map((header) => (
+										<th
+											key={header.id}
+											className='bg-[#EDEDED] text-[14px] text-left leading-4 py-3'
+										>
+											{String(header.column.columnDef.header)}
+										</th>
+									))}
+								</Fragment>
 							))}
-							<tr></tr>
-						</tbody>
-					</table>
-
-					{/* Credit detail four-column table */}
-					<table className='flex-1 text-center mt-[2.8125rem]'>
-						<thead className='bg-[#EDEDED]'>
-							<tr className='text-[0.875rem]'>
-								<th className='w-1/5'>Credit</th>
-								<th className='w-1/5'>Discipline</th>
-								<th>Status</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody className='text-[0.875rem] font-light'>
-							{creditData.map((data) => (
-								<tr key={data.id} className='odd:bg-white even:bg-[#EDEDED]'>
-									<td>{data.credit}</td>
-									<td>{data.discipline}</td>
-									<td className='flex justify-center gap-4'>
-										<StatusCircle status={data.status} />
-										<span className='pt-3 text-center'>
-											{data.status} on {data.date}
-										</span>
-									</td>
-									<td>
-										<span className='flex flex-row gap-4 justify-center'>
-											<button
-												className={
-													'py-[1 rem] px-4 bg-[#805DBE] text-white text-[.75rem] font-normal hover:bg-violet-700'
-												}
-											>
-												Take Action
-											</button>
-											<button>
-												<svg
-													xmlns='http://www.w3.org/2000/svg'
-													className='w-6 h-6 stroke-[#D40000] stroke-[3] fill-none'
-												>
-													<path
-														strokeLinecap='round'
-														strokeLinejoin='round'
-														d='M6 18 18 6M6 6l12 12'
-													/>
-												</svg>
-											</button>
-										</span>
-									</td>
-								</tr>
-							))}
-							<tr className='border-b border-[#EDEDED]'>
-								<td></td>
-								<td></td>
-								<td className='text-left'>
-									<Link href='' className='text-sm text-gray-400'>
-										+ Click to Browse Credits +
-									</Link>
+						</tr>
+					</thead>
+					<tbody>
+						{getRowModel().rows.map((row) => (
+							<tr
+								key={row.id}
+								className='border-b bg-white text-[14px] even:bg-[#EDEDED]'
+							>
+								{row.getVisibleCells().map((cell, index) =>
+									cell.id.includes('status') ? (
+										<td key={cell.id}>
+											<StatusCircle status={row.original.status} />
+										</td>
+									) : (
+										<td key={cell.id} className={`${index === 0 && 'pl-4'} py-2`}>
+											{String(cell.getValue())}
+										</td>
+									),
+								)}
+								<td className='text-right flex items-center justify-end py-2'>
+									<Button
+										className={
+											'px-4 bg-[#805DBE] text-white text-[.75rem] font-normal hover:bg-violet-700'
+										}
+									>
+										Take Action
+									</Button>
+									<Button className='mr-[25px] ml-[31px]'>
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											className='w-6 h-6 stroke-[#D40000] stroke-[3] fill-none'
+										>
+											<path
+												strokeLinecap='round'
+												strokeLinejoin='round'
+												d='M6 18 18 6M6 6l12 12'
+											/>
+										</svg>
+									</Button>
 								</td>
-								<td></td>
 							</tr>
-						</tbody>
-					</table>
-				</div>
-			</section>
+						))}
+					</tbody>
+				</table>
+			</Dashboard>
 		</Page>
 	);
 };
