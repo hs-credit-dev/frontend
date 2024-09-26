@@ -3,6 +3,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 
 import Button from '../../components/Button';
@@ -21,6 +22,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const Login = () => {
+	const router = useRouter();
+
+	const redirectToSignup = () => {
+		router.push('/signup');
+	};
+
 	const {
 		handleSubmit,
 		control,
@@ -124,7 +131,7 @@ const Login = () => {
 						Log In
 					</Button>
 					<Link
-						href='/forgotPassword'
+						href='#'
 						className='text-sm text-[#0077ff] hover:text-blue-600 transition-colors duration-300 ease-in-out no-underline'
 					>
 						Forgot password
@@ -132,6 +139,7 @@ const Login = () => {
 					<Button
 						type='button'
 						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full'
+						onClick={redirectToSignup}
 					>
 						Create Account
 					</Button>
