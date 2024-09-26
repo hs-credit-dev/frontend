@@ -30,10 +30,52 @@ const creditData: CreditData[] = [
 	},
 	{
 		credit: 'Credit 4',
-		discipline: 'Discipline 3',
+		discipline: 'Discipline 4',
 		status: 'Minted',
 		date: '1/17/23',
 		id: 4,
+	},
+	{
+		credit: 'Credit 5',
+		discipline: 'Discipline 5',
+		status: 'Staked',
+		date: '4/10/23',
+		id: 5,
+	},
+	{
+		credit: 'Credit 6',
+		discipline: 'Discipline 6',
+		status: 'Pitched',
+		date: '4/12/23',
+		id: 6,
+	},
+	{
+		credit: 'Credit 7',
+		discipline: 'Discipline 7',
+		status: 'Minted',
+		date: '4/15/23',
+		id: 7,
+	},
+	{
+		credit: 'Credit 8',
+		discipline: 'Discipline 8',
+		status: 'Minted',
+		date: '5/5/23',
+		id: 8,
+	},
+	{
+		credit: 'Credit 9',
+		discipline: 'Discipline 9',
+		status: 'Pitched',
+		date: '5/10/23',
+		id: 9,
+	},
+	{
+		credit: 'Credit 10',
+		discipline: 'Discipline 10',
+		status: 'Minted',
+		date: '5/15/23',
+		id: 10,
 	},
 ];
 
@@ -72,7 +114,7 @@ const Student = () => {
 				</div>
 			</section>
 
-			<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0'>
+			<section className='pt-[1.6875rem] pb-[3.75rem] pl-0 pr-0 bg-white rounded-t-[20px]'>
 				<h1 className='pl-[4.3125rem]'>My Dashboard</h1>
 				<div className='flex px-12'>
 					{/* Row number - one-column table */}
