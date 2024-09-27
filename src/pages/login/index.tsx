@@ -23,10 +23,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const Login = () => {
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const redirectToSignup = () => {
-		router.push('/signup');
+		push('/signup');
 	};
 
 	const {
@@ -37,13 +37,10 @@ const Login = () => {
 		resolver: yupResolver(validationSchema),
 	});
 
-	const { push } = useRouter();
-
 	const onSuccessMutation = () => {
-		console.log('success');
 		toastSuccess('Login successfully!');
 		setTimeout(() => {
-			push('/student');
+			push('/dashboard');
 		}, 2000);
 	};
 

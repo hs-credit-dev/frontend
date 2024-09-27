@@ -10,8 +10,9 @@ import Image from 'next/image';
 
 import Button from '../../components/Button';
 import Dashboard from '../../components/Dashboard';
+import { useFetchCredits } from '../../hooks/credits';
 import Page from '../../layout/Page';
-import useUserStore from '../../store';
+import useUserStoreHook from '../../store';
 
 import StatusCircle from './StatusCircle';
 
@@ -65,34 +66,6 @@ const creditData: CreditData[] = [
 		date: '4/15/23',
 		id: 7,
 	},
-	{
-		credit: 'Credit 8',
-		discipline: 'Discipline 8',
-		status: 'Minted',
-		date: '5/5/23',
-		id: 8,
-	},
-	{
-		credit: 'Credit 9',
-		discipline: 'Discipline 9',
-		status: 'Pitched',
-		date: '5/10/23',
-		id: 9,
-	},
-	{
-		credit: 'Credit 10',
-		discipline: 'Discipline 10',
-		status: 'Minted',
-		date: '5/15/23',
-		id: 10,
-	},
-	{
-		credit: 'Credit 10',
-		discipline: 'Discipline 10',
-		status: 'Minted',
-		date: '5/15/23',
-		id: 11,
-	},
 ];
 
 type CreditData = {
@@ -103,14 +76,20 @@ type CreditData = {
 	id: number;
 };
 
+type EmptyRow = {
+	isEmpty: boolean;
+	cells: number[];
+};
+
 const Student = () => {
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
 	});
-	const firstName = useUserStore((state) => state.user?.first_name);
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [data, setData] = useState<CreditData[]>(creditData);
+	const { firstName } = useUserStoreHook();
+	const { data } = useFetchCredits(1);
+
+	console.log('data', data);
 
 	const COLUMNS: ColumnDef<CreditData>[] = [
 		{
@@ -144,7 +123,8 @@ const Student = () => {
 
 	const table = useReactTable({
 		columns,
-		data,
+		// data: data?.results ? data.results : [],
+		data: creditData,
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 		onPaginationChange: setPagination,
@@ -162,6 +142,14 @@ const Student = () => {
 		getCanNextPage,
 		getState,
 	} = table;
+
+	console.log('getRowModel().rows', getRowModel().rows);
+
+	const numOfElementsToAdd = 10 - getRowModel().rows.length;
+	const elementsToAdd: EmptyRow[] = Array(Math.max(numOfElementsToAdd, 0)).fill({
+		isEmpty: true,
+		cells: Array(5).fill(1),
+	});
 
 	return (
 		<Page>
@@ -252,6 +240,21 @@ const Student = () => {
 								</td>
 							</tr>
 						))}
+						{elementsToAdd.map((row, index) => {
+							const rowNumber = getRowModel().rows.length + index + 1;
+							return (
+								<tr
+									className='border-b bg-white text-[14px] even:bg-[#EDEDED]'
+									key={index}
+								>
+									{row.cells.map((cell, cIndex: number) => (
+										<td className={`h-[41px] ${cIndex === 0 && 'pl-4'}`} key={cIndex}>
+											{cIndex === 0 && rowNumber}
+										</td>
+									))}
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</Dashboard>

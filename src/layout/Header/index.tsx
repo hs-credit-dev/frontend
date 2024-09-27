@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import Typography from '../../components/Typography';
-import useUserStore from '../../store';
+import useUserStoreHook from '../../store';
 
 const Header = () => {
 	const router = useRouter();
-	const firstName = useUserStore((state) => state.user?.first_name);
+	const { firstName } = useUserStoreHook();
 	const isAccountCreationPage = router.pathname === '/signup';
 
 	return (
