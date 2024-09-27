@@ -8,11 +8,11 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 
-import Button from '../../components/Button';
-import Dashboard from '../../components/Dashboard';
-import { useFetchCredits } from '../../hooks/credits';
-import Page from '../../layout/Page';
-import useUserStoreHook from '../../store';
+import Button from '../../../components/Button';
+import Dashboard from '../../../components/Dashboard';
+import { useFetchCredits } from '../../../hooks/credits';
+import Page from '../../../layout/Page';
+import useUserStoreHook from '../../../store';
 
 import StatusCircle from './StatusCircle';
 

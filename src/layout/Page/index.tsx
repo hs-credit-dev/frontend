@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 
 import { useUserInformation } from '../../hooks/users';
 import useUserStoreHook from '../../store';
@@ -10,14 +10,11 @@ interface PageProps {
 }
 
 const Page = ({ children }: PageProps) => {
-	const { setUserInformation, isStudent } = useUserStoreHook();
-	const { data } = useUserInformation();
+	const { setUserInformation } = useUserStoreHook();
+	const { data, isFetching } = useUserInformation();
+	console.log('isFetching', isFetching);
 	console.log('data', data);
 	setUserInformation(data);
-
-	useEffect(() => {
-		console.log('isStudent', isStudent);
-	}, [isStudent]);
 
 	return (
 		<div className='bg-[#805DBE12] min-h-[100vh] flex flex-col justify-between'>

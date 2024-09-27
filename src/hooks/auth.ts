@@ -1,7 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
 
 import { completeUserSignup, getSignupUser, loginUser, signupUser } from '../api/auth';
+import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
 import { RegisterFormValues } from '../types';
 
@@ -16,11 +18,25 @@ const isArrayOfString = (value: unknown): value is string[] => {
 };
 
 const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+	const { push } = useRouter();
+
 	return useMutation({
 		mutationFn: loginUser,
 		onSuccess: (response) => {
 			localStorage.setItem('hstoken', response.token);
-			onSuccess();
+
+			fetchUserInformation()
+				.then((res) => {
+					onSuccess();
+					setTimeout(() => {
+						if (!!res.student) {
+							push('/dashboard/student');
+						}
+					}, 1000);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
 		},
 		onError: (error: AxiosError) => {
 			const responseData = error.response?.data;

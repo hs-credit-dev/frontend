@@ -39,9 +39,6 @@ const Login = () => {
 
 	const onSuccessMutation = () => {
 		toastSuccess('Login successfully!');
-		setTimeout(() => {
-			push('/dashboard');
-		}, 2000);
 	};
 
 	const onErrorMutation = (message?: string) => {
