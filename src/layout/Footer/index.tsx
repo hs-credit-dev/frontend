@@ -9,6 +9,7 @@ const Footer = () => {
 	const router = useRouter();
 
 	const isStudentPage = router.pathname === '/student';
+	const isCreditDetailsPage = router.pathname === '/student/credit-details'; // Check for the credit-details page
 
 	return (
 		<footer className='w-full text-gray-500 py-4'>
@@ -31,6 +32,21 @@ const Footer = () => {
 								alt='download icon'
 								width={24}
 								height={24}
+							/>
+						</div>
+					</div>
+				) : isCreditDetailsPage ? (
+					<div className='flex justify-end items-center'>
+						<div className='flex flex-row items-center space-x-4 md:space-x-3 sm:space-x-2'>
+							<Button className='font-montserrat text-[20px] md:text-[18px] sm:text-[16px] font-semibold leading-[24.38px] text-black'>
+								View Rubric
+							</Button>
+							<Image
+								src='/images/icons/gridView.png'
+								alt='grid view icon'
+								width={24}
+								height={24}
+								className='w-[24px] h-[24px] md:w-[22px] md:h-[22px] sm:w-[20px] sm:h-[20px]'
 							/>
 						</div>
 					</div>
