@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Button from '../../../components/Button';
-import Typography from '../../../components/Typography';
-import Page from '../../../layout/Page';
+import Button from '../../../../components/Button';
+import Typography from '../../../../components/Typography';
+import Page from '../../../../layout/Page';
 
 import Card from './Card';
 
