@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import Button from '../../../../components/Button';
 import Typography from '../../../../components/Typography';
@@ -81,6 +82,8 @@ const cardData: CardData[] = [
 ];
 
 const BrowseCredits = () => {
+	const { push } = useRouter();
+
 	return (
 		<Page>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
@@ -88,7 +91,10 @@ const BrowseCredits = () => {
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
 						Browse Credits
 					</Typography>
-					<Button className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'>
+					<Button
+						onClick={() => push('/dashboard/student')}
+						className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
+					>
 						Back
 					</Button>
 				</div>

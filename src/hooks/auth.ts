@@ -27,10 +27,15 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 
 			fetchUserInformation()
 				.then((res) => {
+					console.log('success', res);
 					onSuccess();
 					setTimeout(() => {
 						if (!!res.student) {
 							push('/dashboard/student');
+						}
+
+						if (!!res.credit_owner) {
+							push('/dashboard/creditowner');
 						}
 					}, 1000);
 				})
