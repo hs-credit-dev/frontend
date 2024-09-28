@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import Button from '../../../components/Button';
-import Typography from '../../../components/Typography';
-import Page from '../../../layout/Page';
+import Button from '../../../../components/Button';
+import Typography from '../../../../components/Typography';
+import Page from '../../../../layout/Page';
 
 const CreditDetails = () => {
 	const router = useRouter();
