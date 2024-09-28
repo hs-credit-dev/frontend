@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { useUserInformation } from '../../hooks/users';
-import useStore from '../../store';
+import useUserStoreHook from '../../store';
 import Footer from '../Footer';
 import Header from '../Header';
 
@@ -10,9 +10,10 @@ interface PageProps {
 }
 
 const Page = ({ children }: PageProps) => {
-	const setUserInformation = useStore((state) => state.setUserInformation);
-	const { data } = useUserInformation();
-
+	const { setUserInformation } = useUserStoreHook();
+	const { data, isFetching } = useUserInformation();
+	console.log('isFetching', isFetching);
+	console.log('data', data);
 	setUserInformation(data);
 
 	return (

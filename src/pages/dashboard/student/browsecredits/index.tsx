@@ -1,8 +1,9 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
-import Button from '../../../components/Button';
-import Typography from '../../../components/Typography';
-import Page from '../../../layout/Page';
+import Button from '../../../../components/Button';
+import Typography from '../../../../components/Typography';
+import Page from '../../../../layout/Page';
 
 import Card from './Card';
 
@@ -53,22 +54,52 @@ const cardData: CardData[] = [
 		imageAlt: 'clinical psychology',
 		title: 'Clinical Psychology',
 	},
+	{
+		imageSrc: '/images/clinicalPsychology.png',
+		imageAlt: 'clinical psychology',
+		title: 'Clinical Psychology',
+	},
+	{
+		imageSrc: '/images/digitalAnimation.png',
+		imageAlt: 'digital animation',
+		title: 'Digital Animation',
+	},
+	{
+		imageSrc: '/images/businessAdministration.png',
+		imageAlt: 'business administration',
+		title: 'Business Administration',
+	},
+	{
+		imageSrc: '/images/clinicalPsychology.png',
+		imageAlt: 'clinical psychology',
+		title: 'Clinical Psychology',
+	},
+	{
+		imageSrc: '/images/clinicalPsychology.png',
+		imageAlt: 'clinical psychology',
+		title: 'Clinical Psychology',
+	},
 ];
 
 const BrowseCredits = () => {
+	const { push } = useRouter();
+
 	return (
 		<Page>
-			<div className='bg-white rounded-[20px] flex flex-col'>
-				<div className='flex justify-between box-border p-10'>
+			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
+				<div className='flex justify-between mb-20'>
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
 						Browse Credits
 					</Typography>
-					<Button className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'>
+					<Button
+						onClick={() => push('/dashboard/student')}
+						className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
+					>
 						Back
 					</Button>
 				</div>
-				<div className='overflow-y-auto max-h-[600px] pr-4 custom-scrollbar'>
-					<div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 pl-10 pt-5 pb-5 w-[1100px]'>
+				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
+					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>
 						{cardData.map((card, index) => (
 							<Card
 								key={index}

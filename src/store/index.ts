@@ -32,4 +32,20 @@ const useUserStore = create<Store>()((set) => ({
 	setUserInformation: (information: User) => set({ user: information }),
 }));
 
-export default useUserStore;
+const useUserStoreHook = () => {
+	const isStudent = useUserStore((store) => !!store.user?.student);
+	const isCreditOwner = useUserStore((store) => !!store.user?.credit_owner);
+	const isEducator = useUserStore((store) => !!store.user?.educator);
+	const firstName = useUserStore((store) => store.user?.first_name);
+	const setUserInformation = useUserStore((store) => store.setUserInformation);
+
+	return {
+		isStudent,
+		isCreditOwner,
+		isEducator,
+		firstName,
+		setUserInformation,
+	};
+};
+
+export default useUserStoreHook;
