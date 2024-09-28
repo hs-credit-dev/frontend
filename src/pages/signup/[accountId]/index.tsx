@@ -12,7 +12,7 @@ import Typography from '../../../components/Typography';
 import { useCompleteUserSignup, useFetchSignupUser } from '../../../hooks/auth';
 import Page from '../../../layout/Page';
 import { RegisterFormValues } from '../../../types';
-import { toastError, toastSuccess } from '../../../utils';
+import { toastError, toastSuccess } from '../../../utils/toast';
 
 const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
 	first_name: yup.string().required('First name is required'),

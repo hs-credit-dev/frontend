@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 import { useUserInformation } from '../../hooks/users';
 import useUserStoreHook from '../../store';
@@ -10,16 +11,26 @@ interface PageProps {
 }
 
 const Page = ({ children }: PageProps) => {
-	const { setUserInformation } = useUserStoreHook();
+	const { push } = useRouter();
+	const { setUserInformation, isAuthorized } = useUserStoreHook();
 	const { data, isFetching } = useUserInformation();
-	console.log('isFetching', isFetching);
-	console.log('data', data);
-	setUserInformation(data);
+
+	if (data) {
+		setUserInformation(data);
+	}
+
+	useEffect(() => {
+		if (!isAuthorized) {
+			push('/login');
+		}
+	}, [isAuthorized, push]);
 
 	return (
 		<div className='bg-[#805DBE12] min-h-[100vh] flex flex-col justify-between'>
 			<Header />
-			<div className='container mx-auto flex-grow overflow-auto'>{children}</div>
+			<div className='container mx-auto flex-grow overflow-auto'>
+				{isFetching ? 'Loading' : children}
+			</div>
 			<Footer />
 		</div>
 	);

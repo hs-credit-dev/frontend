@@ -1,12 +1,7 @@
-import axios from 'axios';
+import axios from '../utils/axios';
 
 const fetchUserInformation = async () => {
-	const token = localStorage.getItem('hstoken');
-	const { data } = await axios.get('https://api.hs.credit/api/users/me/', {
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
-	});
+	const { data } = await axios.get('/api/users/me/');
 	return data;
 };
 

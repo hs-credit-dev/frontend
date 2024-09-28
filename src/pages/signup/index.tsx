@@ -9,7 +9,7 @@ import Label from '../../components/Label';
 import Typography from '../../components/Typography';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
-import { toastError, toastSuccess } from '../../utils';
+import { toastError, toastSuccess } from '../../utils/toast';
 
 interface SignupFormValues {
 	email: string;

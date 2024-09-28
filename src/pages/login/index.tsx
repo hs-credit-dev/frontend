@@ -11,7 +11,7 @@ import Input from '../../components/Input';
 import Typography from '../../components/Typography';
 import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
-import { toastError, toastSuccess } from '../../utils';
+import { toastError, toastSuccess } from '../../utils/toast';
 
 const validationSchema = Yup.object().shape({
 	email: Yup.string()

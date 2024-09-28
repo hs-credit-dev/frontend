@@ -27,7 +27,6 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 
 			fetchUserInformation()
 				.then((res) => {
-					console.log('success', res);
 					onSuccess();
 					setTimeout(() => {
 						if (!!res.student) {
