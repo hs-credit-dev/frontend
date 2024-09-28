@@ -38,6 +38,12 @@ const useUserStoreHook = () => {
 	const isEducator = useUserStore((store) => !!store.user?.educator);
 	const firstName = useUserStore((store) => store.user?.first_name);
 	const setUserInformation = useUserStore((store) => store.setUserInformation);
+	const isAuthorized = () => {
+		if (typeof window !== 'undefined') {
+			const token = localStorage.getItem('hstoken');
+			return !!token;
+		}
+	};
 
 	return {
 		isStudent,
@@ -45,6 +51,7 @@ const useUserStoreHook = () => {
 		isEducator,
 		firstName,
 		setUserInformation,
+		isAuthorized: isAuthorized(),
 	};
 };
 

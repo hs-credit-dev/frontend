@@ -143,8 +143,6 @@ const Student = () => {
 		getState,
 	} = table;
 
-	console.log('getRowModel().rows', getRowModel().rows);
-
 	const numOfElementsToAdd = 10 - getRowModel().rows.length;
 	const elementsToAdd: EmptyRow[] = Array(Math.max(numOfElementsToAdd, 0)).fill({
 		isEmpty: true,
