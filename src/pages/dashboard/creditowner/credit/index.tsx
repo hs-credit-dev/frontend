@@ -62,26 +62,20 @@ const Credit = () => {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	const onSubmit = async (values: Credit) => {
-		console.log('values', values);
-
-		// Create a FormData object to handle file upload
 		const formData = new FormData();
 
-		// Append the fields to the FormData object based on the backend's expectations
 		formData.append('name', values.name);
 		formData.append('discipline', values.discipline);
 		formData.append('description', values.description);
-		formData.append('rubric_version', values.rubric_version); // If optional, handle nulls
+		formData.append('rubric_version', values.rubric_version);
 		formData.append('stake_text', values.stake_text);
 		formData.append('pitch_text', values.pitch_text);
 		formData.append('mint_text', values.mint_text);
 
-		// Append the logo file, if selected
 		if (fileInputRef.current?.files !== null && fileInputRef.current?.files[0]) {
 			formData.append('logo', fileInputRef.current?.files[0]);
 		}
 
-		// Assuming mutate can handle FormData
 		mutate(formData);
 	};
 

@@ -5,7 +5,7 @@ const fetchCredits = async (page: number) => {
 	return data;
 };
 
-const createCredit = async (values) => {
+const createCredit = async (values: FormData) => {
 	const { data } = await axios.post('/api/credits/', values);
 	console.log('credits ===>', data);
 	return data;

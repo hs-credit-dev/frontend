@@ -1,27 +1,11 @@
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import Typography from '../../../components/Typography';
 import { useFetchCredits } from '../../../hooks/credits';
 import Page from '../../../layout/Page';
-
-import Card from './Card';
-
-interface Credit {
-	code: string;
-	created_at: string;
-	description: string;
-	discipline: string;
-	id: string;
-	logo: string;
-	mint_text: string;
-	name: string;
-	pitch_text: string;
-	rubric: string[];
-	rubric_version: string;
-	stake_text: string;
-	status: string;
-	updated_at: string;
-}
+import { CreditResponse } from '../../../types';
 
 const CreditOwner = () => {
 	const { data } = useFetchCredits(1);
@@ -36,14 +20,22 @@ const CreditOwner = () => {
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>
-						{data?.results.map((card: Credit) => (
-							<Card
+						{data?.results.map((card: CreditResponse) => (
+							<Link
 								key={card.id}
-								imageSrc={card.logo}
-								imageAlt={card.name}
-								title={card.name}
-								id={card.id}
-							/>
+								href={{
+									pathname: `/dashboard/creditowner/${card.id}`,
+									query: { name: card.name, logo: card.logo, imgAlt: card.name },
+								}}
+								passHref
+							>
+								<div className='cursor-pointer flex flex-col'>
+									<Image src={card.logo} alt={card.name} width={191} height={191} />
+									<Typography className='font-bold mt-2 text-[14px]'>
+										{card.name}
+									</Typography>
+								</div>
+							</Link>
 						))}
 					</div>
 				</div>
