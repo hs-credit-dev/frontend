@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
+import * as yup from 'yup';
 
 import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
@@ -10,7 +11,25 @@ import Typography from '../../../../components/Typography';
 import { useCreateCredit, useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 
-import { validationSchema } from './validationSchema';
+const validationSchema = yup.object().shape({
+	name: yup.string().required('Credit name is required'),
+	discipline: yup.string().required('Discipline is required'),
+	description: yup.string(),
+	rubric_version: yup.string(),
+	stake_text: yup.string(),
+	pitch_text: yup.string(),
+	mint_text: yup.string(),
+	logo: yup
+		.mixed<File>()
+		.required('Logo is required')
+		.test('fileSize', 'The file is too large', (value) => {
+			return value instanceof File && value.size <= 2 * 1024 * 1024;
+		})
+		.test('fileType', 'Unsupported file format', (value) => {
+			return value instanceof File && ['image/jpeg', 'image/png'].includes(value.type);
+		})
+		.required('Logo is required'),
+});
 
 interface Credit {
 	name: string;

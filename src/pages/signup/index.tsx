@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -10,7 +11,21 @@ import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
 import { toastError, toastSuccess } from '../../utils/toast';
 
-import { validationSchema } from './validationSchema';
+const validationSchema = yup.object().shape({
+	email: yup.string().required('Email is required').email('Enter a valid email'),
+	confirmEmail: yup
+		.string()
+		.oneOf([yup.ref('email'), undefined], 'Emails must match')
+		.required('Please confirm your email'),
+	first_name: yup
+		.string()
+		.required('First name is required')
+		.min(3, 'First name must be at least 3 characters'),
+	last_name: yup
+		.string()
+		.required('Last name is required')
+		.min(6, 'Last name must be at least 6 characters'),
+});
 
 interface SignupFormValues {
 	email: string;
