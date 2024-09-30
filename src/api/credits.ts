@@ -11,4 +11,9 @@ const createCredit = async (values: FormData) => {
 	return data;
 };
 
-export { createCredit, fetchCredits };
+const fetchCredit = async (creditId: string) => {
+	const { data } = await axios.get(`/api/credits/${creditId}`);
+	return data;
+};
+
+export { createCredit, fetchCredit, fetchCredits };

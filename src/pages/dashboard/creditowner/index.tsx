@@ -24,8 +24,8 @@ const CreditOwner = () => {
 							<Link
 								key={card.id}
 								href={{
-									pathname: `/dashboard/creditowner/${card.id}`,
-									query: { name: card.name, logo: card.logo, imgAlt: card.name },
+									pathname: '/dashboard/creditowner/credit',
+									query: { id: card.id },
 								}}
 								passHref
 							>

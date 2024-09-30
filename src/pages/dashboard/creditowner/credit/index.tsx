@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import React, { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
@@ -8,28 +8,28 @@ import Button from '../../../../components/Button';
 import Input from '../../../../components/Input';
 import Label from '../../../../components/Label';
 import Typography from '../../../../components/Typography';
-import { useCreateCredit } from '../../../../hooks/credits';
+import { useCreateCredit, useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 
 interface Credit {
 	name: string;
 	discipline: string;
-	description: string;
-	rubric_version: string;
-	stake_text: string;
-	pitch_text: string;
-	mint_text: string;
+	description?: string;
+	rubric_version?: string;
+	stake_text?: string;
+	pitch_text?: string;
+	mint_text?: string;
 	logo: File;
 }
 
 const schema = yup.object().shape({
 	name: yup.string().required('Credit name is required'),
 	discipline: yup.string().required('Discipline is required'),
-	description: yup.string().required('Description is required'),
-	rubric_version: yup.string().required(),
-	stake_text: yup.string().required(),
-	pitch_text: yup.string().required(),
-	mint_text: yup.string().required(),
+	description: yup.string(),
+	rubric_version: yup.string(),
+	stake_text: yup.string(),
+	pitch_text: yup.string(),
+	mint_text: yup.string(),
 	logo: yup
 		.mixed<File>()
 		.required('Logo is required')
@@ -43,34 +43,39 @@ const schema = yup.object().shape({
 });
 
 const Credit = () => {
+	const { push, query } = useRouter();
+	const { data } = useFetchCredit(query.id as string);
+
 	const {
-		control,
 		handleSubmit,
+		getFieldState,
 		setValue,
+		register,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(schema),
-		defaultValues: {
-			mint_text: '',
-			pitch_text: '',
-			stake_text: '',
-			rubric_version: '',
-		},
 	});
-	const { push } = useRouter();
+
 	const { mutate } = useCreateCredit();
 	const fileInputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		if (data) {
+			setValue('name', data.name);
+			setValue('discipline', data.discipline);
+		}
+	}, [data, setValue]);
 
 	const onSubmit = async (values: Credit) => {
 		const formData = new FormData();
 
 		formData.append('name', values.name);
 		formData.append('discipline', values.discipline);
-		formData.append('description', values.description);
-		formData.append('rubric_version', values.rubric_version);
-		formData.append('stake_text', values.stake_text);
-		formData.append('pitch_text', values.pitch_text);
-		formData.append('mint_text', values.mint_text);
+		formData.append('description', values.description || '');
+		formData.append('rubric_version', values.rubric_version || '');
+		formData.append('stake_text', values.stake_text || '');
+		formData.append('pitch_text', values.pitch_text || '');
+		formData.append('mint_text', values.mint_text || '');
 
 		if (fileInputRef.current?.files !== null && fileInputRef.current?.files[0]) {
 			formData.append('logo', fileInputRef.current?.files[0]);
@@ -90,6 +95,20 @@ const Credit = () => {
 		if (file) {
 			setValue('logo', file);
 		}
+	};
+
+	const getCommonProps = (name: keyof Credit) => {
+		const { name: inputName, onBlur, onChange, ref } = register(name);
+		const { isDirty } = getFieldState(name);
+
+		return {
+			name: inputName,
+			message: errors[name]?.message,
+			onBlur,
+			onChange,
+			forwardRef: ref,
+			isDirty,
+		};
 	};
 
 	const admins = [
@@ -126,16 +145,10 @@ const Credit = () => {
 								<Label htmlFor='discipline' className='text-black'>
 									Discipline
 								</Label>
-								<Controller
-									name='discipline'
-									control={control}
-									render={({ field }) => (
-										<Input
-											{...field}
-											placeholder='Enter discipline'
-											className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
-										/>
-									)}
+								<Input
+									{...getCommonProps('discipline')}
+									placeholder='Enter discipline'
+									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 								/>
 								{errors.name && (
 									<Typography variant='p' className='text-red-500 text-xs'>
@@ -157,16 +170,10 @@ const Credit = () => {
 								<Label htmlFor='name' className='text-black'>
 									Credit name
 								</Label>
-								<Controller
-									name='name'
-									control={control}
-									render={({ field }) => (
-										<Input
-											{...field}
-											placeholder='Enter credit name'
-											className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
-										/>
-									)}
+								<Input
+									{...getCommonProps('name')}
+									placeholder='Enter discipline'
+									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 								/>
 								{errors.name && (
 									<Typography variant='p' className='text-red-500 text-xs'>

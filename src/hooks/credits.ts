@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { createCredit, fetchCredits } from '../api/credits';
+import { createCredit, fetchCredit, fetchCredits } from '../api/credits';
 import { CACHE_KEY_FETCH_CREDITS } from '../constants';
 
 const useFetchCredits = (page: number) => {
@@ -25,4 +25,14 @@ const useCreateCredit = () => {
 	});
 };
 
-export { useCreateCredit, useFetchCredits };
+const useFetchCredit = (creditId: string) => {
+	return useQuery({
+		queryKey: [CACHE_KEY_FETCH_CREDITS, creditId],
+		queryFn: () => fetchCredit(creditId),
+		staleTime: 1_000 * 60 * 60,
+		enabled: !!creditId,
+		retry: false,
+	});
+};
+
+export { useCreateCredit, useFetchCredit, useFetchCredits };
