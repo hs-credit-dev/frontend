@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,7 +23,8 @@ const Login = () => {
 
 	const {
 		handleSubmit,
-		control,
+		getFieldState,
+		register,
 		formState: { errors, isValid },
 	} = useForm({
 		resolver: yupResolver(validationSchema),
@@ -41,6 +42,20 @@ const Login = () => {
 
 	const onSubmit = async (values: LoginFormInputs) => {
 		mutate(values);
+	};
+
+	const getCommonProps = (name: keyof LoginFormInputs) => {
+		const { name: inputName, onBlur, onChange, ref } = register(name);
+		const { isDirty, isTouched } = getFieldState(name);
+		console.log('isTouched', isTouched);
+		return {
+			name: inputName,
+			message: errors[name]?.message,
+			onBlur,
+			onChange,
+			forwardRef: ref,
+			isDirty,
+		};
 	};
 
 	return (
@@ -66,59 +81,47 @@ const Login = () => {
 					onSubmit={handleSubmit(onSubmit)}
 					className='flex flex-col items-center space-y-4 md:space-y-[20px] w-full md:max-w-[690px]'
 				>
-					<Controller
-						name='email'
-						control={control}
-						render={({ field }) => (
-							<Input
-								{...field}
-								type='text'
-								placeholder='Username'
-								className='
-									w-full
-									h-[50px] md:h-[60px]
-									p-4
-									font-montserrat
-									border border-gray-300
-									rounded-md
-									shadow-sm
-									focus:outline-none
-									focus:ring-2
-									focus:ring-blue-400
-									placeholder:text-center
-									text-black
-								'
-							/>
-						)}
+					<Input
+						{...getCommonProps('email')}
+						type='text'
+						placeholder='Username'
+						className='
+							w-full
+							h-[50px] md:h-[60px]
+							p-4
+							font-montserrat
+							border border-gray-300
+							rounded-md
+							shadow-sm
+							focus:outline-none
+							focus:ring-2
+							focus:ring-blue-400
+							placeholder:text-center
+							text-black
+						'
 					/>
 					{errors.email && (
 						<Typography className='text-red-500 text-sm'>
 							{errors.email.message}
 						</Typography>
 					)}
-					<Controller
-						name='password'
-						control={control}
-						render={({ field }) => (
-							<Input
-								{...field}
-								type='password'
-								placeholder='Password'
-								className='
-									w-[690px]
-									h-[60px]
-									p-4
-									border border-gray-300
-									rounded-md
-									shadow-sm
-									focus:outline-none
-									focus:ring-2
-									focus:ring-blue-400
-									placeholder:text-center
-									text-black
-								'
-							/>
-						)}
+					<Input
+						{...getCommonProps('password')}
+						type='password'
+						placeholder='Password'
+						className='
+							w-[690px]
+							h-[60px]
+							p-4
+							border border-gray-300
+							rounded-md
+							shadow-sm
+							focus:outline-none
+							focus:ring-2
+							focus:ring-blue-400
+							placeholder:text-center
+							text-black
+						'
 					/>
 					{errors.password && (
 						<Typography className='text-red-500 text-sm'>

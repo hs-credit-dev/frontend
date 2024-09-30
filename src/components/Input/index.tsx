@@ -11,6 +11,7 @@ type InputProps = {
 	forwardRef?: RefCallback<HTMLInputElement>;
 	id?: string;
 	isTouched?: boolean;
+	name?: string;
 };
 
 const Input = ({
@@ -23,8 +24,10 @@ const Input = ({
 	onBlur,
 	id,
 	forwardRef,
+	name,
 }: InputProps) => (
 	<input
+		name={name}
 		ref={forwardRef}
 		type={type}
 		onBlur={onBlur}

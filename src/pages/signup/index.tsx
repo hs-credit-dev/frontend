@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Button from '../../components/Button';
@@ -21,7 +21,8 @@ interface SignupFormValues {
 
 const Signup = () => {
 	const {
-		control,
+		getFieldState,
+		register,
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm<SignupFormValues>({
@@ -40,6 +41,20 @@ const Signup = () => {
 
 	const onSubmit = async (values: SignupFormValues) => {
 		mutate(values);
+	};
+
+	const getCommonProps = (name: keyof SignupFormValues) => {
+		const { name: inputName, onBlur, onChange, ref } = register(name);
+		const { isDirty } = getFieldState(name);
+
+		return {
+			name: inputName,
+			message: errors[name]?.message,
+			onBlur,
+			onChange,
+			forwardRef: ref,
+			isDirty,
+		};
 	};
 
 	return (
@@ -62,16 +77,10 @@ const Signup = () => {
 							<Label htmlFor='first_name' className='text-black'>
 								First name
 							</Label>
-							<Controller
-								name='first_name'
-								control={control}
-								render={({ field }) => (
-									<Input
-										{...field}
-										placeholder='Enter your first name'
-										className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
-									/>
-								)}
+							<Input
+								{...getCommonProps('first_name')}
+								placeholder='Enter your first name'
+								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
 							{errors.first_name && (
 								<Typography variant='p' className='text-red-500 text-xs'>
@@ -83,16 +92,10 @@ const Signup = () => {
 							<Label htmlFor='last_name' className='text-black'>
 								Last name
 							</Label>
-							<Controller
-								name='last_name'
-								control={control}
-								render={({ field }) => (
-									<Input
-										{...field}
-										placeholder='Enter your lastName'
-										className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
-									/>
-								)}
+							<Input
+								{...getCommonProps('last_name')}
+								placeholder='Enter your lastName'
+								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
 							{errors.last_name && (
 								<Typography variant='p' className='text-red-500 text-xs'>
@@ -106,17 +109,11 @@ const Signup = () => {
 							<Label htmlFor='email' className='text-black'>
 								Email Address
 							</Label>
-							<Controller
-								name='email'
-								control={control}
-								render={({ field }) => (
-									<Input
-										{...field}
-										type='email'
-										placeholder='Enter your email'
-										className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
-									/>
-								)}
+							<Input
+								{...getCommonProps('email')}
+								type='email'
+								placeholder='Enter your email'
+								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
 							{errors.email && (
 								<Typography variant='p' className='text-red-500 text-xs'>
@@ -128,17 +125,11 @@ const Signup = () => {
 							<Label htmlFor='confirmEmail' className='text-black'>
 								Confirm Email Address
 							</Label>
-							<Controller
-								name='confirmEmail'
-								control={control}
-								render={({ field }) => (
-									<Input
-										{...field}
-										type='email'
-										placeholder='Confirm your email'
-										className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
-									/>
-								)}
+							<Input
+								{...getCommonProps('confirmEmail')}
+								type='email'
+								placeholder='Confirm your email'
+								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
 							{errors.confirmEmail && (
 								<Typography variant='p' className='text-red-500 text-xs'>
