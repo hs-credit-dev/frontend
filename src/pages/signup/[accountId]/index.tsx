@@ -1,5 +1,5 @@
 import React from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -14,7 +14,7 @@ import Page from '../../../layout/Page';
 import { RegisterFormValues } from '../../../types';
 import { toastError, toastSuccess } from '../../../utils/toast';
 
-const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
+const validationSchema: yup.ObjectSchema<RegisterFormValues> = yup.object({
 	first_name: yup.string().required('First name is required'),
 	last_name: yup.string().required('Last name is required'),
 	middle_initial: yup.string().max(1, 'M.I. must be one character').optional(),
@@ -38,12 +38,13 @@ const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
 
 const RegisterPersonalInfo = () => {
 	const {
-		control,
 		handleSubmit,
 		formState: { errors, isValid },
 		watch,
+		register,
+		getFieldState,
 	} = useForm<RegisterFormValues>({
-		resolver: yupResolver(schema),
+		resolver: yupResolver(validationSchema),
 	});
 
 	const { query, push } = useRouter();
@@ -79,6 +80,20 @@ const RegisterPersonalInfo = () => {
 		mutate(values);
 	};
 
+	const getCommonProps = (name: keyof RegisterFormValues) => {
+		const { name: inputName, onBlur, onChange, ref } = register(name);
+		const { isDirty } = getFieldState(name);
+
+		return {
+			name: inputName,
+			message: errors[name]?.message,
+			onBlur,
+			onChange,
+			forwardRef: ref,
+			isDirty,
+		};
+	};
+
 	return (
 		<Page>
 			<form
@@ -90,17 +105,11 @@ const RegisterPersonalInfo = () => {
 						<Label htmlFor='first_name' className='text-black'>
 							First Name
 						</Label>
-						<Controller
-							name='first_name'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='text'
-									placeholder='Enter your first name'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
-								/>
-							)}
+						<Input
+							{...getCommonProps('first_name')}
+							type='text'
+							placeholder='Enter your first name'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 						/>
 						{errors.first_name && (
 							<Typography className='text-red-500 text-xs'>
@@ -113,17 +122,11 @@ const RegisterPersonalInfo = () => {
 						<Label htmlFor='middle_initial' className='text-black'>
 							M.I.
 						</Label>
-						<Controller
-							name='middle_initial'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='text'
-									placeholder='M.I.'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-[50px] h-10'
-								/>
-							)}
+						<Input
+							{...getCommonProps('middle_initial')}
+							type='text'
+							placeholder='M.I.'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-[50px] h-10'
 						/>
 						{errors.middle_initial && (
 							<Typography className='text-red-500 text-xs'>
@@ -136,17 +139,11 @@ const RegisterPersonalInfo = () => {
 						<Label htmlFor='last_name' className='text-black'>
 							Last Name
 						</Label>
-						<Controller
-							name='last_name'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='text'
-									placeholder='Enter your last name'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
-								/>
-							)}
+						<Input
+							{...getCommonProps('last_name')}
+							type='text'
+							placeholder='Enter your last name'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 						/>
 						{errors.last_name && (
 							<Typography className='text-red-500 text-xs'>
@@ -168,17 +165,11 @@ const RegisterPersonalInfo = () => {
 								Find your code
 							</Link>
 						</div>
-						<Controller
-							name='ceeb_code'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='text'
-									placeholder='Enter CEEB'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
-								/>
-							)}
+						<Input
+							{...getCommonProps('ceeb_code')}
+							type='text'
+							placeholder='Enter CEEB'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 						/>
 						{errors.ceeb_code && (
 							<Typography className='text-red-500 text-xs'>
@@ -191,17 +182,11 @@ const RegisterPersonalInfo = () => {
 						<Label htmlFor='school_name' className='text-black'>
 							School Name
 						</Label>
-						<Controller
-							name='school_name'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='text'
-									placeholder='Enter your school name'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
-								/>
-							)}
+						<Input
+							{...getCommonProps('school_name')}
+							type='text'
+							placeholder='Enter your school name'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 						/>
 						{errors.school_name && (
 							<Typography className='text-red-500 text-xs'>
@@ -214,17 +199,11 @@ const RegisterPersonalInfo = () => {
 					<Label htmlFor='bio' className='text-black'>
 						Bio
 					</Label>
-					<Controller
-						name='bio'
-						control={control}
-						render={({ field }) => (
-							<textarea
-								{...field}
-								id='bio'
-								placeholder='Tell us about yourself'
-								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full h-[100px] resize-none'
-							/>
-						)}
+					<textarea
+						{...getCommonProps('bio')}
+						id='bio'
+						placeholder='Tell us about yourself'
+						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full h-[100px] resize-none'
 					/>
 					{errors.bio && (
 						<Typography className='text-red-500 text-xs'>{errors.bio.message}</Typography>
@@ -234,16 +213,10 @@ const RegisterPersonalInfo = () => {
 					<Label htmlFor='dob' className='text-black'>
 						DOB MM/DD/YYYY
 					</Label>
-					<Controller
-						name='dob'
-						control={control}
-						render={({ field }) => (
-							<Input
-								{...field}
-								type='date'
-								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[160px] h-10 md:h-[35px]'
-							/>
-						)}
+					<Input
+						{...getCommonProps('dob')}
+						type='date'
+						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[160px] h-10 md:h-[35px]'
 					/>
 					{errors.dob && (
 						<Typography variant='p' className='text-red-500 text-xs'>
@@ -256,17 +229,11 @@ const RegisterPersonalInfo = () => {
 						<Label htmlFor='password' className='text-black'>
 							Password
 						</Label>
-						<Controller
-							name='password'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='password'
-									placeholder='Enter your password'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
-								/>
-							)}
+						<Input
+							{...getCommonProps('password')}
+							type='password'
+							placeholder='Enter your password'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 						/>
 						{errors.password && (
 							<Typography variant='p' className='text-red-500 text-xs'>
@@ -278,17 +245,11 @@ const RegisterPersonalInfo = () => {
 						<Label htmlFor='confirmPassword' className='text-black'>
 							Confirm Password
 						</Label>
-						<Controller
-							name='confirmPassword'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='password'
-									placeholder='Confirm your password'
-									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
-								/>
-							)}
+						<Input
+							{...getCommonProps('confirmPassword')}
+							type='password'
+							placeholder='Confirm your password'
+							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 						/>
 						{errors.confirmPassword && (
 							<Typography variant='p' className='text-red-500 text-xs'>
@@ -299,17 +260,11 @@ const RegisterPersonalInfo = () => {
 				</div>
 				<div className='flex flex-col space-y-4'>
 					<div className='flex items-center space-x-2'>
-						<Controller
-							name='ageConfirmation'
-							control={control}
-							render={({ field }) => (
-								<Input
-									{...field}
-									type='checkbox'
-									id='terms'
-									className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2'
-								/>
-							)}
+						<Input
+							{...getCommonProps('ageConfirmation')}
+							type='checkbox'
+							id='terms'
+							className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2'
 						/>
 						{errors.ageConfirmation && (
 							<Typography className='text-red-500 text-xs'>

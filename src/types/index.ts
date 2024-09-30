@@ -23,4 +23,21 @@ interface RegisterFormValues {
 	dob: string;
 }
 
-export type { LoginFormInputs, RegisterFormValues, SignupFormValues };
+interface CreditResponse {
+	code: string;
+	created_at: string;
+	description: string;
+	discipline: string;
+	id: string;
+	logo: string;
+	mint_text: string;
+	name: string;
+	pitch_text: string;
+	rubric: string[];
+	rubric_version: string;
+	stake_text: string;
+	status: string;
+	updated_at: string;
+}
+
+export type { CreditResponse, LoginFormInputs, RegisterFormValues, SignupFormValues };

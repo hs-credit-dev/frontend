@@ -106,6 +106,7 @@ const BrowseCredits = () => {
 								imageSrc={card.imageSrc}
 								imageAlt={card.imageAlt}
 								title={card.title}
+								id={card.title}
 							/>
 						))}
 					</div>
