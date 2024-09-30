@@ -8,12 +8,13 @@ type CardProps = {
 	imageSrc: string;
 	imageAlt: string;
 	title: string;
+	id: string;
 };
 
-const Card = ({ imageSrc, imageAlt, title }: CardProps) => (
+const Card = ({ imageSrc, imageAlt, title, id }: CardProps) => (
 	<Link
 		href={{
-			pathname: '/student/credit-details',
+			pathname: `/dashboard/creditowner/${id}`,
 			query: { title, imageSrc, imageAlt },
 		}}
 		passHref

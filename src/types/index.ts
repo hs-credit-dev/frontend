@@ -23,4 +23,38 @@ interface RegisterFormValues {
 	dob: string;
 }
 
-export type { LoginFormInputs, RegisterFormValues, SignupFormValues };
+interface CreditAdmin {
+	email: string;
+	first_name: string;
+	last_name: string;
+}
+
+interface Expert {
+	email: string;
+	first_name: string;
+	last_name: string;
+}
+
+interface Rubric {
+	title: string;
+	points: number;
+	blurb: string;
+	notes: string;
+	is_active: boolean;
+}
+
+interface Credit {
+	name: string;
+	discipline: string;
+	description: string;
+	rubic_version: string;
+	stake_text: string;
+	pitch_text: string;
+	logo: string;
+	mint_text: string;
+	credit_admins: CreditAdmin[];
+	experts: Expert[];
+	rubric: Rubric[];
+}
+
+export type { Credit, LoginFormInputs, RegisterFormValues, SignupFormValues };

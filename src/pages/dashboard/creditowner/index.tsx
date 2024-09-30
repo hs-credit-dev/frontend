@@ -1,84 +1,31 @@
 import React from 'react';
 
 import Typography from '../../../components/Typography';
+import { useFetchCredits } from '../../../hooks/credits';
 import Page from '../../../layout/Page';
-import Card from '../student/browsecredits/Card';
 
-type CardData = {
-	imageSrc: string;
-	imageAlt: string;
-	title: string;
-};
+import Card from './Card';
 
-const cardData: CardData[] = [
-	{
-		imageSrc: '/images/filmmaking.png',
-		imageAlt: 'filmmaking',
-		title: 'Filmmaking',
-	},
-	{
-		imageSrc: '/images/africanAmericanStudies.png',
-		imageAlt: 'African american studies',
-		title: 'African American Studies',
-	},
-	{
-		imageSrc: '/images/cognitiveScience.png',
-		imageAlt: 'cognitive science',
-		title: 'Cognitive Science',
-	},
-	{
-		imageSrc: '/images/musicTheory.png',
-		imageAlt: 'music theory',
-		title: 'Music Theory',
-	},
-	{
-		imageSrc: '/images/dataScience.png',
-		imageAlt: 'data science',
-		title: 'Data Science',
-	},
-	{
-		imageSrc: '/images/digitalAnimation.png',
-		imageAlt: 'digital animation',
-		title: 'Digital Animation',
-	},
-	{
-		imageSrc: '/images/businessAdministration.png',
-		imageAlt: 'business administration',
-		title: 'Business Administration',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-	{
-		imageSrc: '/images/digitalAnimation.png',
-		imageAlt: 'digital animation',
-		title: 'Digital Animation',
-	},
-	{
-		imageSrc: '/images/businessAdministration.png',
-		imageAlt: 'business administration',
-		title: 'Business Administration',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-];
+interface Credit {
+	code: string;
+	created_at: string;
+	description: string;
+	discipline: string;
+	id: string;
+	logo: string;
+	mint_text: string;
+	name: string;
+	pitch_text: string;
+	rubric: string[];
+	rubric_version: string;
+	stake_text: string;
+	status: string;
+	updated_at: string;
+}
 
 const CreditOwner = () => {
+	const { data } = useFetchCredits(1);
+	console.log('data', data);
 	return (
 		<Page>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
@@ -89,12 +36,13 @@ const CreditOwner = () => {
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>
-						{cardData.map((card, index) => (
+						{data?.results.map((card: Credit) => (
 							<Card
-								key={index}
-								imageSrc={card.imageSrc}
-								imageAlt={card.imageAlt}
-								title={card.title}
+								key={card.id}
+								imageSrc={card.logo}
+								imageAlt={card.name}
+								title={card.name}
+								id={card.id}
 							/>
 						))}
 					</div>

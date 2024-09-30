@@ -5,4 +5,10 @@ const fetchCredits = async (page: number) => {
 	return data;
 };
 
-export { fetchCredits };
+const createCredit = async (values) => {
+	const { data } = await axios.post('/api/credits/', values);
+	console.log('credits ===>', data);
+	return data;
+};
+
+export { createCredit, fetchCredits };

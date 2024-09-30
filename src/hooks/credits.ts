@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
-import { fetchCredits } from '../api/credits';
+import { createCredit, fetchCredits } from '../api/credits';
 import { CACHE_KEY_FETCH_CREDITS } from '../constants';
 
 const useFetchCredits = (page: number) => {
@@ -12,4 +13,16 @@ const useFetchCredits = (page: number) => {
 	});
 };
 
-export { useFetchCredits };
+const useCreateCredit = () => {
+	return useMutation({
+		mutationFn: createCredit,
+		onSuccess: (response) => {
+			console.log('response', response);
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+		},
+	});
+};
+
+export { useCreateCredit, useFetchCredits };
