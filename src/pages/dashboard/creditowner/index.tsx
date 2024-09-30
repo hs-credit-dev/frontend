@@ -9,7 +9,7 @@ import { CreditResponse } from '../../../types';
 
 const CreditOwner = () => {
 	const { data } = useFetchCredits(1);
-	console.log('data', data);
+
 	return (
 		<Page>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>

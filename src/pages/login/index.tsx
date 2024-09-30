@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import * as Yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -13,14 +12,7 @@ import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
 
-const validationSchema = Yup.object().shape({
-	email: Yup.string()
-		.required('Username is required')
-		.min(4, 'Username must be at least 4 characters long'),
-	password: Yup.string()
-		.required('Password is required')
-		.min(6, 'Password must be at least 6 characters long'),
-});
+import { validationSchema } from './validationSchema';
 
 const Login = () => {
 	const { push } = useRouter();
