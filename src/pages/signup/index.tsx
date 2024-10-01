@@ -3,14 +3,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import Label from '../../../components/Label';
-import Typography from '../../../components/Typography';
-import { useSignup } from '../../../hooks/auth';
-import Page from '../../../layout/Page';
-import { SignupFormValues, UserType } from '../../../types';
-import { toastError, toastSuccess } from '../../../utils/toast';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import Label from '../../components/Label';
+import Typography from '../../components/Typography';
+import { useSignup } from '../../hooks/auth';
+import Page from '../../layout/Page';
+import { SignupFormValues, UserType } from '../../types';
+import { toastError, toastSuccess } from '../../utils/toast';
 
 const schema: yup.ObjectSchema<SignupFormValues> = yup.object().shape({
 	email: yup.string().required('Email is required').email('Enter a valid email'),
@@ -44,7 +44,7 @@ const Signup = () => {
 			confirmEmail: '',
 			first_name: '',
 			last_name: '',
-			user_type: 'student',
+			user_type: 'credit-owner',
 		},
 	});
 

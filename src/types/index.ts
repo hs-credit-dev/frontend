@@ -17,13 +17,13 @@ interface RegisterFormValues {
 	first_name: string;
 	last_name: string;
 	middle_initial?: string;
-	ceeb_code: string;
-	school_name: string;
-	bio: string;
+	ceeb_code?: string;
+	school_name?: string;
+	bio?: string;
 	ageConfirmation: boolean;
 	password: string;
-	confirmPassword: string;
-	dob: string;
+	confirmPassword?: string;
+	dob?: string;
 }
 
 interface RegisterPersonalInfoValues {
