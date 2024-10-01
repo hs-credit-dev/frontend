@@ -1,18 +1,11 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
 const axiosClient = (token: string | null = null): AxiosInstance => {
-	const headers = token
-		? {
-				Authorization: `Bearer ${token}`,
-				'Content-Type': 'multipart/form-data',
-			}
-		: {
-				'Content-Type': 'multipart/form-data',
-			};
-
 	const client = axios.create({
 		baseURL: 'https://api.hs.credit',
-		headers,
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
 		timeout: 2000,
 		withCredentials: false,
 	});
