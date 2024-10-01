@@ -9,9 +9,10 @@ import Label from '../../components/Label';
 import Typography from '../../components/Typography';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
+import { SignupFormValues, UserType } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
 
-const validationSchema = yup.object().shape({
+const validationSchema: yup.ObjectSchema<SignupFormValues> = yup.object().shape({
 	email: yup.string().required('Email is required').email('Enter a valid email'),
 	confirmEmail: yup
 		.string()
@@ -25,14 +26,11 @@ const validationSchema = yup.object().shape({
 		.string()
 		.required('Last name is required')
 		.min(6, 'Last name must be at least 6 characters'),
+	user_type: yup
+		.mixed<UserType>()
+		.oneOf(['student', 'credit-owner'], 'Invalid user type')
+		.required(),
 });
-
-interface SignupFormValues {
-	email: string;
-	first_name: string;
-	last_name: string;
-	confirmEmail: string;
-}
 
 const Signup = () => {
 	const {

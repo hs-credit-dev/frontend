@@ -52,6 +52,15 @@ const Footer = () => {
 					</div>
 				) : (
 					<div className='flex flex-col md:flex-row items-center space-y-2 md:space-y-0'>
+						<div>
+							<Image
+								src='/images/icons/hscreditlogonowords3.png'
+								alt='logo icon'
+								width={24}
+								height={24}
+								className='mr-[11px]'
+							/>
+						</div>
 						<div className='pr-2 border-r-[1px] border-black'>
 							<Typography
 								variant='p'
