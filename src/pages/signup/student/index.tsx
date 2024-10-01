@@ -3,20 +3,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import Label from '../../components/Label';
-import Typography from '../../components/Typography';
-import { useSignup } from '../../hooks/auth';
-import Page from '../../layout/Page';
-import { toastError, toastSuccess } from '../../utils/toast';
-
-interface SignupFormValues {
-	email: string;
-	first_name: string;
-	last_name: string;
-	confirmEmail: string;
-}
+import Button from '../../../components/Button';
+import Input from '../../../components/Input';
+import Label from '../../../components/Label';
+import Typography from '../../../components/Typography';
+import { useSignup } from '../../../hooks/auth';
+import Page from '../../../layout/Page';
+import { SignupFormValues, UserType } from '../../../types';
+import { toastError, toastSuccess } from '../../../utils/toast';
 
 const schema: yup.ObjectSchema<SignupFormValues> = yup.object().shape({
 	email: yup.string().required('Email is required').email('Enter a valid email'),
@@ -32,6 +26,10 @@ const schema: yup.ObjectSchema<SignupFormValues> = yup.object().shape({
 		.string()
 		.required('Last name is required')
 		.min(6, 'Last name must be at least 6 characters'),
+	user_type: yup
+		.mixed<UserType>()
+		.oneOf(['student', 'credit-owner'], 'Invalid user type')
+		.required(),
 });
 
 const Signup = () => {
@@ -41,6 +39,13 @@ const Signup = () => {
 		formState: { errors, isValid },
 	} = useForm<SignupFormValues>({
 		resolver: yupResolver(schema),
+		defaultValues: {
+			email: '',
+			confirmEmail: '',
+			first_name: '',
+			last_name: '',
+			user_type: 'student',
+		},
 	});
 
 	const onSuccessMutation = () => {

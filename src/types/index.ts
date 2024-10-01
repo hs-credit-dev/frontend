@@ -3,11 +3,14 @@ interface LoginFormInputs {
 	password: string;
 }
 
+type UserType = 'student' | 'credit-owner';
+
 interface SignupFormValues {
 	email: string;
 	first_name: string;
 	last_name: string;
 	confirmEmail: string;
+	user_type: UserType;
 }
 
 interface RegisterFormValues {
@@ -23,4 +26,19 @@ interface RegisterFormValues {
 	dob: string;
 }
 
-export type { LoginFormInputs, RegisterFormValues, SignupFormValues };
+interface RegisterPersonalInfoValues {
+	firstName: string;
+	lastName: string;
+	middleInitial?: string;
+	organizationName: string;
+	code: number;
+	ageConfirmation: boolean;
+}
+
+export type {
+	LoginFormInputs,
+	RegisterFormValues,
+	RegisterPersonalInfoValues,
+	SignupFormValues,
+	UserType,
+};

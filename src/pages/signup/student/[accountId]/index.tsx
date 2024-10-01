@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
 
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import Label from '../../../components/Label';
-import Typography from '../../../components/Typography';
-import { useCompleteUserSignup, useFetchSignupUser } from '../../../hooks/auth';
-import Page from '../../../layout/Page';
-import { RegisterFormValues } from '../../../types';
-import { toastError, toastSuccess } from '../../../utils/toast';
+import Button from '../../../../components/Button';
+import Input from '../../../../components/Input';
+import Label from '../../../../components/Label';
+import Typography from '../../../../components/Typography';
+import { useCompleteUserSignup, useFetchSignupUser } from '../../../../hooks/auth';
+import Page from '../../../../layout/Page';
+import { RegisterFormValues } from '../../../../types';
+import { toastError, toastSuccess } from '../../../../utils/toast';
 
 const schema: yup.ObjectSchema<RegisterFormValues> = yup.object({
 	first_name: yup.string().required('First name is required'),
