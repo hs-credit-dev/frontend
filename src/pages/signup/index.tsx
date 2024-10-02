@@ -3,11 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import Button from '../../components/Button';
-import Dropdown from '../../components/Dropdown';
-import Input from '../../components/Input';
-import Label from '../../components/Label';
-import Typography from '../../components/Typography';
+import { Button, Dropdown, Input, Label, Typography } from '../../components';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
 import { SignupFormValues, UserType } from '../../types';

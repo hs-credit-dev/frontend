@@ -1,8 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import Button from '../../../../components/Button';
-import Typography from '../../../../components/Typography';
+import { Button, Typography } from '../../../../components';
 import Page from '../../../../layout/Page';
 
 import Card from './Card';
