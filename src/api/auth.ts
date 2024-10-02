@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { LoginFormInputs, RegisterFormValues, SignupFormValues } from '../types';
+import axiosInstance from '../utils/axios';
 
 const loginUser = async (values: LoginFormInputs) => {
 	const { data } = await axios.post('https://api.hs.credit/auth/login', values);
@@ -25,25 +26,8 @@ const completeUserSignup = async (accountId: string, values: RegisterFormValues)
 };
 
 const logoutUser = async (token: string) => {
-	try {
-		const logoutEndpoint = 'https://api.hs.credit/auth/logout';
-		console.log(`Sending logout request to: ${logoutEndpoint}`);
-		const { data } = await axios.post(
-			logoutEndpoint,
-			{
-				token,
-			},
-			{
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			},
-		);
-		return data;
-	} catch (error) {
-		console.error('Logout failed:', error);
-		throw error;
-	}
+	const { data } = await axiosInstance.post('/auth/logout', token);
+	return data;
 };
 
 export { completeUserSignup, getSignupUser, loginUser, logoutUser, signupUser };

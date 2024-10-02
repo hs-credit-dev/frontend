@@ -1,30 +1,34 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { logoutUser } from '../../api/auth';
 import Button from '../../components/Button';
 import Typography from '../../components/Typography';
+import { useLogout } from '../../hooks/auth';
+import { toastError, toastSuccess } from '../../utils/toast';
 
 interface ConfirmationModalProps {
 	onClose: () => void;
 }
 
 const ConfirmationModal = ({ onClose }: ConfirmationModalProps) => {
-	const router = useRouter();
+	const { push } = useRouter();
 
+	const onSuccessMutation = () => {
+		toastSuccess('Logged out successfully!');
+		setTimeout(() => {
+			push('/login');
+		}, 1000);
+	};
+
+	const onErrorMutation = () => {
+		toastError('Something went wrong, please try again later!');
+	};
+
+	const { mutate } = useLogout(onSuccessMutation, onErrorMutation);
 	const handleLogout = async () => {
-		try {
-			const token = localStorage.getItem('hstoken');
-			if (token) {
-				await logoutUser(token);
-				console.log('Logout successful');
-				localStorage.removeItem('hstoken');
-				router.push('/login');
-			} else {
-				console.error('No hstoken found in localStorage');
-			}
-		} catch (error) {
-			console.error('Logout failed:', error);
+		const token = localStorage.getItem('hstoken');
+		if (token) {
+			mutate(token);
 		}
 	};
 

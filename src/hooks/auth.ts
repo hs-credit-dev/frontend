@@ -2,7 +2,13 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 
-import { completeUserSignup, getSignupUser, loginUser, signupUser } from '../api/auth';
+import {
+	completeUserSignup,
+	getSignupUser,
+	loginUser,
+	logoutUser,
+	signupUser,
+} from '../api/auth';
 import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
 import { RegisterFormValues } from '../types';
@@ -111,4 +117,17 @@ const useCompleteUserSignup = (
 	});
 };
 
-export { useCompleteUserSignup, useFetchSignupUser, useLogin, useSignup };
+const useLogout = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+	return useMutation({
+		mutationFn: logoutUser,
+		onSuccess: () => {
+			onSuccess();
+			localStorage.removeItem('hstoken');
+		},
+		onError: () => {
+			onError();
+		},
+	});
+};
+
+export { useCompleteUserSignup, useFetchSignupUser, useLogin, useLogout, useSignup };
