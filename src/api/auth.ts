@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { LoginFormInputs, RegisterFormValues, SignupFormValues } from '../types';
+import axiosInstance from '../utils/axios';
 
 const loginUser = async (values: LoginFormInputs) => {
 	const { data } = await axios.post('https://api.hs.credit/auth/login', values);
@@ -24,4 +25,9 @@ const completeUserSignup = async (accountId: string, values: RegisterFormValues)
 	return data;
 };
 
-export { completeUserSignup, getSignupUser, loginUser, signupUser };
+const logoutUser = async (token: string) => {
+	const { data } = await axiosInstance.post('/auth/logout', { token });
+	return data;
+};
+
+export { completeUserSignup, getSignupUser, loginUser, logoutUser, signupUser };
