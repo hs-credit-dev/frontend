@@ -26,7 +26,7 @@ const completeUserSignup = async (accountId: string, values: RegisterFormValues)
 };
 
 const logoutUser = async (token: string) => {
-	const { data } = await axiosInstance.post('/auth/logout', token);
+	const { data } = await axiosInstance.post('/auth/logout', { token });
 	return data;
 };
 
