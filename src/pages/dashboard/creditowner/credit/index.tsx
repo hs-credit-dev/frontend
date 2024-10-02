@@ -4,10 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import * as yup from 'yup';
 
-import Button from '../../../../components/Button';
-import Input from '../../../../components/Input';
-import Label from '../../../../components/Label';
-import Typography from '../../../../components/Typography';
+import { Button, Input, Label, Typography } from '../../../../components';
 import { useCreateCredit, useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 import { toastError, toastSuccess } from '../../../../utils/toast';

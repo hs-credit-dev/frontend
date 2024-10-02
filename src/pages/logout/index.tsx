@@ -1,15 +1,14 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import Button from '../../components/Button';
-import Typography from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import Page from '../../layout/Page';
 
 const Logout = () => {
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const handleLoginRedirect = () => {
-		router.push('/login');
+		push('/login');
 	};
 
 	return (

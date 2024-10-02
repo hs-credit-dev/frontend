@@ -6,9 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import Typography from '../../components/Typography';
+import { Button, Input, Typography } from '../../components';
 import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
