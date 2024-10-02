@@ -24,4 +24,26 @@ const completeUserSignup = async (accountId: string, values: RegisterFormValues)
 	return data;
 };
 
-export { completeUserSignup, getSignupUser, loginUser, signupUser };
+const logoutUser = async (token: string) => {
+	try {
+		const logoutEndpoint = 'https://api.hs.credit/auth/logout';
+		console.log(`Sending logout request to: ${logoutEndpoint}`);
+		const { data } = await axios.post(
+			logoutEndpoint,
+			{
+				token,
+			},
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			},
+		);
+		return data;
+	} catch (error) {
+		console.error('Logout failed:', error);
+		throw error;
+	}
+};
+
+export { completeUserSignup, getSignupUser, loginUser, logoutUser, signupUser };
