@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import Button from '../../components/Button';
 import Typography from '../../components/Typography';
 import useUserStoreHook from '../../store';
 
+import ConfirmationModal from './ConfirmationModal';
+
 const Header = () => {
 	const router = useRouter();
 	const { firstName } = useUserStoreHook();
 	const isAccountCreationPage = router.pathname === '/signup';
 	const isLogoutPage = router.pathname === '/logout';
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	if (isLogoutPage) return null;
 
@@ -40,14 +42,15 @@ const Header = () => {
 							<Button className='text-2xl w-10 h-10 text-white bg-[#85C4E9] rounded'>
 								{firstName && firstName[0]}
 							</Button>
-							<Link href='/logout/confirmation'>
+							<Button onClick={() => setIsModalOpen(true)}>
 								<Image
 									src='/images/icons/quitIcon.png'
 									alt='logo'
 									width={27}
 									height={27}
 								/>
-							</Link>
+							</Button>
+							{isModalOpen && <ConfirmationModal onClose={() => setIsModalOpen(false)} />}
 						</div>
 					</div>
 				)}
