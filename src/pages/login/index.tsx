@@ -54,8 +54,8 @@ const Login = () => {
 
 	const getCommonProps = (name: keyof LoginFormInputs) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
-		console.log('isTouched', isTouched);
+		const { isDirty } = getFieldState(name);
+
 		return {
 			name: inputName,
 			message: errors[name]?.message,
