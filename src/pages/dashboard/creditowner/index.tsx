@@ -20,6 +20,23 @@ const CreditOwner = () => {
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>
+						<Link
+							href={{
+								pathname: '/dashboard/creditowner/credit',
+							}}
+							passHref
+							className='flex items-center mx-10'
+						>
+							<div className='cursor-pointer flex flex-col w-10'>
+								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>
+									<g data-name='21-Add'>
+										<path d='M25 0H7a7 7 0 0 0-7 7v18a7 7 0 0 0 7 7h18a7 7 0 0 0 7-7V7a7 7 0 0 0-7-7zm5 25a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5h18a5 5 0 0 1 5 5z' />
+										<path d='M17 6h-2v9H6v2h9v9h2v-9h9v-2h-9V6z' />
+									</g>
+								</svg>
+								<Typography className='font-bold mt-4 text-[14px]'>New Credit</Typography>
+							</div>
+						</Link>
 						{data?.results.map((card: CreditResponse) => (
 							<Link
 								key={card.id}

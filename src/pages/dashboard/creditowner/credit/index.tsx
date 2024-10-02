@@ -10,6 +10,7 @@ import Label from '../../../../components/Label';
 import Typography from '../../../../components/Typography';
 import { useCreateCredit, useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
+import { toastError, toastSuccess } from '../../../../utils/toast';
 
 const validationSchema = yup.object().shape({
 	name: yup.string().required('Credit name is required'),
@@ -56,7 +57,16 @@ const Credit = () => {
 		resolver: yupResolver(validationSchema),
 	});
 
-	const { mutate } = useCreateCredit();
+	const onSuccessMutation = (message?: string) => {
+		toastSuccess(message);
+		push('/dashboard/creditowner');
+	};
+
+	const onErrorMutation = (message?: string) => {
+		toastError(message);
+	};
+
+	const { mutate } = useCreateCredit(onSuccessMutation, onErrorMutation);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
