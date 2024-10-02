@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import Button from '../../components/Button';
+import Dropdown from '../../components/Dropdown';
 import Input from '../../components/Input';
 import Label from '../../components/Label';
 import Typography from '../../components/Typography';
@@ -37,10 +38,13 @@ const Signup = () => {
 		getFieldState,
 		register,
 		handleSubmit,
+		setValue,
 		formState: { errors, isValid },
 	} = useForm<SignupFormValues>({
 		resolver: yupResolver(validationSchema),
 	});
+
+	const [actionType, setActionType] = useState('');
 
 	const onSuccessMutation = () => {
 		toastSuccess('Signup was successfully, please check your inbox!');
@@ -70,6 +74,11 @@ const Signup = () => {
 		};
 	};
 
+	const handleSelectOption = (option: string) => {
+		setValue('user_type', option as UserType);
+		setActionType(option);
+	};
+
 	return (
 		<Page>
 			<form onSubmit={handleSubmit(onSubmit)} className='flex bg-gray-100'>
@@ -78,11 +87,11 @@ const Signup = () => {
 						<Label htmlFor='accountType' className='text-black'>
 							Account Type
 						</Label>
-						<Input
-							type='text'
-							placeholder='Student'
-							className='border border-gray-400 p-2 rounded-md bg-gray-300 placeholder-black placeholder-font-bold cursor-not-allowed shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[230px] h-10 md:h-[35px]'
-							disabled={true}
+						<Dropdown
+							options={['student', 'credit-owner']}
+							label={'Select Account Type'}
+							selectedOption={actionType}
+							handleSelectedOption={handleSelectOption}
 						/>
 					</div>
 					<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
