@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Label from '../../../components/Label';
-import Typography from '../../../components/Typography';
+import Textarea from '../../../components/Textarea';
 import { useCompleteUserSignup } from '../../../hooks/auth';
 import { CompleteSignupFormStudentValues } from '../../../types';
 import { toastError, toastSuccess } from '../../../utils/toast';
@@ -22,6 +22,7 @@ const StudentForm = () => {
 		formState: { errors, isValid },
 	} = useForm<CompleteSignupFormStudentValues>({
 		resolver: yupResolver(completeStudentSignupValidationSchema),
+		mode: 'all',
 	});
 
 	const onSuccessMutation = () => {
@@ -41,7 +42,7 @@ const StudentForm = () => {
 
 	const getCommonProps = (name: keyof CompleteSignupFormStudentValues) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -50,15 +51,13 @@ const StudentForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
+			isTouched,
 		};
 	};
 
 	const onSubmit = async (values: CompleteSignupFormStudentValues) => {
 		mutate(values);
 	};
-
-	console.log('error', errors);
-	console.log('isValid', isValid);
 
 	return (
 		<form
@@ -72,15 +71,9 @@ const StudentForm = () => {
 					</Label>
 					<Input
 						{...getCommonProps('first_name')}
-						type='text'
 						placeholder='Enter your first name'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 					/>
-					{errors.first_name && (
-						<Typography className='text-red-500 text-xs'>
-							{errors.first_name.message}
-						</Typography>
-					)}
 				</div>
 
 				<div className='flex flex-col space-y-2'>
@@ -89,15 +82,9 @@ const StudentForm = () => {
 					</Label>
 					<Input
 						{...getCommonProps('middle_initial')}
-						type='text'
 						placeholder='M.I.'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-[50px] h-10'
 					/>
-					{errors.middle_initial && (
-						<Typography className='text-red-500 text-xs'>
-							{errors.middle_initial.message}
-						</Typography>
-					)}
 				</div>
 
 				<div className='flex flex-col space-y-2 w-full'>
@@ -110,11 +97,6 @@ const StudentForm = () => {
 						placeholder='Enter your last name'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 					/>
-					{errors.last_name && (
-						<Typography className='text-red-500 text-xs'>
-							{errors.last_name.message}
-						</Typography>
-					)}
 				</div>
 			</div>
 			<div className='flex flex-col sm:flex-row sm:space-x-6'>
@@ -132,15 +114,9 @@ const StudentForm = () => {
 					</div>
 					<Input
 						{...getCommonProps('ceeb_code')}
-						type='text'
 						placeholder='Enter CEEB'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 					/>
-					{errors.ceeb_code && (
-						<Typography className='text-red-500 text-xs'>
-							{errors.ceeb_code.message}
-						</Typography>
-					)}
 				</div>
 
 				<div className='flex flex-col space-y-2 w-full sm:w-auto'>
@@ -149,30 +125,20 @@ const StudentForm = () => {
 					</Label>
 					<Input
 						{...getCommonProps('school_name')}
-						type='text'
 						placeholder='Enter your school name'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10'
 					/>
-					{errors.school_name && (
-						<Typography className='text-red-500 text-xs'>
-							{errors.school_name.message}
-						</Typography>
-					)}
 				</div>
 			</div>
 			<div className='flex flex-col space-y-2 w-full'>
 				<Label htmlFor='bio' className='text-black'>
 					Bio
 				</Label>
-				<textarea
+				<Textarea
 					{...getCommonProps('bio')}
-					id='bio'
 					placeholder='Tell us about yourself'
 					className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full h-[100px] resize-none'
 				/>
-				{errors.bio && (
-					<Typography className='text-red-500 text-xs'>{errors.bio.message}</Typography>
-				)}
 			</div>
 			<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 				<Label htmlFor='dob' className='text-black'>
@@ -183,11 +149,6 @@ const StudentForm = () => {
 					type='date'
 					className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[160px] h-10 md:h-[35px]'
 				/>
-				{errors.dob && (
-					<Typography variant='p' className='text-red-500 text-xs'>
-						{errors.dob.message}
-					</Typography>
-				)}
 			</div>
 			<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
 				<div className='flex flex-col space-y-2 w-full sm:w-auto'>
@@ -200,11 +161,6 @@ const StudentForm = () => {
 						placeholder='Enter your password'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 					/>
-					{errors.password && (
-						<Typography variant='p' className='text-red-500 text-xs'>
-							{errors.password.message}
-						</Typography>
-					)}
 				</div>
 				<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 					<Label htmlFor='confirm_password' className='text-black'>
@@ -216,11 +172,6 @@ const StudentForm = () => {
 						placeholder='Confirm your password'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 					/>
-					{errors.confirm_password && (
-						<Typography variant='p' className='text-red-500 text-xs'>
-							{errors.confirm_password.message}
-						</Typography>
-					)}
 				</div>
 			</div>
 			<div className='flex flex-col space-y-4'>
@@ -228,14 +179,8 @@ const StudentForm = () => {
 					<Input
 						{...getCommonProps('age_confirmation')}
 						type='checkbox'
-						id='terms'
 						className='w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2'
 					/>
-					{errors.age_confirmation && (
-						<Typography className='text-red-500 text-xs'>
-							{errors.age_confirmation.message}
-						</Typography>
-					)}
 					<Label htmlFor='terms' className='text-black text-[10px] italic'>
 						By checking this box, you are confirming that you are at least 13 years of age
 						or older. You are also consenting to our terms/services and Data Use Policy.

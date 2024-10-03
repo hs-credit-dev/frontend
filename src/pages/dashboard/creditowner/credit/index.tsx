@@ -29,9 +29,10 @@ const Credit = () => {
 		getFieldState,
 		setValue,
 		register,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = useForm({
 		resolver: yupResolver(createCreditValidationSchema),
+		mode: 'all',
 	});
 
 	const onSuccessMutation = (message?: string) => {
@@ -43,7 +44,7 @@ const Credit = () => {
 		toastError(message);
 	};
 
-	const { mutate } = useCreateCredit(onSuccessMutation, onErrorMutation);
+	const { mutate, isPending } = useCreateCredit(onSuccessMutation, onErrorMutation);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
@@ -86,7 +87,7 @@ const Credit = () => {
 
 	const getCommonProps = (name: keyof Credit) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -95,6 +96,7 @@ const Credit = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
+			isTouched,
 		};
 	};
 
@@ -137,16 +139,12 @@ const Credit = () => {
 									placeholder='Enter discipline'
 									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 								/>
-								{errors.name && (
-									<Typography variant='p' className='text-red-500 text-xs'>
-										{errors.name.message}
-									</Typography>
-								)}
 							</div>
 							<div>
 								<Button
 									type='submit'
-									className='bg-[#1DCC00] w-[203px] h-[52px] rounded-full text-white'
+									disabled={!isValid || isPending}
+									className='bg-[#1DCC00] w-[203px] h-[52px] disabled:bg-[#8bdd7d] rounded-full text-white'
 								>
 									Publish
 								</Button>
@@ -162,11 +160,6 @@ const Credit = () => {
 									placeholder='Enter discipline'
 									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 								/>
-								{errors.name && (
-									<Typography variant='p' className='text-red-500 text-xs'>
-										{errors.name.message}
-									</Typography>
-								)}
 							</div>
 							<Button
 								type='button'

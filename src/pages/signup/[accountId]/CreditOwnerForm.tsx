@@ -21,6 +21,7 @@ const CreditOwnerForm = () => {
 		formState: { errors, isValid },
 	} = useForm<CompleteSignupFormCreditOwnerValues>({
 		resolver: yupResolver(completeCreditOwnerSignupValidationSchema),
+		mode: 'all',
 	});
 
 	const { query, push } = useRouter();
@@ -69,7 +70,7 @@ const CreditOwnerForm = () => {
 
 	const getCommonProps = (name: keyof CompleteSignupFormCreditOwnerValues) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -78,6 +79,7 @@ const CreditOwnerForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
+			isTouched,
 		};
 	};
 
@@ -96,15 +98,9 @@ const CreditOwnerForm = () => {
 					</Label>
 					<Input
 						{...getCommonProps('first_name')}
-						type='text'
 						placeholder='Enter your first name'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 					/>
-					{errors.first_name && (
-						<Typography className='text-red-500 text-[12px]'>
-							{errors.first_name.message}
-						</Typography>
-					)}
 				</div>
 				<div className='flex flex-col space-y-[10px]'>
 					<Label
@@ -114,16 +110,10 @@ const CreditOwnerForm = () => {
 						M.I.
 					</Label>
 					<Input
-						{...getCommonProps('password')}
-						type='text'
+						{...getCommonProps('middle_initial')}
 						placeholder='M.I.'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[45px] h-10 md:h-[35px]'
 					/>
-					{errors.middle_initial && (
-						<Typography className='text-red-500 text-[12px]'>
-							{errors.middle_initial.message}
-						</Typography>
-					)}
 				</div>
 
 				<div className='flex flex-col space-y-[10px]'>
@@ -135,15 +125,9 @@ const CreditOwnerForm = () => {
 					</Label>
 					<Input
 						{...getCommonProps('last_name')}
-						type='text'
 						placeholder='Enter your last name'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 					/>
-					{errors.last_name && (
-						<Typography className='text-red-500 text-[12px]'>
-							{errors.last_name.message}
-						</Typography>
-					)}
 				</div>
 			</div>
 			<div className='flex flex-col md:flex-row md:space-x-[42px] space-y-6 md:space-y-0 mt-[28px]'>
@@ -156,15 +140,9 @@ const CreditOwnerForm = () => {
 					</Label>
 					<Input
 						{...getCommonProps('organization')}
-						type='text'
 						placeholder='Enter your organization name'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 					/>
-					{errors.organization && (
-						<Typography className='text-red-500 text-[12px]'>
-							{errors.organization.message}
-						</Typography>
-					)}
 				</div>
 
 				{/* Credit Image Field */}
@@ -208,11 +186,6 @@ const CreditOwnerForm = () => {
 						placeholder='Code'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[83px] h-10 md:h-[35px]'
 					/>
-					{errors.ceeb_code && (
-						<Typography className='text-red-500 text-[12px]'>
-							{errors.ceeb_code.message}
-						</Typography>
-					)}
 				</div>
 				<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
 					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
@@ -225,11 +198,6 @@ const CreditOwnerForm = () => {
 							placeholder='Enter your password'
 							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 						/>
-						{errors.password && (
-							<Typography variant='p' className='text-red-500 text-xs'>
-								{errors.password.message}
-							</Typography>
-						)}
 					</div>
 					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 						<Label htmlFor='confirm_password' className='text-black'>
@@ -241,17 +209,16 @@ const CreditOwnerForm = () => {
 							placeholder='Confirm your password'
 							className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 						/>
-						{errors.confirm_password && (
-							<Typography variant='p' className='text-red-500 text-xs'>
-								{errors.confirm_password.message}
-							</Typography>
-						)}
 					</div>
 				</div>
 
 				{/* Checkbox Field */}
 				<div className='flex flex-col md:flex-row md:items-center md:space-x-[7px] space-y-4 md:space-y-0'>
-					<Input type='checkbox' className='w-[15px] h-[15px]' />
+					<Input
+						{...getCommonProps('age_confirmation')}
+						type='checkbox'
+						className='w-[15px] h-[15px]'
+					/>
 					<Label
 						htmlFor='ageConfirmation'
 						className='font-montserrat text-[10px] italic font-medium leading-[12.19px] text-left'
