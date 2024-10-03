@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useMemo, useState } from 'react';
+import { Fragment, useMemo, useState } from 'react';
 import {
 	ColumnDef,
 	getCoreRowModel,
@@ -9,6 +9,7 @@ import {
 import Image from 'next/image';
 
 import Dashboard from '../../../components/Dashboard';
+import { useStudents } from '../../../hooks/student';
 import Page from '../../../layout/Page';
 import useUserStoreHook from '../../../store';
 
@@ -29,53 +30,48 @@ type CreditData = {
 	notes: string;
 };
 
-const creditData: CreditData[] = [
-	{
-		dateSubmitted: '09/15/2023',
-		email: 'john.doe@example.com',
-		username: 'johndoe',
-		audio: 'https://example.com/audio/john-doe.mp3',
-		notes: 'Submitted assignment on algebra concepts.',
-	},
-	{
-		dateSubmitted: '08/21/2023',
-		email: '',
-		username: 'janesmith',
-		audio: null,
-		notes: 'Project presentation on chemical reactions. No audio provided.',
-	},
-	{
-		dateSubmitted: '07/10/2023',
-		email: '',
-		username: 'alicewonderland',
-		audio: null,
-		notes: 'Submitted a podcast-style audio discussing literature themes.',
-	},
-	{
-		dateSubmitted: '06/25/2023',
-		email: '',
-		username: 'bobthebuilder',
-		audio: 'https://example.com/audio/bob-builder.mp3',
-		notes: 'Submitted a construction project detailing the building process.',
-	},
-];
+// const creditData: CreditData[] = [
+// 	{
+// 		dateSubmitted: '09/15/2023',
+// 		email: 'john.doe@example.com',
+// 		username: 'johndoe',
+// 		audio: 'https://example.com/audio/john-doe.mp3',
+// 		notes: 'Submitted assignment on algebra concepts.',
+// 	},
+// 	{
+// 		dateSubmitted: '08/21/2023',
+// 		email: '',
+// 		username: 'janesmith',
+// 		audio: null,
+// 		notes: 'Project presentation on chemical reactions. No audio provided.',
+// 	},
+// 	{
+// 		dateSubmitted: '07/10/2023',
+// 		email: '',
+// 		username: 'alicewonderland',
+// 		audio: null,
+// 		notes: 'Submitted a podcast-style audio discussing literature themes.',
+// 	},
+// 	{
+// 		dateSubmitted: '06/25/2023',
+// 		email: '',
+// 		username: 'bobthebuilder',
+// 		audio: 'https://example.com/audio/bob-builder.mp3',
+// 		notes: 'Submitted a construction project detailing the building process.',
+// 	},
+// ];
 
 const StaffDashboard = () => {
-	const [formattedCreditData, setFormattedCreditData] = useState<CreditData[]>([]);
-
-	useEffect(() => {
-		const formattedData = creditData.map((entry) => ({
-			...entry,
-			dateSubmitted: new Date(entry.dateSubmitted).toLocaleDateString('en-US'),
-		}));
-		setFormattedCreditData(formattedData);
-	}, []);
+	const { firstName } = useUserStoreHook();
 
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
 	});
-	const { firstName } = useUserStoreHook();
+
+	const { data, isLoading, error } = useStudents(1);
+
+	console.log('Data: ', data);
 
 	const COLUMNS: ColumnDef<CreditData>[] = [
 		{
@@ -109,7 +105,7 @@ const StaffDashboard = () => {
 
 	const table = useReactTable({
 		columns,
-		data: formattedCreditData,
+		data: [],
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 		onPaginationChange: setPagination,
@@ -133,6 +129,15 @@ const StaffDashboard = () => {
 		isEmpty: true,
 		cells: Array(6).fill(''),
 	});
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		console.error('Error fetching data:', error); // Log the error details
+		return <div>Error fetching data. Please try again later.</div>;
+	}
 
 	return (
 		<Page>

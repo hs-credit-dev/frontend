@@ -31,10 +31,10 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 					setTimeout(() => {
 						if (!!res.student) {
 							push('/dashboard/student');
-						}
-
-						if (!!res.credit_owner) {
+						} else if (!!res.credit_owner) {
 							push('/dashboard/creditowner');
+						} else {
+							push('/dashboard/staff');
 						}
 					}, 1000);
 				})
