@@ -1,33 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 import { Button, Dropdown, Input, Label, Typography } from '../../components';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
 import { SignupFormValues, UserType } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
-
-const validationSchema: yup.ObjectSchema<SignupFormValues> = yup.object().shape({
-	email: yup.string().required('Email is required').email('Enter a valid email'),
-	confirmEmail: yup
-		.string()
-		.oneOf([yup.ref('email'), undefined], 'Emails must match')
-		.required('Please confirm your email'),
-	first_name: yup
-		.string()
-		.required('First name is required')
-		.min(3, 'First name must be at least 3 characters'),
-	last_name: yup
-		.string()
-		.required('Last name is required')
-		.min(6, 'Last name must be at least 6 characters'),
-	user_type: yup
-		.mixed<UserType>()
-		.oneOf(['student', 'credit-owner'], 'Invalid user type')
-		.required(),
-});
+import { signupValidationSchema } from '../../validations/signup';
 
 const Signup = () => {
 	const {
@@ -37,7 +17,7 @@ const Signup = () => {
 		setValue,
 		formState: { errors, isValid },
 	} = useForm<SignupFormValues>({
-		resolver: yupResolver(validationSchema),
+		resolver: yupResolver(signupValidationSchema),
 	});
 
 	const [actionType, setActionType] = useState('');
@@ -53,6 +33,7 @@ const Signup = () => {
 	const { mutate, isPending } = useSignup(onSuccessMutation, onErrorMutation);
 
 	const onSubmit = async (values: SignupFormValues) => {
+		console.log('values', values);
 		mutate(values);
 	};
 
