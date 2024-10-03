@@ -13,17 +13,25 @@ interface SignupFormValues {
 	user_type: UserType;
 }
 
-interface RegisterFormValues {
+interface CompleteSignupFormBaseValues {
 	first_name: string;
 	last_name: string;
-	middle_initial?: string;
-	ceeb_code?: string;
-	school_name?: string;
-	bio?: string;
-	ageConfirmation: boolean;
+	middle_initial: string;
 	password: string;
-	confirmPassword?: string;
-	dob?: string;
+	confirm_password: string;
+	age_confirmation: boolean;
+	ceeb_code: string;
+}
+
+interface CompleteSignupFormStudentValues extends CompleteSignupFormBaseValues {
+	school_name: string;
+	bio: string;
+	dob: string;
+}
+
+interface CompleteSignupFormCreditOwnerValues extends CompleteSignupFormBaseValues {
+	logo: File;
+	organization: string;
 }
 
 interface RegisterPersonalInfoValues {
@@ -53,9 +61,11 @@ interface CreditResponse {
 }
 
 export type {
+	CompleteSignupFormBaseValues,
+	CompleteSignupFormCreditOwnerValues,
+	CompleteSignupFormStudentValues,
 	CreditResponse,
 	LoginFormInputs,
-	RegisterFormValues,
 	RegisterPersonalInfoValues,
 	SignupFormValues,
 	UserType,

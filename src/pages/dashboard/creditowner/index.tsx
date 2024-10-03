@@ -25,9 +25,9 @@ const CreditOwner = () => {
 								pathname: '/dashboard/creditowner/credit',
 							}}
 							passHref
-							className='flex items-center mx-10'
+							className='flex items-center w-[191px] justify-center'
 						>
-							<div className='cursor-pointer flex flex-col w-10'>
+							<div className='cursor-pointer flex flex-col w-10 items-center justify-center'>
 								<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>
 									<g data-name='21-Add'>
 										<path d='M25 0H7a7 7 0 0 0-7 7v18a7 7 0 0 0 7 7h18a7 7 0 0 0 7-7V7a7 7 0 0 0-7-7zm5 25a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5h18a5 5 0 0 1 5 5z' />
@@ -46,8 +46,15 @@ const CreditOwner = () => {
 								}}
 								passHref
 							>
-								<div className='cursor-pointer flex flex-col'>
-									<Image src={card.logo} alt={card.name} width={191} height={191} />
+								<div className='cursor-pointer flex flex-col w-[191px]'>
+									<div className='h-[191px] relative'>
+										<Image
+											src={card.logo}
+											alt={card.name}
+											fill
+											className='w-[191px] h-[191px]'
+										/>
+									</div>
 									<Typography className='font-bold mt-2 text-[14px]'>
 										{card.name}
 									</Typography>

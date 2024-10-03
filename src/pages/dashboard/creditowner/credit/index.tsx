@@ -2,32 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import * as yup from 'yup';
 
 import { Button, Input, Label, Typography } from '../../../../components';
 import { useCreateCredit, useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 import { toastError, toastSuccess } from '../../../../utils/toast';
-
-const validationSchema = yup.object().shape({
-	name: yup.string().required('Credit name is required'),
-	discipline: yup.string().required('Discipline is required'),
-	description: yup.string(),
-	rubric_version: yup.string(),
-	stake_text: yup.string(),
-	pitch_text: yup.string(),
-	mint_text: yup.string(),
-	logo: yup
-		.mixed<File>()
-		.required('Logo is required')
-		.test('fileSize', 'The file is too large', (value) => {
-			return value instanceof File && value.size <= 2 * 1024 * 1024;
-		})
-		.test('fileType', 'Unsupported file format', (value) => {
-			return value instanceof File && ['image/jpeg', 'image/png'].includes(value.type);
-		})
-		.required('Logo is required'),
-});
+import { createCreditValidationSchema } from '../../../../validations/createCreditValidationSchema';
 
 interface Credit {
 	name: string;
@@ -49,9 +29,10 @@ const Credit = () => {
 		getFieldState,
 		setValue,
 		register,
-		formState: { errors },
+		formState: { errors, isValid },
 	} = useForm({
-		resolver: yupResolver(validationSchema),
+		resolver: yupResolver(createCreditValidationSchema),
+		mode: 'all',
 	});
 
 	const onSuccessMutation = (message?: string) => {
@@ -63,7 +44,7 @@ const Credit = () => {
 		toastError(message);
 	};
 
-	const { mutate } = useCreateCredit(onSuccessMutation, onErrorMutation);
+	const { mutate, isPending } = useCreateCredit(onSuccessMutation, onErrorMutation);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
@@ -100,13 +81,25 @@ const Credit = () => {
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
 		if (file) {
-			setValue('logo', file);
+			const img = new Image();
+			const objectUrl = URL.createObjectURL(file);
+
+			img.onload = () => {
+				if (img.width > 200 || img.height > 200) {
+					toastError('Image size should not exceed 200x200 pixels');
+				} else {
+					setValue('logo', file); // Proceed if size is valid
+				}
+				URL.revokeObjectURL(objectUrl); // Clean up memory
+			};
+
+			img.src = objectUrl; // Trigger the image load to get dimensions
 		}
 	};
 
 	const getCommonProps = (name: keyof Credit) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -115,6 +108,7 @@ const Credit = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
+			isTouched,
 		};
 	};
 
@@ -157,16 +151,12 @@ const Credit = () => {
 									placeholder='Enter discipline'
 									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 								/>
-								{errors.name && (
-									<Typography variant='p' className='text-red-500 text-xs'>
-										{errors.name.message}
-									</Typography>
-								)}
 							</div>
 							<div>
 								<Button
 									type='submit'
-									className='bg-[#1DCC00] w-[203px] h-[52px] rounded-full text-white'
+									disabled={!isValid || isPending}
+									className='bg-[#1DCC00] w-[203px] h-[52px] disabled:bg-[#8bdd7d] rounded-full text-white'
 								>
 									Publish
 								</Button>
@@ -182,11 +172,6 @@ const Credit = () => {
 									placeholder='Enter discipline'
 									className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 								/>
-								{errors.name && (
-									<Typography variant='p' className='text-red-500 text-xs'>
-										{errors.name.message}
-									</Typography>
-								)}
 							</div>
 							<Button
 								type='button'
