@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 import { createCredit, fetchCredit, fetchCredits } from '../api/credits';
@@ -25,9 +25,11 @@ const useFetchCredits = (page: number) => {
 };
 
 const useCreateCredit = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: createCredit,
 		onSuccess: (response) => {
+			queryClient.invalidateQueries({ queryKey: [CACHE_KEY_FETCH_CREDITS] });
 			onSuccess(`Successfully created credit ${response.name}`);
 		},
 		onError: (error: AxiosError) => {
