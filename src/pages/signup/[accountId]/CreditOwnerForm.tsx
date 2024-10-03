@@ -51,7 +51,6 @@ const CreditOwnerForm = () => {
 			formData.append('first_name', values.first_name);
 		}
 
-		console.log('ffff', formData);
 		mutate(formData);
 	};
 
@@ -64,7 +63,19 @@ const CreditOwnerForm = () => {
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
 		if (file) {
-			setValue('logo', file);
+			const img = new Image();
+			const objectUrl = URL.createObjectURL(file);
+
+			img.onload = () => {
+				if (img.width > 200 || img.height > 200) {
+					toastError('Image size should not exceed 200x200 pixels');
+				} else {
+					setValue('logo', file); // Proceed if size is valid
+				}
+				URL.revokeObjectURL(objectUrl); // Clean up memory
+			};
+
+			img.src = objectUrl; // Trigger the image load to get dimensions
 		}
 	};
 
