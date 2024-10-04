@@ -15,4 +15,9 @@ const fetchCredit = async (creditId: string) => {
 	return data;
 };
 
-export { createCredit, fetchCredit, fetchCredits };
+const updateCredit = async (creditId: string, values: FormData) => {
+	const { data } = await axios.patch(`/api/credits/${creditId}/`, values);
+	return data;
+};
+
+export { createCredit, fetchCredit, fetchCredits, updateCredit };

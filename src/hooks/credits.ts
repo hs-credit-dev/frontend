@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { createCredit, fetchCredit, fetchCredits } from '../api/credits';
+import { createCredit, fetchCredit, fetchCredits, updateCredit } from '../api/credits';
 import { CACHE_KEY_FETCH_CREDITS } from '../constants';
 
 const isObject = (value: unknown): value is Record<string, unknown> => {
@@ -10,6 +10,11 @@ const isObject = (value: unknown): value is Record<string, unknown> => {
 
 const isArrayOfString = (value: unknown): value is string[] => {
 	return Array.isArray(value) && value.every((item) => typeof item === 'string');
+};
+
+type UpdateCreditParams = {
+	creditId: string;
+	values: FormData;
 };
 
 type OnSuccessCallback = (message?: string) => void;
@@ -57,4 +62,29 @@ const useFetchCredit = (creditId: string) => {
 	});
 };
 
-export { useCreateCredit, useFetchCredit, useFetchCredits };
+const useUpdateCredit = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+	return useMutation({
+		mutationFn: ({ creditId, values }: UpdateCreditParams) =>
+			updateCredit(creditId, values),
+		onSuccess: (response) => {
+			onSuccess(`Successfully updated credit ${response.name}`);
+		},
+		onError: (error: AxiosError) => {
+			const responseData = error.response?.data;
+			console.log(error);
+			if (isObject(responseData) && 'discipline' in responseData) {
+				const nonFieldErrors = responseData.discipline;
+
+				if (isArrayOfString(nonFieldErrors)) {
+					onError(nonFieldErrors[0]);
+				} else {
+					onError('Something went wrong, please try again');
+				}
+			} else {
+				onError('Something went wrong, please try again');
+			}
+		},
+	});
+};
+
+export { useCreateCredit, useFetchCredit, useFetchCredits, useUpdateCredit };

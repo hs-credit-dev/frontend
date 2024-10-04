@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import * as yup from 'yup';
 
 import { Button, Input, Label, Typography } from '../../../../components';
+import { useUpdateCredit } from '../../../../hooks/credits';
 import { useCreateCredit, useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 import { toastError, toastSuccess } from '../../../../utils/toast';
@@ -43,6 +44,7 @@ interface Credit {
 const Credit = () => {
 	const { push, query } = useRouter();
 	const { data } = useFetchCredit(query.id as string);
+	const isEditing = Boolean(query.id);
 
 	const {
 		handleSubmit,
@@ -63,8 +65,9 @@ const Credit = () => {
 		toastError(message);
 	};
 
-	const { mutate } = useCreateCredit(onSuccessMutation, onErrorMutation);
+	const { mutate: createCredit } = useCreateCredit(onSuccessMutation, onErrorMutation);
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const { mutate: updateCredit } = useUpdateCredit(onSuccessMutation, onErrorMutation);
 
 	useEffect(() => {
 		if (data) {
@@ -74,6 +77,7 @@ const Credit = () => {
 	}, [data, setValue]);
 
 	const onSubmit = async (values: Credit) => {
+		console.log('Form values:', values);
 		const formData = new FormData();
 
 		formData.append('name', values.name);
@@ -88,7 +92,11 @@ const Credit = () => {
 			formData.append('logo', fileInputRef.current?.files[0]);
 		}
 
-		mutate(formData);
+		if (query.id) {
+			updateCredit({ creditId: query.id as string, values: formData });
+		} else {
+			createCredit(formData);
+		}
 	};
 
 	const handleUploadClick = () => {
@@ -166,9 +174,9 @@ const Credit = () => {
 							<div>
 								<Button
 									type='submit'
-									className='bg-[#1DCC00] w-[203px] h-[52px] rounded-full text-white'
+									className={`w-[203px] h-[52px] rounded-full text-white ${isEditing ? 'bg-red-500' : 'bg-[#1DCC00]'}`}
 								>
-									Publish
+									{isEditing ? 'Deactivate' : 'Publish'}
 								</Button>
 							</div>
 						</div>
@@ -204,6 +212,15 @@ const Credit = () => {
 							/>
 						</div>
 						<div className=''>
+							{isEditing && (
+								<Button
+									type='submit'
+									onClick={handleSubmit(onSubmit)}
+									className='bg-[#805DBE] w-[203px] h-[52px] rounded-full text-white mb-2'
+								>
+									Submit
+								</Button>
+							)}
 							<Typography className='text-black mb-6'>Add Admins</Typography>
 							<div className='mb-8'>
 								{admins.map((admin, index) => (
