@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import Typography from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import useUserStoreHook from '../../store';
+
+import ConfirmationModal from './ConfirmationModal';
 
 const Header = () => {
 	const router = useRouter();
 	const { firstName } = useUserStoreHook();
 	const isAccountCreationPage = router.pathname === '/signup';
+	const isLogoutPage = router.pathname === '/logout';
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	if (isLogoutPage) return null;
 
 	return (
 		<div className='container mx-auto pt-10 pb-5'>
@@ -32,10 +38,18 @@ const Header = () => {
 							<Typography className='ml-2 text-[22px] font-bold'>hs.credit</Typography>
 						</div>
 						<div className='flex items-center space-x-4'>
-							<button className='text-2xl w-10 h-10 text-white bg-[#85C4E9] rounded'>
+							<Button className='text-2xl w-10 h-10 text-white bg-[#85C4E9] rounded'>
 								{firstName && firstName[0]}
-							</button>
-							<Image src='/images/icons/quitIcon.png' alt='logo' width={27} height={27} />
+							</Button>
+							<Button onClick={() => setIsModalOpen(true)}>
+								<Image
+									src='/images/icons/quitIcon.png'
+									alt='logo'
+									width={27}
+									height={27}
+								/>
+							</Button>
+							{isModalOpen && <ConfirmationModal onClose={() => setIsModalOpen(false)} />}
 						</div>
 					</div>
 				)}

@@ -6,7 +6,7 @@ const axiosClient = (token: string | null = null): AxiosInstance => {
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},
-		timeout: 2000,
+		timeout: 6000,
 		withCredentials: false,
 	});
 

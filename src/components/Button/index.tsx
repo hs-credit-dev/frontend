@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	children: React.ReactNode;
+	children: ReactNode;
 	type?: 'button' | 'submit';
 	onClick?: () => void;
 	className?: string;

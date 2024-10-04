@@ -8,9 +8,9 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 
-import Button from '../../../components/Button';
-import Dashboard from '../../../components/Dashboard';
+import { Button } from '../../../components';
 import { useFetchCredits } from '../../../hooks/credits';
+import Dashboard from '../../../layout/Dashboard';
 import Page from '../../../layout/Page';
 import useUserStoreHook from '../../../store';
 

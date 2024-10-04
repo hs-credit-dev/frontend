@@ -1,46 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import Label from '../../components/Label';
-import Typography from '../../components/Typography';
+import { Button, Dropdown, Input, Label } from '../../components';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
 import { SignupFormValues, UserType } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
-
-const validationSchema: yup.ObjectSchema<SignupFormValues> = yup.object().shape({
-	email: yup.string().required('Email is required').email('Enter a valid email'),
-	confirmEmail: yup
-		.string()
-		.oneOf([yup.ref('email'), undefined], 'Emails must match')
-		.required('Please confirm your email'),
-	first_name: yup
-		.string()
-		.required('First name is required')
-		.min(3, 'First name must be at least 3 characters'),
-	last_name: yup
-		.string()
-		.required('Last name is required')
-		.min(6, 'Last name must be at least 6 characters'),
-	user_type: yup
-		.mixed<UserType>()
-		.oneOf(['student', 'credit-owner'], 'Invalid user type')
-		.required(),
-});
+import { signupValidationSchema } from '../../validations/signup';
 
 const Signup = () => {
 	const {
+		handleSubmit,
+		setValue,
 		getFieldState,
 		register,
-		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm<SignupFormValues>({
-		resolver: yupResolver(validationSchema),
+		resolver: yupResolver(signupValidationSchema),
+		mode: 'all',
 	});
+
+	const [actionType, setActionType] = useState('');
 
 	const onSuccessMutation = () => {
 		toastSuccess('Signup was successfully, please check your inbox!');
@@ -58,7 +39,7 @@ const Signup = () => {
 
 	const getCommonProps = (name: keyof SignupFormValues) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -67,7 +48,13 @@ const Signup = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
+			isTouched,
 		};
+	};
+
+	const handleSelectOption = (option: string) => {
+		setValue('user_type', option as UserType);
+		setActionType(option);
 	};
 
 	return (
@@ -78,11 +65,11 @@ const Signup = () => {
 						<Label htmlFor='accountType' className='text-black'>
 							Account Type
 						</Label>
-						<Input
-							type='text'
-							placeholder='Student'
-							className='border border-gray-400 p-2 rounded-md bg-gray-300 placeholder-black placeholder-font-bold cursor-not-allowed shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[230px] h-10 md:h-[35px]'
-							disabled={true}
+						<Dropdown
+							options={['student', 'credit-owner']}
+							label={'Select Account Type'}
+							selectedOption={actionType}
+							handleSelectedOption={handleSelectOption}
 						/>
 					</div>
 					<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
@@ -95,11 +82,6 @@ const Signup = () => {
 								placeholder='Enter your first name'
 								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
-							{errors.first_name && (
-								<Typography variant='p' className='text-red-500 text-xs'>
-									{errors.first_name.message}
-								</Typography>
-							)}
 						</div>
 						<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 							<Label htmlFor='last_name' className='text-black'>
@@ -110,11 +92,6 @@ const Signup = () => {
 								placeholder='Enter your lastName'
 								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
-							{errors.last_name && (
-								<Typography variant='p' className='text-red-500 text-xs'>
-									{errors.last_name.message}
-								</Typography>
-							)}
 						</div>
 					</div>
 					<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
@@ -128,11 +105,6 @@ const Signup = () => {
 								placeholder='Enter your email'
 								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
-							{errors.email && (
-								<Typography variant='p' className='text-red-500 text-xs'>
-									{errors.email.message}
-								</Typography>
-							)}
 						</div>
 						<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 							<Label htmlFor='confirmEmail' className='text-black'>
@@ -144,19 +116,14 @@ const Signup = () => {
 								placeholder='Confirm your email'
 								className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[35px]'
 							/>
-							{errors.confirmEmail && (
-								<Typography variant='p' className='text-red-500 text-xs'>
-									{errors.confirmEmail.message}
-								</Typography>
-							)}
 						</div>
 					</div>
 					<div className='flex flex-col space-y-2'>
 						<Button
 							type='submit'
-							className={`bg-[#805DBE] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px] ${
-								!isValid ? 'opacity-50 cursor-not-allowed' : ''
-							}`}
+							className={
+								'bg-[#805DBE] disabled:bg-[#b49cdf] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px]'
+							}
 							disabled={!isValid || isPending}
 						>
 							Create Account

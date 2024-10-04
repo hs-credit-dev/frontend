@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { TableState } from '@tanstack/react-table';
 
-import Button from '../Button';
+import { Button } from '../../components';
 
 interface DashboardProps {
 	title: string;
