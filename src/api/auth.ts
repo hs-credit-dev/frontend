@@ -31,7 +31,6 @@ const completeUserSignup = async (
 	});
 	return data;
 };
-
 const logoutUser = async (token: string) => {
 	const { data } = await axiosInstance.post('/auth/logout', { token });
 	return data;
