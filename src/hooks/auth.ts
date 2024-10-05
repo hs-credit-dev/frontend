@@ -11,7 +11,7 @@ import {
 } from '../api/auth';
 import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
-import { RegisterFormValues } from '../types';
+import { CompleteSignupFormStudentValues } from '../types';
 
 type OnSuccessCallback = () => void;
 type OnErrorCallback = (message?: string) => void;
@@ -37,10 +37,10 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 					setTimeout(() => {
 						if (!!res.student) {
 							push('/dashboard/student');
-						}
-
-						if (!!res.credit_owner) {
+						} else if (!!res.credit_owner) {
 							push('/dashboard/creditowner');
+						} else {
+							push('/dashboard/staff');
 						}
 					}, 1000);
 				})
@@ -107,7 +107,8 @@ const useCompleteUserSignup = (
 	onError: OnErrorCallback,
 ) => {
 	return useMutation({
-		mutationFn: (values: RegisterFormValues) => completeUserSignup(accountId, values),
+		mutationFn: (values: FormData | CompleteSignupFormStudentValues) =>
+			completeUserSignup(accountId, values),
 		onSuccess: () => {
 			onSuccess();
 		},

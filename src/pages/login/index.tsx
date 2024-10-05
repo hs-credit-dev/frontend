@@ -4,21 +4,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import * as Yup from 'yup';
 
 import { Button, Input, Typography } from '../../components';
 import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
-
-const validationSchema = Yup.object().shape({
-	email: Yup.string()
-		.required('Username is required')
-		.min(4, 'Username must be at least 4 characters long'),
-	password: Yup.string()
-		.required('Password is required')
-		.min(6, 'Password must be at least 6 characters long'),
-});
+import { loginValidationSchema } from '../../validations/login';
 
 const Login = () => {
 	const { push } = useRouter();
@@ -33,7 +24,7 @@ const Login = () => {
 		register,
 		formState: { errors, isValid },
 	} = useForm({
-		resolver: yupResolver(validationSchema),
+		resolver: yupResolver(loginValidationSchema),
 	});
 
 	const onSuccessMutation = () => {
@@ -137,7 +128,7 @@ const Login = () => {
 					<Button
 						type='submit'
 						disabled={isPending || !isValid}
-						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full'
+						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] disabled:bg-[#b49cdf] md:h-[52px] rounded-full text-white'
 					>
 						Log In
 					</Button>
@@ -149,7 +140,7 @@ const Login = () => {
 					</Link>
 					<Button
 						type='button'
-						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full'
+						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full text-white'
 						onClick={redirectToSignup}
 					>
 						Create Account
