@@ -46,10 +46,16 @@ const Credit = () => {
 		toastError(message);
 	};
 
-	const { mutate: createCredit } = useCreateCredit(onSuccessMutation, onErrorMutation);
+	const { mutate: createCredit, isPending: isCreatePending } = useCreateCredit(
+		onSuccessMutation,
+		onErrorMutation,
+	);
 
 	const fileInputRef = useRef<HTMLInputElement>(null);
-	const { mutate: updateCredit } = useUpdateCredit(onSuccessMutation, onErrorMutation);
+	const { mutate: updateCredit, isPending: isUpdatePending } = useUpdateCredit(
+		onSuccessMutation,
+		onErrorMutation,
+	);
 
 	useEffect(() => {
 		if (data) {
@@ -164,8 +170,8 @@ const Credit = () => {
 							<div>
 								<Button
 									type='submit'
-                  disabled={!isValid || isPending}
-                  className={`w-[203px] h-[52px] rounded-full text-white ${isEditing ? 'bg-red-500' : 'bg-[#1DCC00]'}`}
+									disabled={!isValid || isCreatePending || isUpdatePending}
+									className={`w-[203px] h-[52px] rounded-full text-white ${isEditing ? 'bg-red-500' : 'bg-[#1DCC00]'}`}
 								>
 									{isEditing ? 'Deactivate' : 'Publish'}
 								</Button>
