@@ -111,7 +111,7 @@ const StaffDashboard = () => {
 	}
 
 	if (error) {
-		console.error('Error fetching data:', error); // Log the error details
+		console.error('Error fetching data:', error);
 		return <div>Error fetching data. Please try again later.</div>;
 	}
 

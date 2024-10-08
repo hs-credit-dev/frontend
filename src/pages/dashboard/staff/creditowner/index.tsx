@@ -9,68 +9,33 @@ import {
 import Image from 'next/image';
 
 import { Button } from '../../../../components';
+import { useFetchCreditOwners } from '../../../../hooks/staff'; // Step 1: Import the hook
 import Dashboard from '../../../../layout/Dashboard';
 import Page from '../../../../layout/Page';
 import NoteCell from '../NoteCell';
 
 type CreditData = {
+	id: number;
 	name: string;
 	organization: string;
 	status: string;
 	notes: string;
 	approved_by: string;
-	id: number;
 };
 
-const creditData: CreditData[] = [
-	{
-		name: 'Chris Jenkins',
-		organization: 'hs.credit',
-		status: 'Active',
-		notes: 'Please review the attached documents for approval.',
-		approved_by: 'Kevin Michael',
-		id: 1,
-	},
-	{
-		name: 'Samantha Turner',
-		organization: 'hs.credit',
-		status: 'Pending',
-		notes: 'Awaiting verification of transcript records.',
-		approved_by: 'N/A',
-		id: 2,
-	},
-	{
-		name: 'Daniel Robinson',
-		organization: 'hs.credit',
-		status: 'Rejected',
-		notes: 'Insufficient course credits for eligibility.',
-		approved_by: 'Mark Johnson',
-		id: 3,
-	},
-	{
-		name: 'Natalie Scott',
-		organization: 'hs.credit',
-		status: 'Active',
-		notes: 'Application approved. Welcome onboard!',
-		approved_by: 'John Doe',
-		id: 4,
-	},
-];
-
-type EmptyRow = {
-	isEmpty: boolean;
-	cells: number[];
-};
+type CreditOwner = CreditData;
 
 const CreditOwnerDashboard = () => {
+	const { data: creditOwners, isLoading, error } = useFetchCreditOwners();
+
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
 	});
 
-	const [data, setData] = useState<CreditData[]>(creditData);
+	const data = creditOwners ?? [];
 
-	const COLUMNS: ColumnDef<CreditData>[] = [
+	const COLUMNS: ColumnDef<CreditOwner>[] = [
 		{
 			header: '',
 			id: 'index',
@@ -94,13 +59,13 @@ const CreditOwnerDashboard = () => {
 		},
 		{
 			header: 'Approved by',
-			accessorKey: 'approved-by',
+			accessorKey: 'approved_by',
 		},
 	];
 
 	const columns = useMemo(() => COLUMNS, [COLUMNS]);
 
-	const table = useReactTable({
+	const table = useReactTable<CreditOwner>({
 		columns,
 		data,
 		getCoreRowModel: getCoreRowModel(),
@@ -122,15 +87,30 @@ const CreditOwnerDashboard = () => {
 	} = table;
 
 	const handleDelete = (id: number) => {
-		const updatedData = data.filter((row) => row.id !== id);
-		setData(updatedData);
+		console.log(`Deleted row with id: ${id}`);
 	};
 
-	const numOfElementsToAdd = 10 - getRowModel().rows.length;
-	const elementsToAdd: EmptyRow[] = Array(Math.max(numOfElementsToAdd, 0)).fill({
-		isEmpty: true,
-		cells: Array(6).fill(1),
-	});
+	const numOfElementsToAdd = useMemo(() => {
+		return 10 - data.length;
+	}, [data.length]);
+
+	const elementsToAdd = useMemo(() => {
+		if (numOfElementsToAdd) {
+			return Array(Math.max(numOfElementsToAdd, 0)).fill({
+				isEmpty: true,
+				cells: Array(7).fill(''),
+			});
+		}
+		return [];
+	}, [numOfElementsToAdd]);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return <div>Error loading credit owners. Please try again later.</div>;
+	}
 
 	return (
 		<Page>
@@ -192,7 +172,7 @@ const CreditOwnerDashboard = () => {
 										<td key={cell.id} className='py-2'>
 											<NoteCell notes={row.original.notes} />
 										</td>
-									) : cell.id.includes('approved-by') ? (
+									) : cell.id.includes('approved_by') ? (
 										<td key={cell.id} className='py-2'>
 											{row.original.approved_by}
 										</td>
