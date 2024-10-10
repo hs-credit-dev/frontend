@@ -36,12 +36,15 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 
 			fetchUserInformation()
 				.then((res) => {
+					console.log('res', res);
 					onSuccess();
 					setTimeout(() => {
 						if (!!res.student) {
 							push('/dashboard/student');
 						} else if (!!res.credit_owner) {
 							push('/dashboard/creditowner');
+						} else if (!!res.credit_admins.length) {
+							push('/dashboard/creditadmin');
 						} else {
 							push('/dashboard/staff');
 						}
