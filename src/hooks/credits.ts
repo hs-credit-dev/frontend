@@ -1,8 +1,16 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { createCredit, fetchCredit, fetchCredits, updateCredit } from '../api/credits';
+import {
+	addCreditAdmin,
+	createCredit,
+	fetchCredit,
+	fetchCredits,
+	publishCredit,
+	updateCredit,
+} from '../api/credits';
 import { CACHE_KEY_FETCH_CREDITS } from '../constants';
+import { CreditAdmins } from '../types';
 
 const isObject = (value: unknown): value is Record<string, unknown> => {
 	return value !== null && typeof value === 'object';
@@ -89,4 +97,52 @@ const useUpdateCredit = (onSuccess: OnSuccessCallback, onError: OnErrorCallback)
 	});
 };
 
-export { useCreateCredit, useFetchCredit, useFetchCredits, useUpdateCredit };
+const usePublishCredit = (
+	creditId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: () => publishCredit(creditId),
+		onSuccess: (response) => {
+			console.log('res', response);
+			onSuccess(`Successfully published credit ${response.name}`);
+		},
+		onError: (error: AxiosError) => {
+			const responseData = error.response?.data;
+			console.log('error', error);
+			if (isObject(responseData) && 'discipline' in responseData) {
+				const nonFieldErrors = responseData.discipline;
+
+				if (isArrayOfString(nonFieldErrors)) {
+					onError(nonFieldErrors[0]);
+				} else {
+					onError('Something went wrong, please try again');
+				}
+			} else {
+				onError('Something went wrong, please try again');
+			}
+		},
+	});
+};
+
+const useAddCreditAdmin = (creditId: string) => {
+	return useMutation({
+		mutationFn: (values: CreditAdmins) => addCreditAdmin(creditId, values),
+		onSuccess: (response) => {
+			console.log('res', response);
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+		},
+	});
+};
+
+export {
+	useAddCreditAdmin,
+	useCreateCredit,
+	useFetchCredit,
+	useFetchCredits,
+	usePublishCredit,
+	useUpdateCredit,
+};

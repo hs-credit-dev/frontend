@@ -7,6 +7,7 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Button } from '../../../components';
 import { useFetchCredits } from '../../../hooks/credits';
@@ -58,6 +59,27 @@ const creditData: CreditData[] = [
 		status: 'Pitched',
 		date: '4/12/23',
 		id: 6,
+	},
+	{
+		credit: 'Credit 7',
+		discipline: 'Discipline 7',
+		status: 'Minted',
+		date: '4/15/23',
+		id: 7,
+	},
+	{
+		credit: 'Credit 6',
+		discipline: 'Discipline 6',
+		status: 'Pitched',
+		date: '4/12/23',
+		id: 6,
+	},
+	{
+		credit: 'Credit 7',
+		discipline: 'Discipline 7',
+		status: 'Minted',
+		date: '4/15/23',
+		id: 7,
 	},
 	{
 		credit: 'Credit 7',
@@ -143,11 +165,19 @@ const Student = () => {
 		getState,
 	} = table;
 
-	const numOfElementsToAdd = 10 - getRowModel().rows.length;
-	const elementsToAdd: EmptyRow[] = Array(Math.max(numOfElementsToAdd, 0)).fill({
-		isEmpty: true,
-		cells: Array(5).fill(1),
-	});
+	const numOfElementsToAdd = useMemo(() => {
+		return 10 - creditData.length - 1;
+	}, []);
+
+	const elementsToAdd: EmptyRow[] = useMemo(() => {
+		if (numOfElementsToAdd) {
+			return Array(Math.max(numOfElementsToAdd, 0)).fill({
+				isEmpty: true,
+				cells: Array(5).fill(''),
+			});
+		}
+		return [];
+	}, [numOfElementsToAdd]);
 
 	return (
 		<Page>
@@ -238,8 +268,21 @@ const Student = () => {
 								</td>
 							</tr>
 						))}
+						{creditData.length < 10 && (
+							<tr className='border-b bg-white text-[14px] even:bg-[#EDEDED] w-full relative'>
+								<td className='h-[41px] w-full pl-4'>{getRowModel().rows.length + 1}</td>
+								<td className='h-[41px] w-full'></td>
+								<td className='h-[41px] w-full relative text-center text-[#00000038] cursor-pointer'>
+									<Link href='/dashboard/student/browsecredits'>
+										+ Click to Browse Credits +
+									</Link>
+								</td>
+								<td className='h-[41px] w-full'></td>
+								<td className='h-[41px] w-full'></td>
+							</tr>
+						)}
 						{elementsToAdd.map((row, index) => {
-							const rowNumber = getRowModel().rows.length + index + 1;
+							const rowNumber = getRowModel().rows.length + index + 1 + 1;
 							return (
 								<tr
 									className='border-b bg-white text-[14px] even:bg-[#EDEDED]'
@@ -255,6 +298,13 @@ const Student = () => {
 						})}
 					</tbody>
 				</table>
+				{creditData.length === 10 && (
+					<section className='flex justify-center mt-4'>
+						<Link href='/dashboard/student/browsecredits'>
+							+ Click to Browse Credits +
+						</Link>
+					</section>
+				)}
 			</Dashboard>
 		</Page>
 	);

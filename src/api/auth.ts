@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+	CompleteSignupFormCreditAdminValues,
 	CompleteSignupFormStudentValues,
 	LoginFormInputs,
 	SignupFormValues,
@@ -24,7 +25,10 @@ const getSignupUser = async (accountId: string) => {
 
 const completeUserSignup = async (
 	accountId: string,
-	values: FormData | CompleteSignupFormStudentValues,
+	values:
+		| FormData
+		| CompleteSignupFormStudentValues
+		| CompleteSignupFormCreditAdminValues,
 ) => {
 	const { data } = await axios.patch(`https://api.hs.credit/api/signup/${accountId}/`, {
 		...values,

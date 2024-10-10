@@ -7,8 +7,8 @@ import { Button, Typography } from '../../components';
 const Footer = () => {
 	const router = useRouter();
 
-	const isStudentPage = router.pathname === '/student';
-	const isCreditDetailsPage = router.pathname === '/student/credit-details'; // Check for the credit-details page
+	const isStudentPage = router.pathname === '/students';
+	const isCreditDetailsPage = router.pathname === '/students/credit-details'; // Check for the credit-details page
 
 	return (
 		<footer className='w-full text-gray-500 py-4'>

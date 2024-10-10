@@ -29,6 +29,7 @@ const TextArea = ({
 }: TextAreaProps) => (
 	<>
 		<textarea
+			id={name}
 			ref={forwardRef}
 			placeholder={placeholder}
 			disabled={disabled}
@@ -37,6 +38,7 @@ const TextArea = ({
 			className={className}
 			onBlur={onBlur}
 			onChange={onChange}
+			rows={4}
 		/>
 		{isTouched && message && (
 			<Typography variant='p' className='text-red-500 text-xs'>

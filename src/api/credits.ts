@@ -1,3 +1,4 @@
+import { CreditAdmins } from '../types';
 import axios from '../utils/axios';
 
 const fetchCredits = async (page: number) => {
@@ -17,7 +18,27 @@ const fetchCredit = async (creditId: string) => {
 
 const updateCredit = async (creditId: string, values: FormData) => {
 	const { data } = await axios.patch(`/api/credits/${creditId}/`, values);
+	console.log('values', values);
 	return data;
 };
 
-export { createCredit, fetchCredit, fetchCredits, updateCredit };
+const publishCredit = async (creditId: string) => {
+	const { data } = await axios.post(`/api/credits/${creditId}/publish/`);
+	console.log('data', data);
+	return data;
+};
+
+const addCreditAdmin = async (creditId: string, creditAdmins: CreditAdmins) => {
+	const { data } = await axios.patch(`/api/credits/${creditId}/`, creditAdmins);
+
+	return data;
+};
+
+export {
+	addCreditAdmin,
+	createCredit,
+	fetchCredit,
+	fetchCredits,
+	publishCredit,
+	updateCredit,
+};

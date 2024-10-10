@@ -48,12 +48,14 @@ const CreditOwner = () => {
 							>
 								<div className='cursor-pointer flex flex-col w-[191px]'>
 									<div className='h-[191px] relative'>
-										<Image
-											src={card.logo}
-											alt={card.name}
-											fill
-											className='w-[191px] h-[191px]'
-										/>
+										{card.logo && (
+											<Image
+												src={card.logo}
+												alt={card.name}
+												fill
+												className='w-[191px] h-[191px]'
+											/>
+										)}
 									</div>
 									<Typography className='font-bold mt-2 text-[14px]'>
 										{card.name}

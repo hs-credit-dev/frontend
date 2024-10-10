@@ -8,10 +8,10 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 
-import { useFetchStudents } from '../../../hooks/student';
-import Dashboard from '../../../layout/Dashboard';
-import Page from '../../../layout/Page';
-import useUserStoreHook from '../../../store';
+import { useFetchStudents } from '../../../../hooks/student';
+import Dashboard from '../../../../layout/Dashboard';
+import Page from '../../../../layout/Page';
+import useUserStoreHook from '../../../../store';
 
 type EmptyRow = {
 	isEmpty: boolean;
@@ -26,14 +26,13 @@ type CreditData = {
 	last_name: string;
 };
 
-const StaffDashboard = () => {
+const StaffStudents = () => {
 	const { firstName } = useUserStoreHook();
-
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
 	});
-	const { data, isLoading, error } = useFetchStudents(pagination.pageIndex + 1);
+	const { data, isLoading, error } = useFetchStudents(1);
 
 	const columns = useMemo(() => {
 		const COLUMNS: ColumnDef<CreditData>[] = [
@@ -111,7 +110,6 @@ const StaffDashboard = () => {
 	}
 
 	if (error) {
-		console.error('Error fetching data:', error); // Log the error details
 		return <div>Error fetching data. Please try again later.</div>;
 	}
 
@@ -199,4 +197,4 @@ const StaffDashboard = () => {
 	);
 };
 
-export default StaffDashboard;
+export default StaffStudents;

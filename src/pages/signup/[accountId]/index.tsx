@@ -5,8 +5,11 @@ import { useFetchSignupUser } from '../../../hooks/auth';
 import Page from '../../../layout/Page';
 import { toastError, toastSuccess } from '../../../utils/toast';
 
+import CreditAdminForm from './CreditAdminForm';
 import CreditOwnerForm from './CreditOwnerForm';
 import StudentForm from './StudentForm';
+
+type UserType = 'student' | 'credit-owner' | 'credit-admin';
 
 const RegisterPersonalInfo = () => {
 	const { query } = useRouter();
@@ -17,6 +20,12 @@ const RegisterPersonalInfo = () => {
 		isError: isEmailConfirmError,
 	} = useFetchSignupUser(query?.accountId as string);
 
+	const formMap = {
+		student: <StudentForm />,
+		'credit-owner': <CreditOwnerForm />,
+		'credit-admin': <CreditAdminForm />,
+	};
+
 	if (isEmailConfirmSuccess) {
 		toastSuccess('Email confirmed successfully, please complete signup');
 	}
@@ -25,9 +34,7 @@ const RegisterPersonalInfo = () => {
 		toastError('We have problem with confirming your email, please try again');
 	}
 
-	return (
-		<Page>{data?.user_type === 'student' ? <StudentForm /> : <CreditOwnerForm />}</Page>
-	);
+	return <Page>{formMap[data?.user_type as UserType]}</Page>;
 };
 
 export default RegisterPersonalInfo;

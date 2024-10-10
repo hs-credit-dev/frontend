@@ -11,7 +11,10 @@ import {
 } from '../api/auth';
 import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
-import { CompleteSignupFormStudentValues } from '../types';
+import {
+	CompleteSignupFormCreditAdminValues,
+	CompleteSignupFormStudentValues,
+} from '../types';
 
 type OnSuccessCallback = () => void;
 type OnErrorCallback = (message?: string) => void;
@@ -107,8 +110,12 @@ const useCompleteUserSignup = (
 	onError: OnErrorCallback,
 ) => {
 	return useMutation({
-		mutationFn: (values: FormData | CompleteSignupFormStudentValues) =>
-			completeUserSignup(accountId, values),
+		mutationFn: (
+			values:
+				| FormData
+				| CompleteSignupFormStudentValues
+				| CompleteSignupFormCreditAdminValues,
+		) => completeUserSignup(accountId, values),
 		onSuccess: () => {
 			onSuccess();
 		},

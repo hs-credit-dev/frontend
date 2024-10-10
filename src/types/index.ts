@@ -10,7 +10,7 @@ interface SignupFormValues {
 	first_name: string;
 	last_name: string;
 	confirmEmail: string;
-	user_type: UserType;
+	user_type?: UserType;
 }
 
 interface CompleteSignupFormBaseValues {
@@ -32,6 +32,13 @@ interface CompleteSignupFormStudentValues extends CompleteSignupFormBaseValues {
 interface CompleteSignupFormCreditOwnerValues extends CompleteSignupFormBaseValues {
 	logo: File;
 	organization: string;
+}
+
+interface CompleteSignupFormCreditAdminValues {
+	first_name: string;
+	last_name: string;
+	password: string;
+	confirm_password: string;
 }
 
 interface RegisterPersonalInfoValues {
@@ -60,10 +67,24 @@ interface CreditResponse {
 	updated_at: string;
 }
 
+type Admin = {
+	first_name: string;
+	last_name: string;
+	email: string;
+	status?: string;
+};
+
+interface CreditAdmins {
+	credit_admins: Admin[];
+}
+
 export type {
+	Admin,
 	CompleteSignupFormBaseValues,
+	CompleteSignupFormCreditAdminValues,
 	CompleteSignupFormCreditOwnerValues,
 	CompleteSignupFormStudentValues,
+	CreditAdmins,
 	CreditResponse,
 	LoginFormInputs,
 	RegisterPersonalInfoValues,
