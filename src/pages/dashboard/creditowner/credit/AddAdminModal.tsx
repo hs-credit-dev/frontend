@@ -24,7 +24,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 		handleSubmit,
 		getFieldState,
 		register,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(addAdminValidationSchema),
 		mode: 'all',
@@ -106,7 +106,6 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 							</div>
 							<Button
 								type='submit'
-								disabled={!isValid}
 								className='bg-[#805DBE] disabled:bg-[#9f85cc] mt-[72px] text-white py-4 px-14 rounded-full'
 							>
 								Submit

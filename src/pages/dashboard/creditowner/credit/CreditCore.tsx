@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import NextImage from 'next/image';
+import { useRouter } from 'next/router';
 
-import { Button, FileUpload, Input, Label } from '../../../../components';
+import { Button, FileUpload, Input, Label, Typography } from '../../../../components';
 import { useCreateCredit } from '../../../../hooks/credits';
 import { toastError, toastSuccess } from '../../../../utils/toast';
 import { creditCoreFormValidationSchema } from '../../../../validations/creditCoreFormValidationSchema';
@@ -23,8 +24,8 @@ interface CreditCoreProps {
 }
 
 const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
-	console.log('creditId', creditId);
 	const fileInputRef = useRef<HTMLInputElement>(null);
+	const { push } = useRouter();
 
 	const onSuccessMutation = (message?: string) => {
 		toastSuccess(message);
@@ -34,7 +35,7 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 		toastError(message);
 	};
 
-	const { mutate: createCredit, isPending: isCreatePending } = useCreateCredit(
+	const { mutateAsync: createCredit, isPending: isCreatePending } = useCreateCredit(
 		onSuccessMutation,
 		onErrorMutation,
 	);
@@ -44,7 +45,7 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 		getFieldState,
 		setValue,
 		register,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(creditCoreFormValidationSchema),
 		mode: 'all',
@@ -90,7 +91,7 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 		};
 	};
 
-	const onSubmit = (values: CreateCoreForm) => {
+	const onSubmit = async (values: CreateCoreForm) => {
 		const formData = new FormData();
 
 		formData.append('name', values.name);
@@ -99,8 +100,12 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 		if (fileInputRef.current?.files !== null && fileInputRef.current?.files[0]) {
 			formData.append('logo', fileInputRef.current?.files[0]);
 		}
-
-		createCredit(formData);
+		const response = await createCredit(formData);
+		push({
+			query: {
+				id: response.id,
+			},
+		});
 	};
 
 	useEffect(() => {
@@ -110,6 +115,49 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 		}
 	}, [discipline, name, setValue]);
 
+	const disciplines = [
+		{
+			label: 'Arts',
+			code: 'AR',
+		},
+		{
+			label: 'Technology',
+			code: 'TE',
+		},
+		{
+			label: 'Mathematics',
+			code: 'MA',
+		},
+		{
+			label: 'Science',
+			code: 'SC',
+		},
+		{
+			label: 'Social Studies',
+			code: 'SS',
+		},
+		{
+			label: 'Humanities',
+			code: 'HU',
+		},
+		{
+			label: 'Journalism',
+			code: 'JN',
+		},
+		{
+			label: 'English',
+			code: 'EL',
+		},
+		{
+			label: 'Foreign Language',
+			code: 'FL',
+		},
+		{
+			label: 'Health',
+			code: 'HE',
+		},
+	];
+
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className='flex justify-between items-end mb-12'>
@@ -117,15 +165,29 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 					<Label htmlFor='discipline' className='text-black'>
 						Discipline
 					</Label>
-					<Input
+					<select
 						{...getCommonProps('discipline')}
-						placeholder='Enter discipline'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
-					/>
+						onChange={(e) => setValue('discipline', e.target.value)}
+					>
+						<option value='' disabled>
+							Select an option
+						</option>
+						{disciplines.map((option) => (
+							<option key={option.code} value={option.code}>
+								{option.label}
+							</option>
+						))}
+					</select>
+					{errors?.discipline && (
+						<Typography variant='p' className='text-red-500 text-xs'>
+							{errors?.discipline?.message}
+						</Typography>
+					)}
 				</div>
 				<div>
 					<Button
-						disabled={!isValid || isCreatePending}
+						disabled={isCreatePending}
 						type='submit'
 						className={
 							'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE]'

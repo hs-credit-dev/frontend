@@ -24,7 +24,7 @@ const CreditAdminForm = () => {
 		handleSubmit,
 		getFieldState,
 		register,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(completeCreditAdminSignupValidationSchema),
 		mode: 'all',
@@ -136,7 +136,7 @@ const CreditAdminForm = () => {
 			<div className='w-full md:w-[203px] h-[52px] self-center md:self-start mt-[14px]'>
 				<Button
 					type='submit'
-					disabled={isPending || !isValid}
+					disabled={isPending}
 					className='w-full h-full bg-[#805DBE] disabled:bg-[#b49cdf] rounded-full text-white font-montserrat text-[14px] font-bold leading-[17.07px] text-center'
 				>
 					Create Account

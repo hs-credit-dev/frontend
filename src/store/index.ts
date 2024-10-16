@@ -1,9 +1,14 @@
 import { create } from 'zustand';
 
+type CreditAdmin = {
+	link: string;
+	label: string;
+};
+
 interface User {
 	bio: string;
 	city: string;
-	credit_admins: string[]; // Assuming credit_admins is an array of strings
+	credit_admins: CreditAdmin[]; // Assuming credit_admins is an array of strings
 	credit_owner: string | null;
 	date_joined: string; // Using string since it's an ISO date
 	date_of_birth: string; // Using string for the ISO date format
@@ -44,6 +49,7 @@ const useUserStoreHook = () => {
 			return !!token;
 		}
 	};
+	const creditAdmins = useUserStore((store) => store.user?.credit_admins);
 
 	return {
 		isStudent,
@@ -52,6 +58,7 @@ const useUserStoreHook = () => {
 		firstName,
 		setUserInformation,
 		isAuthorized: isAuthorized(),
+		creditAdmins,
 	};
 };
 

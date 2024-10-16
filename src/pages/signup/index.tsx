@@ -15,8 +15,8 @@ const Signup = () => {
 		setValue,
 		getFieldState,
 		register,
-		formState: { errors, isValid },
-	} = useForm<SignupFormValues>({
+		formState: { errors },
+	} = useForm({
 		resolver: yupResolver(signupValidationSchema),
 		mode: 'all',
 	});
@@ -124,7 +124,7 @@ const Signup = () => {
 							className={
 								'bg-[#805DBE] disabled:bg-[#b49cdf] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px]'
 							}
-							disabled={!isValid || isPending}
+							disabled={isPending}
 						>
 							Create Account
 						</Button>

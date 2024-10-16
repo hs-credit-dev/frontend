@@ -44,7 +44,7 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 						} else if (!!res.credit_owner) {
 							push('/dashboard/creditowner');
 						} else if (!!res.credit_admins.length) {
-							push('/dashboard/creditadmin');
+							push('/dashboard/creditowner');
 						} else {
 							push('/dashboard/staff');
 						}

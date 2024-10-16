@@ -27,75 +27,6 @@ const Credit = () => {
 	const { push, query } = useRouter();
 	const { data, isPending: isFetchCreditPending } = useFetchCredit(query.id as string);
 	const { isCreditOwner } = useUserStoreHook();
-	console.log('isCreditOwner', isCreditOwner);
-
-	console.log('data', data);
-
-	// const onSuccessMutation = (message?: string) => {
-	// 	toastSuccess(message);
-	// 	// push('/dashboard/creditowner');
-	// };
-	//
-	// const onErrorMutation = (message?: string) => {
-	// 	toastError(message);
-	// };
-
-	// const { mutate: updateCredit, isPending: isUpdatePending } = useUpdateCredit(
-	// 	onSuccessMutation,
-	// 	onErrorMutation,
-	// );
-	//
-	// const { mutate: publishCredit, isPending: isPublishPending } = usePublishCredit(
-	// 	query.id as string,
-	// 	onSuccessMutation,
-	// 	onErrorMutation,
-	// );
-
-	console.log('daa', data);
-
-	// useEffect(() => {
-	// 	if (data) {
-	// 		setValue('name', data.name);
-	// 		setValue('discipline', data.discipline);
-	// 		setValue('description', data.description);
-	// 		setValue('stake_text', data.stake_text);
-	// 		setValue('pitch_text', data.pitch_text);
-	// 		setValue('mint_text', data.mint_text);
-	// 		setValue('rubric_version', data.rubric_version);
-	// 	}
-	// }, [data, setValue]);
-
-	// const onSubmit = async (values: Credit) => {
-	// 	const formData = new FormData();
-	//
-	// 	formData.append('name', values.name);
-	// 	formData.append('discipline', values.discipline);
-	// 	formData.append('description', values.description);
-	// 	formData.append('rubric_version', values.rubric_version);
-	// 	formData.append('stake_text', values.stake_text);
-	// 	formData.append('pitch_text', values.pitch_text);
-	// 	formData.append('mint_text', values.mint_text);
-	// 	formData.append(
-	// 		'credit_admins',
-	// 		JSON.stringify([
-	// 			{
-	// 				email: 'fijah87918@rowplant.com',
-	// 				first_name: 'somename',
-	// 				last_name: 'somename',
-	// 			},
-	// 		]),
-	// 	);
-	// 	if (fileInputRef.current?.files !== null && fileInputRef.current?.files[0]) {
-	// 		formData.append('logo', fileInputRef.current?.files[0]);
-	// 	}
-	//
-	// 	if (query.id) {
-	// 		updateCredit({ creditId: query.id as string, values: formData });
-	// 	} else {
-	// 		createCredit(formData);
-	// 	}
-	// };
-	console.log('------', isFetchCreditPending);
 
 	return (
 		<Page isLoading={isFetchCreditPending && !!query.id}>
@@ -120,8 +51,13 @@ const Credit = () => {
 							name={data?.name}
 							discipline={data?.discipline}
 						/>
-						<AddCreditDetails />
-						<AddAdmins creditId={query.id as string} creditAdmins={data?.credit_admins} />
+						{isCreditOwner && query.id && <AddCreditDetails />}
+						{isCreditOwner && query.id && (
+							<AddAdmins
+								creditId={query.id as string}
+								creditAdmins={data?.credit_admins}
+							/>
+						)}
 					</div>
 				</div>
 			</div>

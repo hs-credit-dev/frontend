@@ -88,6 +88,13 @@ const creditData: CreditData[] = [
 		date: '4/15/23',
 		id: 7,
 	},
+	{
+		credit: 'Credit 7',
+		discipline: 'Discipline 7',
+		status: 'Minted',
+		date: '4/15/23',
+		id: 7,
+	},
 ];
 
 type CreditData = {
