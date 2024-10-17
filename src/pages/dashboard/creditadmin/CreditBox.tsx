@@ -11,10 +11,11 @@ interface CreditBoxProps {
 }
 
 const CreditBox = ({ link }: CreditBoxProps) => {
-	const regex = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i;
-	const hashMatch = link.match(regex);
+	// const regex = /[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i;
+	// const hashMatch = link.match(regex);
 	// const { data } = useGetCreditAdmin(hashMatch[0]);
 	// console.log('data', data);
+	const hashMatch = link || 'ddd';
 	if (hashMatch) {
 		return (
 			<Link
