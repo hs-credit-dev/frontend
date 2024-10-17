@@ -17,86 +17,6 @@ import useUserStoreHook from '../../../store';
 
 import StatusCircle from './StatusCircle';
 
-const creditData: CreditData[] = [
-	{
-		credit: 'Credit 1',
-		discipline: 'Discipline 1',
-		status: 'Staked',
-		date: '3/2/23',
-		id: 1,
-	},
-	{
-		credit: 'Credit 2',
-		discipline: 'Discipline 2',
-		status: 'Pitched',
-		date: '2/2/23',
-		id: 2,
-	},
-	{
-		credit: 'Credit 3',
-		discipline: 'Discipline 3',
-		status: 'Minted',
-		date: '1/22/23',
-		id: 3,
-	},
-	{
-		credit: 'Credit 4',
-		discipline: 'Discipline 4',
-		status: 'Minted',
-		date: '1/17/23',
-		id: 4,
-	},
-	{
-		credit: 'Credit 5',
-		discipline: 'Discipline 5',
-		status: 'Staked',
-		date: '4/10/23',
-		id: 5,
-	},
-	{
-		credit: 'Credit 6',
-		discipline: 'Discipline 6',
-		status: 'Pitched',
-		date: '4/12/23',
-		id: 6,
-	},
-	{
-		credit: 'Credit 7',
-		discipline: 'Discipline 7',
-		status: 'Minted',
-		date: '4/15/23',
-		id: 7,
-	},
-	{
-		credit: 'Credit 6',
-		discipline: 'Discipline 6',
-		status: 'Pitched',
-		date: '4/12/23',
-		id: 6,
-	},
-	{
-		credit: 'Credit 7',
-		discipline: 'Discipline 7',
-		status: 'Minted',
-		date: '4/15/23',
-		id: 7,
-	},
-	{
-		credit: 'Credit 7',
-		discipline: 'Discipline 7',
-		status: 'Minted',
-		date: '4/15/23',
-		id: 7,
-	},
-	{
-		credit: 'Credit 7',
-		discipline: 'Discipline 7',
-		status: 'Minted',
-		date: '4/15/23',
-		id: 7,
-	},
-];
-
 type CreditData = {
 	credit: string;
 	discipline: string;
@@ -117,8 +37,6 @@ const Student = () => {
 	});
 	const { firstName } = useUserStoreHook();
 	const { data } = useFetchCredits(1);
-
-	console.log('data', data);
 
 	const COLUMNS: ColumnDef<CreditData>[] = [
 		{
@@ -152,8 +70,7 @@ const Student = () => {
 
 	const table = useReactTable({
 		columns,
-		// data: data?.results ? data.results : [],
-		data: creditData,
+		data: data?.results ? data.results : [],
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 		onPaginationChange: setPagination,
@@ -173,8 +90,8 @@ const Student = () => {
 	} = table;
 
 	const numOfElementsToAdd = useMemo(() => {
-		return 10 - creditData.length - 1;
-	}, []);
+		return 20 - data?.results.length - 1;
+	}, [data?.results.length]);
 
 	const elementsToAdd: EmptyRow[] = useMemo(() => {
 		if (numOfElementsToAdd) {
@@ -218,7 +135,7 @@ const Student = () => {
 				nextPage={nextPage}
 				getState={getState}
 			>
-				<table className='bg-[#805DBE12] w-full table-fixed'>
+				<table className='bg-[#ededed] w-full table-fixed'>
 					<thead>
 						<tr>
 							{getHeaderGroups().map((headerGroup) => (
@@ -226,7 +143,7 @@ const Student = () => {
 									{headerGroup.headers.map((header) => (
 										<th
 											key={header.id}
-											className='bg-[#EDEDED] text-[14px] text-left leading-4 py-3'
+											className='bg-[#ededed] text-[14px] text-left leading-4 py-3'
 										>
 											{String(header.column.columnDef.header)}
 										</th>
@@ -235,7 +152,7 @@ const Student = () => {
 							))}
 						</tr>
 					</thead>
-					<tbody>
+					<tbody className='bg-red-500 h-[300px]'>
 						{getRowModel().rows.map((row) => (
 							<tr
 								key={row.id}
@@ -275,7 +192,7 @@ const Student = () => {
 								</td>
 							</tr>
 						))}
-						{creditData.length < 10 && (
+						{data?.results.length < 20 && (
 							<tr className='border-b bg-white text-[14px] even:bg-[#EDEDED] w-full relative'>
 								<td className='h-[41px] w-full pl-4'>{getRowModel().rows.length + 1}</td>
 								<td className='h-[41px] w-full'></td>
@@ -305,7 +222,7 @@ const Student = () => {
 						})}
 					</tbody>
 				</table>
-				{creditData.length === 10 && (
+				{data?.results.length === 20 && (
 					<section className='flex justify-center mt-4'>
 						<Link href='/dashboard/student/browsecredits'>
 							+ Click to Browse Credits +

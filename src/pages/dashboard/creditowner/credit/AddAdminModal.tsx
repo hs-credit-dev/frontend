@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Input, Label } from '../../../../components';
 import { useAddCreditAdmin } from '../../../../hooks/credits';
 import { Admin } from '../../../../types';
+import { toastError, toastSuccess } from '../../../../utils/toast';
 import { addAdminValidationSchema } from '../../../../validations/addAddminValidationSchema';
 
 interface AdminForm {
@@ -30,7 +31,15 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 		mode: 'all',
 	});
 
-	const { mutate } = useAddCreditAdmin(creditId);
+	const onSuccessMutation = (message?: string) => {
+		toastSuccess(message);
+	};
+
+	const onErrorMutation = (message?: string) => {
+		toastError(message);
+	};
+
+	const { mutate } = useAddCreditAdmin(creditId, onSuccessMutation, onErrorMutation);
 
 	const getCommonProps = (name: keyof AdminForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);

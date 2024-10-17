@@ -11,14 +11,7 @@ import {
 } from '../api/credits';
 import { CACHE_KEY_FETCH_CREDITS } from '../constants';
 import { CreditAdmins } from '../types';
-
-const isObject = (value: unknown): value is Record<string, unknown> => {
-	return value !== null && typeof value === 'object';
-};
-
-const isArrayOfString = (value: unknown): value is string[] => {
-	return Array.isArray(value) && value.every((item) => typeof item === 'string');
-};
+import { handleAxiosError } from '../utils/errors';
 
 type UpdateCreditParams = {
 	creditId: string;
@@ -46,18 +39,7 @@ const useCreateCredit = (onSuccess: OnSuccessCallback, onError: OnErrorCallback)
 			onSuccess(`Successfully created credit ${response.name}`);
 		},
 		onError: (error: AxiosError) => {
-			const responseData = error.response?.data;
-			if (isObject(responseData) && 'discipline' in responseData) {
-				const nonFieldErrors = responseData.discipline;
-
-				if (isArrayOfString(nonFieldErrors)) {
-					onError(nonFieldErrors[0]);
-				} else {
-					onError('Something went wrong, please try again');
-				}
-			} else {
-				onError('Something went wrong, please try again');
-			}
+			handleAxiosError(error, onError);
 		},
 	});
 };
@@ -80,19 +62,7 @@ const useUpdateCredit = (onSuccess: OnSuccessCallback, onError: OnErrorCallback)
 			onSuccess(`Successfully updated credit ${response.name}`);
 		},
 		onError: (error: AxiosError) => {
-			const responseData = error.response?.data;
-			console.log(error);
-			if (isObject(responseData) && 'discipline' in responseData) {
-				const nonFieldErrors = responseData.discipline;
-
-				if (isArrayOfString(nonFieldErrors)) {
-					onError(nonFieldErrors[0]);
-				} else {
-					onError('Something went wrong, please try again');
-				}
-			} else {
-				onError('Something went wrong, please try again');
-			}
+			handleAxiosError(error, onError);
 		},
 	});
 };
@@ -105,35 +75,28 @@ const usePublishCredit = (
 	return useMutation({
 		mutationFn: () => publishCredit(creditId),
 		onSuccess: (response) => {
-			console.log('res', response);
 			onSuccess(`Successfully published credit ${response.name}`);
 		},
 		onError: (error: AxiosError) => {
-			const responseData = error.response?.data;
-			console.log('error', error);
-			if (isObject(responseData) && 'discipline' in responseData) {
-				const nonFieldErrors = responseData.discipline;
-
-				if (isArrayOfString(nonFieldErrors)) {
-					onError(nonFieldErrors[0]);
-				} else {
-					onError('Something went wrong, please try again');
-				}
-			} else {
-				onError('Something went wrong, please try again');
-			}
+			handleAxiosError(error, onError);
 		},
 	});
 };
 
-const useAddCreditAdmin = (creditId: string) => {
+const useAddCreditAdmin = (
+	creditId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
 	return useMutation({
 		mutationFn: (values: CreditAdmins) => addCreditAdmin(creditId, values),
 		onSuccess: (response) => {
-			console.log('res', response);
+			onSuccess(
+				`Successfully invited admin ${response.first_name} ${response.last_name}`,
+			);
 		},
 		onError: (error: AxiosError) => {
-			console.log('error', error);
+			handleAxiosError(error, onError);
 		},
 	});
 };
