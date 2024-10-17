@@ -1,6 +1,14 @@
 import { CreditAdmins } from '../types';
 import axios from '../utils/axios';
 
+type UpdateValues = {
+	description?: string;
+	rubric_version?: string;
+	stake_text?: string;
+	pitch_text?: string;
+	mint_text?: string;
+};
+
 const fetchCredits = async (page: number) => {
 	const { data } = await axios.get(`/api/credits/?page=${page}`);
 	return data;
@@ -16,15 +24,13 @@ const fetchCredit = async (creditId: string) => {
 	return data;
 };
 
-const updateCredit = async (creditId: string, values: FormData) => {
+const updateCredit = async (creditId: string, values: UpdateValues) => {
 	const { data } = await axios.patch(`/api/credits/${creditId}/`, values);
-	console.log('values', values);
 	return data;
 };
 
 const publishCredit = async (creditId: string) => {
 	const { data } = await axios.post(`/api/credits/${creditId}/publish/`);
-	console.log('data', data);
 	return data;
 };
 

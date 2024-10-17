@@ -13,9 +13,17 @@ import { CACHE_KEY_FETCH_CREDITS } from '../constants';
 import { CreditAdmins } from '../types';
 import { handleAxiosError } from '../utils/errors';
 
+type UpdateValues = {
+	description?: string;
+	rubric_version?: string;
+	stake_text?: string;
+	pitch_text?: string;
+	mint_text?: string;
+};
+
 type UpdateCreditParams = {
 	creditId: string;
-	values: FormData;
+	values: UpdateValues;
 };
 
 type OnSuccessCallback = (message?: string) => void;

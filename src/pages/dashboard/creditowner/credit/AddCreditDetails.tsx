@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Input, Label, TextArea } from '../../../../components';
+import { useUpdateCredit } from '../../../../hooks/credits';
+import { toastError, toastSuccess } from '../../../../utils/toast';
 import { addCreditDetailsValidationSchema } from '../../../../validations/addCreditDetailsValidationSchema';
 
 interface AddCreditDetails {
@@ -13,7 +15,11 @@ interface AddCreditDetails {
 	mint_text: string;
 }
 
-const AddCreditDetails = () => {
+interface AddCreditDetailsProps {
+	creditId: string;
+}
+
+const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
@@ -23,6 +29,16 @@ const AddCreditDetails = () => {
 		resolver: yupResolver(addCreditDetailsValidationSchema),
 		mode: 'all',
 	});
+
+	const onSuccessMutation = (message?: string) => {
+		toastSuccess(message);
+	};
+
+	const onErrorMutation = (message?: string) => {
+		toastError(message);
+	};
+
+	const { mutate } = useUpdateCredit(onSuccessMutation, onErrorMutation);
 
 	const getCommonProps = (name: keyof AddCreditDetails) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
@@ -40,7 +56,7 @@ const AddCreditDetails = () => {
 	};
 
 	const handleAddCreditDetails = (values: AddCreditDetails) => {
-		console.log('values', values);
+		mutate({ creditId, values });
 	};
 
 	return (

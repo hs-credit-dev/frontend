@@ -2,12 +2,10 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Typography } from '../../../../components';
-// import { usePublishCredit, useUpdateCredit } from '../../../../hooks/credits';
 import { useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 import useUserStoreHook from '../../../../store';
 
-// import { toastError, toastSuccess } from '../../../../utils/toast';
 import AddAdmins from './AddAdmins';
 import AddCreditDetails from './AddCreditDetails';
 import CreditCore from './CreditCore';
@@ -51,7 +49,9 @@ const Credit = () => {
 							name={data?.name}
 							discipline={data?.discipline}
 						/>
-						{isCreditOwner && query.id && <AddCreditDetails />}
+						{isCreditOwner && query.id && (
+							<AddCreditDetails creditId={query.id as string} />
+						)}
 						{isCreditOwner && query.id && (
 							<AddAdmins
 								creditId={query.id as string}
