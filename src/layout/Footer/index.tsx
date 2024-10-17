@@ -65,31 +65,25 @@ const Footer = () => {
 								variant='p'
 								className='font-montserrat text-[10px] md:text-[8px] font-semibold leading-[9.75px] text-gray-500'
 							>
-								Powered by hs.credit
+								Powered by hs.credit &reg;
 							</Typography>
 						</div>
 						<div className='pr-2 pl-2 border-r-[1px] border-black'>
-							<Typography
-								variant='p'
-								className='font-montserrat text-[10px] md:text-[8px] font-semibold leading-[9.75px] text-gray-500'
-							>
-								Terms & Services
-							</Typography>
-						</div>
-						<div className='pr-2 pl-2 border-r-[1px] border-black'>
-							<Typography
-								variant='p'
-								className='font-montserrat text-[10px] md:text-[8px] font-semibold leading-[9.75px] text-gray-500'
-							>
-								Privacy Policy
-							</Typography>
+							<a href='https://hs.credit/s/hscredit-Privacy-Policy.pdf'>
+								<Typography
+									variant='p'
+									className='font-montserrat text-[10px] md:text-[8px] font-semibold leading-[9.75px] text-gray-500'
+								>
+									Privacy Policy
+								</Typography>
+							</a>
 						</div>
 						<div className='pr-2 pl-2'>
 							<Typography
 								variant='p'
 								className='font-montserrat text-[10px] md:text-[8px] font-semibold leading-[9.75px] text-gray-500'
 							>
-								2022 Academic Capital Foundation, Inc
+								&copy; 2024 Academic Capital Foundation, Inc.
 							</Typography>
 						</div>
 					</div>
