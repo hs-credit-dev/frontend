@@ -40,7 +40,7 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 						} else if (!!res.credit_admins.length) {
 							push('/dashboard/creditowner');
 						} else {
-							push('/dashboard/staff');
+							push('/dashboard/staff/students');
 						}
 					}, 1000);
 				})
