@@ -26,13 +26,14 @@ type CreditData = {
 	last_name: string;
 };
 
-const StaffStudents = () => {
+const StaffDashboard = () => {
 	const { firstName } = useUserStoreHook();
+
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: 10,
 	});
-	const { data, isLoading, error } = useFetchStudents(1);
+	const { data, isLoading, error } = useFetchStudents(pagination.pageIndex + 1);
 
 	const columns = useMemo(() => {
 		const COLUMNS: ColumnDef<CreditData>[] = [
@@ -197,4 +198,4 @@ const StaffStudents = () => {
 	);
 };
 
-export default StaffStudents;
+export default StaffDashboard;

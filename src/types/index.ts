@@ -5,12 +5,21 @@ interface LoginFormInputs {
 
 type UserType = 'student' | 'credit-owner';
 
+type CreditOwner = {
+	id: number;
+	name: string;
+	organization: string;
+	status: string;
+	notes: string;
+	approved_by: string;
+};
+
 interface SignupFormValues {
 	email: string;
 	first_name: string;
 	last_name: string;
 	confirmEmail: string;
-	user_type?: UserType;
+	user_type: UserType;
 }
 
 interface CompleteSignupFormBaseValues {
@@ -85,6 +94,7 @@ export type {
 	CompleteSignupFormCreditOwnerValues,
 	CompleteSignupFormStudentValues,
 	CreditAdmins,
+	CreditOwner,
 	CreditResponse,
 	LoginFormInputs,
 	RegisterPersonalInfoValues,
