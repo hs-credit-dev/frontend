@@ -90,8 +90,8 @@ const CreditOwnersDashboard = () => {
 	};
 
 	const numOfElementsToAdd = useMemo(() => {
-		return 10 - data.length;
-	}, [data.length]);
+		return 20 - data?.length - 1;
+	}, [data?.length]);
 
 	const elementsToAdd = useMemo(() => {
 		if (numOfElementsToAdd) {

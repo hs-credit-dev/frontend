@@ -93,7 +93,7 @@ const StaffDashboard = () => {
 	} = table;
 
 	const numOfElementsToAdd = useMemo(() => {
-		return 10 - data?.count;
+		return 20 - data?.count;
 	}, [data?.count]);
 
 	const elementsToAdd = useMemo(() => {

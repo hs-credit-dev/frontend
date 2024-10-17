@@ -29,7 +29,7 @@ const Login = () => {
 	});
 
 	const onSuccessMutation = () => {
-		toastSuccess('Login successfully!');
+		toastSuccess('Login Successful!');
 	};
 
 	const onErrorMutation = (message?: string) => {
