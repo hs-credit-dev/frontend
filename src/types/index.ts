@@ -43,6 +43,13 @@ interface CompleteSignupFormCreditOwnerValues extends CompleteSignupFormBaseValu
 	organization: string;
 }
 
+interface CompleteSignupFormCreditAdminValues {
+	first_name: string;
+	last_name: string;
+	password: string;
+	confirm_password: string;
+}
+
 interface RegisterPersonalInfoValues {
 	firstName: string;
 	lastName: string;
@@ -69,10 +76,24 @@ interface CreditResponse {
 	updated_at: string;
 }
 
+type Admin = {
+	first_name: string;
+	last_name: string;
+	email: string;
+	status?: string;
+};
+
+interface CreditAdmins {
+	credit_admins: Admin[];
+}
+
 export type {
+	Admin,
 	CompleteSignupFormBaseValues,
+	CompleteSignupFormCreditAdminValues,
 	CompleteSignupFormCreditOwnerValues,
 	CompleteSignupFormStudentValues,
+	CreditAdmins,
 	CreditOwner,
 	CreditResponse,
 	LoginFormInputs,

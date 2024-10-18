@@ -1,15 +1,18 @@
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import { Typography } from '../../../components';
-import { useFetchCredits } from '../../../hooks/credits';
+// import { useFetchCredits } from '../../../hooks/credits';
 import Page from '../../../layout/Page';
-import { CreditResponse } from '../../../types';
+import useUserStoreHook from '../../../store';
 
-const CreditOwner = () => {
-	const { data } = useFetchCredits(1);
+// import { CreditResponse } from '../../../types';
+import CreditBox from './CreditBox';
 
+const CreditAdmin = () => {
+	const { creditAdmins } = useUserStoreHook();
+	console.log('creditAdmins', creditAdmins);
 	return (
 		<Page>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
@@ -22,7 +25,7 @@ const CreditOwner = () => {
 					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>
 						<Link
 							href={{
-								pathname: '/dashboard/creditowner/credit',
+								pathname: '/dashboard/creditadmin',
 							}}
 							passHref
 							className='flex items-center w-[191px] justify-center'
@@ -37,32 +40,7 @@ const CreditOwner = () => {
 								<Typography className='font-bold mt-4 text-[14px]'>New Credit</Typography>
 							</div>
 						</Link>
-						{data?.results.map((card: CreditResponse) => (
-							<Link
-								key={card.id}
-								href={{
-									pathname: '/dashboard/creditowner/credit',
-									query: { id: card.id },
-								}}
-								passHref
-							>
-								<div className='cursor-pointer flex flex-col w-[191px]'>
-									<div className='h-[191px] relative'>
-										{card.logo && (
-											<Image
-												src={card.logo}
-												alt={card.name}
-												fill
-												className='w-[191px] h-[191px]'
-											/>
-										)}
-									</div>
-									<Typography className='font-bold mt-2 text-[14px]'>
-										{card.name}
-									</Typography>
-								</div>
-							</Link>
-						))}
+						{creditAdmins?.map((card) => <CreditBox key={card.link} link={card.link} />)}
 					</div>
 				</div>
 			</div>
@@ -70,4 +48,4 @@ const CreditOwner = () => {
 	);
 };
 
-export default CreditOwner;
+export default CreditAdmin;

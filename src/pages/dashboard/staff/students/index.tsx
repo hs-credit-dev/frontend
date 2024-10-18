@@ -8,10 +8,10 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 
-import { useFetchStudents } from '../../../hooks/student';
-import Dashboard from '../../../layout/Dashboard';
-import Page from '../../../layout/Page';
-import useUserStoreHook from '../../../store';
+import { useFetchStudents } from '../../../../hooks/student';
+import Dashboard from '../../../../layout/Dashboard';
+import Page from '../../../../layout/Page';
+import useUserStoreHook from '../../../../store';
 
 type EmptyRow = {
 	isEmpty: boolean;
@@ -93,7 +93,7 @@ const StaffDashboard = () => {
 	} = table;
 
 	const numOfElementsToAdd = useMemo(() => {
-		return 10 - data?.count;
+		return 20 - data?.count;
 	}, [data?.count]);
 
 	const elementsToAdd = useMemo(() => {
@@ -111,7 +111,6 @@ const StaffDashboard = () => {
 	}
 
 	if (error) {
-		console.error('Error fetching data:', error);
 		return <div>Error fetching data. Please try again later.</div>;
 	}
 

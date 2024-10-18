@@ -12,7 +12,6 @@ import { Button } from '../../../../components';
 import { useFetchCreditOwners } from '../../../../hooks/staff'; // Step 1: Import the hook
 import Dashboard from '../../../../layout/Dashboard';
 import Page from '../../../../layout/Page';
-import NoteCell from '../NoteCell';
 
 type CreditData = {
 	id: number;
@@ -25,7 +24,7 @@ type CreditData = {
 
 type CreditOwner = CreditData;
 
-const CreditOwnerDashboard = () => {
+const CreditOwnersDashboard = () => {
 	const { data: creditOwners, isLoading, error } = useFetchCreditOwners();
 
 	const [pagination, setPagination] = useState<PaginationState>({
@@ -91,8 +90,8 @@ const CreditOwnerDashboard = () => {
 	};
 
 	const numOfElementsToAdd = useMemo(() => {
-		return 10 - data.length;
-	}, [data.length]);
+		return 20 - data?.length - 1;
+	}, [data?.length]);
 
 	const elementsToAdd = useMemo(() => {
 		if (numOfElementsToAdd) {
@@ -170,7 +169,7 @@ const CreditOwnerDashboard = () => {
 										<td key={cell.id}>{row.original.status}</td>
 									) : cell.id.includes('notes') ? (
 										<td key={cell.id} className='py-2'>
-											<NoteCell notes={row.original.notes} />
+											Notes
 										</td>
 									) : cell.id.includes('approved_by') ? (
 										<td key={cell.id} className='py-2'>
@@ -230,4 +229,4 @@ const CreditOwnerDashboard = () => {
 	);
 };
 
-export default CreditOwnerDashboard;
+export default CreditOwnersDashboard;

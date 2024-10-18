@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Typography } from '../../../../components';
+import { useFetchCredits } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 
 import Card from './Card';
@@ -82,7 +83,9 @@ const cardData: CardData[] = [
 
 const BrowseCredits = () => {
 	const { push } = useRouter();
-
+	const { data, isPending } = useFetchCredits(1);
+	console.log('data', data);
+	console.log('isPending', isPending);
 	return (
 		<Page>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>

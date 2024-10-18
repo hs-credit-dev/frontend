@@ -22,13 +22,14 @@ const Login = () => {
 		handleSubmit,
 		getFieldState,
 		register,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(loginValidationSchema),
+		mode: 'all',
 	});
 
 	const onSuccessMutation = () => {
-		toastSuccess('Login successfully!');
+		toastSuccess('Login Successful!');
 	};
 
 	const onErrorMutation = (message?: string) => {
@@ -127,7 +128,7 @@ const Login = () => {
 					)}
 					<Button
 						type='submit'
-						disabled={isPending || !isValid}
+						disabled={isPending}
 						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] disabled:bg-[#b49cdf] md:h-[52px] rounded-full text-white'
 					>
 						Log In

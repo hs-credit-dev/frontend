@@ -39,7 +39,7 @@
 // 				<h1>Mint</h1>
 // 				<div>
 // 					<Link
-// 						href='/student/credit-details'
+// 						href='/students/credit-details'
 // 						className='btn text-[0.75rem] px-[1.6875rem] py-3'
 // 					>
 // 						Back

@@ -19,7 +19,7 @@ const StudentForm = () => {
 		getFieldState,
 		register,
 		handleSubmit,
-		formState: { errors, isValid },
+		formState: { errors },
 	} = useForm<CompleteSignupFormStudentValues>({
 		resolver: yupResolver(completeStudentSignupValidationSchema),
 		mode: 'all',
@@ -193,7 +193,7 @@ const StudentForm = () => {
 						className={
 							'bg-[#805DBE] disabled:bg-[#b49cdf] text-white font-bold py-2 px-4 rounded-full hover:bg-[#6b4aa6] focus:outline-none focus:shadow-outline w-[205px] h-[52px]'
 						}
-						disabled={!isValid || isPending}
+						disabled={isPending}
 					>
 						Create Account
 					</Button>

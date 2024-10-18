@@ -11,17 +11,14 @@ import {
 } from '../api/auth';
 import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
-import { CompleteSignupFormStudentValues } from '../types';
+import {
+	CompleteSignupFormCreditAdminValues,
+	CompleteSignupFormStudentValues,
+} from '../types';
+import { handleAxiosError } from '../utils/errors';
 
 type OnSuccessCallback = () => void;
 type OnErrorCallback = (message?: string) => void;
-
-const isObject = (value: unknown): value is Record<string, unknown> => {
-	return value !== null && typeof value === 'object';
-};
-const isArrayOfString = (value: unknown): value is string[] => {
-	return Array.isArray(value) && value.every((item) => typeof item === 'string');
-};
 
 const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	const { push } = useRouter();
@@ -33,14 +30,17 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 
 			fetchUserInformation()
 				.then((res) => {
+					console.log('res', res);
 					onSuccess();
 					setTimeout(() => {
 						if (!!res.student) {
 							push('/dashboard/student');
 						} else if (!!res.credit_owner) {
 							push('/dashboard/creditowner');
+						} else if (!!res.credit_admins.length) {
+							push('/dashboard/creditowner');
 						} else {
-							push('/dashboard/staff');
+							push('/dashboard/staff/students');
 						}
 					}, 1000);
 				})
@@ -49,20 +49,7 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 				});
 		},
 		onError: (error: AxiosError) => {
-			const responseData = error.response?.data;
-
-			if (isObject(responseData) && 'non_field_errors' in responseData) {
-				const nonFieldErrors = responseData.non_field_errors;
-
-				// Check if nonFieldErrors is an array of strings
-				if (isArrayOfString(nonFieldErrors)) {
-					onError(nonFieldErrors[0]);
-				} else {
-					onError('Something went wrong, please try again');
-				}
-			} else {
-				onError('Something went wrong, please try again');
-			}
+			handleAxiosError(error, onError);
 		},
 	});
 };
@@ -74,19 +61,7 @@ const useSignup = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 			onSuccess();
 		},
 		onError: (error: AxiosError) => {
-			const responseData = error.response?.data;
-
-			if (isObject(responseData) && 'email' in responseData) {
-				const nonFieldErrors = responseData.email;
-
-				if (isArrayOfString(nonFieldErrors)) {
-					onError(nonFieldErrors[0]);
-				} else {
-					onError('Something went wrong, please try again');
-				}
-			} else {
-				onError('Something went wrong, please try again');
-			}
+			handleAxiosError(error, onError);
 		},
 	});
 };
@@ -107,8 +82,12 @@ const useCompleteUserSignup = (
 	onError: OnErrorCallback,
 ) => {
 	return useMutation({
-		mutationFn: (values: FormData | CompleteSignupFormStudentValues) =>
-			completeUserSignup(accountId, values),
+		mutationFn: (
+			values:
+				| FormData
+				| CompleteSignupFormStudentValues
+				| CompleteSignupFormCreditAdminValues,
+		) => completeUserSignup(accountId, values),
 		onSuccess: () => {
 			onSuccess();
 		},
