@@ -1,4 +1,4 @@
-import { CreditAdmins } from '../types';
+import { CreditAdmins, CreditExperts } from '../types';
 import axios from '../utils/axios';
 
 type UpdateValues = {
@@ -8,6 +8,18 @@ type UpdateValues = {
 	pitch_text?: string;
 	mint_text?: string;
 };
+
+type Rubric = {
+	title: string;
+	points: number;
+	blurb: string;
+	notes: string;
+	is_active: boolean;
+};
+
+interface AddRubricPayload {
+	rubric: Rubric[];
+}
 
 const fetchCredits = async (page: number) => {
 	const { data } = await axios.get(`/api/credits/?page=${page}`);
@@ -40,8 +52,23 @@ const addCreditAdmin = async (creditId: string, creditAdmins: CreditAdmins) => {
 	return data;
 };
 
+const addCreditExpert = async (creditId: string, creditExpert: CreditExperts) => {
+	const { data } = await axios.patch(`/api/credits/${creditId}/`, creditExpert);
+
+	return data;
+};
+
+const addCreditRubrics = async (creditId: string, rubric: AddRubricPayload) => {
+	console.log('rubric', rubric);
+	const { data } = await axios.patch(`/api/credits/${creditId}/`, rubric);
+
+	return data;
+};
+
 export {
 	addCreditAdmin,
+	addCreditExpert,
+	addCreditRubrics,
 	createCredit,
 	fetchCredit,
 	fetchCredits,

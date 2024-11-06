@@ -50,6 +50,14 @@ interface CompleteSignupFormCreditAdminValues {
 	confirm_password: string;
 }
 
+interface CompleteSignupFormExpertValues {
+	first_name: string;
+	last_name: string;
+	password: string;
+	confirm_password: string;
+	organization: string;
+}
+
 interface RegisterPersonalInfoValues {
 	firstName: string;
 	lastName: string;
@@ -87,13 +95,19 @@ interface CreditAdmins {
 	credit_admins: Admin[];
 }
 
+interface CreditExperts {
+	experts: Admin[];
+}
+
 export type {
 	Admin,
 	CompleteSignupFormBaseValues,
 	CompleteSignupFormCreditAdminValues,
 	CompleteSignupFormCreditOwnerValues,
+	CompleteSignupFormExpertValues,
 	CompleteSignupFormStudentValues,
 	CreditAdmins,
+	CreditExperts,
 	CreditOwner,
 	CreditResponse,
 	LoginFormInputs,

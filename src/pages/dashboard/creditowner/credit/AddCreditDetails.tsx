@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Input, Label, TextArea } from '../../../../components';
+import { Button, Input, Label, TextArea } from '../../../../components';
 import { useUpdateCredit } from '../../../../hooks/credits';
 import { toastError, toastSuccess } from '../../../../utils/toast';
 import { addCreditDetailsValidationSchema } from '../../../../validations/addCreditDetailsValidationSchema';
@@ -24,7 +24,7 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 		handleSubmit,
 		getFieldState,
 		register,
-		formState: { errors },
+		formState: { errors, isSubmitting },
 	} = useForm({
 		resolver: yupResolver(addCreditDetailsValidationSchema),
 		mode: 'all',
@@ -61,7 +61,7 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 
 	return (
 		<form onSubmit={handleSubmit(handleAddCreditDetails)}>
-			<div>
+			<div className='flex items-center justify-between'>
 				<div className='flex flex-col space-y-2 w-full sm:w-auto mb-4'>
 					<Label htmlFor='name' className='text-black'>
 						Rubric version
@@ -72,6 +72,15 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 					/>
 				</div>
+				<Button
+					disabled={isSubmitting}
+					type='submit'
+					className={
+						'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE]'
+					}
+				>
+					Add Details
+				</Button>
 			</div>
 			<div className='flex flex-col space-y-2 w-full mb-4'>
 				<Label htmlFor='name' className='text-black'>

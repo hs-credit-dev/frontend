@@ -9,6 +9,7 @@ import {
 import axiosInstance from '../utils/axios';
 
 const loginUser = async (values: LoginFormInputs) => {
+	console.log(values);
 	const { data } = await axios.post('https://api.hs.credit/auth/login', values);
 	return data;
 };

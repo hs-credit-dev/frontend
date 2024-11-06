@@ -17,7 +17,7 @@ const AddAdmins = ({ creditAdmins, creditId }: AddAdminsProps) => {
 	const joinedAdmins = creditAdmins?.filter((admin) => admin.status === 'confirmed');
 
 	return (
-		<div className=''>
+		<div>
 			<Typography className='text-black mb-6'>Add Admins</Typography>
 			<div className='mb-8'>
 				{invitedAdmins?.map((admin, index) => (

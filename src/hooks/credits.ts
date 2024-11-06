@@ -3,6 +3,8 @@ import { AxiosError } from 'axios';
 
 import {
 	addCreditAdmin,
+	addCreditExpert,
+	addCreditRubrics,
 	createCredit,
 	fetchCredit,
 	fetchCredits,
@@ -10,7 +12,7 @@ import {
 	updateCredit,
 } from '../api/credits';
 import { CACHE_KEY_FETCH_CREDITS } from '../constants';
-import { CreditAdmins } from '../types';
+import { CreditAdmins, CreditExperts } from '../types';
 import { handleAxiosError } from '../utils/errors';
 
 type UpdateValues = {
@@ -25,6 +27,18 @@ type UpdateCreditParams = {
 	creditId: string;
 	values: UpdateValues;
 };
+
+type Rubric = {
+	title: string;
+	points: number;
+	blurb: string;
+	notes: string;
+	is_active: boolean;
+};
+
+interface AddRubricPayload {
+	rubric: Rubric[];
+}
 
 type OnSuccessCallback = (message?: string) => void;
 type OnErrorCallback = (message?: string) => void;
@@ -109,8 +123,45 @@ const useAddCreditAdmin = (
 	});
 };
 
+const useAddCreditExpert = (
+	creditId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: (values: CreditExperts) => addCreditExpert(creditId, values),
+		onSuccess: (response) => {
+			console.log('response -->', response);
+			onSuccess(
+				`Successfully invited expert ${response.first_name} ${response.last_name}`,
+			);
+		},
+		onError: (error: AxiosError) => {
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
+const useAddCreditRubric = (
+	creditId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: (values: AddRubricPayload) => addCreditRubrics(creditId, values),
+		onSuccess: () => {
+			onSuccess('Successfully add rubrics');
+		},
+		onError: (error: AxiosError) => {
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
 export {
 	useAddCreditAdmin,
+	useAddCreditExpert,
+	useAddCreditRubric,
 	useCreateCredit,
 	useFetchCredit,
 	useFetchCredits,
