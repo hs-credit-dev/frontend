@@ -13,6 +13,7 @@ import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
 import {
 	CompleteSignupFormCreditAdminValues,
+	CompleteSignupFormExpertValues,
 	CompleteSignupFormStudentValues,
 } from '../types';
 import { handleAxiosError } from '../utils/errors';
@@ -86,7 +87,8 @@ const useCompleteUserSignup = (
 			values:
 				| FormData
 				| CompleteSignupFormStudentValues
-				| CompleteSignupFormCreditAdminValues,
+				| CompleteSignupFormCreditAdminValues
+				| CompleteSignupFormExpertValues,
 		) => completeUserSignup(accountId, values),
 		onSuccess: () => {
 			onSuccess();

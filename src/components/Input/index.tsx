@@ -13,6 +13,7 @@ type InputProps = {
 	isTouched?: boolean;
 	name?: string;
 	message?: string;
+	value: string | number;
 };
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
 	name,
 	message,
 	isTouched = false,
+	value,
 }: InputProps) => (
 	<>
 		<input
@@ -38,6 +40,7 @@ const Input = ({
 			disabled={disabled}
 			onChange={onChange}
 			id={name}
+			value={value}
 		/>
 		{isTouched && message && (
 			<Typography variant='p' className='text-red-500 text-xs'>

@@ -6,6 +6,7 @@ import Page from '../../../layout/Page';
 import { toastError, toastSuccess } from '../../../utils/toast';
 
 import CreditAdminForm from './CreditAdminForm';
+import CreditExpertForm from './CreditExpertForm';
 import CreditOwnerForm from './CreditOwnerForm';
 import StudentForm from './StudentForm';
 
@@ -19,11 +20,12 @@ const RegisterPersonalInfo = () => {
 		isSuccess: isEmailConfirmSuccess,
 		isError: isEmailConfirmError,
 	} = useFetchSignupUser(query?.accountId as string);
-
+	console.log('data', data);
 	const formMap = {
 		student: <StudentForm />,
 		'credit-owner': <CreditOwnerForm />,
 		'credit-admin': <CreditAdminForm />,
+		expert: <CreditExpertForm />,
 	};
 
 	if (isEmailConfirmSuccess) {

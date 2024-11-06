@@ -50,6 +50,7 @@ const useUserStoreHook = () => {
 		}
 	};
 	const creditAdmins = useUserStore((store) => store.user?.credit_admins);
+	const isCreditAdmin = useUserStore((store) => !!store.user?.credit_admins?.length);
 
 	return {
 		isStudent,
@@ -59,6 +60,7 @@ const useUserStoreHook = () => {
 		setUserInformation,
 		isAuthorized: isAuthorized(),
 		creditAdmins,
+		isCreditAdmin,
 	};
 };
 
