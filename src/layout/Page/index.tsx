@@ -19,9 +19,9 @@ const Page = ({ children, isLoading }: PageProps) => {
 		useUserStoreHook();
 	const { data } = useUserInformation();
 
-	const isCreditOwnerPage = pathname.includes('creditowner');
-	const isStudentPage = pathname.includes('student');
-	const isCreditAdminPage = pathname.includes('creditowner');
+	const isCreditOwnerPage = pathname?.includes('creditowner');
+	const isStudentPage = pathname?.includes('student');
+	const isCreditAdminPage = pathname?.includes('creditowner');
 	useEffect(() => {
 		if (data) {
 			setUserInformation(data);
