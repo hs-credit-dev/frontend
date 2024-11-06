@@ -13,7 +13,7 @@ type InputProps = {
 	isTouched?: boolean;
 	name?: string;
 	message?: string;
-	value: string | number;
+	value?: string | number;
 };
 
 const Input = ({
