@@ -8,84 +8,16 @@ import Page from '../../../../layout/Page';
 import Card from './Card';
 
 type CardData = {
-	imageSrc: string;
+	logo: string;
 	imageAlt: string;
 	title: string;
+	id: string;
 };
-
-const cardData: CardData[] = [
-	{
-		imageSrc: '/images/filmmaking.png',
-		imageAlt: 'filmmaking',
-		title: 'Filmmaking',
-	},
-	{
-		imageSrc: '/images/africanAmericanStudies.png',
-		imageAlt: 'African american studies',
-		title: 'African American Studies',
-	},
-	{
-		imageSrc: '/images/cognitiveScience.png',
-		imageAlt: 'cognitive science',
-		title: 'Cognitive Science',
-	},
-	{
-		imageSrc: '/images/musicTheory.png',
-		imageAlt: 'music theory',
-		title: 'Music Theory',
-	},
-	{
-		imageSrc: '/images/dataScience.png',
-		imageAlt: 'data science',
-		title: 'Data Science',
-	},
-	{
-		imageSrc: '/images/digitalAnimation.png',
-		imageAlt: 'digital animation',
-		title: 'Digital Animation',
-	},
-	{
-		imageSrc: '/images/businessAdministration.png',
-		imageAlt: 'business administration',
-		title: 'Business Administration',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-	{
-		imageSrc: '/images/digitalAnimation.png',
-		imageAlt: 'digital animation',
-		title: 'Digital Animation',
-	},
-	{
-		imageSrc: '/images/businessAdministration.png',
-		imageAlt: 'business administration',
-		title: 'Business Administration',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-	{
-		imageSrc: '/images/clinicalPsychology.png',
-		imageAlt: 'clinical psychology',
-		title: 'Clinical Psychology',
-	},
-];
 
 const BrowseCredits = () => {
 	const { push } = useRouter();
-	const { data, isPending } = useFetchCredits(1);
-	console.log('data', data);
-	console.log('isPending', isPending);
+	const { data } = useFetchCredits(1);
+
 	return (
 		<Page>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
@@ -102,13 +34,13 @@ const BrowseCredits = () => {
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>
-						{cardData.map((card, index) => (
+						{data?.results.map((card: CardData, index: number) => (
 							<Card
 								key={index}
-								imageSrc={card.imageSrc}
-								imageAlt={card.imageAlt}
+								imageSrc={card.logo}
+								imageAlt={`${card.logo} alt description`}
 								title={card.title}
-								id={card.title}
+								id={card.id}
 							/>
 						))}
 					</div>

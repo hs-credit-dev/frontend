@@ -5,7 +5,7 @@ import NextImage from 'next/image';
 import { useRouter } from 'next/router';
 
 import { Button, FileUpload, Input, Label, Typography } from '../../../../components';
-import { useCreateCredit } from '../../../../hooks/credits';
+import { useCreateCredit, usePublishCredit } from '../../../../hooks/credits';
 import { toastError, toastSuccess } from '../../../../utils/toast';
 import { creditCoreFormValidationSchema } from '../../../../validations/creditCoreFormValidationSchema';
 
@@ -16,7 +16,7 @@ interface CreateCoreForm {
 }
 
 interface CreditCoreProps {
-	creditId?: string;
+	creditId: string;
 	isCreditOwner?: boolean;
 	logo?: string;
 	name?: string;
@@ -36,6 +36,12 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 	};
 
 	const { mutateAsync: createCredit, isPending: isCreatePending } = useCreateCredit(
+		onSuccessMutation,
+		onErrorMutation,
+	);
+
+	const { mutate: publishCredit, isPending: isPublishPending } = usePublishCredit(
+		creditId,
 		onSuccessMutation,
 		onErrorMutation,
 	);
@@ -186,6 +192,15 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 					)}
 				</div>
 				<div>
+					<Button
+						disabled={isPublishPending}
+						onClick={() => publishCredit()}
+						className={
+							'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE] mr-2'
+						}
+					>
+						Publish Credit
+					</Button>
 					<Button
 						disabled={isCreatePending}
 						type='submit'

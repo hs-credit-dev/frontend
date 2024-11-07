@@ -46,7 +46,7 @@ const Student = () => {
 		},
 		{
 			header: 'Credit',
-			accessorKey: 'credit',
+			accessorKey: 'name',
 		},
 		{
 			header: 'Discipline',
@@ -67,7 +67,7 @@ const Student = () => {
 	];
 
 	const columns = useMemo(() => COLUMNS, [COLUMNS]);
-
+	console.log('data', data?.results);
 	const table = useReactTable({
 		columns,
 		data: data?.results ? data.results : [],
