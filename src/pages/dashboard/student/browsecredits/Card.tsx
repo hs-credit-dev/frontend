@@ -14,8 +14,7 @@ type CardProps = {
 const Card = ({ imageSrc, imageAlt, title, id }: CardProps) => (
 	<Link
 		href={{
-			pathname: '/students/credit-details' + id,
-			query: { title, imageSrc, imageAlt },
+			pathname: '/dashboard/student/browsecredits/' + id,
 		}}
 		passHref
 	>
