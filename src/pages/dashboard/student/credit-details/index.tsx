@@ -11,7 +11,7 @@ const CreditDetails = () => {
 	const { title, imageSrc, imageAlt } = router.query;
 
 	return (
-		<Page>
+		<Page isProtected>
 			<div className='bg-white rounded-[20px] flex flex-col p-4 md:p-8 lg:p-10'>
 				<section className='flex flex-col md:flex-row justify-between items-center md:items-start box-border'>
 					<Typography className='font-montserrat text-[24px] md:text-[32px] font-bold leading-[29px] md:leading-[39.01px] text-left'>
