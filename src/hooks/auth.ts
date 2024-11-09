@@ -2,13 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/router';
 
-import {
-	completeUserSignup,
-	getSignupUser,
-	loginUser,
-	logoutUser,
-	signupUser,
-} from '../api/auth';
+import { completeSignup, fetchSignup, login, logout, signup } from '../api/auth';
 import { fetchUserInformation } from '../api/users';
 import { CACHE_KEY_GET_SIGNUP_USER } from '../constants';
 import {
@@ -17,29 +11,30 @@ import {
 	CompleteSignupFormStudentValues,
 } from '../types';
 import { handleAxiosError } from '../utils/errors';
+import { toastError, toastSuccess } from '../utils/toast';
 
 type OnSuccessCallback = () => void;
 type OnErrorCallback = (message?: string) => void;
 
-const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+export const useLogin = () => {
 	const { push } = useRouter();
 
 	return useMutation({
-		mutationFn: loginUser,
+		mutationFn: login,
 		onSuccess: (response) => {
 			localStorage.setItem('hstoken', response.token);
 
 			fetchUserInformation()
 				.then((res) => {
 					console.log('res', res);
-					onSuccess();
+					toastSuccess('Login Successful!');
 					setTimeout(() => {
 						if (!!res.student) {
 							push('/dashboard/student');
 						} else if (!!res.credit_owner) {
 							push('/dashboard/creditowner');
 						} else if (!!res.credit_admins.length) {
-							push('/dashboard/creditowner');
+							push('/dashboard/creditadmin');
 						} else {
 							push('/dashboard/staff/students');
 						}
@@ -50,14 +45,14 @@ const useLogin = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 				});
 		},
 		onError: (error: AxiosError) => {
-			handleAxiosError(error, onError);
+			handleAxiosError(error, toastError);
 		},
 	});
 };
 
-const useSignup = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+export const useSignup = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	return useMutation({
-		mutationFn: signupUser,
+		mutationFn: signup,
 		onSuccess: () => {
 			onSuccess();
 		},
@@ -67,17 +62,17 @@ const useSignup = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	});
 };
 
-const useFetchSignupUser = (accountId: string) => {
+export const useGetSignup = (accountId: string) => {
 	return useQuery({
 		queryKey: [CACHE_KEY_GET_SIGNUP_USER, accountId],
-		queryFn: () => getSignupUser(accountId),
+		queryFn: () => fetchSignup(accountId),
 		staleTime: 1_000 * 60 * 60,
 		enabled: !!accountId,
 		retry: false,
 	});
 };
 
-const useCompleteUserSignup = (
+export const useCompleteSignup = (
 	accountId: string,
 	onSuccess: OnSuccessCallback,
 	onError: OnErrorCallback,
@@ -89,7 +84,7 @@ const useCompleteUserSignup = (
 				| CompleteSignupFormStudentValues
 				| CompleteSignupFormCreditAdminValues
 				| CompleteSignupFormExpertValues,
-		) => completeUserSignup(accountId, values),
+		) => completeSignup(accountId, values),
 		onSuccess: () => {
 			onSuccess();
 		},
@@ -99,9 +94,9 @@ const useCompleteUserSignup = (
 	});
 };
 
-const useLogout = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
+export const useLogout = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	return useMutation({
-		mutationFn: logoutUser,
+		mutationFn: logout,
 		onSuccess: () => {
 			onSuccess();
 			localStorage.removeItem('hstoken');
@@ -111,5 +106,3 @@ const useLogout = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 		},
 	});
 };
-
-export { useCompleteUserSignup, useFetchSignupUser, useLogin, useLogout, useSignup };

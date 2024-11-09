@@ -3,10 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import Label from '../../../components/Label';
-import { useCompleteUserSignup } from '../../../hooks/auth';
+import { Button, Input, Label } from '../../../components';
+import { useCompleteSignup } from '../../../hooks/auth';
 import { toastError, toastSuccess } from '../../../utils/toast';
 import { completeCreditAdminSignupValidationSchema } from '../../../validations/completeCreditAdminSignupValidationSchema';
 
@@ -39,7 +37,7 @@ const CreditAdminForm = () => {
 		toastError('Account already completed!');
 	};
 
-	const { mutate, isPending } = useCompleteUserSignup(
+	const { mutate, isPending } = useCompleteSignup(
 		query.accountId as string,
 		onSuccessMutation,
 		onErrorMutation,
@@ -133,15 +131,9 @@ const CreditAdminForm = () => {
 					or older. You are also consenting to our terms/services and Data Use Policy.
 				</Label>
 			</div>
-			<div className='w-full md:w-[203px] h-[52px] self-center md:self-start mt-[14px]'>
-				<Button
-					type='submit'
-					disabled={isPending}
-					className='w-full h-full bg-[#805DBE] disabled:bg-[#b49cdf] rounded-full text-white font-montserrat text-[14px] font-bold leading-[17.07px] text-center'
-				>
-					Create Account
-				</Button>
-			</div>
+			<Button type='submit' disabled={isPending}>
+				Create Account
+			</Button>
 		</form>
 	);
 };

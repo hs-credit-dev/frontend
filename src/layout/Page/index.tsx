@@ -10,9 +10,10 @@ import Header from '../Header';
 interface PageProps {
 	children: ReactNode;
 	isLoading?: boolean;
+	isProtected: boolean;
 }
 
-const Page = ({ children, isLoading }: PageProps) => {
+const Page = ({ children, isLoading, isProtected }: PageProps) => {
 	const { push } = useRouter();
 	const pathname = usePathname();
 	const { setUserInformation, isCreditOwner, isStudent, isCreditAdmin, isAuthorized } =
@@ -21,7 +22,8 @@ const Page = ({ children, isLoading }: PageProps) => {
 
 	const isCreditOwnerPage = pathname?.includes('creditowner');
 	const isStudentPage = pathname?.includes('student');
-	const isCreditAdminPage = pathname?.includes('creditowner');
+	const isCreditAdminPage = pathname?.includes('creditadmin');
+
 	useEffect(() => {
 		if (data) {
 			setUserInformation(data);
@@ -29,25 +31,30 @@ const Page = ({ children, isLoading }: PageProps) => {
 	}, [data, setUserInformation]);
 
 	useEffect(() => {
-		if (!isAuthorized) {
+		if (!isAuthorized && isProtected) {
 			push('/login');
 		}
-	}, [isAuthorized, push]);
+	}, [isAuthorized, isProtected, push]);
 
 	const authorized =
-		(isStudentPage && isStudent) ||
-		(isCreditOwnerPage && isCreditOwner) ||
-		(isCreditAdmin && isCreditAdminPage);
+		isProtected &&
+		((isStudentPage && isStudent) ||
+			(isCreditOwnerPage && isCreditOwner) ||
+			(isCreditAdmin && isCreditAdminPage));
+
+	if (!authorized && isProtected) {
+		return (
+			<div className='bg-[#805DBE12] min-h-[100vh] flex flex-col justify-between'>
+				Not authorized, please return
+			</div>
+		);
+	}
 
 	return (
 		<div className='bg-[#805DBE12] min-h-[100vh] flex flex-col justify-between'>
-			<Header />
+			<Header isProtected={isProtected} />
 			<div className='container mx-auto flex-grow overflow-auto'>
-				{authorized ? (
-					<div>{isLoading ? 'Loading...' : children}</div>
-				) : (
-					'Not authorized, please return'
-				)}
+				<div>{isLoading ? 'Loading...' : children}</div>
 			</div>
 			<Footer />
 		</div>

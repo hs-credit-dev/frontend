@@ -5,24 +5,13 @@ import { Button, Typography } from '../../../../components';
 import { useFetchCredit } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 
-import AddAdmins from './AddAdmins';
-import AddExperts from './AddExperts';
-import CreditCore from './CreditCore';
+import AddCreditDetails from './AddCreditDetails';
+import AddRubricsModal from './AddRubricsModal';
 
-interface Credit {
-	name: string;
-	discipline: string;
-	description: string;
-	rubric_version: string;
-	stake_text: string;
-	pitch_text: string;
-	mint_text: string;
-	logo?: File;
-}
-
-const Credit = () => {
+const CreditPage = () => {
 	const { push, query } = useRouter();
 	const { data, isPending: isFetchCreditPending } = useFetchCredit(query.id as string);
+	const [showRubrics, setShowRubrics] = React.useState(false);
 	console.log('data', data);
 
 	return (
@@ -30,25 +19,34 @@ const Credit = () => {
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
 				<div className='flex justify-between mb-20 bg-white'>
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
-						Manage Credit
+						{data?.name}
 					</Typography>
 					<Button
-						onClick={() => push('/dashboard/creditowner')}
+						onClick={() => push('/dashboard/creditadmin')}
 						className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
 					>
 						Back
 					</Button>
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
+					<AddCreditDetails creditId={query.id as string} />
 					<div>
-						<CreditCore
-							creditId={query.id as string}
-							logo={data?.logo}
-							name={data?.name}
-							discipline={data?.discipline}
-						/>
-						<AddAdmins creditId={query.id as string} creditAdmins={data?.credit_admins} />
-						<AddExperts creditId={query.id as string} creditExperts={data?.experts} />
+						<Button
+							onClick={() => setShowRubrics(true)}
+							// disabled={isPublishPending}
+							type='submit'
+							className={
+								'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE]'
+							}
+						>
+							Edit Rubrics
+						</Button>
+						{showRubrics && (
+							<AddRubricsModal
+								creditId={query.id as string}
+								onBack={() => setShowRubrics(false)}
+							/>
+						)}
 					</div>
 				</div>
 			</div>
@@ -56,4 +54,4 @@ const Credit = () => {
 	);
 };
 
-export default Credit;
+export default CreditPage;

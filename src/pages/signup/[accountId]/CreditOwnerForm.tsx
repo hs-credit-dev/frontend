@@ -3,11 +3,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import Label from '../../../components/Label';
-import Typography from '../../../components/Typography';
-import { useCompleteUserSignup } from '../../../hooks/auth';
+import { Button, Input, Label, Typography } from '../../../components';
+import { useCompleteSignup } from '../../../hooks/auth';
 import { CompleteSignupFormCreditOwnerValues } from '../../../types';
 import { toastError, toastSuccess } from '../../../utils/toast';
 import { completeCreditOwnerSignupValidationSchema } from '../../../validations/completeCreditOwnerSignup';
@@ -37,7 +34,7 @@ const CreditOwnerForm = () => {
 		toastError('Account already completed!');
 	};
 
-	const { mutate, isPending } = useCompleteUserSignup(
+	const { mutate, isPending } = useCompleteSignup(
 		query.accountId as string, // Pass accountId from URL query parameters
 		onSuccessMutation,
 		onErrorMutation,
@@ -161,11 +158,8 @@ const CreditOwnerForm = () => {
 					<Typography className='font-montserrat text-[14px] font-semibold leading-[17.07px] text-left mb-[10px]'>
 						Credit Image
 					</Typography>
-					<div className='w-full md:w-[203px] h-[52px] mb-[6px]'>
-						<Button
-							onClick={handleUploadClick}
-							className='w-full h-full bg-[#805DBE] rounded-full text-white font-montserrat text-[14px] font-bold leading-[17.07px] text-center'
-						>
+					<div className='mb-2'>
+						<Button onClick={handleUploadClick} className='font-bold'>
 							Click here to upload
 						</Button>
 						<input
@@ -241,12 +235,8 @@ const CreditOwnerForm = () => {
 			</div>
 
 			{/* Create Account Button */}
-			<div className='w-full md:w-[203px] h-[52px] self-center md:self-start mt-[14px]'>
-				<Button
-					type='submit'
-					disabled={isPending}
-					className='w-full h-full bg-[#805DBE] disabled:bg-[#b49cdf] rounded-full text-white font-montserrat text-[14px] font-bold leading-[17.07px] text-center'
-				>
+			<div className='mt-4'>
+				<Button type='submit' disabled={isPending}>
 					Create Account
 				</Button>
 			</div>

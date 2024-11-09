@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import { Button, Input, Typography } from '../../components';
 import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
-import { toastError, toastSuccess } from '../../utils/toast';
 import { loginValidationSchema } from '../../validations/login';
 
 const Login = () => {
@@ -28,15 +27,7 @@ const Login = () => {
 		mode: 'all',
 	});
 
-	const onSuccessMutation = () => {
-		toastSuccess('Login Successful!');
-	};
-
-	const onErrorMutation = (message?: string) => {
-		toastError(message);
-	};
-
-	const { mutate, isPending } = useLogin(onSuccessMutation, onErrorMutation);
+	const { mutate, isPending } = useLogin();
 
 	const onSubmit = async (values: LoginFormInputs) => {
 		mutate(values);
@@ -44,7 +35,7 @@ const Login = () => {
 
 	const getCommonProps = (name: keyof LoginFormInputs) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -53,8 +44,12 @@ const Login = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
+			isTouched,
 		};
 	};
+
+	const commonClasses =
+		'w-full font-montserrat focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder:text-center text-black shadow-sm rounded-md border border-gray-300 p-4 mb-10';
 
 	return (
 		<div className='min-h-screen flex flex-col justify-between bg-gray-100 px-4 md:px-0'>
@@ -74,78 +69,40 @@ const Login = () => {
 						hs.credit
 					</Typography>
 				</div>
-
 				<form
 					onSubmit={handleSubmit(onSubmit)}
-					className='flex flex-col items-center space-y-4 md:space-y-[20px] w-full md:max-w-[690px]'
+					className='flex flex-col items-center w-full md:max-w-[690px]'
 				>
 					<Input
 						{...getCommonProps('email')}
 						type='text'
 						placeholder='Username'
-						className='
-							w-full
-							h-[50px] md:h-[60px]
-							p-4
-							font-montserrat
-							border border-gray-300
-							rounded-md
-							shadow-sm
-							focus:outline-none
-							focus:ring-2
-							focus:ring-blue-400
-							placeholder:text-center
-							text-black
-						'
+						className={commonClasses}
+						message={errors?.email?.message}
 					/>
-					{errors.email && (
-						<Typography className='text-red-500 text-sm'>
-							{errors.email.message}
-						</Typography>
-					)}
 					<Input
 						{...getCommonProps('password')}
 						type='password'
 						placeholder='Password'
-						className='
-							w-[690px]
-							h-[60px]
-							p-4
-							border border-gray-300
-							rounded-md
-							shadow-sm
-							focus:outline-none
-							focus:ring-2
-							focus:ring-blue-400
-							placeholder:text-center
-							text-black
-						'
+						className={commonClasses}
+						message={errors?.password?.message}
 					/>
-					{errors.password && (
-						<Typography className='text-red-500 text-sm'>
-							{errors.password.message}
-						</Typography>
-					)}
-					<Button
-						type='submit'
-						disabled={isPending}
-						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] disabled:bg-[#b49cdf] md:h-[52px] rounded-full text-white'
-					>
-						Log In
-					</Button>
-					<Link
-						href='#'
-						className='text-sm text-[#0077ff] hover:text-blue-600 transition-colors duration-300 ease-in-out no-underline'
-					>
-						Forgot password
-					</Link>
-					<Button
-						type='button'
-						className='bg-[#805DBE] w-full md:w-[203px] h-[50px] md:h-[52px] rounded-full text-white'
-						onClick={redirectToSignup}
-					>
-						Create Account
-					</Button>
+					<div className='flex'>
+						<div className='w-48 text-center'>
+							<Button type='submit' disabled={isPending} className='w-full mb-5'>
+								Log In
+							</Button>
+							<Link
+								href='#'
+								className='text-sm text-[#0077ff] hover:text-blue-600 transition-colors duration-300 ease-in-out'
+							>
+								Forgot password
+							</Link>
+							<Button className='w-full mt-10' onClick={redirectToSignup}>
+								Create Account
+							</Button>
+						</div>
+					</div>
 				</form>
 			</div>
 			<footer className='w-full flex items-center text-gray-500 py-4 mt-8 md:mt-0'>

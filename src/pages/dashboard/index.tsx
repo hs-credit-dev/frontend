@@ -1,7 +1,7 @@
 import Page from '../../layout/Page';
 
 const Dashboard = () => {
-	return <Page>Hello</Page>;
+	return <Page isProtected>Hello</Page>;
 };
 
 export default Dashboard;

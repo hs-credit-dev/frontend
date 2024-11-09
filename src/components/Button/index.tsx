@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import classnames from 'classnames';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 	children: ReactNode;
@@ -15,7 +16,15 @@ const Button = ({
 	type = 'button',
 	disabled,
 }: ButtonProps) => (
-	<button type={type} onClick={onClick} className={className} disabled={disabled}>
+	<button
+		type={type}
+		onClick={onClick}
+		className={classnames(
+			'text-white bg-[#805DBE] text-sm py-4 px-6 disabled:bg-[#b49cdf] rounded-full focus:outline-none',
+			className,
+		)}
+		disabled={disabled}
+	>
 		{children}
 	</button>
 );

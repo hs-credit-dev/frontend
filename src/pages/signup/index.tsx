@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Button, Dropdown, Input, Label } from '../../components';
+import { Button, Input, Label } from '../../components';
 import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
-import { SignupFormValues, UserType } from '../../types';
+import { SignupFormValues } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
 import { signupValidationSchema } from '../../validations/signup';
 
 const Signup = () => {
 	const {
 		handleSubmit,
-		setValue,
 		getFieldState,
 		register,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(signupValidationSchema),
 		mode: 'all',
+		defaultValues: {
+			user_type: 'student',
+		},
 	});
-
-	const [actionType, setActionType] = useState('');
 
 	const onSuccessMutation = () => {
 		toastSuccess('Signup was successfully, please check your inbox!');
@@ -52,26 +52,10 @@ const Signup = () => {
 		};
 	};
 
-	const handleSelectOption = (option: string) => {
-		setValue('user_type', option as UserType);
-		setActionType(option);
-	};
-
 	return (
-		<Page>
+		<Page isProtected={false}>
 			<form onSubmit={handleSubmit(onSubmit)} className='flex bg-gray-100'>
 				<div className='p-4 sm:p-8 sm:ml-8 mt-4 sm:mt-8 space-y-6 sm:space-y-8 w-full sm:w-auto'>
-					<div className='flex flex-col space-y-2 w-full sm:w-auto'>
-						<Label htmlFor='accountType' className='text-black'>
-							Account Type
-						</Label>
-						<Dropdown
-							options={['student', 'credit-owner']}
-							label={'Select Account Type'}
-							selectedOption={actionType}
-							handleSelectedOption={handleSelectOption}
-						/>
-					</div>
 					<div className='flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto'>
 						<div className='flex flex-col space-y-2 w-full sm:w-auto'>
 							<Label htmlFor='first_name' className='text-black'>
@@ -118,14 +102,8 @@ const Signup = () => {
 							/>
 						</div>
 					</div>
-					<div className='flex flex-col space-y-2'>
-						<Button
-							type='submit'
-							className={
-								'bg-[#805DBE] disabled:bg-[#b49cdf] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px]'
-							}
-							disabled={isPending}
-						>
+					<div className='space-y-2'>
+						<Button type='submit' disabled={isPending}>
 							Create Account
 						</Button>
 					</div>

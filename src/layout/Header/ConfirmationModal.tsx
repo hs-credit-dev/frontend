@@ -1,8 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import Button from '../../components/Button';
-import Typography from '../../components/Typography';
+import { Button, Typography } from '../../components';
 import { useLogout } from '../../hooks/auth';
 import { toastError, toastSuccess } from '../../utils/toast';
 
@@ -16,7 +15,7 @@ const ConfirmationModal = ({ onClose }: ConfirmationModalProps) => {
 	const onSuccessMutation = () => {
 		toastSuccess('Logged out successfully!');
 		setTimeout(() => {
-			push('/login');
+			push('/logout');
 		}, 1000);
 	};
 
@@ -41,15 +40,12 @@ const ConfirmationModal = ({ onClose }: ConfirmationModalProps) => {
 				</Typography>
 				<div className='flex flex-row items-center justify-center space-x-[20px] md:space-x-[47px]'>
 					<Button
+						className='!py-2 !px-9 bg-transparent !text-[#805DBE] !border-[#805DBE] border-[1px]'
 						onClick={handleLogout}
-						className='w-[75px] h-[29px] md:w-[87px] rounded-full border border-[#805dbe] text-[#805dbe]'
 					>
 						Yes
 					</Button>
-					<Button
-						onClick={onClose}
-						className='w-[75px] h-[29px] md:w-[87px] rounded-full bg-[#805dbe] text-white'
-					>
+					<Button className='!py-2 !px-9' onClick={onClose}>
 						No
 					</Button>
 				</div>

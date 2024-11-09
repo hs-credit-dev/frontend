@@ -1,7 +1,7 @@
-interface LoginFormInputs {
+type LoginFormInputs = {
 	email: string;
 	password: string;
-}
+};
 
 type UserType = 'student' | 'credit-owner';
 
