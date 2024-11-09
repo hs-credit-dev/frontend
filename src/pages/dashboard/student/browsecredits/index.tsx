@@ -19,7 +19,7 @@ const BrowseCredits = () => {
 	const { data } = useFetchCredits(1);
 
 	return (
-		<Page>
+		<Page isProtected>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
 				<div className='flex justify-between mb-20'>
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
