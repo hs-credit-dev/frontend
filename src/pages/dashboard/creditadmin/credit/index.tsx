@@ -15,7 +15,7 @@ const CreditPage = () => {
 	console.log('data', data);
 
 	return (
-		<Page isLoading={isFetchCreditPending && !!query.id}>
+		<Page isProtected isLoading={isFetchCreditPending && !!query.id}>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
 				<div className='flex justify-between mb-20 bg-white'>
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>

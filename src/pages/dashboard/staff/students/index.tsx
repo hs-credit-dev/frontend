@@ -115,7 +115,7 @@ const StaffDashboard = () => {
 	}
 
 	return (
-		<Page>
+		<Page isProtected>
 			<section className='relative flex py-[3rem] bg-[#805DBE] rounded-xl mb-6'>
 				<div className='flex flex-col'>
 					<div className='flex items-center justify-between space-x-4 pl-[4.3125rem] w-[570px]'>
