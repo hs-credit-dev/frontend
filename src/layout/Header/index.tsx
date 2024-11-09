@@ -7,7 +7,11 @@ import useUserStoreHook from '../../store';
 
 import ConfirmationModal from './ConfirmationModal';
 
-const Header = () => {
+interface HeaderProps {
+	isProtected: boolean;
+}
+
+const Header = ({ isProtected }: HeaderProps) => {
 	const router = useRouter();
 	const { firstName } = useUserStoreHook();
 	const isAccountCreationPage = router.pathname === '/signup';
@@ -37,20 +41,27 @@ const Header = () => {
 							/>
 							<Typography className='ml-2 text-[22px] font-bold'>hs.credit</Typography>
 						</div>
-						<div className='flex items-center space-x-4'>
-							<Button className='text-2xl w-10 h-10 text-white bg-[#85C4E9] rounded'>
-								{firstName && firstName[0]}
-							</Button>
-							<Button onClick={() => setIsModalOpen(true)}>
-								<Image
-									src='/images/icons/quitIcon.png'
-									alt='logo'
-									width={27}
-									height={27}
-								/>
-							</Button>
-							{isModalOpen && <ConfirmationModal onClose={() => setIsModalOpen(false)} />}
-						</div>
+						{isProtected && (
+							<div className='flex items-center space-x-4'>
+								<Button className='text-2xl !p-0 w-10 h-10 rounded-[10px] bg-[#85C4E9]'>
+									{firstName && firstName[0]}
+								</Button>
+								<Button
+									className='!px-4 bg-transparent'
+									onClick={() => setIsModalOpen(true)}
+								>
+									<Image
+										src='/images/icons/quitIcon.png'
+										alt='logo'
+										width={27}
+										height={27}
+									/>
+								</Button>
+								{isModalOpen && (
+									<ConfirmationModal onClose={() => setIsModalOpen(false)} />
+								)}
+							</div>
+						)}
 					</div>
 				)}
 			</div>

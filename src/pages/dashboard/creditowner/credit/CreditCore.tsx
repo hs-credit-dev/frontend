@@ -17,7 +17,6 @@ interface CreateCoreForm {
 
 interface CreditCoreProps {
 	creditId: string;
-	isCreditOwner?: boolean;
 	logo?: string;
 	name?: string;
 	discipline?: string;

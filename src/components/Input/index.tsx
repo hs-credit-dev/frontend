@@ -43,7 +43,7 @@ const Input = ({
 			value={value}
 		/>
 		{isTouched && message && (
-			<Typography variant='p' className='text-red-500 text-xs'>
+			<Typography variant='p' className='text-red-500 text-xs my-2'>
 				{message}
 			</Typography>
 		)}

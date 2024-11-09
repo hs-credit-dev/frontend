@@ -4,14 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import Button from '../../../components/Button';
-import Input from '../../../components/Input';
-import Label from '../../../components/Label';
-import Textarea from '../../../components/Textarea';
-import { useCompleteUserSignup } from '../../../hooks/auth';
+import { Button, Input, Label, TextArea } from '../../../components';
 import { CompleteSignupFormStudentValues } from '../../../types';
 import { toastError, toastSuccess } from '../../../utils/toast';
 import { completeStudentSignupValidationSchema } from '../../../validations/completeStudentSignup';
+import { useCompleteSignup } from '../hooks';
 
 const StudentForm = () => {
 	const { query, push } = useRouter();
@@ -34,7 +31,7 @@ const StudentForm = () => {
 		toastError('Account already completed!');
 	};
 
-	const { mutate, isPending } = useCompleteUserSignup(
+	const { mutate, isPending } = useCompleteSignup(
 		query.accountId as string,
 		onSuccessMutation,
 		onErrorMutation,
@@ -134,7 +131,7 @@ const StudentForm = () => {
 				<Label htmlFor='bio' className='text-black'>
 					Bio
 				</Label>
-				<Textarea
+				<TextArea
 					{...getCommonProps('bio')}
 					placeholder='Tell us about yourself'
 					className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full h-[100px] resize-none'
@@ -186,13 +183,10 @@ const StudentForm = () => {
 						or older. You are also consenting to our terms/services and Data Use Policy.
 					</Label>
 				</div>
-
-				<div className='flex'>
+				<div>
 					<Button
 						type='submit'
-						className={
-							'bg-[#805DBE] disabled:bg-[#b49cdf] text-white font-bold py-2 px-4 rounded-full hover:bg-[#6b4aa6] focus:outline-none focus:shadow-outline w-[205px] h-[52px]'
-						}
+						className={'py-2 px-4 focus:outline-none focus:shadow-outline'}
 						disabled={isPending}
 					>
 						Create Account

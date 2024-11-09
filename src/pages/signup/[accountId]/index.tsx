@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
-import { useFetchSignupUser } from '../../../hooks/auth';
 import Page from '../../../layout/Page';
 import { toastError, toastSuccess } from '../../../utils/toast';
+import { useGetSignup } from '../hooks';
 
 import CreditAdminForm from './CreditAdminForm';
 import CreditExpertForm from './CreditExpertForm';
@@ -19,7 +19,7 @@ const RegisterPersonalInfo = () => {
 		data,
 		isSuccess: isEmailConfirmSuccess,
 		isError: isEmailConfirmError,
-	} = useFetchSignupUser(query?.accountId as string);
+	} = useGetSignup(query?.accountId as string);
 	console.log('data', data);
 	const formMap = {
 		student: <StudentForm />,
@@ -36,7 +36,7 @@ const RegisterPersonalInfo = () => {
 		toastError('We have problem with confirming your email, please try again');
 	}
 
-	return <Page>{formMap[data?.user_type as UserType]}</Page>;
+	return <Page isProtected={false}>{formMap[data?.user_type as UserType]}</Page>;
 };
 
 export default RegisterPersonalInfo;

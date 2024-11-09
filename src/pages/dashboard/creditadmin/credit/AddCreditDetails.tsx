@@ -79,7 +79,7 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 						'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE]'
 					}
 				>
-					Add Details
+					Update Credit
 				</Button>
 			</div>
 			<div className='flex flex-col space-y-2 w-full mb-4'>
