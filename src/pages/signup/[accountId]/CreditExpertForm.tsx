@@ -4,9 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
 import { Button, Input, Label } from '../../../components';
+import { useCompleteSignup } from '../../../hooks/auth';
 import { toastError, toastSuccess } from '../../../utils/toast';
 import { completeCreditAdminSignupValidationSchema } from '../../../validations/completeCreditAdminSignupValidationSchema';
-import { useCompleteSignup } from '../hooks';
 
 interface ExpertForm {
 	first_name: string;

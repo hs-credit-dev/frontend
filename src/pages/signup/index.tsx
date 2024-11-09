@@ -3,12 +3,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button, Input, Label } from '../../components';
+import { useSignup } from '../../hooks/auth';
 import Page from '../../layout/Page';
 import { SignupFormValues } from '../../types';
 import { toastError, toastSuccess } from '../../utils/toast';
 import { signupValidationSchema } from '../../validations/signup';
-
-import { useSignup } from './hooks';
 
 const Signup = () => {
 	const {

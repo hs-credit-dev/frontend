@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Button, Input, Label, TextArea } from '../../../components';
+import { useCompleteSignup } from '../../../hooks/auth';
 import { CompleteSignupFormStudentValues } from '../../../types';
 import { toastError, toastSuccess } from '../../../utils/toast';
 import { completeStudentSignupValidationSchema } from '../../../validations/completeStudentSignup';
-import { useCompleteSignup } from '../hooks';
 
 const StudentForm = () => {
 	const { query, push } = useRouter();

@@ -1,9 +1,15 @@
 import {
 	CompleteSignupFormCreditAdminValues,
 	CompleteSignupFormStudentValues,
+	LoginFormInputs,
 	SignupFormValues,
-} from '../../../types';
-import axios from '../../../utils/axios';
+} from '../types';
+import axios from '../utils/axios';
+
+export const login = async (values: LoginFormInputs) => {
+	const { data } = await axios.post('/auth/login', values);
+	return data;
+};
 
 export const signup = async (values: SignupFormValues) => {
 	const { data } = await axios.post('https://api.hs.credit/api/signup/', values);
@@ -25,5 +31,10 @@ export const completeSignup = async (
 	const { data } = await axios.patch(`https://api.hs.credit/api/signup/${accountId}/`, {
 		...values,
 	});
+	return data;
+};
+
+export const logout = async (token: string) => {
+	const { data } = await axios.post('/auth/logout', { token });
 	return data;
 };

@@ -6,10 +6,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { Button, Input, Typography } from '../../components';
+import { useLogin } from '../../hooks/auth';
 import { LoginFormInputs } from '../../types';
 import { loginValidationSchema } from '../../validations/login';
-
-import { useLogin } from './hooks';
 
 const Login = () => {
 	const { push } = useRouter();

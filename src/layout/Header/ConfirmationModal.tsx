@@ -2,9 +2,8 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Typography } from '../../components';
+import { useLogout } from '../../hooks/auth';
 import { toastError, toastSuccess } from '../../utils/toast';
-
-import { useLogout } from './hooks';
 
 interface ConfirmationModalProps {
 	onClose: () => void;

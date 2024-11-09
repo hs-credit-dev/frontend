@@ -4,10 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
 import { Button, Input, Label, Typography } from '../../../components';
+import { useCompleteSignup } from '../../../hooks/auth';
 import { CompleteSignupFormCreditOwnerValues } from '../../../types';
 import { toastError, toastSuccess } from '../../../utils/toast';
 import { completeCreditOwnerSignupValidationSchema } from '../../../validations/completeCreditOwnerSignup';
-import { useCompleteSignup } from '../hooks';
 
 const CreditOwnerForm = () => {
 	const {

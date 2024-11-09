@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 
+import { useGetSignup } from '../../../hooks/auth';
 import Page from '../../../layout/Page';
 import { toastError, toastSuccess } from '../../../utils/toast';
-import { useGetSignup } from '../hooks';
 
 import CreditAdminForm from './CreditAdminForm';
 import CreditExpertForm from './CreditExpertForm';
@@ -20,7 +20,7 @@ const RegisterPersonalInfo = () => {
 		isSuccess: isEmailConfirmSuccess,
 		isError: isEmailConfirmError,
 	} = useGetSignup(query?.accountId as string);
-	console.log('data', data);
+
 	const formMap = {
 		student: <StudentForm />,
 		'credit-owner': <CreditOwnerForm />,
