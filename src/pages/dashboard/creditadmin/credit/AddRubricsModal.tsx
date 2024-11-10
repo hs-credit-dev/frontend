@@ -88,12 +88,7 @@ const AddRubricsModal = ({ onBack, creditId }: AddRubricsModalProps) => {
 						<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
 							Rubrics
 						</Typography>
-						<Button
-							onClick={onBack}
-							className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
-						>
-							Back
-						</Button>
+						<Button onClick={onBack}>Back</Button>
 					</div>
 					<div>
 						<Typography className='font-montserrat text-[24px] my-[40px] text-center font-bold leading-[39.01px]'>
@@ -143,12 +138,7 @@ const AddRubricsModal = ({ onBack, creditId }: AddRubricsModalProps) => {
 								</div>
 							))}
 						</div>
-						<Button
-							onClick={handleAddRow}
-							className={
-								'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full mt-10 text-white bg-[#805DBE]'
-							}
-						>
+						<Button onClick={handleAddRow} className='mt-10'>
 							Add Row
 						</Button>
 					</div>
@@ -156,9 +146,7 @@ const AddRubricsModal = ({ onBack, creditId }: AddRubricsModalProps) => {
 						onClick={handleSubmitRubric}
 						disabled={!canSubmit || !rubrics.length}
 						type='submit'
-						className={
-							'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full mt-10 text-white bg-[#805DBE]'
-						}
+						className='mt-10'
 					>
 						Submit
 					</Button>

@@ -35,6 +35,8 @@ export const useLogin = () => {
 							push('/dashboard/creditowner');
 						} else if (!!res.credit_admins.length) {
 							push('/dashboard/creditadmin');
+						} else if (res.educator.link) {
+							push('/dashboard/educator');
 						} else {
 							push('/dashboard/staff/students');
 						}

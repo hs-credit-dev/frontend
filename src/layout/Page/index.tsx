@@ -16,14 +16,22 @@ interface PageProps {
 const Page = ({ children, isLoading, isProtected }: PageProps) => {
 	const { push } = useRouter();
 	const pathname = usePathname();
-	const { setUserInformation, isCreditOwner, isStudent, isCreditAdmin, isAuthorized } =
-		useUserStoreHook();
+	const {
+		setUserInformation,
+		isCreditOwner,
+		isStudent,
+		isCreditAdmin,
+		isAuthorized,
+		isEducator,
+	} = useUserStoreHook();
 	const { data } = useUserInformation();
 
 	const isCreditOwnerPage = pathname?.includes('creditowner');
 	const isStudentPage = pathname?.includes('student');
 	const isCreditAdminPage = pathname?.includes('creditadmin');
-
+	const isEducatorPage = pathname?.includes('educator');
+	console.log('isEducator', isEducatorPage);
+	console.log('iseducator', isEducator);
 	useEffect(() => {
 		if (data) {
 			setUserInformation(data);
@@ -40,7 +48,8 @@ const Page = ({ children, isLoading, isProtected }: PageProps) => {
 		isProtected &&
 		((isStudentPage && isStudent) ||
 			(isCreditOwnerPage && isCreditOwner) ||
-			(isCreditAdmin && isCreditAdminPage));
+			(isCreditAdmin && isCreditAdminPage) ||
+			(isEducator && isEducatorPage));
 
 	if (!authorized && isProtected) {
 		return (

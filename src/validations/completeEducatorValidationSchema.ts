@@ -1,6 +1,6 @@
 import { boolean, object, ref, string } from 'yup';
 
-export const completeCreditAdminSignupValidationSchema = object().shape({
+export const completeEducatorSignupValidationSchema = object().shape({
 	first_name: string()
 		.required('First Name is required')
 		.min(2, 'First Name must be at least 2 characters'),
@@ -16,5 +16,5 @@ export const completeCreditAdminSignupValidationSchema = object().shape({
 	age_confirmation: boolean()
 		.required('You must confirm your age')
 		.oneOf([true], 'You must agree to be at least 13 years old to continue'),
-	organization: string().required('Organization name is requried'),
+	organization: string().required('Organization name is required'),
 });

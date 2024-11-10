@@ -1,47 +1,34 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Button, Input, Label } from '../../../../components';
-import { useAddCreditExpert } from '../../../../hooks/credits';
-import { Admin } from '../../../../types';
-import { toastError, toastSuccess } from '../../../../utils/toast';
-import { addExpertValidationSchema } from '../../../../validations/addExpertValidationSchema';
+import { Button, Input, Label, Typography } from '../../../../../components';
+import { useCreateProject } from '../../../../../hooks/projects';
+import { toastError, toastSuccess } from '../../../../../utils/toast';
+import { addEducatorValidationSchema } from '../../../../../validations/addEducatorValidationSchema';
 
-interface ExpertForm {
+interface AddEducatorModalProps {
+	onBack: () => void;
+	creditId: string;
+	title: string;
+}
+
+interface EducatorForm {
 	first_name: string;
 	last_name: string;
 	email: string;
 }
 
-interface AddExpertModalProps {
-	onBack: () => void;
-	creditId: string;
-	creditExperts: Admin[];
-}
-
-const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps) => {
+const AddEducatorModal = ({ onBack, creditId, title }: AddEducatorModalProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
 		register,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(addExpertValidationSchema),
+		resolver: yupResolver(addEducatorValidationSchema),
 		mode: 'all',
 	});
-
-	const onSuccessMutation = (message?: string) => {
-		toastSuccess(message);
-	};
-
-	const onErrorMutation = (message?: string) => {
-		toastError(message);
-	};
-
-	const { mutate } = useAddCreditExpert(creditId, onSuccessMutation, onErrorMutation);
-
-	const getCommonProps = (name: keyof ExpertForm) => {
+	const getCommonProps = (name: keyof EducatorForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
 		const { isDirty, isTouched } = getFieldState(name);
 
@@ -56,17 +43,35 @@ const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps
 		};
 	};
 
-	const handleAddExpert = (values: ExpertForm) => {
-		console.log('values', values);
-		mutate({ experts: [...creditExperts, values] });
+	const onSuccessMutation = (message?: string) => {
+		toastSuccess(message);
+	};
+
+	const onErrorMutation = (message?: string) => {
+		toastError(message);
+	};
+
+	const { mutate } = useCreateProject(onSuccessMutation, onErrorMutation);
+
+	const handleStartProject = (values: EducatorForm) => {
+		const project = {
+			credit: creditId,
+			title: title,
+			educator: values,
+		};
+
+		mutate(project);
 	};
 
 	return (
 		<div className='fixed inset-0 flex items-center justify-center z-50'>
 			<div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40'></div>
 			<div className='flex flex-col items-center justify-center w-[90%] max-w-[758px] h-auto p-4 md:p-6 bg-white shadow-lg shadow-gray-500/50 rounded-lg z-50'>
-				<form className='w-full' onSubmit={handleSubmit(handleAddExpert)}>
-					<div className='flex justify-end'>
+				<form className='w-full' onSubmit={handleSubmit(handleStartProject)}>
+					<div className='flex justify-between'>
+						<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
+							Add Educator
+						</Typography>
 						<Button onClick={onBack}>Back</Button>
 					</div>
 					<div className=''>
@@ -106,7 +111,7 @@ const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps
 									An invite link will be sent to this email.
 								</p>
 							</div>
-							<Button type='submit'>Submit</Button>
+							<Button type='submit'>Send invite and start project</Button>
 						</div>
 					</div>
 				</form>
@@ -115,4 +120,4 @@ const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps
 	);
 };
 
-export default AddExpertModal;
+export default AddEducatorModal;

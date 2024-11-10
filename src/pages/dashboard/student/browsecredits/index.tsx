@@ -25,12 +25,7 @@ const BrowseCredits = () => {
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
 						Browse Credits
 					</Typography>
-					<Button
-						onClick={() => push('/dashboard/student')}
-						className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
-					>
-						Back
-					</Button>
+					<Button onClick={() => push('/dashboard/student')}>Back</Button>
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<div className='flex flex-wrap gap-2 md:gap-4 lg:gap-10'>

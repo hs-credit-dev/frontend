@@ -198,29 +198,14 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 					<Button
 						disabled={isPublishPending}
 						onClick={() => publishCredit()}
-						className={
-							'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE] mr-2'
-						}
+						className={'mr-2'}
 					>
 						Publish Credit
 					</Button>
-					<Button
-						disabled={isCreatePending}
-						type='submit'
-						className={
-							'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE]'
-						}
-					>
+					<Button disabled={isCreatePending} type='submit'>
 						{creditId ? 'Update' : 'Create'} Credit
 					</Button>
-					<Button
-						onClick={handlePublish}
-						disabled={isPublishPending}
-						type='submit'
-						className={
-							'w-[203px] h-[52px] disabled:bg-[#9f85cc] rounded-full text-white bg-[#805DBE]'
-						}
-					>
+					<Button onClick={handlePublish} disabled={isPublishPending} type='submit'>
 						Publish
 					</Button>
 				</div>

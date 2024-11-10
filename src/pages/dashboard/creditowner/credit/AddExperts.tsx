@@ -11,8 +11,6 @@ interface AddExpertsProps {
 }
 
 const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
-	console.log('creditExperts', creditExperts);
-	console.log('creditId', creditId);
 	const [showAddModal, setShowAddModal] = useState(false);
 	const invitedExperts = creditExperts?.filter((expert) => expert.status === 'invited');
 	const joinedExperts = creditExperts?.filter((expert) => expert.status === 'confirmed');
@@ -44,7 +42,10 @@ const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
 					</div>
 				))}
 				<div>
-					<Button className='flex mx-auto' onClick={() => setShowAddModal(!showAddModal)}>
+					<Button
+						className='flex mx-auto !p-0 bg-transparent'
+						onClick={() => setShowAddModal(!showAddModal)}
+					>
 						<svg
 							className='stroke-[#000] w-[30px] h-[30px]'
 							xmlns='http://www.w3.org/2000/svg'
@@ -67,7 +68,7 @@ const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
 							{expert.first_name} {expert.last_name}
 						</Typography>
 						<Typography>{expert.email}</Typography>
-						<Button className='flex items-center'>
+						<Button className='flex items-center !p-0 bg-transparent !text-black'>
 							<div className='w-2 h-2 rounded-full bg-[#1DCC00] mr-2' />
 							<p className='text-lg italic'>Confirmed</p>
 						</Button>

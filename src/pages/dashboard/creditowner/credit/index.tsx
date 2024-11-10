@@ -23,7 +23,6 @@ interface Credit {
 const Credit = () => {
 	const { push, query } = useRouter();
 	const { data, isPending: isFetchCreditPending } = useFetchCredit(query.id as string);
-	console.log('data', data);
 
 	return (
 		<Page isProtected isLoading={isFetchCreditPending && !!query.id}>
@@ -32,12 +31,7 @@ const Credit = () => {
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
 						Manage Credit
 					</Typography>
-					<Button
-						onClick={() => push('/dashboard/creditowner')}
-						className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
-					>
-						Back
-					</Button>
+					<Button onClick={() => push('/dashboard/creditowner')}>Back</Button>
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<div>

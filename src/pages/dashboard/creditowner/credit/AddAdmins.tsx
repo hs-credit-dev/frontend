@@ -29,7 +29,7 @@ const AddAdmins = ({ creditAdmins, creditId }: AddAdminsProps) => {
 							{admin.first_name} {admin.last_name}
 						</Typography>
 						<Typography>{admin.email}</Typography>
-						<Button>
+						<Button className='!p-0 bg-transparent'>
 							<svg
 								className='stroke-[#ef4444] w-[30px] h-[30px]'
 								data-name='Layer 3'
@@ -42,7 +42,10 @@ const AddAdmins = ({ creditAdmins, creditId }: AddAdminsProps) => {
 						</Button>
 					</div>
 				))}
-				<Button className='flex mx-auto' onClick={() => setShowAddModal(!showAddModal)}>
+				<Button
+					className='!p-0 bg-transparent flex mx-auto'
+					onClick={() => setShowAddModal(!showAddModal)}
+				>
 					<svg
 						className='stroke-[#000] w-[30px] h-[30px]'
 						xmlns='http://www.w3.org/2000/svg'
@@ -65,7 +68,7 @@ const AddAdmins = ({ creditAdmins, creditId }: AddAdminsProps) => {
 						{admin.first_name} {admin.last_name}
 					</Typography>
 					<Typography>{admin.email}</Typography>
-					<Button className='flex items-center'>
+					<Button className='flex items-center !p-0 bg-transparent !text-black'>
 						<div className='w-2 h-2 rounded-full bg-[#1DCC00] mr-2' />
 						<p className='text-lg italic'>Confirmed</p>
 					</Button>
