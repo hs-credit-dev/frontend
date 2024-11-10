@@ -20,4 +20,9 @@ const fetchProjects = async (page: number) => {
 	return data;
 };
 
-export { createProject, fetchProjects };
+const fetchProject = async (projectId: string) => {
+	const { data } = await axios.get(`/api/projects/${projectId}/`);
+	return data;
+};
+
+export { createProject, fetchProject, fetchProjects };

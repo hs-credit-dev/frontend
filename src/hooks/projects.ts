@@ -1,8 +1,8 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { createProject, fetchProjects } from '../api/projects';
-import { CACHE_KEY_FETCH_PROJECTS } from '../constants';
+import { createProject, fetchProject, fetchProjects } from '../api/projects';
+import { CACHE_KEY_FETCH_PROJECT, CACHE_KEY_FETCH_PROJECTS } from '../constants';
 import { handleAxiosError } from '../utils/errors';
 
 type OnSuccessCallback = (message?: string) => void;
@@ -32,4 +32,14 @@ const useGetProjects = (page: number) => {
 	});
 };
 
-export { useCreateProject, useGetProjects };
+const useGetProject = (projectId: string) => {
+	return useQuery({
+		queryKey: [CACHE_KEY_FETCH_PROJECT, projectId],
+		queryFn: () => fetchProject(projectId),
+		staleTime: 1_000 * 60 * 60,
+		enabled: !!projectId,
+		retry: false,
+	});
+};
+
+export { useCreateProject, useGetProject, useGetProjects };
