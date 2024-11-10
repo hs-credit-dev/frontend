@@ -8,9 +8,10 @@ import { toastError, toastSuccess } from '../../../utils/toast';
 import CreditAdminForm from './CreditAdminForm';
 import CreditExpertForm from './CreditExpertForm';
 import CreditOwnerForm from './CreditOwnerForm';
+import EducatorForm from './EducatorForm';
 import StudentForm from './StudentForm';
 
-type UserType = 'student' | 'credit-owner' | 'credit-admin';
+type UserType = 'student' | 'credit-owner' | 'credit-admin' | 'educator';
 
 const RegisterPersonalInfo = () => {
 	const { query } = useRouter();
@@ -21,11 +22,14 @@ const RegisterPersonalInfo = () => {
 		isError: isEmailConfirmError,
 	} = useGetSignup(query?.accountId as string);
 
+	console.log('-data', data);
+
 	const formMap = {
-		student: <StudentForm />,
 		'credit-owner': <CreditOwnerForm />,
 		'credit-admin': <CreditAdminForm />,
+		student: <StudentForm />,
 		expert: <CreditExpertForm />,
+		educator: <EducatorForm />,
 	};
 
 	if (isEmailConfirmSuccess) {

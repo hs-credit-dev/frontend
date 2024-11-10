@@ -69,12 +69,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 			<div className='flex flex-col items-center justify-center w-[90%] max-w-[758px] h-auto p-4 md:p-6 bg-white shadow-lg shadow-gray-500/50 rounded-lg z-50'>
 				<form className='w-full' onSubmit={handleSubmit(handleAddAdmin)}>
 					<div className='flex justify-end'>
-						<Button
-							onClick={onBack}
-							className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
-						>
-							Back
-						</Button>
+						<Button onClick={onBack}>Back</Button>
 					</div>
 					<div className=''>
 						<div className='flex justify-between'>
@@ -113,12 +108,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 									An invite link will be sent to this email.
 								</p>
 							</div>
-							<Button
-								type='submit'
-								className='bg-[#805DBE] disabled:bg-[#9f85cc] mt-[72px] text-white py-4 px-14 rounded-full'
-							>
-								Submit
-							</Button>
+							<Button type='submit'>Submit</Button>
 						</div>
 					</div>
 				</form>

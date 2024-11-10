@@ -8,13 +8,15 @@ import Page from '../../../../../layout/Page';
 import { CreditResponse } from '../../../../../types';
 import { toastError } from '../../../../../utils/toast';
 
+import AddEducatorModal from './AddEducatorModal';
+
 const BrowseCreditDetails = () => {
 	const { query, push } = useRouter();
 	const { data } = useFetchCredits(1);
 	const { creditId } = query;
 	const [loading, setLoading] = useState(true);
 	const [credit, setCredit] = useState<CreditResponse | null>(null);
-
+	const [open, setOpen] = useState(false);
 	useEffect(() => {
 		if (data?.results) {
 			const match = data?.results.find(
@@ -40,12 +42,7 @@ const BrowseCreditDetails = () => {
 					<Typography className='font-montserrat text-[32px] font-bold leading-[39.01px] text-left'>
 						Credit Details
 					</Typography>
-					<Button
-						onClick={() => push('/dashboard/student/browsecredits')}
-						className='bg-[#805DBE] w-[82px] h-[39px] rounded-full text-white'
-					>
-						Back
-					</Button>
+					<Button onClick={() => push('/dashboard/student/browsecredits')}>Back</Button>
 				</div>
 				{credit ? (
 					<div>
@@ -82,11 +79,7 @@ const BrowseCreditDetails = () => {
 									<p>{credit.mint_text}</p>
 								</div>
 							</div>
-							<Button
-								className={
-									'bg-[#805DBE] mt-8 disabled:bg-[#b49cdf] text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none w-full sm:w-auto md:w-[250px] h-12 md:h-[50px]'
-								}
-							>
+							<Button onClick={() => setOpen(true)} className={'mt-8 py-2 !px-16'}>
 								Start Credit
 							</Button>
 						</div>
@@ -95,6 +88,13 @@ const BrowseCreditDetails = () => {
 					'No credit found'
 				)}
 			</div>
+			{open && credit && (
+				<AddEducatorModal
+					creditId={creditId as string}
+					title={credit.name}
+					onBack={() => setOpen(false)}
+				/>
+			)}
 		</Page>
 	);
 };

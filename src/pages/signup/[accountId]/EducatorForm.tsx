@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
@@ -6,9 +5,9 @@ import { useRouter } from 'next/router';
 import { Button, Input, Label } from '../../../components';
 import { useCompleteSignup } from '../../../hooks/auth';
 import { toastError, toastSuccess } from '../../../utils/toast';
-import { completeCreditAdminSignupValidationSchema } from '../../../validations/completeCreditAdminSignupValidationSchema';
+import { completeEducatorSignupValidationSchema } from '../../../validations/completeEducatorValidationSchema';
 
-interface ExpertForm {
+interface EducatorForm {
 	first_name: string;
 	last_name: string;
 	password: string;
@@ -17,7 +16,7 @@ interface ExpertForm {
 	organization: string;
 }
 
-const CreditExpertForm = () => {
+const EducatorForm = () => {
 	const { push, query } = useRouter();
 	const {
 		handleSubmit,
@@ -25,30 +24,11 @@ const CreditExpertForm = () => {
 		register,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(completeCreditAdminSignupValidationSchema),
+		resolver: yupResolver(completeEducatorSignupValidationSchema),
 		mode: 'all',
 	});
 
-	const onSuccessMutation = () => {
-		toastSuccess('Signup was successful, please check your inbox!');
-		push('/login');
-	};
-
-	const onErrorMutation = () => {
-		toastError('Account already completed!');
-	};
-
-	const { mutate, isPending } = useCompleteSignup(
-		query.accountId as string,
-		onSuccessMutation,
-		onErrorMutation,
-	);
-
-	const handleCompleteCreditAdminSignup = (values: ExpertForm) => {
-		mutate(values);
-	};
-
-	const getCommonProps = (name: keyof ExpertForm) => {
+	const getCommonProps = (name: keyof EducatorForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
 		const { isDirty, isTouched } = getFieldState(name);
 
@@ -63,8 +43,28 @@ const CreditExpertForm = () => {
 		};
 	};
 
+	const onSuccessMutation = () => {
+		toastSuccess('Signup was successful');
+		push('/login');
+	};
+
+	const onErrorMutation = () => {
+		toastError('Account already completed!');
+	};
+
+	const { mutate, isPending } = useCompleteSignup(
+		query.accountId as string,
+		onSuccessMutation,
+		onErrorMutation,
+	);
+
+	const handleEducatorSignup = (values: EducatorForm) => {
+		console.log('v', values);
+		mutate(values);
+	};
+
 	return (
-		<form onSubmit={handleSubmit(handleCompleteCreditAdminSignup)}>
+		<form onSubmit={handleSubmit(handleEducatorSignup)}>
 			<div className='flex flex-col md:flex-row md:space-x-[42px] space-y-6 md:space-y-0 mb-8'>
 				<div className='flex flex-col space-y-[10px]'>
 					<Label
@@ -155,4 +155,4 @@ const CreditExpertForm = () => {
 	);
 };
 
-export default CreditExpertForm;
+export default EducatorForm;

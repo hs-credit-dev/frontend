@@ -43,7 +43,7 @@ const Header = ({ isProtected }: HeaderProps) => {
 						</div>
 						{isProtected && (
 							<div className='flex items-center space-x-4'>
-								<Button className='text-2xl !p-0 w-10 h-10 rounded-[10px] bg-[#85C4E9]'>
+								<Button className='text-2xl !p-0 w-10 h-10 !rounded-[10px] bg-[#85C4E9]'>
 									{firstName && firstName[0]}
 								</Button>
 								<Button

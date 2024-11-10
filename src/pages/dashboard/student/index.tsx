@@ -58,9 +58,7 @@ const Student = () => {
 			cell: ({ row }) => (
 				<div className='flex items-center justify-between'>
 					<StatusCircle status={row.original.status} />
-					<Button className='bg-[#805DBE] text-white text-[.75rem] font-normal hover:bg-violet-700'>
-						Action
-					</Button>
+					<Button className='hover:bg-violet-700 !p-0'>Action</Button>
 				</div>
 			),
 		},
@@ -170,14 +168,10 @@ const Student = () => {
 									),
 								)}
 								<td className='text-right flex items-center justify-end py-2'>
-									<Button
-										className={
-											'px-4 bg-[#805DBE] text-white text-[.75rem] font-normal hover:bg-violet-700'
-										}
-									>
+									<Button className={'hover:bg-violet-700 !px-2 !py-1 !rounded-none'}>
 										Take Action
 									</Button>
-									<Button className='mr-[25px] ml-[31px]'>
+									<Button className='!p-0 bg-transparent mx-2'>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
 											className='w-6 h-6 stroke-[#D40000] stroke-[3] fill-none'

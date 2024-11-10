@@ -1,10 +1,9 @@
-import * as yup from 'yup';
+import { mixed, object, string } from 'yup';
 
-export const creditCoreFormValidationSchema = yup.object().shape({
-	name: yup.string().required('Credit name is required'),
-	discipline: yup.string().required('Discipline is required'),
-	logo: yup
-		.mixed<File>()
+export const creditCoreFormValidationSchema = object().shape({
+	name: string().required('Credit name is required'),
+	discipline: string().required('Discipline is required'),
+	logo: mixed<File>()
 		.test('fileSize', 'The file is too large', (value) => {
 			return value instanceof File && value.size <= 2 * 1024 * 1024;
 		})
