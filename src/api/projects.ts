@@ -25,4 +25,9 @@ const fetchProject = async (projectId: string) => {
 	return data;
 };
 
-export { createProject, fetchProject, fetchProjects };
+const aproveProject = async (projectId: string) => {
+	const { data } = await axios.post(`/api/projects/${projectId}/approve_stake/`);
+	return data;
+};
+
+export { aproveProject, createProject, fetchProject, fetchProjects };

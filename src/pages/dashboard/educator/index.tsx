@@ -6,7 +6,7 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button } from '../../../components';
 import { useGetProjects } from '../../../hooks/projects';
@@ -36,6 +36,7 @@ type EmptyRow = {
 };
 
 const Educator = () => {
+	const { push } = useRouter();
 	const { data } = useGetProjects(1);
 	const { firstName } = useUserStoreHook();
 
@@ -115,6 +116,13 @@ const Educator = () => {
 		return [];
 	}, [numOfElementsToAdd]);
 
+	const handleTakeAction = (id: string) => {
+		push({
+			pathname: '/dashboard/educator/project',
+			query: { id },
+		});
+	};
+
 	console.log('data', data);
 	return (
 		<Page isProtected>
@@ -187,6 +195,7 @@ const Educator = () => {
 								)}
 								<td className='text-right flex items-center justify-end py-2'>
 									<Button
+										onClick={() => handleTakeAction(row.original.id)}
 										className={'hover:bg-violet-700 !px-2 !py-1 !rounded-none mr-10'}
 									>
 										Take Action
@@ -201,7 +210,7 @@ const Educator = () => {
 									className='border-b bg-white text-[14px] even:bg-[#EDEDED]'
 									key={index}
 								>
-									{row.cells.map((cell, cIndex: number) => (
+									{row.cells.map((_, cIndex: number) => (
 										<td className={`h-[41px] ${cIndex === 0 && 'pl-4'}`} key={cIndex}>
 											{cIndex === 0 && rowNumber}
 										</td>
@@ -211,13 +220,6 @@ const Educator = () => {
 						})}
 					</tbody>
 				</table>
-				{data?.results.length === 20 && (
-					<section className='flex justify-center mt-4'>
-						<Link href='/dashboard/student/browsecredits'>
-							+ Click to Browse Credits +
-						</Link>
-					</section>
-				)}
 			</Dashboard>
 		</Page>
 	);

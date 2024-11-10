@@ -1,7 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
-import { createProject, fetchProject, fetchProjects } from '../api/projects';
+import {
+	aproveProject,
+	createProject,
+	fetchProject,
+	fetchProjects,
+} from '../api/projects';
 import { CACHE_KEY_FETCH_PROJECT, CACHE_KEY_FETCH_PROJECTS } from '../constants';
 import { handleAxiosError } from '../utils/errors';
 
@@ -42,4 +47,21 @@ const useGetProject = (projectId: string) => {
 	});
 };
 
-export { useCreateProject, useGetProject, useGetProjects };
+const useAproveProject = (
+	projectId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: () => aproveProject(projectId),
+		onSuccess: () => {
+			onSuccess('Stake approved');
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
+export { useAproveProject, useCreateProject, useGetProject, useGetProjects };

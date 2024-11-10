@@ -1,6 +1,6 @@
 export type StatusCircles = {
 	status: string;
-	createdAt: string;
+	createdAt?: string;
 };
 
 function formatDate(dateString: string): string {
@@ -12,7 +12,7 @@ function formatDate(dateString: string): string {
 	return `${month}/${day}/${year}`;
 }
 
-const StatusCircle = ({ status, createdAt }: StatusCircles) => {
+const StatusCircle = ({ status, createdAt = '' }: StatusCircles) => {
 	console.log('status', createdAt);
 	switch (status) {
 		case 'staked':
