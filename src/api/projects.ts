@@ -16,6 +16,10 @@ type FormValues = {
 	media_asset: MediaAsset;
 };
 
+type MintValues = {
+	title: string;
+};
+
 const createProject = async (values: CreateProject) => {
 	const { data } = await axios.post('/api/projects/', values);
 	return data;
@@ -48,11 +52,17 @@ const acceptPitch = async (projectId: string, status: boolean) => {
 	return data;
 };
 
+const studentMint = async (projectId: string, values: MintValues) => {
+	const { data } = await axios.post(`/api/projects/${projectId}/mint/`, values);
+	return data;
+};
+
 export {
 	acceptPitch,
 	approveProject,
 	createProject,
 	fetchProject,
 	fetchProjects,
+	studentMint,
 	studentPitch,
 };

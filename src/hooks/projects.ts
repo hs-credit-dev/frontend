@@ -7,6 +7,7 @@ import {
 	createProject,
 	fetchProject,
 	fetchProjects,
+	studentMint,
 	studentPitch,
 } from '../api/projects';
 import { CACHE_KEY_FETCH_PROJECT, CACHE_KEY_FETCH_PROJECTS } from '../constants';
@@ -16,6 +17,10 @@ type MediaAsset = File | null;
 
 type FormValues = {
 	media_asset: MediaAsset;
+};
+
+type MintValues = {
+	title: string;
 };
 
 type OnSuccessCallback = (message?: string) => void;
@@ -106,6 +111,23 @@ const useApprovePitch = (
 	});
 };
 
+const useStudentMint = (
+	projectiId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: (values: MintValues) => studentMint(projectiId, values),
+		onSuccess: () => {
+			onSuccess('Successfully submited mint!');
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
 export {
 	useApprovePitch,
 	useApproveProject,
@@ -113,4 +135,5 @@ export {
 	useGetProject,
 	useGetProjects,
 	usePitch,
+	useStudentMint,
 };
