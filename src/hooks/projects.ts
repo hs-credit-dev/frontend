@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 
 import {
 	acceptPitch,
+	approveMint,
 	approveProject,
 	createProject,
 	fetchProject,
@@ -128,7 +129,25 @@ const useStudentMint = (
 	});
 };
 
+const useApproveMint = (
+	projectId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: (status: boolean) => approveMint(projectId, status),
+		onSuccess: () => {
+			onSuccess('Mint successfully approved');
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
 export {
+	useApproveMint,
 	useApprovePitch,
 	useApproveProject,
 	useCreateProject,

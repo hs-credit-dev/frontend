@@ -5,6 +5,7 @@ import { useGetProject } from '../../../../hooks/projects';
 import Page from '../../../../layout/Page';
 import useUserStoreHook from '../../../../store';
 
+import Mint from './Mint';
 import Pitch from './Pitch';
 import Stake from './Stake';
 
@@ -37,7 +38,7 @@ const Project = () => {
 			/>
 		),
 		pitched: <Pitch projectId={data?.id} fullName={`${firstName} ${lastName}`} />,
-		minted: <div>Mint</div>,
+		minted: <Mint projectId={data?.id} fullName={`${firstName} ${lastName}`} />,
 	};
 	return (
 		<Page isProtected>

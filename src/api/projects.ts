@@ -57,8 +57,16 @@ const studentMint = async (projectId: string, values: MintValues) => {
 	return data;
 };
 
+const approveMint = async (projectId: string, status: boolean) => {
+	const { data } = await axios.post(`/api/projects/${projectId}/approve_mint/`, {
+		approved: status,
+	});
+	return data;
+};
+
 export {
 	acceptPitch,
+	approveMint,
 	approveProject,
 	createProject,
 	fetchProject,
