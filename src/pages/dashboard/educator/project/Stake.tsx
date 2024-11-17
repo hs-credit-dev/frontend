@@ -1,5 +1,5 @@
 import { Button, Typography } from '../../../../components';
-import { useAproveProject } from '../../../../hooks/projects';
+import { useApproveProject } from '../../../../hooks/projects';
 import { toastError, toastSuccess } from '../../../../utils/toast';
 
 interface StakeProps {
@@ -24,7 +24,7 @@ const Stake = ({
 	const onErrorMutation = (message?: string) => {
 		toastError(message);
 	};
-	const { mutate } = useAproveProject(projectId, onSuccessMutation, onErrorMutation);
+	const { mutate } = useApproveProject(projectId, onSuccessMutation, onErrorMutation);
 	return (
 		<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
 			<div>

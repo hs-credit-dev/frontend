@@ -5,13 +5,14 @@ import { useGetProject } from '../../../../hooks/projects';
 import Page from '../../../../layout/Page';
 import useUserStoreHook from '../../../../store';
 
+import Pitch from './Pitch';
 import Stake from './Stake';
 
 const Project = () => {
-	const { firstName } = useUserStoreHook();
+	const { firstName, lastName } = useUserStoreHook();
 	const { query } = useRouter();
 	const { data } = useGetProject(query.id as string);
-
+	console.log('data', data);
 	const disciplineMap = {
 		AR: 'Arts',
 		TE: 'Technology',
@@ -35,7 +36,7 @@ const Project = () => {
 				creditName={disciplineMap[data?.credit?.discipline as keyof typeof disciplineMap]}
 			/>
 		),
-		pitched: <div>Pitch</div>,
+		pitched: <Pitch projectId={data?.id} fullName={`${firstName} ${lastName}`} />,
 		minted: <div>Mint</div>,
 	};
 	return (

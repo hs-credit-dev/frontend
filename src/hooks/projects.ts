@@ -2,7 +2,8 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 import {
-	aproveProject,
+	acceptPitch,
+	approveProject,
 	createProject,
 	fetchProject,
 	fetchProjects,
@@ -52,13 +53,13 @@ const useGetProject = (projectId: string) => {
 	});
 };
 
-const useAproveProject = (
+const useApproveProject = (
 	projectId: string,
 	onSuccess: OnSuccessCallback,
 	onError: OnErrorCallback,
 ) => {
 	return useMutation({
-		mutationFn: () => aproveProject(projectId),
+		mutationFn: () => approveProject(projectId),
 		onSuccess: () => {
 			onSuccess('Stake approved');
 		},
@@ -76,8 +77,8 @@ const usePitch = (
 ) => {
 	return useMutation({
 		mutationFn: (values: FormValues) => studentPitch(projectId, values),
-		onSuccess: (response) => {
-			console.log('response', response);
+		onSuccess: () => {
+			onSuccess('Pitch successfully sent');
 		},
 		onError: (error: AxiosError) => {
 			console.log('error', error);
@@ -86,4 +87,30 @@ const usePitch = (
 	});
 };
 
-export { useAproveProject, useCreateProject, useGetProject, useGetProjects, usePitch };
+const useApprovePitch = (
+	projectId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: (status: boolean) => acceptPitch(projectId, status),
+		onSuccess: (res) => {
+			onSuccess(
+				`Pitch successfully ${res.status === 'pitch-approved' ? 'approved' : 'rejected'}`,
+			);
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
+export {
+	useApprovePitch,
+	useApproveProject,
+	useCreateProject,
+	useGetProject,
+	useGetProjects,
+	usePitch,
+};

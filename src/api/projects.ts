@@ -31,7 +31,7 @@ const fetchProject = async (projectId: string) => {
 	return data;
 };
 
-const aproveProject = async (projectId: string) => {
+const approveProject = async (projectId: string) => {
 	const { data } = await axios.post(`/api/projects/${projectId}/approve_stake/`);
 	return data;
 };
@@ -41,4 +41,18 @@ const studentPitch = async (projectId: string, values: FormValues) => {
 	return data;
 };
 
-export { aproveProject, createProject, fetchProject, fetchProjects, studentPitch };
+const acceptPitch = async (projectId: string, status: boolean) => {
+	const { data } = await axios.post(`/api/projects/${projectId}/approve_pitch/`, {
+		approved: status,
+	});
+	return data;
+};
+
+export {
+	acceptPitch,
+	approveProject,
+	createProject,
+	fetchProject,
+	fetchProjects,
+	studentPitch,
+};
