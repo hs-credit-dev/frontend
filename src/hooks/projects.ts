@@ -6,9 +6,16 @@ import {
 	createProject,
 	fetchProject,
 	fetchProjects,
+	studentPitch,
 } from '../api/projects';
 import { CACHE_KEY_FETCH_PROJECT, CACHE_KEY_FETCH_PROJECTS } from '../constants';
 import { handleAxiosError } from '../utils/errors';
+
+type MediaAsset = File | null;
+
+type FormValues = {
+	media_asset: MediaAsset;
+};
 
 type OnSuccessCallback = (message?: string) => void;
 type OnErrorCallback = (message?: string) => void;
@@ -62,4 +69,21 @@ const useAproveProject = (
 	});
 };
 
-export { useAproveProject, useCreateProject, useGetProject, useGetProjects };
+const usePitch = (
+	projectId: string,
+	onSuccess: OnSuccessCallback,
+	onError: OnErrorCallback,
+) => {
+	return useMutation({
+		mutationFn: (values: FormValues) => studentPitch(projectId, values),
+		onSuccess: (response) => {
+			console.log('response', response);
+		},
+		onError: (error: AxiosError) => {
+			console.log('error', error);
+			handleAxiosError(error, onError);
+		},
+	});
+};
+
+export { useAproveProject, useCreateProject, useGetProject, useGetProjects, usePitch };

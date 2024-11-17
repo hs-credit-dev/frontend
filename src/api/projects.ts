@@ -10,6 +10,12 @@ interface CreateProject {
 	};
 }
 
+type MediaAsset = File | null;
+
+type FormValues = {
+	media_asset: MediaAsset;
+};
+
 const createProject = async (values: CreateProject) => {
 	const { data } = await axios.post('/api/projects/', values);
 	return data;
@@ -30,4 +36,9 @@ const aproveProject = async (projectId: string) => {
 	return data;
 };
 
-export { aproveProject, createProject, fetchProject, fetchProjects };
+const studentPitch = async (projectId: string, values: FormValues) => {
+	const { data } = await axios.post(`/api/projects/${projectId}/pitch/`, values);
+	return data;
+};
+
+export { aproveProject, createProject, fetchProject, fetchProjects, studentPitch };

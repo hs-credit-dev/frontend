@@ -1,11 +1,41 @@
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 
 import { Button, Typography } from '../../../../../components';
+import { usePitch } from '../../../../../hooks/projects';
 import Page from '../../../../../layout/Page';
+import { toastError, toastSuccess } from '../../../../../utils/toast';
+import { addStudentPitchValidationSchema } from '../../../../../validations/addStudentPitchValidationSchema';
+
+type MediaAsset = File | null;
+
+type FormValues = {
+	media_asset: MediaAsset;
+};
 
 const ProjectPitch = () => {
 	const { push, query } = useRouter();
 	const { projectId } = query;
+
+	const onSuccessMutation = (message?: string) => {
+		toastSuccess(message);
+	};
+
+	const onErrorMutation = (message?: string) => {
+		toastError(message);
+	};
+
+	const {
+		handleSubmit,
+		setValue,
+		formState: { errors },
+	} = useForm({
+		resolver: yupResolver(addStudentPitchValidationSchema),
+		mode: 'all',
+	});
+
+	const { mutate } = usePitch(projectId as string, onSuccessMutation, onErrorMutation);
 
 	const handleBack = () => {
 		push({
@@ -14,6 +44,18 @@ const ProjectPitch = () => {
 				projectId,
 			},
 		});
+	};
+
+	const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (file) {
+			setValue('media_asset', file, { shouldValidate: true });
+		}
+	};
+
+	const handlePitch = (values: FormValues) => {
+		console.log('values', values);
+		mutate(values);
 	};
 
 	return (
@@ -25,7 +67,7 @@ const ProjectPitch = () => {
 					</Typography>
 					<Button onClick={handleBack}>Back</Button>
 				</div>
-				<div className=''>
+				<form onSubmit={handleSubmit(handlePitch)} className=''>
 					<div>
 						<p>
 							You invested your attention to STAKE this credit. Next you upload a plan for
@@ -43,7 +85,19 @@ const ProjectPitch = () => {
 						</div>
 						<div className='space-y-2 mt-4'>
 							<p className='text-black'>Task</p>
-							<Button>Click here to upload</Button>
+							<input
+								type='file'
+								accept='application/pdf'
+								onChange={handleFileUpload}
+								className='block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                  file:rounded-full file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-violet-50 file:text-violet-700
+                  hover:file:bg-violet-100'
+							/>
+							{errors.media_asset && (
+								<p className='text-red-500 text-sm'>{errors.media_asset.message}</p>
+							)}
 						</div>
 						<div className='space-y-2 mt-4'>
 							<p className='text-black'>Checkpoints (Optional)</p>
@@ -52,10 +106,10 @@ const ProjectPitch = () => {
 							</Button>
 						</div>
 						<div className='space-y-2 mt-4'>
-							<Button>Submit</Button>
+							<Button type='submit'>Submit</Button>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</Page>
 	);

@@ -35,7 +35,7 @@ const ProjectStake = () => {
 					</div>
 					<div className='flex flex-col space-y-2 w-full'>
 						<p className='text-black'>Teacher’s Email</p>
-						<div className='h-[60px] rounded-sm shadow-custom'>
+						<div className='p-5 rounded-lg shadow-custom'>
 							<p>{data?.educator?.email}</p>
 						</div>
 					</div>

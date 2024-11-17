@@ -13,6 +13,8 @@ const ProjectDetails = () => {
 	console.log('data --->', data);
 	const statusMap = {
 		staked: 'Stake pending',
+		'stake-approved': 'Pitch Pending',
+		pitched: 'Mint pending',
 	};
 
 	const disciplineMap = {
