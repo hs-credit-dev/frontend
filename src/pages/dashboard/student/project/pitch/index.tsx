@@ -8,7 +8,7 @@ import Page from '../../../../../layout/Page';
 import { toastError, toastSuccess } from '../../../../../utils/toast';
 import { addStudentPitchValidationSchema } from '../../../../../validations/addStudentPitchValidationSchema';
 
-type MediaAsset = File | null;
+type MediaAsset = File;
 
 type FormValues = {
 	media_asset: MediaAsset;
