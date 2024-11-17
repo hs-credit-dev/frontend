@@ -13,7 +13,6 @@ function formatDate(dateString: string): string {
 }
 
 const StatusCircle = ({ status, createdAt = '' }: StatusCircles) => {
-	console.log('status', createdAt);
 	switch (status) {
 		case 'staked':
 			return (

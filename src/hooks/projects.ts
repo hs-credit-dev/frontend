@@ -16,12 +16,10 @@ type OnErrorCallback = (message?: string) => void;
 const useCreateProject = (onSuccess: OnSuccessCallback, onError: OnErrorCallback) => {
 	return useMutation({
 		mutationFn: createProject,
-		onSuccess: (response) => {
-			console.log('response', response);
+		onSuccess: () => {
 			onSuccess('Educator succesfully invited');
 		},
 		onError: (error: AxiosError) => {
-			console.log('error', error);
 			handleAxiosError(error, onError);
 		},
 	});

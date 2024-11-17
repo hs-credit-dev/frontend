@@ -59,7 +59,6 @@ const EducatorForm = () => {
 	);
 
 	const handleEducatorSignup = (values: EducatorForm) => {
-		console.log('v', values);
 		mutate(values);
 	};
 

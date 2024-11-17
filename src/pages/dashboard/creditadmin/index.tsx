@@ -3,12 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Typography } from '../../../components';
-import { useFetchCredits } from '../../../hooks/credits';
+import { useGetCredits } from '../../../hooks/credits';
 import Page from '../../../layout/Page';
 import { CreditResponse } from '../../../types';
 
 const CreditAdmin = () => {
-	const { data } = useFetchCredits(1);
+	const { data } = useGetCredits(1);
 
 	return (
 		<Page isProtected>

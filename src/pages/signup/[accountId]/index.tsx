@@ -22,8 +22,6 @@ const RegisterPersonalInfo = () => {
 		isError: isEmailConfirmError,
 	} = useGetSignup(query?.accountId as string);
 
-	console.log('-data', data);
-
 	const formMap = {
 		'credit-owner': <CreditOwnerForm />,
 		'credit-admin': <CreditAdminForm />,

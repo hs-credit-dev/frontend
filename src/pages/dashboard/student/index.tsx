@@ -8,21 +8,30 @@ import {
 } from '@tanstack/react-table';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { Button } from '../../../components';
-import { useFetchCredits } from '../../../hooks/credits';
+import { useGetProjects } from '../../../hooks/projects';
 import Dashboard from '../../../layout/Dashboard';
 import Page from '../../../layout/Page';
 import useUserStoreHook from '../../../store';
+import { CreditResponse } from '../../../types';
 
 import StatusCircle from './StatusCircle';
 
+type Student = {
+	first_name: string;
+	last_name: string;
+};
+
 type CreditData = {
-	credit: string;
 	discipline: string;
 	status: string;
 	date: string;
-	id: number;
+	id: string;
+	credit: CreditResponse;
+	created_at: string;
+	student: Student;
 };
 
 type EmptyRow = {
@@ -36,7 +45,21 @@ const Student = () => {
 		pageSize: 10,
 	});
 	const { firstName } = useUserStoreHook();
-	const { data } = useFetchCredits(1);
+	const { data } = useGetProjects(1);
+	const { push } = useRouter();
+	// 006e0ecf-6abd-4dbb-bd91-b85a16083e2b
+	const disciplineMap = {
+		AR: 'Arts',
+		TE: 'Technology',
+		MA: 'Mathematics',
+		SC: 'Science',
+		SS: 'Social Studies',
+		HU: 'Humanities',
+		JN: 'Journalism',
+		EL: 'English',
+		FL: 'Foreign Language',
+		HE: 'Health',
+	};
 
 	const COLUMNS: ColumnDef<CreditData>[] = [
 		{
@@ -46,28 +69,33 @@ const Student = () => {
 		},
 		{
 			header: 'Credit',
-			accessorKey: 'name',
+			accessorKey: 'title',
 		},
 		{
 			header: 'Discipline',
-			accessorKey: 'discipline',
+			id: 'discipline',
+			accessorFn: (row) =>
+				disciplineMap[row?.credit?.discipline as keyof typeof disciplineMap],
 		},
 		{
 			header: 'Status',
 			accessorKey: 'status',
 			cell: ({ row }) => (
 				<div className='flex items-center justify-between'>
-					<StatusCircle status={row.original.status} />
+					<StatusCircle
+						status={row.original.status}
+						createdAt={row.original.created_at}
+					/>
 					<Button className='hover:bg-violet-700 !p-0'>Action</Button>
 				</div>
 			),
 		},
 	];
 
-	const columns = useMemo(() => COLUMNS, [COLUMNS]);
 	console.log('data', data?.results);
+
 	const table = useReactTable({
-		columns,
+		columns: COLUMNS,
 		data: data?.results ? data.results : [],
 		getCoreRowModel: getCoreRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
@@ -100,6 +128,15 @@ const Student = () => {
 		}
 		return [];
 	}, [numOfElementsToAdd]);
+
+	const handleTakeAction = (projectId: string) => {
+		push({
+			pathname: '/dashboard/student/project/',
+			query: {
+				projectId,
+			},
+		});
+	};
 
 	return (
 		<Page isProtected>
@@ -159,7 +196,10 @@ const Student = () => {
 								{row.getVisibleCells().map((cell, index) =>
 									cell.id.includes('status') ? (
 										<td key={cell.id}>
-											<StatusCircle status={row.original.status} />
+											<StatusCircle
+												status={row.original.status}
+												createdAt={row.original.created_at}
+											/>
 										</td>
 									) : (
 										<td key={cell.id} className={`${index === 0 && 'pl-4'} py-2`}>
@@ -168,7 +208,10 @@ const Student = () => {
 									),
 								)}
 								<td className='text-right flex items-center justify-end py-2'>
-									<Button className={'hover:bg-violet-700 !px-2 !py-1 !rounded-none'}>
+									<Button
+										onClick={() => handleTakeAction(row.original.id)}
+										className={'hover:bg-violet-700 !px-2 !py-1 !rounded-none'}
+									>
 										Take Action
 									</Button>
 									<Button className='!p-0 bg-transparent mx-2'>

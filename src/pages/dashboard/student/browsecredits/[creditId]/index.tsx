@@ -3,7 +3,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { Button, Typography } from '../../../../../components';
-import { useFetchCredits } from '../../../../../hooks/credits';
+import { useGetCredits } from '../../../../../hooks/credits';
+import { useGetProject } from '../../../../../hooks/projects';
 import Page from '../../../../../layout/Page';
 import { CreditResponse } from '../../../../../types';
 import { toastError } from '../../../../../utils/toast';
@@ -12,11 +13,14 @@ import AddEducatorModal from './AddEducatorModal';
 
 const BrowseCreditDetails = () => {
 	const { query, push } = useRouter();
-	const { data } = useFetchCredits(1);
+	const { data } = useGetCredits(1);
 	const { creditId } = query;
 	const [loading, setLoading] = useState(true);
 	const [credit, setCredit] = useState<CreditResponse | null>(null);
 	const [open, setOpen] = useState(false);
+	console.log('dddd -->', data);
+	const { data: project } = useGetProject(creditId as string);
+	console.log('project', project);
 	useEffect(() => {
 		if (data?.results) {
 			const match = data?.results.find(

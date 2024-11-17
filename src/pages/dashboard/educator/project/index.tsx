@@ -24,7 +24,6 @@ const Project = () => {
 		FL: 'Foreign Language',
 		HE: 'Health',
 	};
-	console.log('data', data);
 
 	const statusMap = {
 		staked: (

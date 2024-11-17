@@ -57,7 +57,6 @@ const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps
 	};
 
 	const handleAddExpert = (values: ExpertForm) => {
-		console.log('values', values);
 		mutate({ experts: [...creditExperts, values] });
 	};
 
