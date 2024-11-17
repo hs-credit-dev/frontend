@@ -26,7 +26,6 @@ export const useLogin = () => {
 
 			fetchUserInformation()
 				.then((res) => {
-					console.log('res', res);
 					toastSuccess('Login Successful!');
 					setTimeout(() => {
 						if (!!res.student) {

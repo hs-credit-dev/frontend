@@ -30,8 +30,7 @@ const Page = ({ children, isLoading, isProtected }: PageProps) => {
 	const isStudentPage = pathname?.includes('student');
 	const isCreditAdminPage = pathname?.includes('creditadmin');
 	const isEducatorPage = pathname?.includes('educator');
-	console.log('isEducator', isEducatorPage);
-	console.log('iseducator', isEducator);
+
 	useEffect(() => {
 		if (data) {
 			setUserInformation(data);

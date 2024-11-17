@@ -59,7 +59,6 @@ const addCreditExpert = async (creditId: string, creditExpert: CreditExperts) =>
 };
 
 const addCreditRubrics = async (creditId: string, rubric: AddRubricPayload) => {
-	console.log('rubric', rubric);
 	const { data } = await axios.patch(`/api/credits/${creditId}/`, rubric);
 
 	return data;

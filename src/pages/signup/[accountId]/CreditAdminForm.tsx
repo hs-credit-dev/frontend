@@ -44,7 +44,6 @@ const CreditAdminForm = () => {
 	);
 
 	const handleCompleteCreditAdminSignup = (values: CreditAdminForm) => {
-		console.log('values', values);
 		mutate(values);
 	};
 

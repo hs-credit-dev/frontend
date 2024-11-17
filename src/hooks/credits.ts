@@ -43,7 +43,7 @@ interface AddRubricPayload {
 type OnSuccessCallback = (message?: string) => void;
 type OnErrorCallback = (message?: string) => void;
 
-const useFetchCredits = (page: number) => {
+const useGetCredits = (page: number) => {
 	return useQuery({
 		queryKey: [CACHE_KEY_FETCH_CREDITS, page],
 		queryFn: () => fetchCredits(page),
@@ -131,7 +131,6 @@ const useAddCreditExpert = (
 	return useMutation({
 		mutationFn: (values: CreditExperts) => addCreditExpert(creditId, values),
 		onSuccess: (response) => {
-			console.log('response -->', response);
 			onSuccess(
 				`Successfully invited expert ${response.first_name} ${response.last_name}`,
 			);
@@ -164,7 +163,7 @@ export {
 	useAddCreditRubric,
 	useCreateCredit,
 	useFetchCredit,
-	useFetchCredits,
+	useGetCredits,
 	usePublishCredit,
 	useUpdateCredit,
 };

@@ -56,10 +56,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 		};
 	};
 
-	console.log('errors', errors);
-
 	const handleAddAdmin = (values: AdminForm) => {
-		console.log('admin', values);
 		mutate({ credit_admins: [...creditAdmins, values] });
 	};
 

@@ -42,6 +42,7 @@ const useUserStoreHook = () => {
 	const isCreditOwner = useUserStore((store) => !!store.user?.credit_owner);
 	const isEducator = useUserStore((store) => !!store.user?.educator);
 	const firstName = useUserStore((store) => store.user?.first_name);
+	const lastName = useUserStore((store) => store.user?.last_name);
 	const setUserInformation = useUserStore((store) => store.setUserInformation);
 	const isAuthorized = () => {
 		if (typeof window !== 'undefined') {
@@ -57,6 +58,7 @@ const useUserStoreHook = () => {
 		isCreditOwner,
 		isEducator,
 		firstName,
+		lastName,
 		setUserInformation,
 		isAuthorized: isAuthorized(),
 		creditAdmins,

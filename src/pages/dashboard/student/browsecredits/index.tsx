@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { Button, Typography } from '../../../../components';
-import { useFetchCredits } from '../../../../hooks/credits';
+import { useGetCredits } from '../../../../hooks/credits';
 import Page from '../../../../layout/Page';
 
 import Card from './Card';
@@ -16,8 +16,8 @@ type CardData = {
 
 const BrowseCredits = () => {
 	const { push } = useRouter();
-	const { data } = useFetchCredits(1);
-
+	const { data } = useGetCredits(1);
+	console.log('browsecredits', data);
 	return (
 		<Page isProtected>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
