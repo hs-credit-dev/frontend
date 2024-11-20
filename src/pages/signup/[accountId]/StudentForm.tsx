@@ -19,7 +19,7 @@ const StudentForm = () => {
 		formState: { errors },
 	} = useForm<CompleteSignupFormStudentValues>({
 		resolver: yupResolver(completeStudentSignupValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const onSuccessMutation = () => {
@@ -39,7 +39,7 @@ const StudentForm = () => {
 
 	const getCommonProps = (name: keyof CompleteSignupFormStudentValues) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -48,7 +48,7 @@ const StudentForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

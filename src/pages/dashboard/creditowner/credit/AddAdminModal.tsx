@@ -28,7 +28,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(addAdminValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const onSuccessMutation = (message?: string) => {
@@ -43,7 +43,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 
 	const getCommonProps = (name: keyof AdminForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -52,7 +52,7 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

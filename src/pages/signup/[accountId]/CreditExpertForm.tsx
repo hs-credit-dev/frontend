@@ -26,7 +26,7 @@ const CreditExpertForm = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(completeCreditAdminSignupValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const onSuccessMutation = () => {
@@ -50,7 +50,7 @@ const CreditExpertForm = () => {
 
 	const getCommonProps = (name: keyof ExpertForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -59,7 +59,7 @@ const CreditExpertForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

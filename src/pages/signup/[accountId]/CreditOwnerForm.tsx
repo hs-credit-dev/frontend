@@ -18,7 +18,7 @@ const CreditOwnerForm = () => {
 		formState: { errors },
 	} = useForm<CompleteSignupFormCreditOwnerValues>({
 		resolver: yupResolver(completeCreditOwnerSignupValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const { query, push } = useRouter();
@@ -78,7 +78,7 @@ const CreditOwnerForm = () => {
 
 	const getCommonProps = (name: keyof CompleteSignupFormCreditOwnerValues) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -87,7 +87,7 @@ const CreditOwnerForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

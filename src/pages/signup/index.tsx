@@ -17,7 +17,7 @@ const Signup = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(signupValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 		defaultValues: {
 			user_type: 'student',
 		},
@@ -39,7 +39,7 @@ const Signup = () => {
 
 	const getCommonProps = (name: keyof SignupFormValues) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -48,7 +48,7 @@ const Signup = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

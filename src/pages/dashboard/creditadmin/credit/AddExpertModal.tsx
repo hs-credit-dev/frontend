@@ -20,7 +20,7 @@ interface AddExpertModalProps {
 	creditExperts: Admin[];
 }
 
-const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps) => {
+const AddExpertModal = ({ creditId, onBack }: AddExpertModalProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
@@ -57,7 +57,7 @@ const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps
 	};
 
 	const handleAddExpert = (values: ExpertForm) => {
-		mutate({ experts: [...creditExperts, values] });
+		mutate({ experts: [values] });
 	};
 
 	return (

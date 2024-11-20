@@ -25,7 +25,7 @@ const CreditAdminForm = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(completeCreditAdminSignupValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const onSuccessMutation = () => {
@@ -49,7 +49,7 @@ const CreditAdminForm = () => {
 
 	const getCommonProps = (name: keyof CreditAdminForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -58,7 +58,7 @@ const CreditAdminForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

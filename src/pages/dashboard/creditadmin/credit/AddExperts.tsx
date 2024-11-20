@@ -28,7 +28,7 @@ const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
 							{expert.first_name} {expert.last_name}
 						</Typography>
 						<Typography>{expert.email}</Typography>
-						<Button>
+						<Button className='!bg-transparent'>
 							<svg
 								className='stroke-[#ef4444] w-[30px] h-[30px]'
 								data-name='Layer 3'
@@ -43,7 +43,7 @@ const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
 				))}
 				<div>
 					<Button
-						className='flex mx-auto !p-0 bg-transparent'
+						className='flex mx-auto !p-0 !bg-transparent'
 						onClick={() => setShowAddModal(!showAddModal)}
 					>
 						<svg
@@ -68,7 +68,7 @@ const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
 							{expert.first_name} {expert.last_name}
 						</Typography>
 						<Typography>{expert.email}</Typography>
-						<Button className='flex items-center !p-0 bg-transparent !text-black'>
+						<Button className='flex items-center !p-0 !bg-transparent !text-black'>
 							<div className='w-2 h-2 rounded-full bg-[#1DCC00] mr-2' />
 							<p className='text-lg italic'>Confirmed</p>
 						</Button>
