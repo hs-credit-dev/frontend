@@ -20,7 +20,7 @@ interface AddExpertModalProps {
 	creditExperts: Admin[];
 }
 
-const AddExpertModal = ({ creditId, creditExperts, onBack }: AddExpertModalProps) => {
+const AddExpertModal = ({ creditExperts, creditId, onBack }: AddExpertModalProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
@@ -28,7 +28,7 @@ const AddExpertModal = ({ creditId, creditExperts, onBack }: AddExpertModalProps
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(addExpertValidationSchema),
-		mode: 'onSubmit',
+		mode: 'all',
 	});
 
 	const onSuccessMutation = (message?: string) => {

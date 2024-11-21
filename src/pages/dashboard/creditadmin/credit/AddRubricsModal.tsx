@@ -143,7 +143,6 @@ const AddRubricsModal = ({ onBack, creditId }: AddRubricsModalProps) => {
 						</Button>
 					</div>
 					<Button
-						onClick={handleSubmitRubric}
 						disabled={!canSubmit || !rubrics.length}
 						type='submit'
 						className='mt-10'

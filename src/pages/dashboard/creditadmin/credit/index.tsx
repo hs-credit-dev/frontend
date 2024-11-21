@@ -25,7 +25,7 @@ const CreditPage = () => {
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
 					<AddCreditDetails rubric={data?.rubric.length} creditId={query.id as string} />
-					<AddExperts creditExperts={data?.experts} creditId={query.creditId as string} />
+					<AddExperts creditExperts={data?.experts} creditId={query.id as string} />
 					<div>
 						<Button onClick={() => setShowRubrics(true)} type='submit'>
 							Edit Rubrics

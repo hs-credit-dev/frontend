@@ -128,9 +128,11 @@ const useAddCreditExpert = (
 	onSuccess: OnSuccessCallback,
 	onError: OnErrorCallback,
 ) => {
+	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: (values: CreditExperts) => addCreditExpert(creditId, values),
 		onSuccess: (response) => {
+			queryClient.invalidateQueries({ queryKey: [CACHE_KEY_FETCH_CREDITS, creditId] });
 			onSuccess(
 				`Successfully invited expert ${response.first_name} ${response.last_name}`,
 			);
