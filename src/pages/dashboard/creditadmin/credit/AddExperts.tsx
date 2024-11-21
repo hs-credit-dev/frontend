@@ -22,7 +22,7 @@ const AddExperts = ({ creditExperts, creditId }: AddExpertsProps) => {
 				{invitedExperts?.map((expert, index) => (
 					<div
 						key={index}
-						className='shadow-md bg-white box-border py-[21px] px-20 flex justify-between mb-4'
+						className='shadow-md items-center bg-white box-border py-[21px] px-20 flex justify-between mb-4'
 					>
 						<Typography>
 							{expert.first_name} {expert.last_name}

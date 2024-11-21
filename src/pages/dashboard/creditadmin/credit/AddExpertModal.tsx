@@ -28,7 +28,7 @@ const AddExpertModal = ({ creditId, onBack }: AddExpertModalProps) => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(addExpertValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const onSuccessMutation = (message?: string) => {
