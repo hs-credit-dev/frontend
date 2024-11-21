@@ -3,31 +3,31 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button, Input, Label } from '../../../../components';
-import { useAddCreditAdmin } from '../../../../hooks/credits';
+import { useAddCreditExpert } from '../../../../hooks/credits';
 import { Admin } from '../../../../types';
 import { toastError, toastSuccess } from '../../../../utils/toast';
-import { addAdminValidationSchema } from '../../../../validations/addAddminValidationSchema';
+import { addExpertValidationSchema } from '../../../../validations/addExpertValidationSchema';
 
-interface AdminForm {
+interface ExpertForm {
 	first_name: string;
 	last_name: string;
 	email: string;
 }
 
-interface AddAdminModalProps {
+interface AddExpertModalProps {
 	onBack: () => void;
 	creditId: string;
-	creditAdmins: Admin[];
+	creditExperts: Admin[];
 }
 
-const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) => {
+const AddExpertModal = ({ creditId, creditExperts, onBack }: AddExpertModalProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
 		register,
 		formState: { errors },
 	} = useForm({
-		resolver: yupResolver(addAdminValidationSchema),
+		resolver: yupResolver(addExpertValidationSchema),
 		mode: 'onSubmit',
 	});
 
@@ -39,11 +39,11 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 		toastError(message);
 	};
 
-	const { mutate } = useAddCreditAdmin(creditId, onSuccessMutation, onErrorMutation);
+	const { mutate } = useAddCreditExpert(creditId, onSuccessMutation, onErrorMutation);
 
-	const getCommonProps = (name: keyof AdminForm) => {
+	const getCommonProps = (name: keyof ExpertForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty } = getFieldState(name);
+		const { isDirty, isTouched } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -52,19 +52,19 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched: true,
+			isTouched,
 		};
 	};
 
-	const handleAddAdmin = (values: AdminForm) => {
-		mutate({ credit_admins: [...creditAdmins, values] });
+	const handleAddExpert = (values: ExpertForm) => {
+		mutate({ experts: [...creditExperts, values] });
 	};
 
 	return (
 		<div className='fixed inset-0 flex items-center justify-center z-50'>
 			<div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40'></div>
 			<div className='flex flex-col items-center justify-center w-[90%] max-w-[758px] h-auto p-4 md:p-6 bg-white shadow-lg shadow-gray-500/50 rounded-lg z-50'>
-				<form className='w-full' onSubmit={handleSubmit(handleAddAdmin)}>
+				<form className='w-full' onSubmit={handleSubmit(handleAddExpert)}>
 					<div className='flex justify-end'>
 						<Button onClick={onBack}>Back</Button>
 					</div>
@@ -114,4 +114,4 @@ const AddAdminModal = ({ onBack, creditId, creditAdmins }: AddAdminModalProps) =
 	);
 };
 
-export default AddAdminModal;
+export default AddExpertModal;

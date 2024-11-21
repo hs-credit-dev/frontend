@@ -101,7 +101,7 @@ const ProjectPitch = () => {
 						</div>
 						<div className='space-y-2 mt-4'>
 							<p className='text-black'>Checkpoints (Optional)</p>
-							<Button className='bg-transparent !py-2 text-[black] border-[#805DBE] border-2'>
+							<Button className='bg-transparent !py-2 !text-[black] border-[#805DBE] border-2'>
 								Add/Edit
 							</Button>
 						</div>

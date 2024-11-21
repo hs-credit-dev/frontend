@@ -31,7 +31,6 @@ const ProjectDetails = () => {
 	};
 
 	const handleStart = (status: string) => {
-		console.log('status', status);
 		push({
 			pathname: '/dashboard/student/project/' + status,
 			query: {

@@ -1,5 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { useUserInformation } from '../../hooks/users';
@@ -15,21 +14,18 @@ interface PageProps {
 
 const Page = ({ children, isLoading, isProtected }: PageProps) => {
 	const { push } = useRouter();
-	const pathname = usePathname();
-	const {
-		setUserInformation,
-		isCreditOwner,
-		isStudent,
-		isCreditAdmin,
-		isAuthorized,
-		isEducator,
-	} = useUserStoreHook();
+	const { setUserInformation } = useUserStoreHook();
 	const { data } = useUserInformation();
 
-	const isCreditOwnerPage = pathname?.includes('creditowner');
-	const isStudentPage = pathname?.includes('student');
-	const isCreditAdminPage = pathname?.includes('creditadmin');
-	const isEducatorPage = pathname?.includes('educator');
+	const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null); // Initialize as `null`
+
+	useEffect(() => {
+		// Check authorization on the client side
+		if (typeof window !== 'undefined') {
+			const token = localStorage.getItem('hstoken');
+			setIsAuthorized(!!token); // Set true or false based on the token
+		}
+	}, []);
 
 	useEffect(() => {
 		if (data) {
@@ -38,19 +34,24 @@ const Page = ({ children, isLoading, isProtected }: PageProps) => {
 	}, [data, setUserInformation]);
 
 	useEffect(() => {
-		if (!isAuthorized && isProtected) {
+		// Only redirect if `isAuthorized` has been determined (not `null`)
+		if (isAuthorized === false && isProtected) {
+			console.log('Redirecting to /login');
 			push('/login');
 		}
 	}, [isAuthorized, isProtected, push]);
 
-	const authorized =
-		isProtected &&
-		((isStudentPage && isStudent) ||
-			(isCreditOwnerPage && isCreditOwner) ||
-			(isCreditAdmin && isCreditAdminPage) ||
-			(isEducator && isEducatorPage));
+	// Show loading state while determining `isAuthorized`
+	if (isAuthorized === null) {
+		return (
+			<div className='bg-[#805DBE12] min-h-[100vh] flex flex-col justify-center items-center'>
+				Loading...
+			</div>
+		);
+	}
 
-	if (!authorized && isProtected) {
+	// If not authorized and protected, display unauthorized message
+	if (!isAuthorized && isProtected) {
 		return (
 			<div className='bg-[#805DBE12] min-h-[100vh] flex flex-col justify-between'>
 				Not authorized, please return

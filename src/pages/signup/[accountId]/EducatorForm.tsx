@@ -25,12 +25,12 @@ const EducatorForm = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(completeEducatorSignupValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const getCommonProps = (name: keyof EducatorForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -39,7 +39,7 @@ const EducatorForm = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 

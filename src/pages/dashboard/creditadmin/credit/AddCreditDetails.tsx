@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -9,7 +9,6 @@ import { addCreditDetailsValidationSchema } from '../../../../validations/addCre
 
 interface AddCreditDetails {
 	description: string;
-	rubric_version: string;
 	stake_text: string;
 	pitch_text: string;
 	mint_text: string;
@@ -17,17 +16,30 @@ interface AddCreditDetails {
 
 interface AddCreditDetailsProps {
 	creditId: string;
+	rubric: number;
+	description: string;
+	stake: string;
+	mint: string;
+	pitch: string;
 }
 
-const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
+const AddCreditDetails = ({
+	creditId,
+	rubric,
+	description,
+	stake,
+	mint,
+	pitch,
+}: AddCreditDetailsProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
 		register,
 		formState: { errors, isSubmitting },
+		setValue,
 	} = useForm({
 		resolver: yupResolver(addCreditDetailsValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const onSuccessMutation = (message?: string) => {
@@ -42,7 +54,7 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 
 	const getCommonProps = (name: keyof AddCreditDetails) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -51,13 +63,28 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 
 	const handleAddCreditDetails = (values: AddCreditDetails) => {
 		mutate({ creditId, values });
 	};
+
+	useEffect(() => {
+		if (description) {
+			setValue('description', description);
+		}
+		if (stake) {
+			setValue('stake_text', stake);
+		}
+		if (pitch) {
+			setValue('pitch_text', pitch);
+		}
+		if (mint) {
+			setValue('mint_text', mint);
+		}
+	}, [description, mint, pitch, setValue, stake]);
 
 	return (
 		<form onSubmit={handleSubmit(handleAddCreditDetails)}>
@@ -67,7 +94,7 @@ const AddCreditDetails = ({ creditId }: AddCreditDetailsProps) => {
 						Rubric version
 					</Label>
 					<Input
-						{...getCommonProps('rubric_version')}
+						value={rubric}
 						placeholder='Enter discipline'
 						className='border border-gray-400 p-2 rounded-md shadow-lg focus:shadow-2xl focus:outline-none w-full md:w-[350px] h-10 md:h-[58px]'
 					/>

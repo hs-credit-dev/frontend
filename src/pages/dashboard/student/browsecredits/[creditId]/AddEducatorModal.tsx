@@ -26,7 +26,7 @@ const AddEducatorModal = ({ onBack, creditId, title }: AddEducatorModalProps) =>
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(addEducatorValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 	const getCommonProps = (name: keyof EducatorForm) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
@@ -61,6 +61,7 @@ const AddEducatorModal = ({ onBack, creditId, title }: AddEducatorModalProps) =>
 		};
 
 		mutate(project);
+		window.open('/dashboard/student/project/stake', '_current');
 	};
 
 	return (

@@ -163,10 +163,6 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 		},
 	];
 
-	const handlePublish = () => {
-		publishCredit();
-	};
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className='flex justify-between items-end mb-12'>
@@ -195,18 +191,15 @@ const CreditCore = ({ creditId, logo, name, discipline }: CreditCoreProps) => {
 					)}
 				</div>
 				<div>
-					<Button
-						disabled={isPublishPending}
-						onClick={() => publishCredit()}
-						className={'mr-2'}
-					>
-						Publish Credit
-					</Button>
 					<Button disabled={isCreatePending} type='submit'>
 						{creditId ? 'Update' : 'Create'} Credit
 					</Button>
-					<Button onClick={handlePublish} disabled={isPublishPending} type='submit'>
-						Publish
+					<Button
+						disabled={isPublishPending}
+						onClick={() => publishCredit()}
+						className={'ml-2 !bg-[#1DCC00]'}
+					>
+						Publish Credit
 					</Button>
 				</div>
 			</div>

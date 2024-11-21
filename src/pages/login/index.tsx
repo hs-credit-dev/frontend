@@ -24,7 +24,7 @@ const Login = () => {
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(loginValidationSchema),
-		mode: 'all',
+		mode: 'onSubmit',
 	});
 
 	const { mutate, isPending } = useLogin();
@@ -35,7 +35,7 @@ const Login = () => {
 
 	const getCommonProps = (name: keyof LoginFormInputs) => {
 		const { name: inputName, onBlur, onChange, ref } = register(name);
-		const { isDirty, isTouched } = getFieldState(name);
+		const { isDirty } = getFieldState(name);
 
 		return {
 			name: inputName,
@@ -44,7 +44,7 @@ const Login = () => {
 			onChange,
 			forwardRef: ref,
 			isDirty,
-			isTouched,
+			isTouched: true,
 		};
 	};
 
