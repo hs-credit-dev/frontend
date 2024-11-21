@@ -47,7 +47,7 @@ const Student = () => {
 	const { firstName } = useUserStoreHook();
 	const { data } = useGetProjects(1);
 	const { push } = useRouter();
-	// 006e0ecf-6abd-4dbb-bd91-b85a16083e2b
+
 	const disciplineMap = {
 		AR: 'Arts',
 		TE: 'Technology',
@@ -129,9 +129,14 @@ const Student = () => {
 		return [];
 	}, [numOfElementsToAdd]);
 
-	const handleTakeAction = (projectId: string) => {
+	const handleTakeAction = (projectId: string, status: string) => {
+		console.log('status', status);
+		const stepMap = {
+			staked: 'pitch',
+			'stake-approved': 'mint',
+		};
 		push({
-			pathname: '/dashboard/student/project/',
+			pathname: `/dashboard/student/project/${stepMap[status as keyof typeof stepMap]}`,
 			query: {
 				projectId,
 			},
@@ -209,7 +214,7 @@ const Student = () => {
 								)}
 								<td className='text-right flex items-center justify-end py-2'>
 									<Button
-										onClick={() => handleTakeAction(row.original.id)}
+										onClick={() => handleTakeAction(row.original.id, row.original.status)}
 										className={'hover:bg-violet-700 !px-2 !py-1 !rounded-none'}
 									>
 										Take Action

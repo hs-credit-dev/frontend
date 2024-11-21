@@ -49,9 +49,6 @@ const Stake = ({
 				</div>
 			</div>
 			<div className='mt-10'>
-				<Button className='mr-4 !rounded-[20px] !bg-[#D40000] !px-12'>
-					Reject Stake
-				</Button>
 				<Button onClick={() => mutate()} className='!rounded-[20px] !bg-[#1DCC00] !px-12'>
 					Accept Stake
 				</Button>

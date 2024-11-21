@@ -13,6 +13,7 @@ function formatDate(dateString: string): string {
 }
 
 const StatusCircle = ({ status, createdAt = '' }: StatusCircles) => {
+	console.log('status', status);
 	switch (status) {
 		case 'staked':
 			return (
@@ -21,6 +22,15 @@ const StatusCircle = ({ status, createdAt = '' }: StatusCircles) => {
 					<div className='w-2 h-2 rounded-full bg-[#805DBE] opacity-0'></div>
 					<div className='w-2 h-2 rounded-full bg-[#805DBE] opacity-0'></div>
 					<span className='ml-1'>Staked on {formatDate(createdAt)}</span>
+				</span>
+			);
+		case 'stake-approved':
+			return (
+				<span className=' flex gap-1 items-center'>
+					<div className='w-2 h-2 rounded-full bg-[#805DBE] opacity-30'></div>
+					<div className='w-2 h-2 rounded-full bg-[#805DBE] opacity-0'></div>
+					<div className='w-2 h-2 rounded-full bg-[#805DBE] opacity-0'></div>
+					<span className='ml-1'>Stake approved on {formatDate(createdAt)}</span>
 				</span>
 			);
 		case 'pitched':

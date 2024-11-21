@@ -13,7 +13,7 @@ const CreditPage = () => {
 	const { push, query } = useRouter();
 	const { data, isPending: isFetchCreditPending } = useFetchCredit(query.id as string);
 	const [showRubrics, setShowRubrics] = React.useState(false);
-	console.log('data', data);
+	console.log('data -->', data);
 	return (
 		<Page isProtected isLoading={isFetchCreditPending && !!query.id}>
 			<div className='bg-white rounded-[20px] flex flex-col box-border p-14'>
@@ -24,7 +24,14 @@ const CreditPage = () => {
 					<Button onClick={() => push('/dashboard/creditadmin')}>Back</Button>
 				</div>
 				<div className='overflow-y-auto max-h-[calc(100vh-130px-140px-120px-56px)] pr-4 custom-scrollbar'>
-					<AddCreditDetails rubric={data?.rubric.length} creditId={query.id as string} />
+					<AddCreditDetails
+						description={data?.description}
+						stake={data?.stake_text}
+						mint={data?.mint_text}
+						pitch={data?.pitch_text}
+						rubric={data?.rubric.length}
+						creditId={query.id as string}
+					/>
 					<AddExperts creditExperts={data?.experts} creditId={query.id as string} />
 					<div>
 						<Button onClick={() => setShowRubrics(true)} type='submit'>

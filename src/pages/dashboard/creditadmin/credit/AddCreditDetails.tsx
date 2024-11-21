@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -17,14 +17,26 @@ interface AddCreditDetails {
 interface AddCreditDetailsProps {
 	creditId: string;
 	rubric: number;
+	description: string;
+	stake: string;
+	mint: string;
+	pitch: string;
 }
 
-const AddCreditDetails = ({ creditId, rubric }: AddCreditDetailsProps) => {
+const AddCreditDetails = ({
+	creditId,
+	rubric,
+	description,
+	stake,
+	mint,
+	pitch,
+}: AddCreditDetailsProps) => {
 	const {
 		handleSubmit,
 		getFieldState,
 		register,
 		formState: { errors, isSubmitting },
+		setValue,
 	} = useForm({
 		resolver: yupResolver(addCreditDetailsValidationSchema),
 		mode: 'onSubmit',
@@ -58,6 +70,21 @@ const AddCreditDetails = ({ creditId, rubric }: AddCreditDetailsProps) => {
 	const handleAddCreditDetails = (values: AddCreditDetails) => {
 		mutate({ creditId, values });
 	};
+
+	useEffect(() => {
+		if (description) {
+			setValue('description', description);
+		}
+		if (stake) {
+			setValue('stake_text', stake);
+		}
+		if (pitch) {
+			setValue('pitch_text', pitch);
+		}
+		if (mint) {
+			setValue('mint_text', mint);
+		}
+	}, [description, mint, pitch, setValue, stake]);
 
 	return (
 		<form onSubmit={handleSubmit(handleAddCreditDetails)}>
